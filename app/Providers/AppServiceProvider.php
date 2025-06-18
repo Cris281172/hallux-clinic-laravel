@@ -4,22 +4,19 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+    protected $policies = [];
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
+        Gate::before(function (User $user, $ability) {
+            return $user->is_super_admin ? true : null;
+        });
+
         Inertia::share([
             'permissions' => fn () => auth()->user() ? auth()->user()->getPermissionsViaRoles() : [],
         ]);
