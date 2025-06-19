@@ -78,74 +78,74 @@
 }
 
 :root {
-    --dark-plum: #530236;
-    --neon-blossom: #dc0b78;
-    --electric-romance: #f7aacb;
-    --background:
-        oklch(1 0 0);
-    --foreground:
-        oklch(0.145 0 0);
-    --card:
-        oklch(1 0 0);
-    --card-foreground:
-        oklch(0.145 0 0);
-    --popover:
-        oklch(1 0 0);
-    --popover-foreground:
-        oklch(0.145 0 0);
-    --primary:
-        oklch(0.205 0 0);
-    --primary-foreground:
-        oklch(0.985 0 0);
-    --secondary:
-        oklch(0.97 0 0);
-    --secondary-foreground:
-        oklch(0.205 0 0);
-    --muted:
-        oklch(0.97 0 0);
-    --muted-foreground:
-        oklch(0.556 0 0);
-    --accent:
-        oklch(0.97 0 0);
-    --accent-foreground:
-        oklch(0.205 0 0);
-    --destructive:
-        oklch(0.577 0.245 27.325);
-    --destructive-foreground: oklch(0.577 0.245 27.325);
-    --border:
-        oklch(0.922 0 0);
-    --input:
-        oklch(0.922 0 0);
-    --ring:
-        oklch(0.708 0 0);
-    --chart-1:
-        oklch(0.646 0.222 41.116);
-    --chart-2:
-        oklch(0.6 0.118 184.704);
-    --chart-3:
-        oklch(0.398 0.07 227.392);
-    --chart-4:
-        oklch(0.828 0.189 84.429);
-    --chart-5:
-        oklch(0.769 0.188 70.08);
-    --radius:
-        0.625rem;
-    --sidebar:
-        oklch(0.985 0 0);
-    --sidebar-foreground:
-        oklch(0.145 0 0);
-    --sidebar-primary:
-        oklch(0.205 0 0);
-    --sidebar-primary-foreground:
-        oklch(0.985 0 0);
-    --sidebar-accent:
-        oklch(0.97 0 0);
-    --sidebar-accent-foreground:
-        oklch(0.205 0 0);
-    --sidebar-border:
-        oklch(0.922 0 0);
-    --sidebar-ring:
-        oklch(0.708 0 0);
+    /*--dark-plum: #530236;*/
+    /*--neon-blossom: #dc0b78;*/
+    /*--electric-romance: #f7aacb;*/
+    /*--background:*/
+    /*    oklch(1 0 0);*/
+    /*--foreground:*/
+    /*    oklch(0.145 0 0);*/
+    /*--card:*/
+    /*    oklch(1 0 0);*/
+    /*--card-foreground:*/
+    /*    oklch(0.145 0 0);*/
+    /*--popover:*/
+    /*    oklch(1 0 0);*/
+    /*--popover-foreground:*/
+    /*    oklch(0.145 0 0);*/
+    /*--primary:*/
+    /*    oklch(0.205 0 0);*/
+    /*--primary-foreground:*/
+    /*    oklch(0.985 0 0);*/
+    /*--secondary:*/
+    /*    oklch(0.97 0 0);*/
+    /*--secondary-foreground:*/
+    /*    oklch(0.205 0 0);*/
+    /*--muted:*/
+    /*    oklch(0.97 0 0);*/
+    /*--muted-foreground:*/
+    /*    oklch(0.556 0 0);*/
+    /*--accent:*/
+    /*    oklch(0.97 0 0);*/
+    /*--accent-foreground:*/
+    /*    oklch(0.205 0 0);*/
+    /*--destructive:*/
+    /*    oklch(0.577 0.245 27.325);*/
+    /*--destructive-foreground: oklch(0.577 0.245 27.325);*/
+    /*--border:*/
+    /*    oklch(0.922 0 0);*/
+    /*--input:*/
+    /*    oklch(0.922 0 0);*/
+    /*--ring:*/
+    /*    oklch(0.708 0 0);*/
+    /*--chart-1:*/
+    /*    oklch(0.646 0.222 41.116);*/
+    /*--chart-2:*/
+    /*    oklch(0.6 0.118 184.704);*/
+    /*--chart-3:*/
+    /*    oklch(0.398 0.07 227.392);*/
+    /*--chart-4:*/
+    /*    oklch(0.828 0.189 84.429);*/
+    /*--chart-5:*/
+    /*    oklch(0.769 0.188 70.08);*/
+    /*--radius:*/
+    /*    0.625rem;*/
+    /*--sidebar:*/
+    /*    oklch(0.985 0 0);*/
+    /*--sidebar-foreground:*/
+    /*    oklch(0.145 0 0);*/
+    /*--sidebar-primary:*/
+    /*    oklch(0.205 0 0);*/
+    /*--sidebar-primary-foreground:*/
+    /*    oklch(0.985 0 0);*/
+    /*--sidebar-accent:*/
+    /*    oklch(0.97 0 0);*/
+    /*--sidebar-accent-foreground:*/
+    /*    oklch(0.205 0 0);*/
+    /*--sidebar-border:*/
+    /*    oklch(0.922 0 0);*/
+    /*--sidebar-ring:*/
+    /*    oklch(0.708 0 0);*/
 }
 
 .dark {
@@ -413,4 +413,31 @@
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover{
     background: gray !important;
+}
+
+@keyframes typing {
+    0% {
+        width: 0%;
+        visibility: hidden;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+    100% {
+        border-color: white;
+    }
+}
+
+.typing-once {
+    display: inline-block;
+    animation: typing 2.5s steps(30, end) forwards, blink 0.7s step-end infinite;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 4px solid white;
 }

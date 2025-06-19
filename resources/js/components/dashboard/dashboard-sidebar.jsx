@@ -28,7 +28,8 @@ const DashboardSidebar = () => {
                         <SidebarMenu>
                             {sidebarItemsConfig.map((item) => (
                                 <>
-                                    {(!item.permissions ||
+                                    {(user.is_super_admin ||
+                                        !item.permissions ||
                                         (item.permissions &&
                                             item.permissions.some((el) => permissions.some((permission) => permission.name === el)))) && (
                                         <>
@@ -47,7 +48,8 @@ const DashboardSidebar = () => {
                                                             <SidebarMenuSub>
                                                                 {item.children.map((childrenItem) => (
                                                                     <>
-                                                                        {permissions.find((el) => el.name === childrenItem.permission) ? (
+                                                                        {permissions.find((el) => el.name === childrenItem.permission) ||
+                                                                        user.is_super_admin ? (
                                                                             <SidebarMenuSubItem
                                                                                 className={`pt-0.5 pb-0.5 pl-2 ${route(childrenItem.url, childrenItem.params) === location ? 'bg-sidebar-accent rounded-md' : ''}`}
                                                                             >
