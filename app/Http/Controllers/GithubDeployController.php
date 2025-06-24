@@ -20,7 +20,6 @@ class GithubDeployController extends Controller
             "php artisan config:clear",
             "php artisan route:clear",
             "php artisan view:clear",
-            "composer install --no-interaction --prefer-dist --optimize-autoloader",
             "npm ci",
             "npm run build",
         ];
