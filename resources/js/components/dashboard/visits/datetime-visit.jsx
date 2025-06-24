@@ -1,12 +1,10 @@
 import { pl } from 'date-fns/locale';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import { route } from 'ziggy-js';
 import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 
 const DatetimeVisit = ({ selected, onChange, data, setAvailableTimes, availableTimes }) => {
-    const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         const fetchAvailableHours = async () => {
             if (!data.date || !data.userID) return;

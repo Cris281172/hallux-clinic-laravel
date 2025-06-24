@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Dashboard\Patient;
+namespace App\Http\Requests\Dashboard\Visit;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PatientCreateRequest extends FormRequest
+class VisitCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,8 @@ class PatientCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|string",
-            "surname" => "required|string",
-            "phone" => ["required", "digits:9"],
-            "email" => "email|required|string",
-            "birthdate" => "required|date|nullable",
-            "gender" => 'required|in:male,female',
+            "userID" => "required",
+            'date' => 'required|date',
         ];
     }
 }

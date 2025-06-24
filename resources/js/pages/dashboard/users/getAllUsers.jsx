@@ -1,9 +1,12 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import Heading from '../../../components/heading.js';
 import { Button } from '../../../components/ui/button.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const GetAllUsers = ({ users }) => {
+    const { props } = usePage();
+    const permissions = props.permissions;
+
     return (
         <DashboardLayout>
             <Heading title={'Wszyscy użytkownicy'} />
@@ -18,12 +21,16 @@ const GetAllUsers = ({ users }) => {
                         </div>
                         <p className={'font-bold'}>{user.email}</p>
                         <div className={'mt-5 flex gap-5'}>
-                            <Button asChild className="flex-1">
-                                <Link href={route('dashboard.user.edit.view', user.id)}>Edytuj użytkownika</Link>
-                            </Button>
-                            <Button asChild variant="outline" className="flex-1">
-                                <Link href={route('dashboard.user.delete', user.id)}>Usuń użytkownika</Link>
-                            </Button>
+                            {permissions.find((item) => item.name === 'edytowanie użytkowników') && (
+                                <Button asChild className="flex-1">
+                                    <Link href={route('dashboard.user.edit.view', user.id)}>Edytuj użytkownika</Link>
+                                </Button>
+                            )}
+                            {permissions.find((item) => item.name === 'usuwanie użytkowników') && (
+                                <Button asChild variant="outline" className="flex-1">
+                                    <Link href={route('dashboard.user.delete', user.id)}>Usuń użytkownika</Link>
+                                </Button>
+                            )}
                         </div>
                     </div>
                 ))}

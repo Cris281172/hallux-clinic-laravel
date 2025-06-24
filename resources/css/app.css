@@ -415,6 +415,16 @@
     background: gray !important;
 }
 
+.react-datepicker__year-dropdown, .react-datepicker__month-dropdown, .react-datepicker__month-year-dropdown{
+    max-height: 200px;
+    overflow-y: scroll;
+    background: #000000 !important;
+}
+
+.react-datepicker__navigation--years-previous{
+    display: none !important;
+}
+
 @keyframes typing {
     0% {
         width: 0%;

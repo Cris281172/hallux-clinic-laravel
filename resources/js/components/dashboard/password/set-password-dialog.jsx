@@ -19,10 +19,12 @@ const SetPasswordDialog = ({ isPasswordChanged }) => {
     return (
         <Dialog open={!isPasswordChanged}>
             <DialogTrigger asChild>
-                <Button className={'flex-1 cursor-pointer'} variant={'outline'}>
-                    <FaCalendarAlt />
-                    Dodaj wizytę
-                </Button>
+                {!isPasswordChanged && (
+                    <Button className={'flex-1 cursor-pointer'} variant={'outline'}>
+                        <FaCalendarAlt />
+                        Dodaj wizytę
+                    </Button>
+                )}
             </DialogTrigger>
             <DialogContent showCloseButton={false} className="sm:max-w-[650px]">
                 <form onSubmit={handleSubmit}>

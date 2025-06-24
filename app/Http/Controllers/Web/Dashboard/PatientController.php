@@ -93,4 +93,10 @@ class PatientController extends Controller
 
         return Inertia::render('dashboard/patients/getAllPatients', compact('data', 'statuses', 'users'));
     }
+    public function deletePatient(string $id){
+        $patient = Patient::findOrFail($id);
+        $patient->visits()->delete();
+        $patient->delete();
+        return back();
+    }
 }

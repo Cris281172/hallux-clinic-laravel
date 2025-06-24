@@ -5,7 +5,6 @@ import DashboardLayout from '../../layouts/dashboard-layout.jsx';
 const Dashboard = () => {
     const { props } = usePage();
     const user = props.auth.user;
-    console.log(user);
     return (
         <DashboardLayout>
             <Heading title={'Strona główna'} />

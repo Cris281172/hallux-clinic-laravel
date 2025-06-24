@@ -1,22 +1,33 @@
 import { Link, router, usePage } from '@inertiajs/react';
 import { pl } from 'date-fns/locale';
-import { useState } from 'react';
-import { FaEye } from 'react-icons/fa';
-import { FaUser, FaUserDoctor } from 'react-icons/fa6';
+import { Ban } from 'lucide-react';
+import React, { useState } from 'react';
+import { route } from 'ziggy-js';
 import DetailsWindow from '../../../components/dashboard/details-window.jsx';
-import StatusVisit from '../../../components/dashboard/status-visit.jsx';
+import VisitSingleCard from '../../../components/dashboard/visits/visit-single-card.jsx';
 import Heading from '../../../components/heading.js';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '../../../components/ui/alert-dialog.js';
+import { Alert, AlertTitle } from '../../../components/ui/alert.js';
 import { Button } from '../../../components/ui/button.js';
 import { Calendar } from '../../../components/ui/calendar.js';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../../components/ui/dialog.js';
 import { Label } from '../../../components/ui/label.js';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
-import formatDatePolish from '../../../utils/formatDatePolish.js';
 
 const GetAllVisits = ({ visits, date, users, user_id }) => {
     const { props } = usePage();
-    const userID = props.auth.user.id;
+    const permissions = props.permissions;
     const [infoOpen, setInfoOpen] = useState(null);
     const [userFilter, setUserFilter] = useState(user_id?.toString() ?? 'all');
     const parseDate = (str) => {
@@ -38,6 +49,7 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
         setUserFilter(value);
         router.get(route('dashboard.visit.get.all', [date, value]), {}, { preserveScroll: true, preserveState: true });
     };
+
     return (
         <DashboardLayout>
             <Heading title={'Wszystkie wizyty'} />
@@ -62,50 +74,63 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                 </div>
                 <Calendar locale={pl} mode="single" selected={parseDate(date)} onSelect={handleSelect} className="" />
             </div>
-            <div className={'grid w-full grid-cols-3 gap-10'}>
-                {visits
-                    .sort((a, b) => new Date(b.date) - new Date(a.date))
-                    .map((visit, index) => (
-                        <div key={index} className={'flex h-[300px] w-full flex-col justify-between rounded-2xl border-1 p-5'}>
-                            <div>
-                                <div className={'flex justify-between'}>
-                                    <div>{formatDatePolish(visit.date)}</div>
-                                    <StatusVisit status={visit.status} />
-                                </div>
-                                <div className={'flex items-center gap-1'}>
-                                    <FaUserDoctor className={'text-sm text-blue-700'} />
-                                    <p>Lekarz: {visit.user.name}</p>
-                                </div>
-                                <div className={'flex items-center gap-1'}>
-                                    <FaUser className={'text-sm'} />
-                                    <p>
-                                        Pacjent: {visit.patient.name} {visit.patient.surname}
-                                    </p>
-                                </div>
-                                {visit.price && +visit.price !== 0 && <p>Kod: {visit.price}</p>}
-                                <div className="line-clamp-5 w-full overflow-hidden">{visit.description ? visit.description : 'Brak opisu'}</div>
-                            </div>
-                            <div className={'flex gap-5'}>
-                                <Dialog open={infoOpen === visit.id} onOpenChange={(value) => setInfoOpen(value ? visit.id : null)}>
-                                    <DialogTrigger asChild>
-                                        <Button className={'flex-1 cursor-pointer'}>
-                                            <FaEye />
-                                            Szczegóły
-                                        </Button>
-                                    </DialogTrigger>
-                                    <DialogContent className="sm:max-w-[900px]">
-                                        <DialogTitle>
-                                            <div>test</div>
-                                        </DialogTitle>
-                                        <DetailsWindow patient={visit.patient} visits={visit} className="px-4" />
-                                    </DialogContent>
-                                </Dialog>
-                                <Button asChild variant="outline" className="flex-1">
-                                    <Link href={route('dashboard.visit.delete', visit.id)}>Usuń wizytę</Link>
-                                </Button>
-                            </div>
-                        </div>
-                    ))}
+            <div className={'mt-5'}>
+                {visits && visits.length !== 0 ? (
+                    <div className={'grid w-full grid-cols-3 gap-10'}>
+                        {visits
+                            .sort((a, b) => new Date(b.date) - new Date(a.date))
+                            .map((visit, index) => (
+                                <React.Fragment key={index}>
+                                    <VisitSingleCard visit={visit}>
+                                        <div className={'flex gap-5'}>
+                                            <Dialog open={infoOpen === visit.id} onOpenChange={(value) => setInfoOpen(value ? visit.id : null)}>
+                                                <DialogTrigger asChild>
+                                                    <Button className={'flex-1 cursor-pointer'}>Szczegóły</Button>
+                                                </DialogTrigger>
+                                                <DialogContent className="sm:max-w-[900px]">
+                                                    <DialogTitle>
+                                                        <div>test</div>
+                                                    </DialogTitle>
+                                                    <DetailsWindow patient={visit.patient} />
+                                                </DialogContent>
+                                            </Dialog>
+                                            <Button className={'flex-1'} asChild>
+                                                <Link href={route('dashboard.visit.edit.view', visit.id)}>Edytuj</Link>
+                                            </Button>
+                                            {permissions.find((el) => el.name === 'usuwanie wizyt') && (
+                                                <AlertDialog>
+                                                    <AlertDialogTrigger asChild>
+                                                        <Button variant="outline" className={'flex-1'}>
+                                                            Usuń wizytę
+                                                        </Button>
+                                                    </AlertDialogTrigger>
+                                                    <AlertDialogContent>
+                                                        <AlertDialogHeader>
+                                                            <AlertDialogTitle>Czy jesteś pewna/y usunięcia wizyty?</AlertDialogTitle>
+                                                            <AlertDialogDescription>
+                                                                Ta czynność spowoduje trwałe usunięcie wizyty bez możliwości jej przywrócenia.
+                                                            </AlertDialogDescription>
+                                                        </AlertDialogHeader>
+                                                        <AlertDialogFooter>
+                                                            <AlertDialogCancel>Anuluj</AlertDialogCancel>
+                                                            <AlertDialogAction asChild>
+                                                                <Link href={route('dashboard.visit.delete', visit.id)}>Potwierdz</Link>
+                                                            </AlertDialogAction>
+                                                        </AlertDialogFooter>
+                                                    </AlertDialogContent>
+                                                </AlertDialog>
+                                            )}
+                                        </div>
+                                    </VisitSingleCard>
+                                </React.Fragment>
+                            ))}
+                    </div>
+                ) : (
+                    <Alert>
+                        <Ban />
+                        <AlertTitle>Brak wizyt!</AlertTitle>
+                    </Alert>
+                )}
             </div>
         </DashboardLayout>
     );

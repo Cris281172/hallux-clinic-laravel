@@ -1,37 +1,31 @@
-import { useForm, usePage } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
-import formatToMySQLDateTime from '../../utils/formatToMySQLDateTime.js';
-import FormError from '../form-error.jsx';
-import { Button } from '../ui/button.js';
-import { Input } from '../ui/input.js';
-import { Label } from '../ui/label.js';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select.js';
-import { Textarea } from '../ui/textarea.js';
-import DatetimeVisit from './visits/datetime-visit.jsx';
+import { useForm } from '@inertiajs/react';
+import { useState } from 'react';
+import PatientSingleCard from '../../../components/dashboard/patinets/patient-single-card.jsx';
+import DatetimeVisit from '../../../components/dashboard/visits/datetime-visit.jsx';
+import FormError from '../../../components/form-error.jsx';
+import Heading from '../../../components/heading.js';
+import { Button } from '../../../components/ui/button.js';
+import { Input } from '../../../components/ui/input.js';
+import { Label } from '../../../components/ui/label.js';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select.js';
+import { Textarea } from '../../../components/ui/textarea.js';
+import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
+import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 
-const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) => {
-    const { props } = usePage();
-    const userID = props.auth.user.id;
-    const { data, setData, post, errors } = useForm({
-        description: '',
-        patientID: patientID,
-        date: undefined,
-        statusID: '1',
-        price: '',
-        userID: users.find((item) => item.id === userID) ? userID : '',
-    });
-
+const EditVisit = ({ visit, statuses, users }) => {
     const [availableTimes, setAvailableTimes] = useState([]);
-
-    useEffect(() => {
-        setData('patientID', patientID);
-    }, [patientID]);
+    const { data, setData, post, errors } = useForm({
+        description: visit.description,
+        patientID: visit.patient_id,
+        date: visit.date,
+        userID: visit.user_id,
+        statusID: `${visit.status_id}`,
+        price: visit.price,
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('dashboard.visit.create'), {
-            onSuccess: () => onSuccess(),
-        });
+        post(route('dashboard.visit.edit', visit.id));
     };
 
     const handleUserSelect = (value) => {
@@ -39,9 +33,10 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
         setData('date', undefined);
         setAvailableTimes([]);
     };
-
     return (
-        <>
+        <DashboardLayout>
+            <Heading title={'Edytuj wizytę'} />
+            <PatientSingleCard patient={visit.patient} visitInfoVisible={false} />
             <form className="px-4" onSubmit={handleSubmit}>
                 <div className={'flex flex-col gap-5'}>
                     <div className="grid w-full items-center gap-1.5">
@@ -63,7 +58,7 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    {statuesVisit.map((item, index) => (
+                                    {statuses.map((item, index) => (
                                         <SelectItem key={index} value={`${item.id}`}>
                                             {item.name}
                                         </SelectItem>
@@ -104,13 +99,12 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                         <Input value={data.price} onChange={(e) => setData('price', e.target.value)} type="text" id="price" placeholder="Podaj kod" />
                     </div>
                 </div>
-                <Button disabled={!patientID} type={'submit'} className={'mt-5'}>
-                    Dodaj wizytę
+                <Button type={'submit'} className={'mt-5'}>
+                    Edytuj wizytę
                 </Button>
             </form>
-            {children}
-        </>
+        </DashboardLayout>
     );
 };
 
-export default VisitCreate;
+export default EditVisit;

@@ -7,7 +7,6 @@ import { Link } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import formatDatePolish from '../../utils/formatDatePolish.js';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select.js';
-import EditVisit from './edit-visit.jsx';
 import StatusPatient from './status-patient.jsx';
 import StatusVisit from './status-visit.jsx';
 
@@ -17,8 +16,6 @@ const DetailsWindow = ({ patient }) => {
     const [lastPage, setLastPage] = useState(null);
     const [loading, setLoading] = useState(false);
     const observerRef = useRef(null);
-    const [editVisitID, setEditVisitID] = useState(null);
-    const [statuses, setStatuses] = useState([]);
     const fetchVisits = async (page = 1) => {
         if (loading || (lastPage && page > lastPage)) return;
 
@@ -26,7 +23,6 @@ const DetailsWindow = ({ patient }) => {
         try {
             const res = await fetch(route('api.dashboard.visits.get.all.patient.visits', { id: patient.id, page }));
             const data = await res.json();
-            setStatuses(data.statuses);
             setVisits((prev) => [...prev, ...data.visits.data]);
             setCurrentPage(data.visits.current_page);
             setLastPage(data.visits.last_page);
@@ -139,43 +135,28 @@ const DetailsWindow = ({ patient }) => {
                 <div className={'mt-8 flex flex-col gap-8'}>
                     {visits.map((visit, index) => (
                         <div key={index} className={'border-l-6 pl-2'}>
-                            {visit.id === editVisitID ? (
-                                <EditVisit
-                                    visit={visit}
-                                    statuses={statuses}
-                                    setEditVisitID={setEditVisitID}
-                                    setVisits={setVisits}
-                                    fetchVisits={() => {
-                                        setVisits([]);
-                                        setCurrentPage(1);
-                                        setLastPage(null);
-                                        fetchVisits(1);
-                                    }}
-                                />
-                            ) : (
-                                <>
-                                    <div className={'flex items-center justify-between'}>
-                                        <p>{formatDatePolish(visit.date)}</p>
-                                        <StatusVisit status={visit.status} />
-                                    </div>
-                                    <div className="mt-2 w-full max-w-[500px] overflow-hidden">
-                                        <p className={`${textMoreID === visit.id ? '' : 'truncate'} text-sm break-words`}>
-                                            {visit.description ? visit.description : 'Brak opisu'}
+                            <>
+                                <div className={'flex items-center justify-between'}>
+                                    <p>{formatDatePolish(visit.date)}</p>
+                                    <StatusVisit status={visit.status} />
+                                </div>
+                                <div className="mt-2 w-full max-w-[500px] overflow-hidden">
+                                    <p className={`${textMoreID === visit.id ? '' : 'truncate'} text-sm break-words`}>
+                                        {visit.description ? visit.description : 'Brak opisu'}
+                                    </p>
+                                    <div className={'flex justify-between'}>
+                                        <p
+                                            onClick={() => setTextMoreID((prevState) => (prevState === visit.id ? null : visit.id))}
+                                            className={`underline ${visit.description ? '' : 'invisible'}`}
+                                        >
+                                            {textMoreID === visit.id ? 'Schowaj' : 'Pokaż więcej'}
                                         </p>
-                                        <div className={'flex justify-between'}>
-                                            <p
-                                                onClick={() => setTextMoreID((prevState) => (prevState === visit.id ? null : visit.id))}
-                                                className={`underline ${visit.description ? '' : 'invisible'}`}
-                                            >
-                                                {textMoreID === visit.id ? 'Schowaj' : 'Pokaż więcej'}
-                                            </p>
-                                            <p onClick={() => setEditVisitID(visit.id)} className={'underline'}>
-                                                Edytuj
-                                            </p>
-                                        </div>
+                                        <Link href={route('dashboard.visit.edit.view', visit.id)} className={'underline'}>
+                                            Edytuj
+                                        </Link>
                                     </div>
-                                </>
-                            )}
+                                </div>
+                            </>
                         </div>
                     ))}
                     {loading && <div className="animate-pulse py-4 text-center text-gray-500">Ładowanie kolejnych wizyt...</div>}

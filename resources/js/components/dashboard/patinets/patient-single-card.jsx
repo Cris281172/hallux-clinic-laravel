@@ -4,10 +4,10 @@ import ageFromDate from '../../../utils/ageFromDate.js';
 import { Card } from '../../ui/card.js';
 import StatusPatient from '../status-patient.jsx';
 
-const PatientSingleCard = ({ patient, children }) => {
+const PatientSingleCard = ({ patient, children, visitInfoVisible = true }) => {
     return (
         <Card className={'rounded-xl border-1 p-8'}>
-            <div className={'mb-4 border-b-1 pb-4'}>
+            <div className={` ${visitInfoVisible ? 'mb-4 border-b-1 pb-4' : ''} `}>
                 <div className={'flex items-center justify-between'}>
                     <h3 className={'text-xl font-bold'}>
                         {patient.name} {patient.surname}
@@ -28,20 +28,23 @@ const PatientSingleCard = ({ patient, children }) => {
                     </li>
                 </ul>
             </div>
-            <div>
-                <div className={'flex items-center justify-between'}>
-                    <p>Ostatnia wizyta:</p>
-                    <p>{patient.lastVisit ? patient.lastVisit.date : 'Brak'}</p>
+            {visitInfoVisible && (
+                <div>
+                    <div className={'flex items-center justify-between'}>
+                        <p>Ostatnia wizyta:</p>
+                        <p>{patient.lastVisit ? patient.lastVisit.date : 'Brak'}</p>
+                    </div>
+                    <div className={'flex items-center justify-between'}>
+                        <p>Następna wizyta:</p>
+                        <p>{patient.upcomingVisit ? patient.upcomingVisit.date : 'Brak'}</p>
+                    </div>
+                    <div className={'flex items-center justify-between'}>
+                        <p>Liczba wizyt:</p>
+                        <p>{patient.totalVisits ? patient.totalVisits : 0}</p>
+                    </div>
                 </div>
-                <div className={'flex items-center justify-between'}>
-                    <p>Następna wizyta:</p>
-                    <p>{patient.upcomingVisit ? patient.upcomingVisit.date : 'Brak'}</p>
-                </div>
-                <div className={'flex items-center justify-between'}>
-                    <p>Liczba wizyt:</p>
-                    <p>{patient.totalVisits ? patient.totalVisits : 0}</p>
-                </div>
-            </div>
+            )}
+
             {children}
         </Card>
     );

@@ -16,6 +16,7 @@ import { SidebarFooter, SidebarMenuSub, SidebarMenuSubItem } from '../ui/sidebar
 
 const DashboardSidebar = () => {
     const { props } = usePage();
+    console.log(props);
     const permissions = props.permissions;
     const user = props.auth.user;
     const location = props.ziggy.location;
@@ -23,7 +24,7 @@ const DashboardSidebar = () => {
         <Sidebar>
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    <SidebarGroupLabel>Panel Hallux Clinic</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {sidebarItemsConfig.map((item) => (

@@ -17,6 +17,7 @@ use App\Http\Controllers\Web\PageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Web\Settings\PasswordController;
+use App\Http\Controllers\GithubDeployController;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/cennik', [PageController::class, 'priceList'])->name('price-list');
@@ -171,6 +172,8 @@ Route::group(['middleware' => 'auth'], function (){
 
             //TODO: edit permission and move /get/all/json to api.php file
 
+            Route::get('/delete/{id}',  [PatientController::class, 'deletePatient'])->name('dashboard.patient.delete');
+
             Route::get('/edit/{id}', [PatientController::class, 'editPatientView'])->name('dashboard.patient.edit.view');
 
             Route::post('/edit/{id}', [PatientController::class, 'editPatient'])->name('dashboard.patient.edit');
@@ -197,7 +200,16 @@ Route::group(['middleware' => 'auth'], function (){
 
             //TODO: delete/edit/available-hours permission and move /get/all/{id}/patient to api.php file
 
-            Route::get('/delete/{id}', [VisitController::class, 'deleteVisit'])->name('dashboard.visit.delete');
+            Route::group(['middleware' => ['can:usuwanie wizyt']], function () {
+
+                Route::get('/delete/{id}', [VisitController::class, 'deleteVisit'])->name('dashboard.visit.delete');
+
+            });
+
+            Route::get('/', [VisitController::class, 'index'])->name('dashboard.visit');
+
+
+            Route::get('/edit/{id}', [VisitController::class, 'editVisitView'])->name('dashboard.visit.edit.view');
 
             Route::post('/edit/{id}', [VisitController::class, 'editVisit'])->name('dashboard.visit.edit');
 
@@ -205,61 +217,68 @@ Route::group(['middleware' => 'auth'], function (){
 
         });
 
-        Route::group(['prefix' => 'users-management'], function (){
+        Route::group(['prefix' => 'users'], function (){
 
-            Route::group(['prefix' => 'users'], function (){
+            Route::group(['middleware' => ['can:dodawnie użytkowników']], function (){
 
-                Route::group(['middleware' => ['can:dodawnie użytkowników']], function (){
+                Route::get('/create', [UserManagement::class, 'createUserView'])->name('dashboard.user.create.view');
 
-                    Route::get('/create', [UserManagement::class, 'createUserView'])->name('dashboard.user.create.view');
+                Route::post('/create', [UserManagement::class, 'createUser'])->name('dashboard.user.create');
 
-                    Route::post('/create', [UserManagement::class, 'createUser'])->name('dashboard.user.create');
+            });
 
-                });
+            Route::group(['middleware' => ['can:wyświetlanie wszystkich użytkowników']], function (){
 
-                Route::group(['middleware' => ['can:wyświetlanie wszystkich użytkowników']], function (){
+                Route::get('/get/all', [UserManagement::class, 'getAllUsers'])->name('dashboard.user.get.all');
 
-                    Route::get('/get/all', [UserManagement::class, 'getAllUsers'])->name('dashboard.user.get.all');
+            });
 
-                });
-
-                //TODO: edit/delete permission
+            Route::group(['middleware' => ['can:edytowanie użytkowników']], function (){
 
                 Route::get('/edit/{id}', [UserManagement::class, 'editUserView'])->name('dashboard.user.edit.view');
 
                 Route::post('/edit/{id}', [UserManagement::class, 'editUser'])->name('dashboard.user.edit');
 
+            });
+
+            Route::group(['middleware' => ['can:usuwanie użytkowników']], function (){
+
                 Route::get('/delete/{id}', [UserManagement::class, 'deleteUser'])->name('dashboard.user.delete');
-
-
 
             });
 
+        });
 
-            Route::group(['prefix' => 'role'], function (){
+        Route::group(['prefix' => 'role'], function (){
 
-                Route::group(['middleware' => ['can:dodawanie ról']], function (){
+            Route::group(['middleware' => ['can:dodawanie ról']], function (){
 
-                    Route::get('/create', [RoleController::class, 'createRoleView'])->name('dashboard.role.create.view');
+                Route::get('/create', [RoleController::class, 'createRoleView'])->name('dashboard.role.create.view');
 
-                    Route::post('/create', [RoleController::class, 'createRole'])->name('dashboard.role.create');
+                Route::post('/create', [RoleController::class, 'createRole'])->name('dashboard.role.create');
 
-                });
+            });
 
-                Route::group(['middleware' => ['can:wyświetlanie wszystkich ról']], function (){
+            Route::group(['middleware' => ['can:wyświetlanie wszystkich ról']], function (){
 
-                    Route::get('/get/all', [RoleController::class, 'getAllRoles'])->name('dashboard.role.get.all');
+                Route::get('/get/all', [RoleController::class, 'getAllRoles'])->name('dashboard.role.get.all');
 
-                });
+            });
 
-                //TODO: edit/delete permission
+            Route::group(['middleware' => ['can:edytowanie ról']], function (){
 
                 Route::get('/edit/{id}', [RoleController::class, 'editRoleView'])->name('dashboard.role.edit.view');
 
                 Route::post('/edit/{id}', [RoleController::class, 'editRole'])->name('dashboard.role.edit');
 
-                Route::get('/delete/{id}', [RoleController::class, 'deleteRole'])->name('dashboard.role.delete');
             });
+
+            Route::group(['middleware' => ['can:usuwanie ról']], function (){
+
+                Route::get('/delete/{id}', [RoleController::class, 'deleteRole'])->name('dashboard.role.delete');
+
+            });
+
 
         });
 
@@ -284,7 +303,11 @@ Route::get('delete/{token}', [CommentController::class, 'deleteCommentByEmail'])
 Route::get('/{slug}', [BlogController::class, 'getPost'])->name('blog.post.get');
 
 
+Route::post('/keep-alive', function () {
+    return response()->json(['refreshed' => true, 'sessionExpiresAt' => now()->addMinutes(config('session.lifetime'))->toIso8601String()]);
+})->name('keep-alive');
 
+Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
 Route::fallback(function () {
     return Inertia::render('notFound');

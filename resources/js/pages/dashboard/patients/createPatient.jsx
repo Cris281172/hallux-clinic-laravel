@@ -1,15 +1,16 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
+import DateBirthday from '../../../components/dashboard/patinets/date-birthday.jsx';
 import FormError from '../../../components/form-error.jsx';
 import Heading from '../../../components/heading.js';
 import { Button } from '../../../components/ui/button.js';
-import { Calendar } from '../../../components/ui/calendar.js';
 import { Checkbox } from '../../../components/ui/checkbox.js';
 import { Input } from '../../../components/ui/input.js';
 import { Label } from '../../../components/ui/label.js';
 import { Textarea } from '../../../components/ui/textarea.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
+import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 const CreatePatient = ({ statuses }) => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate, setSelectedDate] = useState(null);
@@ -19,12 +20,12 @@ const CreatePatient = ({ statuses }) => {
         phone: '',
         description: '',
         comments: '',
-        birthdate: '',
+        birthdate: null,
         statusID: '1',
         patientCard: false,
         email: '',
     });
-
+    console.log(errors);
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('dashboard.patient.create'));
@@ -82,31 +83,12 @@ const CreatePatient = ({ statuses }) => {
                     </div>
                 </div>
                 <div className={'grid grid-cols-2 gap-4'}>
-                    <div className="relative grid w-full items-center gap-1.5">
+                    <div className="flex w-full flex-col gap-1.5">
                         <Label htmlFor="birthdate">Data urodzenia</Label>
-                        <Button
-                            className={'text-muted-foreground flex cursor-pointer justify-start border-1 bg-transparent hover:bg-transparent'}
-                            type="button"
-                            onClick={() => setShowCalendar((prev) => !prev)}
-                        >
-                            {selectedDate ? selectedDate.toLocaleDateString() : 'Wybierz datę'}
-                        </Button>
-                        {showCalendar && (
-                            <Calendar
-                                className="absolute top-0 mt-15 bg-black"
-                                mode="single"
-                                selected={selectedDate}
-                                onSelect={(date) => {
-                                    setSelectedDate(date);
-                                    setData('birthdate', date.toISOString().split('T')[0]);
-                                    setShowCalendar(false);
-                                }}
-                                disabled={(date) => date > new Date() || date < new Date('1900-01-01')}
-                                initialFocus
-                            />
-                        )}
+                        <DateBirthday selected={data.birthdate} onChange={(date) => setData('birthdate', formatToMySQLDateTime(date))} />
+                        <FormError id="birthdate-error" message={errors.birthdate} />
                     </div>
-                    <div className="grid w-full items-center gap-1.5">
+                    <div className="flex w-full flex-col gap-1.5">
                         <Label htmlFor="age">Płeć</Label>
                         <Select onValueChange={(value) => setData('gender', value)}>
                             <SelectTrigger className="w-full">
@@ -119,7 +101,7 @@ const CreatePatient = ({ statuses }) => {
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
-                        {/*{errors.slug && <>Bład w slug</>}*/}
+                        <FormError id="birthdate-error" message={errors.gender} />
                     </div>
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor="age">Status</Label>

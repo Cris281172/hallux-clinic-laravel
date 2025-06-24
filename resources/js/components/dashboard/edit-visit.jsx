@@ -9,11 +9,12 @@ import { Textarea } from '../ui/textarea.js';
 import DatetimeVisit from './visits/datetime-visit.jsx';
 
 const EditVisit = ({ visit, statuses, setEditVisitID, fetchVisits }) => {
-    const [showCalendar, setShowCalendar] = useState(false);
+    const [availableTimes, setAvailableTimes] = useState([]);
     const { data, setData, post } = useForm({
         description: visit.description,
         patientID: visit.patient_id,
         date: visit.date,
+        userID: visit.user_id,
         statusID: `${visit.status_id}`,
         price: '',
     });
@@ -38,7 +39,10 @@ const EditVisit = ({ visit, statuses, setEditVisitID, fetchVisits }) => {
                         <Label htmlFor="date">Data i godzina wizyty</Label>
                         <DatetimeVisit
                             selected={data.date ? new Date(data.date) : null}
+                            data={data}
                             onChange={(date) => setData('date', formatToMySQLDateTime(date))}
+                            setAvailableTimes={setAvailableTimes}
+                            availableTimes={availableTimes}
                         />
                     </div>
                     <div className="grid w-full items-center gap-1.5">
@@ -57,7 +61,6 @@ const EditVisit = ({ visit, statuses, setEditVisitID, fetchVisits }) => {
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
-                        {/*{errors.slug && <>Bład w slug</>}*/}
                     </div>
                 </div>
                 <div className="flex w-full flex-col gap-1.5">

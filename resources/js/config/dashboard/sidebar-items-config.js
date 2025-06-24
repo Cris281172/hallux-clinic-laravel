@@ -67,7 +67,7 @@ const sidebarItemsConfig = [
     },
     {
         title: 'Wizyty',
-        url: 'dashboard',
+        url: 'dashboard.visit',
         icon: Image,
         permissions: ['dodawanie wizyt', 'wyświetlanie wszystkich wizyt'],
         children: [

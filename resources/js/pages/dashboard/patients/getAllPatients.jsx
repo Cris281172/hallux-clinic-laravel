@@ -1,4 +1,6 @@
-import { router } from '@inertiajs/react';
+import { Alert, AlertTitle } from '@/components/ui/alert';
+import { Link, router } from '@inertiajs/react';
+import { Ban } from 'lucide-react';
 import React, { useState } from 'react';
 import { FaCalendarAlt, FaEye } from 'react-icons/fa';
 import AppPagination from '../../../components/app-pagination.jsx';
@@ -6,6 +8,17 @@ import DetailsWindow from '../../../components/dashboard/details-window.jsx';
 import PatientSingleCard from '../../../components/dashboard/patinets/patient-single-card.jsx';
 import VisitCreate from '../../../components/dashboard/visit-create.jsx';
 import Heading from '../../../components/heading.js';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '../../../components/ui/alert-dialog.js';
 import { Button } from '../../../components/ui/button.js';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../../components/ui/dialog.js';
 import { Input } from '../../../components/ui/input.js';
@@ -67,52 +80,87 @@ const GetAllPatients = ({ data, statuses, users }) => {
                 </div>
                 <Button type={'submit'}>Wyszukaj pacjenta</Button>
             </form>
-            <div className={'grid grid-cols-2 gap-5'}>
-                {patients.data.map((patient, index) => (
-                    <React.Fragment key={index}>
-                        <PatientSingleCard patient={patient}>
-                            <div className={'mt-5 flex w-full gap-4'}>
-                                <Dialog open={infoOpen === patient.id} onOpenChange={(value) => setInfoOpen(value ? patient.id : null)}>
-                                    <DialogTrigger asChild>
-                                        <Button className={'flex-1 cursor-pointer'}>
-                                            <FaEye />
-                                            Szczegóły
-                                        </Button>
-                                    </DialogTrigger>
-                                    <DialogContent className="sm:max-w-[900px]">
-                                        <DialogTitle>
-                                            <div>test</div>
-                                        </DialogTitle>
-                                        <DetailsWindow patient={patient} className="px-4" />
-                                    </DialogContent>
-                                </Dialog>
+            {patients?.data.length !== 0 ? (
+                <div className={'grid grid-cols-2 gap-5'}>
+                    {patients.data.map((patient, index) => (
+                        <React.Fragment key={index}>
+                            <PatientSingleCard patient={patient}>
+                                <div className={'mt-5 flex w-full gap-4'}>
+                                    <Dialog open={infoOpen === patient.id} onOpenChange={(value) => setInfoOpen(value ? patient.id : null)}>
+                                        <DialogTrigger asChild>
+                                            <Button className={'flex-1 cursor-pointer'}>
+                                                <FaEye />
+                                                Szczegóły
+                                            </Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="sm:max-w-[900px]">
+                                            <DialogTitle>
+                                                <div>test</div>
+                                            </DialogTitle>
+                                            <DetailsWindow patient={patient} className="px-4" />
+                                        </DialogContent>
+                                    </Dialog>
 
-                                <Dialog open={addVisitOpen === patient.id} onOpenChange={(value) => setAddVisitOpen(value ? patient.id : null)}>
-                                    <DialogTrigger asChild>
-                                        <Button className={'flex-1 cursor-pointer'} variant={'outline'}>
-                                            <FaCalendarAlt />
-                                            Dodaj wizytę
-                                        </Button>
-                                    </DialogTrigger>
-                                    <DialogContent className="sm:max-w-[650px]">
-                                        <DialogTitle>
-                                            <div>test</div>
-                                        </DialogTitle>
-                                        <VisitCreate
-                                            patientID={patient.id}
-                                            statuesVisit={visitStatuses}
-                                            onSuccess={() => setAddVisitOpen(null)}
-                                            className="px-4"
-                                            users={users}
-                                        />
-                                    </DialogContent>
-                                </Dialog>
-                            </div>
-                        </PatientSingleCard>
-                    </React.Fragment>
-                ))}
-            </div>
-            <AppPagination lastPage={patients.last_page} currentPage={patients.current_page} url={'/dashboard/patients/get/all'} search={search} />
+                                    <Dialog open={addVisitOpen === patient.id} onOpenChange={(value) => setAddVisitOpen(value ? patient.id : null)}>
+                                        <DialogTrigger asChild>
+                                            <Button className={'flex-1 cursor-pointer'} variant={'outline'}>
+                                                <FaCalendarAlt />
+                                                Dodaj wizytę
+                                            </Button>
+                                        </DialogTrigger>
+                                        <DialogContent className="sm:max-w-[650px]">
+                                            <DialogTitle>
+                                                <div>test</div>
+                                            </DialogTitle>
+                                            <VisitCreate
+                                                patientID={patient.id}
+                                                statuesVisit={visitStatuses}
+                                                onSuccess={() => setAddVisitOpen(null)}
+                                                className="px-4"
+                                                users={users}
+                                            />
+                                        </DialogContent>
+                                    </Dialog>
+                                    <AlertDialog>
+                                        <AlertDialogTrigger asChild>
+                                            <Button variant="outline" className={'flex-1'}>
+                                                Usuń pacjenta
+                                            </Button>
+                                        </AlertDialogTrigger>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>Czy jesteś pewna/y usunięcia pacjenta?</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    Ta czynność spowoduje trwałe usunięcie pacjenta bez możliwości jej przywrócenia.
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel>Anuluj</AlertDialogCancel>
+                                                <AlertDialogAction asChild>
+                                                    <Link href={route('dashboard.patient.delete', patient.id)}>Potwierdz</Link>
+                                                </AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
+                                </div>
+                            </PatientSingleCard>
+                        </React.Fragment>
+                    ))}
+                </div>
+            ) : (
+                <Alert>
+                    <Ban />
+                    <AlertTitle>Brak wyników!</AlertTitle>
+                </Alert>
+            )}
+            {patients?.data.length !== 0 && (
+                <AppPagination
+                    lastPage={patients.last_page}
+                    currentPage={patients.current_page}
+                    url={'/dashboard/patients/get/all'}
+                    search={search}
+                />
+            )}
         </DashboardLayout>
     );
 };

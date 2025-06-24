@@ -8,6 +8,10 @@ return [
         'surname' => 'nazwisko',
         'email' => 'email',
         'phone' => 'numer telefonu',
+        "birthdate" => "data urodzenia",
+        "gender" => "płeć",
+        'userID' => "lekarz",
+        'date' => 'data'
     ],
     'accepted'               => 'Pole :attribute musi zostać zaakceptowane.',
     'accepted_if'            => 'Pole :attribute musi zostać zaakceptowane gdy :other ma wartość :value.',

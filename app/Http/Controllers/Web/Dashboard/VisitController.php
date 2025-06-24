@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Visit\VisitCreateRequest;
 use App\Models\User;
 use App\Models\Visit;
 use App\Models\VisitStatus;
@@ -12,6 +13,10 @@ use Inertia\Inertia;
 
 class VisitController extends Controller
 {
+    public function index(){
+        $futureVisits = Visit::where('user_id', auth()->user()->id)->with(['status', 'patient', 'user'])->where('date', '>=', Carbon::now())->orderBy('date', 'asc')->limit(3)->get();
+        return Inertia::render('dashboard/visits/index', compact('futureVisits'));
+    }
     public function createVisitView(){
         $users = User::whereHas('roles', function ($query) {
             $query->where('name', 'Doktor');
@@ -19,7 +24,7 @@ class VisitController extends Controller
         $statuses = VisitStatus::all();
         return Inertia::render('dashboard/visits/createVisit', compact('statuses', 'users'));
     }
-    public function createVisit(Request $request){
+    public function createVisit(VisitCreateRequest $request){
 
         Visit::create([
             "user_id" => $request->userID,
@@ -35,7 +40,7 @@ class VisitController extends Controller
             $query->where('name', 'Doktor');
         })->get();
         $parsed = Carbon::parse($date);
-        $visits = Visit::with(['status', 'patient'])->whereDate('date', $parsed)->with('user');
+        $visits = Visit::with(['status', 'patient.status'])->whereDate('date', $parsed)->with('user');
         if($user_id && $user_id != 'all'){
             $visits = $visits->where('user_id', $user_id);
         }
@@ -45,6 +50,14 @@ class VisitController extends Controller
     public function deleteVisit(string $id){
         Visit::where('id', $id)->delete();
         return back();
+    }
+    public function editVisitView(string $id){
+        $visit = Visit::with(['status', 'patient.status', 'user'])->where('id', $id)->first();
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Doktor');
+        })->get();
+        $statuses = VisitStatus::all();
+        return Inertia::render('dashboard/visits/editVisit', compact('statuses', 'users', 'visit'));
     }
     public function editVisit(Request $request, string $id){
         Visit::where('id', $id)->update([
