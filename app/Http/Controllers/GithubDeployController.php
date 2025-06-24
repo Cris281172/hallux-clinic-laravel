@@ -19,20 +19,29 @@ class GithubDeployController extends Controller
             "php artisan config:clear",
             "php artisan route:clear",
             "php artisan view:clear",
-            "HOME=/tmp composer install --no-interaction --prefer-dist --optimize-autoloader"
+            "HOME=/tmp composer install --no-interaction --prefer-dist --optimize-autoloader",
+            "npm install",
+            "npm run build"
         ];
 
-        $fullCommand = implode(' && ', $commands);
-        exec($fullCommand . " 2>&1", $output, $statusCode);
+        foreach ($commands as $command) {
+            Log::info("▶️ Running: $command");
+            exec($command . " 2>&1", $output, $statusCode);
 
-        Log::info("📦 Deployment output:\n" . implode("\n", $output));
+            Log::info("📤 Output:\n" . implode("\n", $output));
 
-        if ($statusCode === 0) {
-            Log::info("✅ Deployment completed successfully.");
-            return response('OK', 200);
-        } else {
-            Log::error("❌ Deployment failed with status code: $statusCode");
-            return response('Deployment failed', 500);
+            if ($statusCode !== 0) {
+                Log::error("❌ Command failed: $command");
+                Log::error("❌ Status code: $statusCode");
+                return response("Deployment failed during: $command", 500);
+            }
+
+            // Czyść output przed kolejną komendą
+            $output = [];
         }
+
+        Log::info("✅ Deployment completed successfully.");
+        return response('OK', 200);
     }
+
 }
