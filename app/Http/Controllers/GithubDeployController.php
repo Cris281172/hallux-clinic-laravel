@@ -19,8 +19,8 @@ class GithubDeployController extends Controller
             "cd $project_path && php artisan route:clear",
             "cd $project_path && php artisan view:clear",
             "cd $project_path && HOME=/tmp composer install --no-interaction --prefer-dist --optimize-autoloader",
-            "cd $project_path && npm install",
-            "cd $project_path && npm run build"
+            "cd $project_path && /home/web/.nvm/versions/node/v18.20.8/bin/npm install",
+            "cd $project_path && /home/web/.nvm/versions/node/v18.20.8/bin/npm run build"
         ];
 
 
