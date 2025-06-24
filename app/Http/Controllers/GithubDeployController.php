@@ -30,7 +30,7 @@ class GithubDeployController extends Controller
         }
 
         // Krok 3: Composer install
-        exec("cd $project_path && composer install --no-interaction --prefer-dist --optimize-autoloader 2>&1", $composerOutput, $composerStatus);
+        exec("cd $project_path && HOME=/tmp composer install --no-interaction --prefer-dist --optimize-autoloader 2>&1", $composerOutput, $composerStatus);
         Log::info("📦 Composer output:\n" . implode("\n", $composerOutput));
 
         // Krok 4: NPM install
