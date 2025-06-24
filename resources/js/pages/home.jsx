@@ -31,7 +31,7 @@ export default function Home() {
                     <p className="text-lg text-white">Zadbaj o zdrowie i estetykę swoich stóp już dziś</p>
                     <div className="mt-2">
                         <button className="bg-dark-plum hover:bg-dark-plum-500 h-12 w-50 rounded-full px-6 py-2 font-bold text-white transition">
-                            Umów wizytę dxzsdasx
+                            Umów wizytę dsadsa
                         </button>
                     </div>
                 </div>
