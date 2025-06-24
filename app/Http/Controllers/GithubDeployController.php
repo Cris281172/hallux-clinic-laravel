@@ -10,32 +10,44 @@ class GithubDeployController extends Controller
     public function deploy(Request $request)
     {
         $project_path = base_path();
+        Log::info("🚀 Webhook started at " . now());
 
-        \Log::info("🚀 Webhook started at " . now());
+        // Krok 1: Git pull
+        exec("cd $project_path && git pull --no-rebase origin main 2>&1", $gitOutput, $gitStatus);
+        Log::info("📦 Git output:\n" . implode("\n", $gitOutput));
 
-        $commands = [
-            "cd $project_path",
-            "git pull --no-rebase origin main",
-            "php artisan cache:clear",
-            "php artisan config:clear",
-            "php artisan route:clear",
-            "php artisan view:clear",
-            "npm ci",
-            "npm run build",
+        // Krok 2: Laravel cache clear
+        $artisanCommands = [
+            'php artisan cache:clear',
+            'php artisan config:clear',
+            'php artisan route:clear',
+            'php artisan view:clear',
         ];
 
-        $fullCommand = implode(' && ', $commands);
-
-        exec($fullCommand . " 2>&1", $output, $statusCode);
-
-        \Log::info("📦 Deployment output:\n" . implode("\n", $output));
-
-        if ($statusCode === 0) {
-            \Log::info("✅ Deployment completed successfully.");
-        } else {
-            \Log::error("❌ Deployment failed with status code: $statusCode");
+        foreach ($artisanCommands as $cmd) {
+            exec("cd $project_path && $cmd 2>&1", $artisanOutput);
+            Log::info("🔧 $cmd:\n" . implode("\n", $artisanOutput));
         }
 
-        return response('OK', 200);
+        // Krok 3: Composer install
+        exec("cd $project_path && composer install --no-interaction --prefer-dist --optimize-autoloader 2>&1", $composerOutput, $composerStatus);
+        Log::info("📦 Composer output:\n" . implode("\n", $composerOutput));
+
+        // Krok 4: NPM install
+        exec("cd $project_path && npm ci 2>&1", $npmInstallOutput, $npmInstallStatus);
+        Log::info("📦 NPM CI output:\n" . implode("\n", $npmInstallOutput));
+
+        // Krok 5: NPM build
+        exec("cd $project_path && npm run build 2>&1", $npmBuildOutput, $npmBuildStatus);
+        Log::info("🎯 NPM Build output:\n" . implode("\n", $npmBuildOutput));
+
+        // Status końcowy
+        if ($gitStatus === 0 && $composerStatus === 0 && $npmInstallStatus === 0 && $npmBuildStatus === 0) {
+            Log::info("✅ Deployment completed successfully.");
+            return response('OK', 200);
+        } else {
+            Log::error("❌ Deployment failed. Status codes: git=$gitStatus, composer=$composerStatus, npm_install=$npmInstallStatus, npm_build=$npmBuildStatus");
+            return response('Deployment failed', 500);
+        }
     }
 }
