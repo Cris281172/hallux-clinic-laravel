@@ -1,1 +1,0 @@
-import{j as t}from"./app-BftRUR-1.js";import{A as o}from"./app-layout-xhaC0-46.js";/* empty css            */import"./sonner-BVMUHgQP.js";import"./index-CPQR8Y7t.js";const n=()=>t.jsx(o,{children:t.jsx("div",{className:"mx-4 flex items-center justify-between sm:container sm:mx-auto"})});export{n as default};
