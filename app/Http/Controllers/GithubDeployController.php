@@ -13,16 +13,16 @@ class GithubDeployController extends Controller
         Log::info("🚀 Webhook started at " . now());
 
         $commands = [
-            "cd $project_path",
-            "git pull --no-rebase origin main",
-            "php artisan cache:clear",
-            "php artisan config:clear",
-            "php artisan route:clear",
-            "php artisan view:clear",
-            "HOME=/tmp composer install --no-interaction --prefer-dist --optimize-autoloader",
-            "npm install",
-            "npm run build"
+            "cd $project_path && git pull --no-rebase origin main",
+            "cd $project_path && php artisan cache:clear",
+            "cd $project_path && php artisan config:clear",
+            "cd $project_path && php artisan route:clear",
+            "cd $project_path && php artisan view:clear",
+            "cd $project_path && HOME=/tmp composer install --no-interaction --prefer-dist --optimize-autoloader",
+            "cd $project_path && npm install",
+            "cd $project_path && npm run build"
         ];
+
 
         foreach ($commands as $command) {
             Log::info("▶️ Running: $command");
