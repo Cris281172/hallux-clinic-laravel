@@ -19,6 +19,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\Web\Settings\PasswordController;
 use App\Http\Controllers\GithubDeployController;
 
+Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
+
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/cennik', [PageController::class, 'priceList'])->name('price-list');
 Route::get('/galeria', [PageController::class, 'gallery'])->name('gallery');
@@ -304,8 +306,6 @@ Route::get('delete/{token}', [CommentController::class, 'deleteCommentByEmail'])
 Route::post('/keep-alive', function () {
     return response()->json(['refreshed' => true, 'sessionExpiresAt' => now()->addMinutes(config('session.lifetime'))->toIso8601String()]);
 })->name('keep-alive');
-
-Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
 Route::get('/{slug}', [BlogController::class, 'getPost'])->name('blog.post.get');
 
