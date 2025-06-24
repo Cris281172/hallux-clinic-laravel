@@ -7,14 +7,36 @@ use Illuminate\Support\Facades\Log;
 
 class GithubDeployController extends Controller
 {
-    public function deploy(Request $request){
+    public function deploy(Request $request)
+    {
         $project_path = base_path();
 
-        \Log::info("Webhook started");
+        \Log::info("🚀 Webhook started at " . now());
 
-        exec("cd $project_path && git pull --no-rebase origin main 2>&1", $output);
+        $commands = [
+            "cd $project_path",
+            "git pull --no-rebase origin main",
+            "php artisan cache:clear",
+            "php artisan config:clear",
+            "php artisan route:clear",
+            "php artisan view:clear",
+            "composer install --no-interaction --prefer-dist --optimize-autoloader",
+            "npm ci",
+            "npm run build",
+        ];
 
-        \Log::info("Git output: " . implode("\n", $output));
+        $fullCommand = implode(' && ', $commands);
 
+        exec($fullCommand . " 2>&1", $output, $statusCode);
+
+        \Log::info("📦 Deployment output:\n" . implode("\n", $output));
+
+        if ($statusCode === 0) {
+            \Log::info("✅ Deployment completed successfully.");
+        } else {
+            \Log::error("❌ Deployment failed with status code: $statusCode");
+        }
+
+        return response('OK', 200);
     }
 }
