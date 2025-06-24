@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Log;
 class GithubDeployController extends Controller
 {
     public function deploy(Request $request){
-        Log::info($request->all());
+        $project_path = base_path();
+
+        \Log::info("Webhook started");
+
+        exec("cd $project_path && git pull origin main 2>&1", $output);
+        \Log::info("Git output: " . implode("\n", $output));
+
     }
 }
