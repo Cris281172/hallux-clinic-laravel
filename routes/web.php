@@ -300,14 +300,14 @@ Route::get('change-published/{token}/{published}', [CommentController::class, 'c
 
 Route::get('delete/{token}', [CommentController::class, 'deleteCommentByEmail'])->name('dashboard.blog.comment.delete.by.email');
 
-Route::get('/{slug}', [BlogController::class, 'getPost'])->name('blog.post.get');
-
 
 Route::post('/keep-alive', function () {
     return response()->json(['refreshed' => true, 'sessionExpiresAt' => now()->addMinutes(config('session.lifetime'))->toIso8601String()]);
 })->name('keep-alive');
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
+
+Route::get('/{slug}', [BlogController::class, 'getPost'])->name('blog.post.get');
 
 Route::fallback(function () {
     return Inertia::render('notFound');
