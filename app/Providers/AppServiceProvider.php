@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        if(env('FORCE_HTTPS') === 'true') {
+        if(env('FORCE_HTTPS') === true) {
             URL::forceScheme('https');
         }
         Gate::before(function (User $user, $ability) {
