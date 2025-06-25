@@ -17,7 +17,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->secure(route('dashboard', absolute: false));
+        return redirect()->to(route('dashboard'));
     }
     public function destroy(Request $request)
     {
