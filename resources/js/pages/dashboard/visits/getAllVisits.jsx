@@ -27,7 +27,7 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const GetAllVisits = ({ visits, date, users, user_id }) => {
     const { props } = usePage();
-    const permissions = props.permissions;
+    const permissions = props.userPermissions;
     const [infoOpen, setInfoOpen] = useState(null);
     const [userFilter, setUserFilter] = useState(user_id?.toString() ?? 'all');
     const parseDate = (str) => {

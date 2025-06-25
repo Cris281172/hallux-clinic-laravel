@@ -11,7 +11,7 @@ const EditRole = ({ role, permissions }) => {
         roleName: role.name,
         permissions: role.permissions.map((item) => item.id),
     });
-
+    console.log(permissions);
     const handleSwitchChange = (id, value) => {
         setData('permissions', value ? [...data.permissions, id] : data.permissions.filter((el) => el !== id));
     };
@@ -36,14 +36,21 @@ const EditRole = ({ role, permissions }) => {
                     />
                 </div>
                 <div className={'mt-5 grid grid-cols-3 gap-5'}>
-                    {permissions.map((permission, index) => (
-                        <div key={index} className="flex items-center space-x-2">
-                            <Switch
-                                defaultChecked={data.permissions.find((item) => item === permission.id)}
-                                id={permission.name}
-                                onCheckedChange={(value) => handleSwitchChange(permission.id, value)}
-                            />
-                            <Label htmlFor={permission.name}>{permission.name}</Label>
+                    {permissions.map((item, index) => (
+                        <div key={index}>
+                            <h3>{item.title}</h3>
+                            <div className={'mt-2 flex flex-col gap-2'}>
+                                {item.permissions.map((permission, index) => (
+                                    <div key={index} className="flex items-center space-x-2">
+                                        <Switch
+                                            defaultChecked={data.permissions.find((item) => item === permission.id)}
+                                            id={permission.name}
+                                            onCheckedChange={(value) => handleSwitchChange(permission.id, value)}
+                                        />
+                                        <Label htmlFor={permission.name}>{permission.name}</Label>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     ))}
                 </div>

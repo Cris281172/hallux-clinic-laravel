@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Inertia::share([
-            'permissions' => fn () => auth()->user() ? auth()->user()->getPermissionsViaRoles() : [],
+            'userPermissions' => fn () => auth()->user() ? auth()->user()->getPermissionsViaRoles() : [],
         ]);
     }
 }

@@ -166,7 +166,7 @@ Route::group(['middleware' => 'auth'], function (){
 
             });
 
-            Route::group(['middleware' => ['can:wyświetlanie wszystkich pacjencjentów']], function (){
+            Route::group(['middleware' => ['can:wyświetlanie wszystkich pacjentów']], function (){
 
                 Route::get('/get/all', [PatientController::class, 'getAllPatients'])->name('dashboard.patient.get.all');
 

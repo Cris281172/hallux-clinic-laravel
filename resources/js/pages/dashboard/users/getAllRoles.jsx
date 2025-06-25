@@ -6,7 +6,7 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 const GetAllRoles = ({ roles }) => {
     const { props } = usePage();
 
-    const permissions = props.permissions;
+    const permissions = props.userPermissions;
 
     return (
         <DashboardLayout>

@@ -51,7 +51,7 @@ const sidebarItemsConfig = [
         title: 'Pacjenci',
         url: 'dashboard.patient',
         icon: Image,
-        permissions: ['dodawanie pacjentów', 'wyświetlanie wszystkich pacjencjentów'],
+        permissions: ['dodawanie pacjentów', 'wyświetlanie wszystkich pacjentów'],
         children: [
             {
                 title: 'Dodaj pacjenta',
@@ -61,7 +61,7 @@ const sidebarItemsConfig = [
             {
                 title: 'List pacjenci',
                 url: 'dashboard.patient.get.all',
-                permission: 'wyświetlanie wszystkich pacjencjentów',
+                permission: 'wyświetlanie wszystkich pacjentów',
             },
         ],
     },
