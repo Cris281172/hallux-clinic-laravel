@@ -28,9 +28,6 @@ const Gallery = ({ gallery }) => {
                     ))}
                 </div>
             </SubpageLayoutContainer>
-            {/*{active && (*/}
-            {/*    */}
-            {/*)}*/}
         </AppLayout>
     );
 };
