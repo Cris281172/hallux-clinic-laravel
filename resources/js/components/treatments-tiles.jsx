@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import { motion } from 'motion/react';
 import treatment1Image from '../assets/images/treatments/treatment1.webp';
 import treatment2Image from '../assets/images/treatments/treatment2.webp';
 import treatment3Image from '../assets/images/treatments/treatment3.webp';
@@ -43,16 +44,23 @@ const TreatmentsTiles = () => {
     return (
         <div className={'relative mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-10'}>
             {treatmentsConfig.map((treatment, index) => (
-                <Link
-                    href={`/uslugi/${treatment.url}`}
-                    className={`relative flex aspect-square cursor-pointer items-center justify-center rounded-lg bg-no-repeat`}
-                    style={{ backgroundImage: `url("${treatment.image}")` }}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                    viewport={{ once: true, amount: 0.2 }}
                 >
-                    <div className={'absolute top-0 left-0 h-full w-full rounded-lg bg-black opacity-45'}></div>
-                    <div key={index} className={`absolute max-w-10/12`}>
-                        <h3 className={'text-center text-2xl font-bold uppercase'}>{treatment.text}</h3>
-                    </div>
-                </Link>
+                    <Link
+                        href={`/uslugi/${treatment.url}`}
+                        className={`relative flex aspect-square cursor-pointer items-center justify-center rounded-lg bg-no-repeat`}
+                        style={{ backgroundImage: `url("${treatment.image}")` }}
+                    >
+                        <div className={'absolute top-0 left-0 h-full w-full rounded-lg bg-black opacity-45'}></div>
+                        <div key={index} className={`absolute max-w-10/12`}>
+                            <h3 className={'text-center text-2xl font-bold uppercase'}>{treatment.text}</h3>
+                        </div>
+                    </Link>
+                </motion.div>
             ))}
         </div>
     );

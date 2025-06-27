@@ -1,8 +1,11 @@
-import { Link } from '@inertiajs/react';
-import { useState } from 'react';
+import { Link, usePage } from '@inertiajs/react';
+import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 const MenuBar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const { props } = usePage();
 
     const [activeChildrenIndex, setActiveChildrenIndex] = useState(null);
 
@@ -138,9 +141,9 @@ const MenuBar = () => {
             ],
         },
         { name: 'Cennik', url: route('price-list') },
-        { name: 'O mnie', url: '/' },
+        { name: 'O mnie', url: route('about-me') },
         { name: 'Galeria', url: route('gallery') },
-        { name: 'Blog', url: route('blog.post.get.all') },
+        // { name: 'Blog', url: route('blog.post.get.all') },
         { name: 'Kontakt', url: route('contact') },
     ];
 
@@ -148,10 +151,22 @@ const MenuBar = () => {
         setMenuOpen((prev) => !prev);
     };
 
+    const [indicatorProps, setIndicatorProps] = useState({ left: 0, width: 0 });
+    const linkRefs = useRef([]);
+
+    useEffect(() => {
+        const activeIndex = menuConfig.findIndex((item) => item.url === props.ziggy.location);
+        if (linkRefs.current[activeIndex]) {
+            const rect = linkRefs.current[activeIndex].getBoundingClientRect();
+            const containerLeft = linkRefs.current[0].parentElement.getBoundingClientRect().left;
+            setIndicatorProps({ left: rect.left - containerLeft, width: rect.width });
+        }
+    }, [props.ziggy.location]);
+
     return (
         <div>
             <div className={'h-[94px]'}></div>
-            <div className={'fixed top-0 z-50 w-full'}>
+            <div className={'fixed top-0 z-50 w-full border-b-1 border-gray-50 shadow-xl'}>
                 <div className="bg-dark-plum pt-3 pb-3">
                     <div className="mx-4 flex items-center justify-between sm:container sm:mx-auto">
                         <Link href="/">
@@ -197,7 +212,12 @@ const MenuBar = () => {
 
                         {/* Desktop Navigation */}
                         <nav className="hidden sm:block">
-                            <ul className="flex gap-5">
+                            <ul className="relative flex gap-5">
+                                <motion.div
+                                    layout
+                                    className="absolute -bottom-1 h-[5px] bg-white transition-all duration-300"
+                                    animate={{ left: indicatorProps.left, width: indicatorProps.width }}
+                                />
                                 {menuConfig.map((menuItem, index) => (
                                     <li
                                         key={index}
@@ -205,7 +225,11 @@ const MenuBar = () => {
                                         onMouseEnter={() => setActiveChildrenIndex(index)}
                                         onMouseLeave={() => setActiveChildrenIndex(null)}
                                     >
-                                        <Link className="text-2xl font-medium text-white" href={menuItem.url}>
+                                        <Link
+                                            ref={(el) => (linkRefs.current[index] = el)}
+                                            className={`text-2xl font-medium text-white`}
+                                            href={menuItem.url}
+                                        >
                                             {menuItem.name}
                                         </Link>
                                         {menuItem.children && (

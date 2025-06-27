@@ -16,9 +16,34 @@ const EditRole = ({ role, permissions }) => {
         setData('permissions', value ? [...data.permissions, id] : data.permissions.filter((el) => el !== id));
     };
 
+    console.log(data);
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('dashboard.role.edit', role.id));
+    };
+
+    const handleSwitchAll = (permissionsGroup) => {
+        const allSelected = permissionsGroup.every((perm) => data.permissions.includes(perm.id));
+
+        if (allSelected) {
+            setData((prev) => ({
+                ...prev,
+                permissions: prev.permissions.filter((id) => !permissionsGroup.some((perm) => perm.id === id)),
+            }));
+        } else {
+            setData((prev) => {
+                const updated = [...prev.permissions];
+                permissionsGroup.forEach((perm) => {
+                    if (!updated.includes(perm.id)) {
+                        updated.push(perm.id);
+                    }
+                });
+                return {
+                    ...prev,
+                    permissions: updated,
+                };
+            });
+        }
     };
 
     return (
@@ -38,16 +63,23 @@ const EditRole = ({ role, permissions }) => {
                 <div className={'mt-5 grid grid-cols-3 gap-5'}>
                     {permissions.map((item, index) => (
                         <div key={index}>
-                            <h3>{item.title}</h3>
+                            <div className={'flex items-center gap-1'}>
+                                <Label htmlFor={item.title}>{item.title}</Label>
+                                <Switch
+                                    onClick={() => handleSwitchAll(item.permissions)}
+                                    id={item.title}
+                                    checked={item.permissions.every((obj) => data.permissions.includes(obj.id))}
+                                />
+                            </div>
                             <div className={'mt-2 flex flex-col gap-2'}>
                                 {item.permissions.map((permission, index) => (
                                     <div key={index} className="flex items-center space-x-2">
                                         <Switch
-                                            defaultChecked={data.permissions.find((item) => item === permission.id)}
-                                            id={permission.name}
+                                            checked={data.permissions.find((item) => item === permission.id)}
+                                            id={permission.id}
                                             onCheckedChange={(value) => handleSwitchChange(permission.id, value)}
                                         />
-                                        <Label htmlFor={permission.name}>{permission.name}</Label>
+                                        <Label htmlFor={permission.id}>{permission.name}</Label>
                                     </div>
                                 ))}
                             </div>

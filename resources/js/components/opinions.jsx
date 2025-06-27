@@ -1,15 +1,11 @@
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import opinionsConfig from '../config/opinionsConfig.js';
-import { CarouselNext, CarouselPrevious } from './ui/carousel.js';
 
 const Opinions = () => {
     return (
-        <Carousel>
-            <CarouselPrevious />
-            <CarouselNext />
-            <CarouselContent className={'-ml-10'}>
+        <>
+            <div className="columns-1 gap-5 sm:columns-2 md:columns-3">
                 {opinionsConfig.map((opinion, index) => (
-                    <CarouselItem className="basis-1/1 pl-10 md:basis-1/2 lg:basis-1/3" key={index}>
+                    <div className={'mb-3 w-full break-inside-avoid border-1 p-5'}>
                         <div className={'flex gap-2'}>
                             <div className="relative h-10 w-10 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
                                 <svg
@@ -76,10 +72,10 @@ const Opinions = () => {
 
                         <p className={'mt-5'}>{opinion.text}</p>
                         <p className={'mt-2 text-sm text-gray-300'}>{opinion.createdAt}</p>
-                    </CarouselItem>
+                    </div>
                 ))}
-            </CarouselContent>
-        </Carousel>
+            </div>
+        </>
     );
 };
 

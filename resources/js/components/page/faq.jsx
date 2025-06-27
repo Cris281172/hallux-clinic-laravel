@@ -1,9 +1,9 @@
 import { Accordion, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Link } from '@inertiajs/react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useState } from 'react';
-import AnimatedAccordionContent from './animation/animated-accordion-content.jsx';
-const PricesAccordion = ({ data, category, variant = 'default' }) => {
+import AnimatedAccordionContent from '../animation/animated-accordion-content.jsx';
+
+const FAQ = ({ data, variant = 'default' }) => {
     const [openIndexes, setOpenIndexes] = useState([]);
 
     const toggleIndex = (index) => {
@@ -31,9 +31,7 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                         />
                         <Accordion
                             type="multiple"
-                            className={`w-full ${
-                                variant === 'default' ? 'border-dark-plum' : 'border-gray-200'
-                            } p-0 pt-1 pr-3 pb-1 pl-3 sm:w-7/8 sm:border-r-2`}
+                            className={`w-full p-0 pt-1 pr-3 pb-1 pl-3 sm:border-r-2`}
                             value={isOpen ? [`item-${index}`] : []}
                             onValueChange={() => toggleIndex(index)}
                         >
@@ -41,21 +39,11 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                                 <AccordionTrigger className={'cursor-pointer'}>{item.value}</AccordionTrigger>
                                 <AnimatedAccordionContent isOpen={isOpen}>
                                     <div className="relative px-4 py-2">
-                                        <p className="mb-1">{item.shortDesc}</p>
-                                        <Link
-                                            href={route('service', {
-                                                category: category ?? item.categoryLink,
-                                                service: item.link,
-                                            })}
-                                            className="font-bold"
-                                        >
-                                            Poznaj szczegóły
-                                        </Link>
+                                        <p className="mb-1">{item.desc}</p>
                                     </div>
                                 </AnimatedAccordionContent>
                             </AccordionItem>
                         </Accordion>
-                        <div className="flex w-full justify-start pl-3 sm:w-1/8 sm:justify-center sm:p-0">{item.price} zł</div>
                     </div>
                 );
             })}
@@ -63,4 +51,4 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
     );
 };
 
-export default PricesAccordion;
+export default FAQ;

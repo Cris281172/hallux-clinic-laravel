@@ -33,4 +33,7 @@ class PageController extends Controller
     public function notFound(){
         return Inertia::render('notFound');
     }
+    public function aboutMe(){
+        return Inertia::render('aboutMe');
+    }
 }

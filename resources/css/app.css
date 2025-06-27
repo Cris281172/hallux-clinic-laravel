@@ -223,6 +223,7 @@
     }
 
     body {
+        background: #530236FF !important;
         @apply bg-background text-foreground;
     }
 }

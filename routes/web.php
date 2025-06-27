@@ -25,6 +25,7 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/cennik', [PageController::class, 'priceList'])->name('price-list');
 Route::get('/galeria', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/kontakt', [PageController::class, 'contact'])->name('contact');
+Route::get('/o-mnie', [PageController::class, 'aboutMe'])->name('about-me');
 Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/', [PageController::class, 'services'])->name('services');
     Route::get('/{category}', [PageController::class, 'serviceCategory'])->name('serviceCategory');

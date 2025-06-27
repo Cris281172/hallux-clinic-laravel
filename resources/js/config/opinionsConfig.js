@@ -29,6 +29,11 @@ const opinionsConfig = [
         text: 'Polecam w 100% usługi Pani Moniki. Ostatnio wykonała wspaniałą pracę w Domu Opieki Rokszyce troszcząc się o stopy naszych podopiecznych. Nasi Pensjonariusze mimo podeszłego wieku i doskwierających im chorób mogli poczuć się naprawdę komfortowo. Profesjonalne, indywidualne podejście do każdego pacjenta to naprawdę rzadkość, dzięki Pani Monice w domu zawitał dobry Duch Młodości i Piękności 🙂🙂. Dziękuję z całego serca za to co zrobiła Pani dla naszych Seniorów ♥️',
         createdAt: '04/2024',
     },
+    {
+        name: 'Aleksandra Sipa',
+        text: 'Zachęcony opiniami zgłosiłem się do P. Moniki i od pierwszego kontaktu, w tym przypadku telefonicznego, byłem pozytywnie zaskoczony. Rozmowa luźna ale rzeczowa, na temat, uwzględniająca rozwiązania lub skutki zostawienia problemu samego sobie. Szybki termin wizyty. W gabinecie czułem się zaopiekowany i zrozumiany - każdy ma inny próg bólu :) Polecam bardzo i napewno, jeżeli coś się będzie działo, to wrócę.',
+        createdAt: '04/2024',
+    },
 ];
 
 export default opinionsConfig;
