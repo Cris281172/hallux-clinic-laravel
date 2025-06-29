@@ -18,12 +18,16 @@ class GalleryController extends Controller
     public function uploadImage(Request $request){
         $files = $request->images;
 
+        $type = $request->type;
+
         foreach ($files as $file){
             $fileName = Str::random(20) . '_' . time() . '.jpg';
 
-            ImageManager::imagick()->read($file)->toJpeg()->save(storage_path('app/public/gallery/' . $fileName));
+            $path = storage_path('app/public/gallery/' . $type . '/' . $fileName);
 
-            ImageOptimizer::optimize(storage_path('app/public/gallery/' . $fileName));
+            ImageManager::imagick()->read($file)->toJpeg()->save($path);
+
+            ImageOptimizer::optimize($path);
 
         }
 

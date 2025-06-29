@@ -21,9 +21,9 @@ const ContactSection = () => {
     };
 
     return (
-        <div className={'flex'}>
-            <form className={'w-1/2'} onSubmit={handleSubmit}>
-                <div className={'grid grid-cols-2 gap-6'}>
+        <div className={'flex flex-col lg:flex-row'}>
+            <form className={'w-full lg:w-1/2'} onSubmit={handleSubmit}>
+                <div className={'grid grid-cols-1 gap-6 sm:grid-cols-2'}>
                     <div className="flex w-full flex-col gap-1.5">
                         <Label htmlFor="name" className={'text-dark-plum'}>
                             Imię (obowiązkowe)
@@ -96,7 +96,7 @@ const ContactSection = () => {
                     Wyślij
                 </button>
             </form>
-            <div className={'ml-12 border-l-1 pl-12'}>
+            <div className={'mt-5 border-l-1 lg:mt-0 lg:ml-12 lg:pl-12'}>
                 <ul className={'mb-2 border-b-1 pb-2'}>
                     <li className={'text-dark-plum flex items-center'}>
                         <FaPhoneAlt className={'mr-2'} /> Numer telefonu:{' '}

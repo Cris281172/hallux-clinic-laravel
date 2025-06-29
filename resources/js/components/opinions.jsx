@@ -5,7 +5,7 @@ const Opinions = () => {
         <>
             <div className="columns-1 gap-5 sm:columns-2 md:columns-3">
                 {opinionsConfig.map((opinion, index) => (
-                    <div className={'mb-3 w-full break-inside-avoid border-1 p-5'}>
+                    <div className={'mb-3 w-full break-inside-avoid border-1 p-5'} key={index}>
                         <div className={'flex gap-2'}>
                             <div className="relative h-10 w-10 overflow-hidden rounded-full bg-gray-100 dark:bg-gray-600">
                                 <svg

@@ -52,12 +52,17 @@ const TreatmentsTiles = () => {
                 >
                     <Link
                         href={`/uslugi/${treatment.url}`}
-                        className={`relative flex aspect-square cursor-pointer items-center justify-center rounded-lg bg-no-repeat`}
-                        style={{ backgroundImage: `url("${treatment.image}")` }}
+                        className="group relative flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg"
                     >
-                        <div className={'absolute top-0 left-0 h-full w-full rounded-lg bg-black opacity-45'}></div>
-                        <div key={index} className={`absolute max-w-10/12`}>
-                            <h3 className={'text-center text-2xl font-bold uppercase'}>{treatment.text}</h3>
+                        <div
+                            className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-300 ease-in-out group-hover:scale-110"
+                            style={{ backgroundImage: `url("${treatment.image}")` }}
+                        ></div>
+
+                        <div className="absolute top-0 left-0 h-full w-full rounded-lg bg-black opacity-45 transition group-hover:opacity-25"></div>
+
+                        <div key={index} className="absolute max-w-10/12">
+                            <h3 className="text-center text-2xl font-bold uppercase">{treatment.text}</h3>
                         </div>
                     </Link>
                 </motion.div>

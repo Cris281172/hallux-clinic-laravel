@@ -8,7 +8,7 @@ const DashboardLayout = ({ children }) => {
     const isPasswordChanged = props.auth.user.password_changed;
 
     return (
-        <div>
+        <div className={'bg-black'}>
             <SetPasswordDialog isPasswordChanged={isPasswordChanged} />
             <Toaster position="top-center" />
             <SidebarProvider>

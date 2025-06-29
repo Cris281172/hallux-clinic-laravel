@@ -131,7 +131,7 @@ export default function Home() {
                 </div>
             </div>
             <div className={'bg-dark-plum pt-20 pb-20'}>
-                <div className={'container mx-auto'}>
+                <div className={'container mx-auto px-4 sm:px-0'}>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Cennik</HeadingHome>
                         <p className={'mt-2 max-w-200 text-center'}>
@@ -152,14 +152,17 @@ export default function Home() {
                 </div>
             </div>
             <div className={'bg-dark-plum pt-20 pb-20'}>
-                <HeadingHome>Kontakt</HeadingHome>
-                <div className={'relative top-[30px] z-15 container mx-auto rounded-2xl bg-gray-200 p-10'}>
-                    <ContactSection />
+                <div className={'container mx-auto'}>
+                    <HeadingHome>Kontakt</HeadingHome>
+                    <div className={'relative top-[30px] z-15 rounded-2xl bg-gray-200 p-10'}>
+                        <ContactSection />
+                    </div>
                 </div>
+
                 <Map />
             </div>
             <div className={'bg-dark-plum'}>
-                <div className={'container mx-auto pt-20 pb-20'}>
+                <div className={'container mx-auto px-4 pt-20 pb-20 sm:px-0'}>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Opinie</HeadingHome>
                         <p className={'mt-2 max-w-200 text-center'}>
@@ -171,7 +174,7 @@ export default function Home() {
                 </div>
             </div>
             <div className={'bg-dark-plum'}>
-                <div className={'container mx-auto pt-20 pb-20'}>
+                <div className={'container mx-auto px-4 pt-20 pb-20 sm:px-0'}>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Najczęściej zadawane pytania</HeadingHome>
                         <p className={'mt-2 max-w-200 text-center'}>
