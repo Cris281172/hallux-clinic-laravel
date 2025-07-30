@@ -143,7 +143,7 @@ const MenuBar = () => {
         { name: 'Cennik', url: route('price-list') },
         { name: 'O mnie', url: route('about-me') },
         { name: 'Galeria', url: route('gallery') },
-        // { name: 'Blog', url: route('blog.post.get.all') },
+        { name: 'Blog', url: route('blog.post.get.all') },
         { name: 'Kontakt', url: route('contact') },
     ];
 
@@ -173,7 +173,6 @@ const MenuBar = () => {
                             <img src="/images/logo.webp" alt="Logo" className="w-60" />
                         </Link>
 
-                        {/* Button Mobile */}
                         <div className="inset-y-0 left-0 flex items-center sm:hidden">
                             <button
                                 type="button"
@@ -183,8 +182,6 @@ const MenuBar = () => {
                                 aria-expanded={menuOpen}
                             >
                                 <span className="sr-only">Open main menu</span>
-
-                                {/* Hamburger Icon */}
                                 <svg
                                     className={`${menuOpen ? 'hidden' : 'block'} size-6`}
                                     fill="none"
@@ -195,8 +192,6 @@ const MenuBar = () => {
                                 >
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                 </svg>
-
-                                {/* X Icon */}
                                 <svg
                                     className={`${menuOpen ? 'block' : 'hidden'} size-6`}
                                     fill="none"
@@ -210,7 +205,6 @@ const MenuBar = () => {
                             </button>
                         </div>
 
-                        {/* Desktop Navigation */}
                         <nav className="hidden sm:block">
                             <ul className="relative flex gap-5">
                                 <motion.div
@@ -257,12 +251,11 @@ const MenuBar = () => {
                     </div>
                 </div>
 
-                {/* Mobile Navigation */}
                 <div
-                    className={`${menuOpen ? 'right-0' : '-right-full'} bg-dark-plum absolute top-[94] z-20 h-screen w-3/4 transition-all sm:hidden`}
+                    className={`${menuOpen ? 'right-0' : '-right-full'} bg-dark-plum absolute top-[94] z-20 h-screen w-full transition-all sm:hidden`}
                     id="mobile-menu"
                 >
-                    <div className="space-y-1 px-2 pt-2 pb-3">
+                    <div className="flex flex-col items-center space-y-1 px-2 pt-2 pb-3">
                         {menuConfig.map((menuItem, index) => (
                             <Link
                                 key={index}

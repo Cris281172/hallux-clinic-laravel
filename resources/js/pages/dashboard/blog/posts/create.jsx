@@ -1,7 +1,7 @@
 import { useForm } from '@inertiajs/react';
 
-import JoditEditor from 'jodit-react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import EditorJSComponent from '../../../../components/editor-js-component.jsx';
 import Heading from '../../../../components/heading.tsx';
 import { Button } from '../../../../components/ui/button.tsx';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../../../../components/ui/dialog.tsx';
@@ -9,22 +9,11 @@ import { Input } from '../../../../components/ui/input.tsx';
 import { Label } from '../../../../components/ui/label.tsx';
 import { Textarea } from '../../../../components/ui/textarea.tsx';
 import DashboardLayout from '../../../../layouts/dashboard-layout.jsx';
+import getR2Url from '../../../../utils/getR2Url.js';
 
 const Create = ({ item, type }) => {
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [blobImagePreview, setBlobImagePreview] = useState(item ? `${import.meta.env.VITE_APP_URL}/storage/posts/${item.image}` : '');
-
-    const config = useMemo(
-        () => ({
-            style: {
-                color: '#000',
-            },
-            readonly: false,
-            placeholder: 'Start typings...',
-        }),
-
-        [],
-    );
+    const [blobImagePreview, setBlobImagePreview] = useState(item ? getR2Url(item.image) : '');
 
     const { data, setData, post, processing, wasSuccessful, errors, reset } = useForm({
         title: item ? item.title : '',
@@ -33,12 +22,16 @@ const Create = ({ item, type }) => {
         desc: item ? item.desc : '',
         file: item ? item.image : '',
     });
-    const editor = useRef(null);
+    const [editorData, setEditorData] = useState(item?.desc ? { time: Date.now(), blocks: JSON.parse(item.desc), version: '2.26.5' } : null);
 
-    const [editorContent, setEditorContent] = useState(data.desc ? data.desc : '');
+    const handleEditorChange = (data) => {
+        setEditorData(data);
+        setData('desc', JSON.stringify(data.blocks));
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setData('desc', editorContent);
+        console.log(data);
         await (type === 'create' ? post(route('dashboard.blog.post.create', {})) : post(route('dashboard.blog.post.edit', item.id)));
     };
 
@@ -85,13 +78,7 @@ const Create = ({ item, type }) => {
                     </div>
                     <div className="col-span-3 grid w-full items-center gap-1.5">
                         <Label>Treść posta</Label>
-                        <JoditEditor
-                            onBlur={(newContent) => setData('desc', newContent)}
-                            ref={editor}
-                            value={editorContent}
-                            config={config}
-                            onChange={(newContent) => setEditorContent(newContent)}
-                        />
+                        <EditorJSComponent data={editorData} onChange={handleEditorChange} />
                     </div>
                 </div>
 

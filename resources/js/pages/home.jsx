@@ -1,13 +1,15 @@
 import { Head, Link } from '@inertiajs/react';
 import { motion } from 'motion/react';
 import headerBackground from '../assets/images/header.webp';
+import officeBackground from '../assets/images/office/office.jpeg';
 import selfPhoto from '../assets/images/self-photo.webp';
 import AnimatedText from '../components/animation/animated-text.jsx';
 import HeadingHome from '../components/heading-home.jsx';
 import Map from '../components/map.jsx';
 import Opinions from '../components/opinions.jsx';
 import ContactSection from '../components/page/contact-section.jsx';
-import FAQ from '../components/page/faq.jsx';
+import Container from '../components/page/container.jsx';
+import { FAQ } from '../components/page/faq.jsx';
 import PricesAccordion from '../components/prices-accordion.jsx';
 import TreatmentsTiles from '../components/treatments-tiles.jsx';
 import { Button } from '../components/ui/button.js';
@@ -32,7 +34,12 @@ export default function Home() {
                 <div className={'absolute top-0 left-0 h-full w-full bg-black opacity-35'}></div>
 
                 <div className="absolute top-1/4 left-1/2 flex -translate-x-1/2 transform flex-col items-center gap-3 text-center">
-                    <AnimatedText text="Gabinet Podologiczny" as="h1" className="text-6xl font-bold text-white" />
+                    <AnimatedText
+                        text="Gabinet Podologiczny"
+                        as="h1"
+                        className="text-5xl font-bold text-white sm:text-6xl"
+                        spanClassName={'mr-0 md:mr-5'}
+                    />
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -61,20 +68,21 @@ export default function Home() {
                         Zadbaj o zdrowie i estetykę swoich stóp już dziś
                     </motion.p>
                     <div className="mt-2">
-                        <motion.button
+                        <motion.a
+                            href="tel:+48459410096"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                             viewport={{ once: true }}
-                            className="bg-dark-plum hover:bg-dark-plum-500 h-12 w-50 rounded-full px-6 py-2 font-bold text-white transition"
+                            className="bg-dark-plum hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition"
                         >
                             Umów wizytę
-                        </motion.button>
+                        </motion.a>
                     </div>
                 </div>
             </div>
             <div className={'bg-dark-plum pt-20 pb-20'}>
-                <div className={'container mx-auto'}>
+                <Container>
                     <div className={'flex w-full flex-col items-center'}>
                         <HeadingHome>Zabiegi podologiczne</HeadingHome>
                         <p className={'mt-2 max-w-200 text-center'}>
@@ -83,13 +91,13 @@ export default function Home() {
                         </p>
                     </div>
                     <TreatmentsTiles />
-                </div>
+                </Container>
             </div>
-            <div className={'relative min-h-300 bg-[url(/images/test.jpeg)] bg-cover bg-fixed bg-center bg-no-repeat lg:min-h-175'}>
+            <div className={'relative min-h-350 bg-[url(/images/test.jpeg)] bg-cover bg-fixed bg-center bg-no-repeat md:min-h-300 lg:min-h-175'}>
                 <div className={'bg-dark-plum absolute top-0 left-0 h-full w-full opacity-25'}></div>
                 <div className={'absolute top-1/2 w-full -translate-y-1/2'}>
                     <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
-                        <div className={'w-100 lg:w-full'}>
+                        <div className={'w-3/4 sm:w-1/2 lg:w-full'}>
                             <motion.img
                                 initial={{ opacity: 0, scale: 0.96 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -131,7 +139,7 @@ export default function Home() {
                 </div>
             </div>
             <div className={'bg-dark-plum pt-20 pb-20'}>
-                <div className={'container mx-auto px-4 sm:px-0'}>
+                <Container>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Cennik</HeadingHome>
                         <p className={'mt-2 max-w-200 text-center'}>
@@ -149,20 +157,56 @@ export default function Home() {
                             Poznaj wszystkie ceny
                         </button>
                     </div>
+                </Container>
+            </div>
+            <div
+                className={'relative min-h-200 bg-cover bg-fixed bg-center bg-no-repeat lg:min-h-175 lg:bg-[50%_-900px]'}
+                style={{ backgroundImage: `url("${officeBackground}")` }}
+            >
+                <div className={'absolute top-1/2 w-full -translate-y-1/2'}>
+                    <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
+                        <div className={'w-full rounded-md bg-[rgba(83,2,54,0.7)] p-7 shadow-2xl'}>
+                            <HeadingHome>Gabinet stacjonarny</HeadingHome>
+                            <p className={'mt-5'}>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+                                type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                                essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                                passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            </p>
+                            <ul>
+                                <li></li>
+                            </ul>
+                            <div className={'mt-5 flex items-center justify-center gap-5'}>
+                                <button
+                                    className={
+                                        'bg-neon-blossom hover:bg-dark-plum-500 h-12 w-50 rounded-full px-4 py-2 font-bold text-white transition'
+                                    }
+                                >
+                                    Jak dojechać?
+                                </button>
+                                <a
+                                    href="tel:+48459410096"
+                                    className="bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition"
+                                >
+                                    Umów wizytę
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className={'bg-dark-plum pt-20 pb-20'}>
-                <div className={'container mx-auto'}>
+                <Container>
                     <HeadingHome>Kontakt</HeadingHome>
                     <div className={'relative top-[30px] z-15 rounded-2xl bg-gray-200 p-10'}>
                         <ContactSection />
                     </div>
-                </div>
-
+                </Container>
                 <Map />
             </div>
             <div className={'bg-dark-plum'}>
-                <div className={'container mx-auto px-4 pt-20 pb-20 sm:px-0'}>
+                <Container>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Opinie</HeadingHome>
                         <p className={'mt-2 max-w-200 text-center'}>
@@ -171,10 +215,10 @@ export default function Home() {
                         </p>
                     </div>
                     <Opinions />
-                </div>
+                </Container>
             </div>
             <div className={'bg-dark-plum'}>
-                <div className={'container mx-auto px-4 pt-20 pb-20 sm:px-0'}>
+                <Container className={'pt-20 pb-20'}>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Najczęściej zadawane pytania</HeadingHome>
                         <p className={'mt-2 max-w-200 text-center'}>
@@ -193,7 +237,7 @@ export default function Home() {
                             <Link href={''}>Zobacz więcej</Link>
                         </Button>
                     </div>
-                </div>
+                </Container>
             </div>
         </AppLayout>
     );

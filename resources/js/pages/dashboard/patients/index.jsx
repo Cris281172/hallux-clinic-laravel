@@ -38,7 +38,7 @@ const Patients = ({ statistics, latestPatients }) => {
                         </CardHeader>
                         <CardFooter className="flex-col items-start gap-1.5 text-sm">
                             <div className="line-clamp-1 flex gap-2 font-medium">W tym miesiącu zyskuje na popularności</div>
-                            <div className="text-muted-foreground">Liczba pacjentów z ostatniego miesiąca</div>
+                            <div className="text-muted-foreground">Liczba pacjentów z aktualnego miesiąca</div>
                         </CardFooter>
                     </Card>
                     <Card className="@container/card gap-2">
@@ -56,7 +56,7 @@ const Patients = ({ statistics, latestPatients }) => {
                         </CardHeader>
                         <CardFooter className="flex-col items-start gap-1.5 text-sm">
                             <div className="line-clamp-1 flex gap-2 font-medium">W tym miesiącu zyskuje na popularności</div>
-                            <div className="text-muted-foreground">Liczba aktywynch pacjentów z ostatniego miesiąca</div>
+                            <div className="text-muted-foreground">Liczba aktywynch pacjentów z aktualnego miesiąca</div>
                         </CardFooter>
                     </Card>
                 </div>

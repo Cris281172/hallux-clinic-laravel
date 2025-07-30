@@ -40,12 +40,13 @@ const AboutMe = () => {
         <AppLayout>
             <SubpageHeader title={'O mnie'} background={headerBackground} />
             <SubpageLayoutContainer>
-                <div className={'flex items-center gap-5'}>
-                    <motion.img src={selfPhoto} className={'w-15'} />
+                <div className={'flex flex-col items-start gap-5 sm:flex-row sm:items-center'}>
+                    <motion.img src={selfPhoto} className={'w-30 sm:w-15'} />
                     <AnimatedText
                         as={'h2'}
                         className={'text-dark-plum text-start text-3xl font-bold'}
                         staggerChildren={0.02}
+                        spanClassName={'mr-2'}
                         text={'mgr Monika Juczyńska Dyplomowany Specjalista ds. Podologii'}
                     />
                 </div>
@@ -56,7 +57,7 @@ const AboutMe = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                             viewport={{ once: true, amount: 0.3 }}
-                            className={'text-dark-plum mt-3 w-1/2'}
+                            className={'text-dark-plum mt-3 w-full sm:w-1/2'}
                         >
                             Podologia to moja pasja. Stale poszerzam swoją wiedzę uczestnicząc w licznych szkoleniach i kongresach podologicznych.
                             Pracuję z dorosłymi i dziećmi - jednak nie ukrywam, że moim priorytetem są seniorzy, którzy ze względu na choroby
@@ -71,7 +72,7 @@ const AboutMe = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                             viewport={{ once: true, amount: 0.3 }}
-                            className={'text-dark-plum mt-3 w-1/2'}
+                            className={'text-dark-plum mt-3 w-full sm:w-1/2'}
                         >
                             Zawsze jestem gotowa Tobie pomóc i przyjechać niezależnie od położenia Twojego miejsca zamieszkania na terenie Łodzi,
                             zapewniając najlepszą opiekę dla Twoich stóp. Podzielam słuszność stwierdzenia , że zdrowe stopy są kluczem do pełni
@@ -87,7 +88,7 @@ const AboutMe = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, ease: 'easeOut' }}
                             viewport={{ once: true, amount: 0.3 }}
-                            className={'text-dark-plum mt-3 w-1/2'}
+                            className={'text-dark-plum mt-3 w-full sm:w-1/2'}
                         >
                             Podologia to moja pasja. Stale poszerzam swoją wiedzę uczestnicząc w licznych szkoleniach i kongresach podologicznych.
                             Pracuję z dorosłymi i dziećmi - jednak nie ukrywam, że moim priorytetem są seniorzy, którzy ze względu na choroby
@@ -99,17 +100,17 @@ const AboutMe = () => {
                 </div>
                 <Timeline />
                 <div>
-                    <h5 className={'text-dark-plum font-bold'}>Z kim współpracuje:</h5>
-                    <div className={'grid grid-cols-2'}>
+                    <h5 className={'text-dark-plum mb-5 font-bold'}>Z kim współpracuje:</h5>
+                    <div className={'grid gap-12 lg:grid-cols-2'}>
                         {cooperationConfig.map((item, index) => (
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
                                 transition={{ duration: 0.8, ease: 'easeOut' }}
                                 viewport={{ once: true, amount: 0.3 }}
-                                className={'border-1 p-12'}
+                                className={'border-1 lg:p-12'}
                             >
-                                <div className={'mb-3 flex items-center gap-4'}>
+                                <div className={'mb-3 flex flex-col items-start gap-4 sm:flex-row sm:items-center'}>
                                     <img src={item.image} className={'h-25 w-25 rounded-full object-cover'} />
                                     <div>
                                         <h5 className={'text-dark-plum text-2xl font-bold'}>{item.title}</h5>

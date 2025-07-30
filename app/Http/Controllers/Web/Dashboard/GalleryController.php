@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\GalleryPhoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -18,27 +19,30 @@ class GalleryController extends Controller
     public function uploadImage(Request $request){
         $files = $request->images;
 
-        $type = $request->type;
-
         foreach ($files as $file){
-            $fileName = Str::random(20) . '_' . time() . '.jpg';
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
 
-            $path = storage_path('app/public/gallery/' . $type . '/' . $fileName);
+            Storage::disk('r2')->put($filename, file_get_contents($file));
 
-            ImageManager::imagick()->read($file)->toJpeg()->save($path);
-
-            ImageOptimizer::optimize($path);
-
+            GalleryPhoto::create([
+                "filename" => $filename,
+                "type" => $request->type
+            ]);
         }
 
         return back();
     }
     public function getAllImages(){
-        $gallery = Storage::disk('public')->files('gallery');
+        $gallery = GalleryPhoto::all();
         return Inertia::render('dashboard/gallery/getAllImages', compact('gallery'));
     }
-    public function deleteImage(string $image){
-        Storage::disk('public')->delete('gallery/' . $image);
+    public function deleteImage(string $id){
+        $image = GalleryPhoto::findOrFail($id);
+
+        Storage::disk('r2')->delete($image->filename);
+
+        $image->delete();
+
         return back();
     }
 }

@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
+import { toast } from 'sonner';
 import InputError from '../input-error.js';
 import { Input } from '../ui/input.js';
 import { Label } from '../ui/label.js';
@@ -17,7 +18,21 @@ const ContactSection = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('send.contact.form'));
+        post(route('send.contact.form'), {
+            onSuccess: () => {
+                toast.success('Wiadomość została wysłana!');
+                setData({
+                    name: '',
+                    surname: '',
+                    phone: '',
+                    email: '',
+                    message: '',
+                });
+            },
+            onError: () => {
+                toast.error('Wystąpił błąd.');
+            },
+        });
     };
 
     return (
@@ -82,7 +97,7 @@ const ContactSection = () => {
                 </div>
                 <div className={'mt-6 flex w-full flex-col gap-1.5'}>
                     <Label htmlFor="name" className={'text-dark-plum'}>
-                        E-mail (obowiązkowe)
+                        Treść (obowiązkowa)
                     </Label>
                     <Textarea value={data.message} onChange={(e) => setData('message', e.target.value)} className="bg-dark-plum block w-full" />
                     <InputError message={errors.message} />

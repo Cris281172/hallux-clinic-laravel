@@ -24,8 +24,8 @@ class PatientCreateRequest extends FormRequest
         return [
             "name" => "required|string",
             "surname" => "required|string",
-            "phone" => ["required", "digits:9"],
-            "email" => "email|required|string",
+            "phone" => "digits:9|nullable",
+            "email" => "email|string|nullable",
             "birthdate" => "required|date|nullable",
             "gender" => 'required|in:male,female',
         ];

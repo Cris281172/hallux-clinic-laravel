@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\GalleryPhoto;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -15,8 +16,9 @@ class PageController extends Controller
         return Inertia::render('priceList');
     }
     public function gallery(){
-        $gallery = Storage::disk('public')->files('gallery');
-        return Inertia::render('gallery', compact('gallery'));
+        $images = GalleryPhoto::paginate(10);
+
+        return Inertia::render('gallery', compact('images'));
     }
     public function contact(){
         return Inertia::render('contact');
@@ -35,5 +37,11 @@ class PageController extends Controller
     }
     public function aboutMe(){
         return Inertia::render('aboutMe');
+    }
+    public function faq(){
+        return Inertia::render('faq');
+    }
+    public function contactStatus(string $status){
+        return Inertia::render('contactStatus', compact('status'));
     }
 }

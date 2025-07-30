@@ -5,6 +5,7 @@ import HeadingSmall from '../../../../components/heading-small.tsx';
 import Heading from '../../../../components/heading.tsx';
 import { Button } from '../../../../components/ui/button.tsx';
 import DashboardLayout from '../../../../layouts/dashboard-layout.jsx';
+import getR2Url from '../../../../utils/getR2Url.js';
 
 const GetAll = ({ posts }) => {
     return (
@@ -14,11 +15,7 @@ const GetAll = ({ posts }) => {
                 {posts.data.map((post, index) => (
                     <div className={'mb-5 flex gap-6'}>
                         <div key={index}>
-                            <img
-                                src={`${import.meta.env.VITE_APP_URL}/storage/posts/${post.image}`}
-                                className={'object-cover'}
-                                style={{ aspectRatio: '1 / 1', maxWidth: '300px' }}
-                            />
+                            <img src={getR2Url(post.image)} className={'object-cover'} style={{ aspectRatio: '1 / 1', maxWidth: '300px' }} />
                         </div>
                         <div className={'flex flex-col justify-between'}>
                             <div>

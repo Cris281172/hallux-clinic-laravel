@@ -31,7 +31,7 @@ const UploadImage = () => {
                         <Label htmlFor={'services'}>Usługi</Label>
                     </div>
                 </RadioGroup>
-                <Input multiple type="file" id={'images'} onChange={(e) => setData('images', e.target.files)} />
+                <Input type="file" id={'images'} onChange={(e) => setData('images', e.target.files)} multiple />
                 <Button type="submit">Uploaduj</Button>
             </form>
         </DashboardLayout>

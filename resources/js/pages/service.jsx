@@ -3,6 +3,7 @@ import { IoFootstepsOutline } from 'react-icons/io5';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import headerBackground from '../assets/images/header.webp';
+import ContactSection from '../components/page/contact-section.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
 import { servicesConfig } from '../config/servicesConfig.jsx';
@@ -64,6 +65,10 @@ const Service = ({ category, service }) => {
                             <div className={'service-desc'}>{serviceData.desc}</div>
                         </div>
                     </div>
+                </div>
+                <div className={'mt-6 border-t-2 border-gray-50 pt-6'}>
+                    <h3 className={'text-dark-plum mb-3 text-xl font-bold'}>Umów wizyte już teraz</h3>
+                    <ContactSection />
                 </div>
             </SubpageLayoutContainer>
         </AppLayout>

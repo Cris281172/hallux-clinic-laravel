@@ -9,7 +9,7 @@ const PriceList = () => {
         <AppLayout>
             <SubpageHeader title={'Cennik'} background={headerBackground} />
             <SubpageLayoutContainer>
-                <div className={'flex flex-col gap-5'}>
+                <div className={'flex flex-col gap-12'}>
                     {allPrices.map((price, index) => (
                         <div key={index}>
                             <h2 className={'text-neon-blossom mb-3 text-2xl font-bold'}>{price.title}</h2>

@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { useState } from 'react';
 import AnimatedAccordionContent from '../animation/animated-accordion-content.jsx';
 
-const FAQ = ({ data, variant = 'default' }) => {
+export const FAQ = ({ data, variant = 'default' }) => {
     const [openIndexes, setOpenIndexes] = useState([]);
 
     const toggleIndex = (index) => {
@@ -50,5 +50,3 @@ const FAQ = ({ data, variant = 'default' }) => {
         </div>
     );
 };
-
-export default FAQ;

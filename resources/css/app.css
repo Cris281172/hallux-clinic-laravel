@@ -452,3 +452,49 @@
     overflow: hidden;
     border-right: 4px solid white;
 }
+
+
+.editor-content h1 {
+    @apply text-4xl font-bold text-gray-800 mt-8 mb-4;
+}
+
+.editor-content h2 {
+    @apply text-3xl font-semibold text-gray-800 mt-6 mb-3;
+}
+
+.editor-content h3 {
+    @apply text-2xl font-medium text-gray-800 mt-5 mb-2;
+}
+
+.editor-content p {
+    @apply text-lg text-gray-700 mb-4 leading-relaxed;
+}
+
+.editor-content ul,
+.editor-content ol {
+    @apply pl-6 mb-4 text-gray-700 list-disc;
+}
+
+.editor-content li {
+    @apply mb-2;
+}
+
+.editor-content blockquote {
+    @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-4;
+}
+
+.editor-content pre {
+    @apply bg-gray-100 text-sm p-4 rounded-md overflow-x-auto my-4;
+}
+
+.editor-content code {
+    @apply bg-gray-200 px-1 py-0.5 rounded text-sm font-mono;
+}
+
+.editor-content a {
+    @apply text-blue-600 hover:underline;
+}
+
+.editor-content img {
+    @apply max-w-full rounded-lg my-4;
+}

@@ -1,11 +1,11 @@
 import { Link } from '@inertiajs/react';
+import { motion } from 'framer-motion';
 import favico from '../assets/images/favicon.ico';
 import headerBackground from '../assets/images/header.webp';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
 import { servicesConfig } from '../config/servicesConfig.jsx';
 import AppLayout from '../layouts/app-layout.jsx';
-
 const ServiceCategory = ({ category }) => {
     const filteredConfig = servicesConfig.find((el) => el.key === category);
 
@@ -13,11 +13,16 @@ const ServiceCategory = ({ category }) => {
         <AppLayout>
             <SubpageHeader title={filteredConfig.title} background={headerBackground} text={filteredConfig.shortDesc} />
             <SubpageLayoutContainer>
-                <div className={'grid grid-cols-4 gap-4'}>
-                    {filteredConfig.services.map((service) => (
-                        <div
+                <div className={'grid gap-4 lg:grid-cols-2 xl:grid-cols-3'}>
+                    {filteredConfig.services.map((service, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            viewport={{ once: true, amount: 0.3 }}
                             className={
-                                'bg-electric-romance flex flex-col items-center justify-between rounded-2xl border-2 border-solid border-gray-50 pt-10 pr-5 pb-10 pl-5 shadow-md'
+                                'bg-dark-plum flex flex-col items-center justify-between rounded-2xl border-2 border-solid border-gray-50 pt-10 pr-5 pb-10 pl-5 shadow-md'
                             }
                         >
                             <div className={'flex flex-col items-center'}>
@@ -33,7 +38,7 @@ const ServiceCategory = ({ category }) => {
                             >
                                 Zobacz więcej
                             </Link>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </SubpageLayoutContainer>

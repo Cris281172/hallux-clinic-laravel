@@ -1,8 +1,8 @@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from './ui/pagination.js';
 
 const AppPagination = ({ currentPage, lastPage, url, search }) => {
-    const startPage = Math.max(1, currentPage - 5);
-    const endPage = Math.min(lastPage, currentPage + 5);
+    const startPage = Math.max(1, currentPage - 2);
+    const endPage = Math.min(lastPage, currentPage + 2);
 
     let pages = [];
 
@@ -10,22 +10,33 @@ const AppPagination = ({ currentPage, lastPage, url, search }) => {
         pages.push(i);
     }
 
+    if (lastPage <= 1) {
+        return;
+    }
+
     return (
         <Pagination>
             <PaginationContent>
-                <PaginationItem>
-                    <PaginationPrevious href={`${url}?page=${currentPage - 1}`} />
-                </PaginationItem>
+                {currentPage !== 1 && (
+                    <PaginationItem>
+                        <PaginationPrevious className={'text-black'} href={`${url}?page=${currentPage - 1}`} />
+                    </PaginationItem>
+                )}
                 {pages.map((page, index) => (
                     <PaginationItem key={index}>
-                        <PaginationLink className={currentPage === page ? 'bg-green-950' : ''} href={`${url}?page=${page}&search=${search}`}>
+                        <PaginationLink
+                            className={currentPage === page ? 'bg-dark-plum' : 'text-black'}
+                            href={`${url}?page=${page}&search=${search}`}
+                        >
                             {page}
                         </PaginationLink>
                     </PaginationItem>
                 ))}
-                <PaginationItem>
-                    <PaginationNext href={`${url}?page=${currentPage + 1}`} />
-                </PaginationItem>
+                {currentPage !== lastPage && (
+                    <PaginationItem>
+                        <PaginationNext className={'text-black'} href={`${url}?page=${currentPage + 1}`} />
+                    </PaginationItem>
+                )}
             </PaginationContent>
         </Pagination>
     );

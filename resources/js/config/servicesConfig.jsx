@@ -12,8 +12,8 @@ export const servicesConfig = [
         shortDesc: 'test',
         services: [
             {
-                key: 'konsutlacja-podologiczna',
-                title: 'Konsutlacja podologiczna',
+                key: 'konsultacja-podologiczna',
+                title: 'konsultacja podologiczna',
                 shortDesc: 'Profesjonalne konsultacje podologiczne – diagnoza i indywidualne podejście do zdrowia Twoich stóp.',
                 desc: (
                     <>
@@ -40,10 +40,35 @@ export const servicesConfig = [
                 images: [],
             },
             {
-                key: '/konsutlacja-podologiczna',
-                title: 'Konsutlacja Online',
+                key: 'konsultacja-online',
+                title: 'konsultacja Online',
                 shortDesc: 'Konsultacja podologiczna online – wygodna i bezpieczna pomoc specjalisty bez wychodzenia z domu.',
-                desc: 'bla bla bla',
+                desc: (
+                    <>
+                        <p>
+                            <strong>W</strong> ramach konsultacji podologicznej online masz możliwość skonsultowania swojego problemu ze specjalistą
+                            bez konieczności wizyty w gabinecie. To doskonałe rozwiązanie dla osób, które z różnych względów nie mogą stawić się
+                            osobiście, mieszkają daleko lub potrzebują szybkiej porady.
+                        </p>
+                        <p>
+                            <strong>K</strong>onsultacja odbywa się za pośrednictwem wybranego komunikatora (np. Zoom, Skype, WhatsApp). Podczas
+                            spotkania online omówimy Twoje dolegliwości, ocenimy przesłane zdjęcia zmian na stopach, a następnie zaproponuję możliwe
+                            rozwiązania oraz zalecenia pielęgnacyjne.
+                        </p>
+                        <strong>Jak przygotować się do konsultacji online?</strong>
+                        <ul>
+                            <li>🔶 Przygotuj dokładny opis objawów i historii problemu,</li>
+                            <li>🔶 Wykonaj dobrej jakości zdjęcia zmian na stopach (najlepiej w świetle dziennym),</li>
+                            <li>🔶 Zadbaj o stabilne połączenie internetowe i spokojne miejsce do rozmowy,</li>
+                            <li>🔶 Zapisz swoje pytania i wątpliwości, które chcesz poruszyć.</li>
+                        </ul>
+                        <p>
+                            <strong>Warto wiedzieć!</strong> Konsultacja online nie zastępuje wizyty stacjonarnej w przypadku konieczności wykonania
+                            zabiegu, ale jest skuteczną formą wstępnej diagnozy, oceny sytuacji i uzyskania profesjonalnych wskazówek oraz planu
+                            działania.
+                        </p>
+                    </>
+                ),
                 images: [],
             },
         ],
@@ -58,15 +83,66 @@ export const servicesConfig = [
                 title: 'Podstawowy zabieg podologiczny',
                 shortDesc:
                     'Podstawowy zabieg podologiczny – kompleksowa pielęgnacja stóp obejmująca usunięcie zrogowaceń, opracowanie paznokci i nawilżenie skóry.',
-                desc: 'bla bla bla',
+                desc: (
+                    <>
+                        <p>
+                            <strong>P</strong>odstawowy zabieg podologiczny to profesjonalna usługa, która ma na celu przywrócenie estetyki i komfortu
+                            Twoim stopom. To idealna propozycja dla osób, które chcą zadbać o zdrowie i higienę swoich stóp lub przygotować je do
+                            dalszych terapii specjalistycznych.
+                        </p>
+                        <p>
+                            Zabieg obejmuje kompleksową pielęgnację, podczas której usuwane są zrogowacenia, odciski oraz modzele, opracowywane są
+                            paznokcie, a także oceniany jest ogólny stan skóry i płytki paznokciowej.
+                        </p>
+                        <h3>W skład zabiegu wchodzą:</h3>
+                        <ul>
+                            <li>🔶 Dokładna dezynfekcja i ocena stanu stóp,</li>
+                            <li>🔶 Skracanie i opracowanie paznokci,</li>
+                            <li>🔶 Usunięcie zrogowaceń, odcisków i modzeli,</li>
+                            <li>🔶 Wygładzenie naskórka przy pomocy specjalistycznych frezów,</li>
+                            <li>🔶 Aplikacja kremu pielęgnacyjnego i krótki masaż stóp.</li>
+                        </ul>
+                        <p>
+                            <strong>Warto wiedzieć!</strong> Podstawowy zabieg podologiczny jest całkowicie bezpieczny i wykonywany przy użyciu
+                            wysterylizowanych narzędzi. Regularne wizyty pomagają w utrzymaniu zdrowia stóp, zapobiegają powstawaniu nowych zmian i
+                            poprawiają komfort chodzenia.
+                        </p>
+                    </>
+                ),
                 images: [basicPodiatryTreatmentGallery1, basicPodiatryTreatmentGallery2, basicPodiatryTreatmentGallery3],
             },
             {
-                key: '/konsutlacja-podologiczna',
+                key: 'rozszerzony-zabieg-podologiczny',
                 title: 'Rozszerzony zabieg podologiczny',
                 shortDesc:
                     'Rozszerzony zabieg podologiczny – zaawansowana pielęgnacja stóp z indywidualnym podejściem, obejmująca m.in. usunięcie odcisków, modzeli i opracowanie zmian skórnych.',
-                desc: 'bla bla bla',
+                desc: (
+                    <>
+                        <p>
+                            <strong>R</strong>ozszerzony zabieg podologiczny to kompleksowa usługa skierowana do osób borykających się z bardziej
+                            zaawansowanymi problemami stóp. Zabieg ten łączy standardowe elementy pielęgnacji z opracowaniem specyficznych zmian
+                            skórnych, takich jak odciski, modzele, pękające pięty czy hiperkeratozy.
+                        </p>
+                        <p>
+                            Zabieg jest dostosowywany indywidualnie do potrzeb klienta, a jego zakres ustalany jest po wcześniejszej ocenie stanu
+                            stóp. Podczas wizyty zapewniam pełne bezpieczeństwo oraz wykorzystanie sterylnych narzędzi i specjalistycznych preparatów
+                            podologicznych.
+                        </p>
+                        <h3>W skład zabiegu wchodzą:</h3>
+                        <ul>
+                            <li>🔶 Dokładna dezynfekcja i analiza stanu stóp,</li>
+                            <li>🔶 Skracanie i opracowanie paznokci,</li>
+                            <li>🔶 Usunięcie zrogowaceń, odcisków i modzeli,</li>
+                            <li>🔶 Opracowanie pękających pięt lub innych zmian skórnych,</li>
+                            <li>🔶 Zastosowanie odpowiednich preparatów regenerujących i leczniczych,</li>
+                            <li>🔶 Rekomendacja domowej pielęgnacji oraz planu dalszego leczenia.</li>
+                        </ul>
+                        <p>
+                            <strong>Warto wiedzieć!</strong> Zabieg jest szczególnie polecany osobom z przewlekłymi problemami skórnymi, diabetykom,
+                            sportowcom, a także wszystkim, którzy chcą zadbać o zdrowie i komfort swoich stóp w sposób kompleksowy i profesjonalny.
+                        </p>
+                    </>
+                ),
                 images: [],
             },
         ],
@@ -125,24 +201,115 @@ export const servicesConfig = [
                 images: [removePrintsGallery1, removePrintsGallery2, removePrintsGallery3, removePrintsGallery4],
             },
             {
-                key: '/konsutlacja-podologiczna',
+                key: 'usuwanie-brodawek-wirusowych',
                 title: 'Usuwanie brodawek wirusowych',
                 shortDesc: 'Usuwanie brodawek wirusowych – bezpieczna i skuteczna terapia podologiczna w walce z brodawkami (kurzajkami) na stopach.',
-                desc: 'bla bla bla',
+                desc: (
+                    <>
+                        <p>
+                            <strong>B</strong>rodawek wirusowych, potocznie nazywanych kurzajkami, nie należy lekceważyć – są to zmiany skórne
+                            wywołane przez wirusa HPV, które mogą się rozprzestrzeniać, powodować dyskomfort, ból oraz trudności w chodzeniu.
+                            Skuteczne usunięcie brodawek wymaga odpowiedniego podejścia i doświadczenia podologicznego.
+                        </p>
+                        <p>
+                            Oferuję bezpieczne i profesjonalne usuwanie brodawek przy użyciu sprawdzonych metod i preparatów, dobranych indywidualnie
+                            do rodzaju zmiany oraz jej zaawansowania. Terapia obejmuje także zalecenia dotyczące pielęgnacji w warunkach domowych oraz
+                            profilaktyki nawrotów.
+                        </p>
+                        <h3>Na czym polega zabieg?</h3>
+                        <ul>
+                            <li>🔶 Dokładna dezynfekcja i ocena zmiany,</li>
+                            <li>🔶 Mechaniczne opracowanie zmiany skórnej,</li>
+                            <li>
+                                🔶 Aplikacja preparatu leczniczego lub zastosowanie innych metod (np. elektrokoagulacja, kwasy, specjalistyczne
+                                opatrunki),
+                            </li>
+                            <li>🔶 Instruktaż pielęgnacyjny oraz plan terapii,</li>
+                            <li>🔶 Ustalanie harmonogramu wizyt kontrolnych i dalszego leczenia.</li>
+                        </ul>
+                        <p>
+                            <strong>Warto wiedzieć!</strong> Leczenie brodawek wymaga systematyczności i cierpliwości – często potrzebna jest seria
+                            wizyt, by skutecznie wyeliminować zmianę. Szybkie rozpoczęcie terapii zwiększa szanse na powodzenie leczenia i ogranicza
+                            ryzyko rozprzestrzenienia wirusa.
+                        </p>
+                        <p>
+                            Nie podejmuj prób usuwania brodawek na własną rękę – niewłaściwe działanie może prowadzić do pogłębienia zmian, infekcji
+                            oraz rozprzestrzenienia się wirusa na inne partie stóp.
+                        </p>
+                    </>
+                ),
                 images: [],
             },
             {
-                key: '/konsutlacja-podologiczna',
+                key: 'usuwanie-modzeli',
                 title: 'Usuwanie Modzeli',
                 shortDesc: 'Usuwanie modzeli – precyzyjne i bezbolesne opracowanie zgrubiałej skóry dla komfortu i ulgi w chodzeniu.',
-                desc: 'bla bla bla',
+                desc: (
+                    <>
+                        <p>
+                            <strong>M</strong>odzele to zrogowacenia skóry, które powstają w wyniku długotrwałego ucisku lub tarcia – najczęściej na
+                            przodostopiu, piętach lub palcach. Choć na początku mogą być jedynie defektem estetycznym, z czasem mogą prowadzić do
+                            bólu, pieczenia, a nawet problemów z chodzeniem.
+                        </p>
+                        <p>
+                            W ramach wizyty podologicznej oferuję bezpieczne i skuteczne usuwanie modzeli. Zabieg jest całkowicie bezbolesny i
+                            wykonywany przy użyciu sterylnych, profesjonalnych narzędzi. Celem terapii jest nie tylko usunięcie problemu, ale także
+                            jego źródła.
+                        </p>
+                        <h3>Jak wygląda zabieg?</h3>
+                        <ul>
+                            <li>🔶 Dezynfekcja i ocena stanu skóry,</li>
+                            <li>🔶 Precyzyjne opracowanie modzeli za pomocą skalpela i/lub specjalistycznych frezów,</li>
+                            <li>🔶 Wygładzenie naskórka,</li>
+                            <li>🔶 Aplikacja kremu regenerującego lub specjalistycznego opatrunku,</li>
+                            <li>🔶 Zalecenia dotyczące dalszej pielęgnacji domowej oraz profilaktyki.</li>
+                        </ul>
+                        <p>
+                            <strong>Warto wiedzieć!</strong> Modzele bardzo często są skutkiem źle dobranego obuwia, deformacji stóp lub niewłaściwej
+                            biomechaniki chodu. Dlatego po zabiegu zalecana jest również konsultacja w celu oceny postawy ciała oraz rozważenie
+                            zastosowania indywidualnych wkładek ortopedycznych.
+                        </p>
+                        <p>
+                            Regularne usuwanie modzeli u podologa pomaga utrzymać stopy w dobrej kondycji, zapobiega ich narastaniu i znacząco
+                            poprawia komfort codziennego funkcjonowania.
+                        </p>
+                    </>
+                ),
                 images: [],
             },
             {
-                key: '/konsutlacja-podologiczna',
+                key: 'usuwanie-odciskow',
                 title: 'Usuwanie odcisków',
                 shortDesc: 'Usuwanie odcisków – szybka i skuteczna ulga w bólu poprzez bezpieczne usunięcie zrogowaceń punktowych.',
-                desc: 'bla bla bla',
+                desc: (
+                    <>
+                        <p>
+                            <strong>O</strong>dciski to bolesne, zrogowaciałe zmiany skórne powstające najczęściej w wyniku długotrwałego nacisku lub
+                            tarcia, np. przez źle dopasowane obuwie. Mogą one powodować duży dyskomfort podczas chodzenia, a nieleczone – prowadzić do
+                            stanów zapalnych i pogłębienia problemu.
+                        </p>
+                        <p>
+                            Profesjonalne usuwanie odcisków u podologa to szybki i bezpieczny sposób na pozbycie się bólu i przywrócenie komfortu
+                            poruszania się. Zabieg wykonywany jest przy użyciu specjalistycznych narzędzi, bez ryzyka uszkodzenia zdrowej skóry.
+                        </p>
+                        <h3>Jak wygląda zabieg?</h3>
+                        <ul>
+                            <li>🔶 Ocena rodzaju i głębokości odcisku,</li>
+                            <li>🔶 Dezynfekcja skóry i precyzyjne usunięcie odcisku za pomocą skalpela lub frezarki,</li>
+                            <li>🔶 Zastosowanie odpowiednich preparatów łagodzących i regenerujących,</li>
+                            <li>🔶 Założenie opatrunku ochronnego (w razie potrzeby),</li>
+                            <li>🔶 Indywidualne zalecenia pielęgnacyjne oraz wskazówki dotyczące profilaktyki.</li>
+                        </ul>
+                        <p>
+                            <strong>Warto wiedzieć!</strong> Samodzielne próby usuwania odcisków, np. przy pomocy plastrów chemicznych, mogą prowadzić
+                            do uszkodzeń skóry i infekcji. Tylko profesjonalne opracowanie gwarantuje skuteczność i bezpieczeństwo terapii.
+                        </p>
+                        <p>
+                            W przypadku nawracających odcisków warto wykonać analizę chodu oraz rozważyć zastosowanie indywidualnych wkładek
+                            ortopedycznych, które eliminują przyczyny mechaniczne powstawania zmian.
+                        </p>
+                    </>
+                ),
                 images: [],
             },
         ],

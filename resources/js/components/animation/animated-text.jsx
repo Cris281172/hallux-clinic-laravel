@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const AnimatedText = ({ text, as = 'h1', className = '', staggerChildren = 0.06 }) => {
+const AnimatedText = ({ text, as = 'h1', className = '', spanClassName = '', staggerChildren = 0.06 }) => {
     const MotionTag = motion[as];
 
     const words = text.split(' ');
@@ -17,7 +17,7 @@ const AnimatedText = ({ text, as = 'h1', className = '', staggerChildren = 0.06 
             }}
         >
             {words.map((word, wordIndex) => (
-                <motion.span key={wordIndex} className="inline-flex" style={{ marginRight: '0.25em' }}>
+                <motion.span key={wordIndex} className={`inline-flex ${spanClassName}`}>
                     {word.split('').map((char, charIndex) => (
                         <motion.span
                             key={charIndex}

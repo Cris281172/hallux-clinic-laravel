@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Web\Settings\PasswordController;
 use App\Http\Controllers\GithubDeployController;
+use App\Http\Controllers\Api\StatisticsController;
+use App\Http\Controllers\Web\Dashboard\InvoiceController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -26,6 +28,8 @@ Route::get('/cennik', [PageController::class, 'priceList'])->name('price-list');
 Route::get('/galeria', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/kontakt', [PageController::class, 'contact'])->name('contact');
 Route::get('/o-mnie', [PageController::class, 'aboutMe'])->name('about-me');
+Route::get('/faq', [PageController::class, 'faq'])->name('faq');
+Route::get('/kontakt/{status}', [PageController::class, 'contactStatus'])->name('contact-status');
 Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/', [PageController::class, 'services'])->name('services');
     Route::get('/{category}', [PageController::class, 'serviceCategory'])->name('serviceCategory');
@@ -41,6 +45,16 @@ Route::group(['prefix' => 'auth'], function (){
    Route::get('login', [AuthController::class, 'create'])->name('login');
 
    Route::post('login', [AuthController::class, 'store']);
+
+});
+
+Route::prefix('api')->name('api.')->group(function (){
+
+    Route::prefix('statistics')->name('statistics.')->group(function () {
+
+        Route::get('/get', [StatisticsController::class, 'getStatistics'])->name('get');
+
+    });
 
 });
 
@@ -105,7 +119,7 @@ Route::group(['middleware' => 'auth'], function (){
 
             //TODO: delete permission
 
-            Route::get('delete/{image}', [GalleryController::class, 'deleteImage'])->name('dashboard.gallery.delete.image');
+            Route::get('delete/{id}', [GalleryController::class, 'deleteImage'])->name('dashboard.gallery.delete.image');
 
         });
 
@@ -282,6 +296,16 @@ Route::group(['middleware' => 'auth'], function (){
 
             });
 
+
+        });
+
+        Route::group(['prefix' => 'invoices'], function (){
+
+            Route::get('/create', [InvoiceController::class, 'createInvoiceView'])->name('dashboard.invoice.create.view');
+
+            Route::post('/create', [InvoiceController::class, 'createInvoice'])->name('dashboard.invoice.create');
+
+            Route::get('/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('dashboard.invoice.download');
 
         });
 

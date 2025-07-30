@@ -59,7 +59,7 @@ const sidebarItemsConfig = [
                 permission: 'dodawanie pacjentów',
             },
             {
-                title: 'List pacjenci',
+                title: 'Lista pacjentów',
                 url: 'dashboard.patient.get.all',
                 permission: 'wyświetlanie wszystkich pacjentów',
             },
@@ -110,6 +110,18 @@ const sidebarItemsConfig = [
             {
                 title: 'Dodaj rolę',
                 url: 'dashboard.role.create.view',
+                permission: 'dodawanie ról',
+            },
+        ],
+    },
+    {
+        title: 'Faktury',
+        url: 'dashboard',
+        icon: Image,
+        children: [
+            {
+                title: 'Dodaj fakture',
+                url: 'dashboard.invoice.create.view',
                 permission: 'dodawanie ról',
             },
         ],
