@@ -10,20 +10,20 @@ const EditorRenderer = ({ blocks }) => {
                         return <HeaderTag key={index}>{block.data.text}</HeaderTag>;
 
                     case 'paragraph':
-                        return <p key={index}>{block.data.text}</p>;
+                        return <p key={index} dangerouslySetInnerHTML={{ __html: block.data.text }}></p>;
 
                     case 'list':
                         const ListTag = block.data.style === 'ordered' ? 'ol' : 'ul';
                         return (
                             <ListTag key={index}>
                                 {block.data.items.map((item, i) => (
-                                    <li key={i}>{item.content}</li>
+                                    <li key={i} dangerouslySetInnerHTML={{ __html: item.content ? item.content : item }}></li>
                                 ))}
                             </ListTag>
                         );
 
                     case 'quote':
-                        return <blockquote key={index}>{block.data.text}</blockquote>;
+                        return <blockquote key={index} dangerouslySetInnerHTML={{ __html: block.data.text }}></blockquote>;
 
                     case 'code':
                         return (

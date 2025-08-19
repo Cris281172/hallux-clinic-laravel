@@ -30,18 +30,22 @@ class RoleController extends Controller
             ],
             [
                 "title" => 'Blog',
-                "permissions" => [$permissions[6], $permissions[7], $permissions[8]]
+                "permissions" => [$permissions[6], $permissions[7], $permissions[8], $permissions[24], $permissions[25]]
             ],
             [
                 "title" => 'Galeria',
                 "permissions" => [$permissions[4], $permissions[5]]
             ],
+            [
+                "title" => 'Vouchery',
+                "permissions" => [$permissions[18], $permissions[19], $permissions[20], $permissions[21], $permissions[22], $permissions[23]]
+            ]
         ];
     }
     public function createRoleView(){
         $permissions = Permission::all();
         $permissions = $this->groupPermissions($permissions);
-        return Inertia::render('dashboard/users/createRole', compact('permissions'));
+        return Inertia::render('dashboard/roles/createRole', compact('permissions'));
     }
     public function createRole(Request $request){
         $role = Role::create([
@@ -52,14 +56,14 @@ class RoleController extends Controller
     }
     public function getAllRoles(){
         $roles = Role::withCount('permissions')->get();
-        return Inertia::render('dashboard/users/getAllRoles', compact('roles'));
+        return Inertia::render('dashboard/roles/getAllRoles', compact('roles'));
     }
     public function editRoleView(string $id){
         $role = Role::where('id', $id)->with('permissions')->first();
         $permissions = Permission::all();
         $permissions = $this->groupPermissions($permissions);
 
-        return Inertia::render('dashboard/users/editRole', compact('role', 'permissions'));
+        return Inertia::render('dashboard/roles/editRole', compact('role', 'permissions'));
     }
     public function editRole(Request $request, string $id){
         $role = Role::find($request->id);

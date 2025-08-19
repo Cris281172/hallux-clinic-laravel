@@ -27,7 +27,7 @@ const CreateInvoice = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log;
+
         router.post(
             route('dashboard.invoice.create'),
             {

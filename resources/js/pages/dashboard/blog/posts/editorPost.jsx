@@ -1,6 +1,9 @@
 import { useForm } from '@inertiajs/react';
 
-import { useEffect, useState } from 'react';
+import { GoogleGenAI } from '@google/genai';
+import { useRef, useState } from 'react';
+import { PacmanLoader } from 'react-spinners';
+import { toast } from 'sonner';
 import EditorJSComponent from '../../../../components/editor-js-component.jsx';
 import Heading from '../../../../components/heading.tsx';
 import { Button } from '../../../../components/ui/button.tsx';
@@ -10,12 +13,18 @@ import { Label } from '../../../../components/ui/label.tsx';
 import { Textarea } from '../../../../components/ui/textarea.tsx';
 import DashboardLayout from '../../../../layouts/dashboard-layout.jsx';
 import getR2Url from '../../../../utils/getR2Url.js';
+import toSlug from '../../../../utils/toSlug.js';
 
-const Create = ({ item, type }) => {
+const EditorPost = ({ item, type }) => {
     const [dialogOpen, setDialogOpen] = useState(false);
-    const [blobImagePreview, setBlobImagePreview] = useState(item ? getR2Url(item.image) : '');
+    const [blobImagePreview, setBlobImagePreview] = useState(item ? getR2Url(item.image) : undefined);
+    const ejInstance = useRef(null);
 
-    const { data, setData, post, processing, wasSuccessful, errors, reset } = useForm({
+    const [fetchAiLoader, setFetchAiLoader] = useState(false);
+
+    const ai = new GoogleGenAI({ apiKey: 'AIzaSyBWQ2sARnskGdb-acHT7w812LL-LwgQHWs' });
+
+    const { data, setData, post, processing, errors, reset } = useForm({
         title: item ? item.title : '',
         slug: item ? item.slug : '',
         short_desc: item ? item.short_desc : '',
@@ -31,8 +40,24 @@ const Create = ({ item, type }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(data);
-        await (type === 'create' ? post(route('dashboard.blog.post.create', {})) : post(route('dashboard.blog.post.edit', item.id)));
+        await (type === 'create'
+            ? post(route('dashboard.blog.post.create'), {
+                  onSuccess: () => {
+                      toast.success('Wpis na bloga został dodany');
+                      reset();
+                  },
+                  onError: () => {
+                      toast.error('Wystąpił błąd.');
+                  },
+              })
+            : post(route('dashboard.blog.post.edit', item.id), {
+                  onSuccess: () => {
+                      toast.success('Wpis na bloga edytowany');
+                  },
+                  onError: () => {
+                      toast.error('Wystąpił błąd.');
+                  },
+              }));
     };
 
     const handleFileChange = (e) => {
@@ -40,12 +65,31 @@ const Create = ({ item, type }) => {
         setBlobImagePreview(URL.createObjectURL(e.target.files[0]));
     };
 
-    useEffect(() => {
-        if (wasSuccessful) {
-            setDialogOpen(true);
-            reset();
+    const generateText = async () => {
+        if (ejInstance.current) {
+            if (data.title.length === 0) {
+                return toast.error('Aby wygenerować treść posta należy podać tytuł posta.');
+            }
+
+            await ejInstance.current.isReady;
+
+            setFetchAiLoader(true);
+
+            const response = await ai.models.generateContent({
+                model: 'gemini-2.5-flash',
+                contents: `Wygeneruj mi treść posta na blog, który będzie w formacie editorjs, bez żadnych dopisków nie pasujących do JS, odpowiedź ma mieć minimum 5000 znaków, o tytule: ${data.title}`,
+            });
+
+            const apiData = JSON.parse(response.text.replace(/```/g, '').replace('json', ''));
+
+            ejInstance.current.render({
+                blocks: apiData.blocks,
+            });
+
+            handleEditorChange(apiData);
+            setFetchAiLoader(false);
         }
-    }, [wasSuccessful]);
+    };
 
     return (
         <DashboardLayout>
@@ -56,7 +100,10 @@ const Create = ({ item, type }) => {
                         <Label htmlFor="title">Tytuł</Label>
                         <Input
                             value={data.title}
-                            onChange={(e) => setData('title', e.target.value)}
+                            onChange={(e) => {
+                                setData('title', e.target.value);
+                                setData('slug', toSlug(e.target.value.replace(' ', '-')));
+                            }}
                             type="text"
                             id="title"
                             placeholder="Podaj tytuł posta"
@@ -78,10 +125,12 @@ const Create = ({ item, type }) => {
                     </div>
                     <div className="col-span-3 grid w-full items-center gap-1.5">
                         <Label>Treść posta</Label>
-                        <EditorJSComponent data={editorData} onChange={handleEditorChange} />
+                        <EditorJSComponent data={editorData} onChange={handleEditorChange} ejInstance={ejInstance} />
                     </div>
                 </div>
-
+                <Button type={'button'} className={'min-w-50'} onClick={generateText} disabled={fetchAiLoader}>
+                    {fetchAiLoader ? <PacmanLoader size={10} /> : <>Wygeneruj treść z AI :)</>}
+                </Button>
                 <div className="w-full">
                     <Label htmlFor="image">Zdjęcie</Label>
                     <div className={'grid grid-cols-2 gap-4'}>
@@ -89,7 +138,7 @@ const Create = ({ item, type }) => {
                         <img className={'aspect-square w-full max-w-100 object-cover'} src={blobImagePreview} />
                     </div>
                 </div>
-                <Button type="submit" disabled={processing}>
+                <Button type="submit" disabled={processing || fetchAiLoader}>
                     {type === 'create' ? 'Dodaj' : 'Edytuj'}
                 </Button>
             </form>
@@ -105,4 +154,4 @@ const Create = ({ item, type }) => {
     );
 };
 
-export default Create;
+export default EditorPost;

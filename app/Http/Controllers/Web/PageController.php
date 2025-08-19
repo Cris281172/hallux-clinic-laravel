@@ -15,10 +15,22 @@ class PageController extends Controller
     public function priceList(){
         return Inertia::render('priceList');
     }
-    public function gallery(){
-        $images = GalleryPhoto::paginate(10);
+    public function gallery(string $type){
+        $typeConfig = [
+            "wszystkie" => "all",
+            "uslugi" => 'services',
+            'gabinet' => 'office'
+        ];
+        $typeValue = $typeConfig[$type];
 
-        return Inertia::render('gallery', compact('images'));
+        if($typeValue === 'all'){
+            $images = GalleryPhoto::paginate(10);
+        }
+
+        else {
+            $images = GalleryPhoto::where('type', $typeConfig[$type])->paginate(10);
+        }
+        return Inertia::render('gallery', compact('images', 'type'));
     }
     public function contact(){
         return Inertia::render('contact');

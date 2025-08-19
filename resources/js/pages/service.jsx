@@ -1,4 +1,4 @@
-import { router } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { IoFootstepsOutline } from 'react-icons/io5';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
@@ -10,21 +10,6 @@ import { servicesConfig } from '../config/servicesConfig.jsx';
 import AppLayout from '../layouts/app-layout.jsx';
 
 const Service = ({ category, service }) => {
-    const images = [
-        {
-            original: 'https://picsum.photos/id/1018/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1018/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1015/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1015/250/150/',
-        },
-        {
-            original: 'https://picsum.photos/id/1019/1000/600/',
-            thumbnail: 'https://picsum.photos/id/1019/250/150/',
-        },
-    ];
-
     const serviceData = servicesConfig.filter((el) => el.key === category)[0]?.services?.filter((el) => el.key === service)[0];
 
     if (!serviceData) {
@@ -33,6 +18,10 @@ const Service = ({ category, service }) => {
 
     return (
         <AppLayout>
+            <Head>
+                <title>{`${serviceData.title} | Hallux Clinic w Łodzi`}</title>
+                <meta name="description" content={serviceData.shortDesc} />
+            </Head>
             <SubpageHeader title={serviceData.title} background={headerBackground} text={serviceData.shortDesc} />
             <SubpageLayoutContainer>
                 <div className={'text-black'}>
@@ -59,9 +48,9 @@ const Service = ({ category, service }) => {
                             </div>
                         )}
                         <div className={`${serviceData.images.length !== 0 ? 'xl:w-8/12' : 'w-full'} order-1 lg:order-2`}>
-                            <p className={'mb-2 text-lg'}>
-                                Cena usługi: <strong>{serviceData.price ? `${serviceData.price} zł` : 'Gratis'}</strong>
-                            </p>
+                            <Link href={route('price-list')} className={'text-md mb-2 block font-bold underline'}>
+                                Zobacz cennik
+                            </Link>
                             <div className={'service-desc'}>{serviceData.desc}</div>
                         </div>
                     </div>

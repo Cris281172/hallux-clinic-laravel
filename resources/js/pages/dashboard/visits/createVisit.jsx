@@ -1,7 +1,7 @@
 import { router } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import PatientSingleCard from '../../../components/dashboard/patinets/patient-single-card.jsx';
-import VisitCreate from '../../../components/dashboard/visit-create.jsx';
+import VisitCreate from '../../../components/dashboard/visits/visit-create.jsx';
 import Heading from '../../../components/heading.js';
 import { Input } from '../../../components/ui/input.js';
 import { Label } from '../../../components/ui/label.js';

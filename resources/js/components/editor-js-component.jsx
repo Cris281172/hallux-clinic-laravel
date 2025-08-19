@@ -2,8 +2,7 @@ import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import { useEffect, useRef } from 'react';
-const EditorJSComponent = ({ data, onChange }) => {
-    const ejInstance = useRef(null);
+const EditorJSComponent = ({ data, onChange, ejInstance }) => {
     const editorRef = useRef(null);
 
     useEffect(() => {

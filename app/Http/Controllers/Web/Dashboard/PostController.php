@@ -15,7 +15,7 @@ class PostController extends Controller
 {
     public function createPostView(){
         $type = 'create';
-        return Inertia::render('dashboard/blog/posts/create', compact('type'));
+        return Inertia::render('dashboard/blog/posts/editorPost', compact('type'));
     }
     public function createPost(CreatePostRequest $request){
         $file = $request->file;
@@ -35,33 +35,38 @@ class PostController extends Controller
     public function getAllPosts(){
         $posts = Post::paginate(15);
 
-        return Inertia::render('dashboard/blog/posts/getAll', compact('posts'));
+        return Inertia::render('dashboard/blog/posts/getAllPosts', compact('posts'));
     }
     public function editPostView(string $id){
         $item = Post::findOrFail($id);
         $type = $id ? 'edit' : 'create';
-        return Inertia::render('dashboard/blog/posts/create', compact('item', 'type'));
+        return Inertia::render('dashboard/blog/posts/editorPost', compact('item', 'type'));
     }
-    public function editPost(string $id ,Request $request){
+    public function editPost(string $id, Request $request){
         $currentPost = Post::findOrFail($id);
 
-        Storage::disk('r2')->delete($currentPost->image);
-
-        $file = $request->file;
-
-        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-
-        Storage::disk('r2')->put($filename, file_get_contents($file));
-
-        Post::find($id)->update([
+        $updateDate = [
             "title" => $request->title,
             "desc" => $request->desc,
             "short_desc" => $request->short_desc,
             "slug" => $request->slug,
-            "image" => $filename
-        ]);
+        ];
 
-        return redirect()->to(route('dashboard.blog.post.get.all'));
+        if($currentPost->image !== $request->file){
+            Storage::disk('r2')->delete($currentPost->image);
+
+            $file = $request->file;
+
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+
+            Storage::disk('r2')->put($filename, file_get_contents($file));
+
+            $updateDate['image'] = $filename;
+        }
+
+        Post::find($id)->update($updateDate);
+
+        return back();
     }
     public function deletePost(string $id){
         $currentPost = Post::findOrFail($id);

@@ -15,28 +15,30 @@ const MenuBar = () => {
             url: route('services'),
             children: [
                 {
+                    id: 'diagnostyka-podologiczna',
                     name: 'Diagnostyka podologiczna',
-                    url: 'test',
                     children: [
                         {
-                            name: 'Konsutlacja podologiczna',
-                            url: '',
+                            id: 'konsultacja-podologiczna',
+                            name: 'Konsultacja podologiczna',
                         },
                         {
-                            name: 'Konsutlacja Online',
-                            url: '',
+                            id: 'konsultacja-online',
+                            name: 'Konsultacja Online',
                         },
                     ],
                 },
                 {
                     name: 'Profilaktyka podologiczna',
-                    url: 'test',
+                    id: 'profilaktyka-podologiczna',
                     children: [
                         {
+                            id: 'podstawowy-zabieg-podologiczny',
                             name: 'Podstawowy zabieg podologiczny',
                             url: '',
                         },
                         {
+                            id: 'rozszerzony-zabieg-podologiczny',
                             name: 'Rozszerzony zabieg podologiczny',
                             url: '',
                         },
@@ -44,97 +46,94 @@ const MenuBar = () => {
                 },
                 {
                     name: 'Terapie problemów skórnych',
-                    url: 'test',
+                    id: 'terapie-problemow-skornych',
                     children: [
                         {
+                            id: 'pekajace-piety',
                             name: 'Pękające pięty',
-                            url: '',
                         },
                         {
+                            id: 'usuwanie-brodawek-wirusowych',
                             name: 'Usuwanie brodawek wirusowych',
-                            url: '',
                         },
                         {
+                            id: 'usuwanie-modzeli',
                             name: 'Usuwanie Modzeli',
-                            url: '',
-                        },
-                        {
-                            name: 'Usuwanie Modzeli',
-                            url: '',
                         },
                     ],
                 },
                 {
+                    id: 'terapie-problemow-aparatu-paznokciowego',
                     name: 'Terapie problemów aparatu paznokciowego',
                     url: 'test',
                     children: [
                         {
+                            id: 'grzybica-stop-i-paznokci',
                             name: 'Grzybica Stóp i Paznokci',
-                            url: '',
                         },
                         {
+                            id: 'leczenie-wrastajacych-i-wkrecajacych-paznokci',
                             name: 'Leczenie Wrastających i Wkręcających Paznokci',
-                            url: '',
                         },
                         {
+                            id: 'onycholiza',
                             name: 'Onycholiza',
-                            url: '',
                         },
                         {
+                            id: 'usuniecie-krwiaka',
                             name: 'Usunięcie Krwiaka',
-                            url: '',
                         },
                     ],
                 },
                 {
+                    id: 'ortonyksja',
                     name: 'Ortonyksja',
-                    url: 'test',
                     children: [
                         {
+                            id: 'zalozenie-klamry-korygujacej',
                             name: 'Założenie klamry korygującej',
-                            url: '',
                         },
                         {
+                            id: 'przelozenie-klamry-korygujacej',
                             name: 'Przełożenie klamry korygującej',
-                            url: '',
                         },
                         {
+                            id: 'podklejenie-klamry-korygujacej',
                             name: 'Podklejenie klamry korygującej',
-                            url: '',
                         },
                         {
+                            id: 'zdjecie-klamry-korygujacej-na-zakonczenie-zabiegu',
                             name: 'Zdjęcie klamry korygującej na zakończenie zabiegu',
-                            url: '',
                         },
                     ],
                 },
                 {
+                    id: 'zabiegi-uzupelniajace',
                     name: 'Zabiegi uzupełniające',
-                    url: 'test',
                     children: [
                         {
+                            id: 'tamponada-wrastajacego-paznokcia',
                             name: 'Tamponada wrastającego paznokcia',
-                            url: '',
                         },
                         {
+                            id: 'opatrunek-z-odciazeniem',
                             name: 'Opatrunek z odciążeniem',
-                            url: '',
                         },
                         {
+                            id: 'opatrunek-z-preparatem-specjalistycznym',
                             name: 'Opatrunek z preparatem specjalistycznym',
-                            url: '',
                         },
                         {
+                            id: 'taping-podologiczny-taping-palucha',
                             name: 'Taping podologiczny (taping palucha)',
-                            url: '',
                         },
                         {
+                            id: 'usuniecie-lakieru-hybrydowego-w-przypadku-pedicure-podologicznego',
                             name: 'Usunięcie lakieru hybrydowego – w przypadku pedicure podologicznego',
-                            url: '',
                         },
                         {
+                            id: 'badanie-stop-na-podoskopie',
                             name: 'Badanie stóp na podoskopie',
-                            url: '',
                         },
                     ],
                 },
@@ -142,7 +141,7 @@ const MenuBar = () => {
         },
         { name: 'Cennik', url: route('price-list') },
         { name: 'O mnie', url: route('about-me') },
-        { name: 'Galeria', url: route('gallery') },
+        { name: 'Galeria', url: route('gallery', 'wszystkie') },
         { name: 'Blog', url: route('blog.post.get.all') },
         { name: 'Kontakt', url: route('contact') },
     ];
@@ -165,15 +164,15 @@ const MenuBar = () => {
 
     return (
         <div>
-            <div className={'h-[94px]'}></div>
+            <div className={'h-[84px] md:h-[94px]'}></div>
             <div className={'fixed top-0 z-50 w-full border-b-1 border-gray-50 shadow-xl'}>
                 <div className="bg-dark-plum pt-3 pb-3">
                     <div className="mx-4 flex items-center justify-between sm:container sm:mx-auto">
                         <Link href="/">
-                            <img src="/images/logo.webp" alt="Logo" className="w-60" />
+                            <img src="/images/logo.webp" alt="Logo" className="w-50 md:w-60" />
                         </Link>
 
-                        <div className="inset-y-0 left-0 flex items-center sm:hidden">
+                        <div className="inset-y-0 left-0 flex items-center lg:hidden">
                             <button
                                 type="button"
                                 onClick={toggleMenu}
@@ -205,7 +204,7 @@ const MenuBar = () => {
                             </button>
                         </div>
 
-                        <nav className="hidden sm:block">
+                        <nav className="hidden lg:block">
                             <ul className="relative flex gap-5">
                                 <motion.div
                                     layout
@@ -236,7 +235,9 @@ const MenuBar = () => {
                                                         <ul>
                                                             {childrenItem.children.map((service, index) => (
                                                                 <li className={'ml-2 cursor-pointer text-sm'} key={index}>
-                                                                    - {service.name}
+                                                                    <Link href={route('service', { category: childrenItem.id, service: service.id })}>
+                                                                        - {service.name}
+                                                                    </Link>
                                                                 </li>
                                                             ))}
                                                         </ul>
@@ -252,7 +253,7 @@ const MenuBar = () => {
                 </div>
 
                 <div
-                    className={`${menuOpen ? 'right-0' : '-right-full'} bg-dark-plum absolute top-[94] z-20 h-screen w-full transition-all sm:hidden`}
+                    className={`${menuOpen ? 'right-0' : '-right-full'} bg-dark-plum absolute top-[84] z-20 h-screen w-full transition-all md:top-[94] lg:hidden`}
                     id="mobile-menu"
                 >
                     <div className="flex flex-col items-center space-y-1 px-2 pt-2 pb-3">

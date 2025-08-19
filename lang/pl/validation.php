@@ -11,7 +11,10 @@ return [
         "birthdate" => "data urodzenia",
         "gender" => "płeć",
         'userID' => "lekarz",
-        'date' => 'data'
+        'date' => 'data',
+        "validTo" => "data ważności",
+        "price" => "kwota",
+        "fullName" => "imię i nazwisko"
     ],
     'accepted'               => 'Pole :attribute musi zostać zaakceptowane.',
     'accepted_if'            => 'Pole :attribute musi zostać zaakceptowane gdy :other ma wartość :value.',

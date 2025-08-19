@@ -18,7 +18,7 @@ const sidebarItemsConfig = [
                 permission: 'dodawanie wpisów na bloga',
             },
             {
-                title: 'List wpisów',
+                title: 'Lista wpisów',
                 url: 'dashboard.blog.post.get.all',
                 permission: 'wyświetlanie wszystkich wpisów na blogu',
             },
@@ -114,15 +114,33 @@ const sidebarItemsConfig = [
             },
         ],
     },
+    // {
+    //     title: 'Faktury',
+    //     url: 'dashboard',
+    //     icon: Image,
+    //     children: [
+    //         {
+    //             title: 'Dodaj fakture',
+    //             url: 'dashboard.invoice.create.view',
+    //             permission: 'dodawanie ról',
+    //         },
+    //     ],
+    // },
     {
-        title: 'Faktury',
+        title: 'Vouchery',
         url: 'dashboard',
         icon: Image,
+        permissions: ['dodawanie voucherów', 'wyświetlanie wszystkich voucherów'],
         children: [
             {
-                title: 'Dodaj fakture',
-                url: 'dashboard.invoice.create.view',
-                permission: 'dodawanie ról',
+                title: 'Dodaj voucher',
+                url: 'dashboard.voucher.create.view',
+                permission: 'dodawanie voucherów',
+            },
+            {
+                title: 'Wszystkie vouchery',
+                url: 'dashboard.voucher.get.all',
+                permission: 'wyświetlanie wszystkich voucherów',
             },
         ],
     },

@@ -1,12 +1,12 @@
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 
-import formatToMySQLDateTime from '../../utils/formatToMySQLDateTime.js';
-import { Button } from '../ui/button.js';
-import { Label } from '../ui/label.js';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select.js';
-import { Textarea } from '../ui/textarea.js';
-import DatetimeVisit from './visits/datetime-visit.jsx';
+import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
+import { Button } from '../../ui/button.tsx';
+import { Label } from '../../ui/label.tsx';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../ui/select.tsx';
+import { Textarea } from '../../ui/textarea.tsx';
+import DatetimeVisit from './datetime-visit.jsx';
 
 const EditVisit = ({ visit, statuses, setEditVisitID, fetchVisits }) => {
     const [availableTimes, setAvailableTimes] = useState([]);

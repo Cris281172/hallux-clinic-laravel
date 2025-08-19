@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import bannerBackground from '../../../assets/images/banners/banner-1.webp';
+import subpageHeader4 from '../../../assets/images/subpage-header/subpage-header-4.jpg';
 import AppPagination from '../../../components/app-pagination.jsx';
 import SubpageHeader from '../../../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../../../components/subpage-layout-container.jsx';
@@ -7,12 +7,11 @@ import AppLayout from '../../../layouts/app-layout.jsx';
 import { formatDate } from '../../../utils/dateUtils.js';
 
 const GetAll = ({ posts }) => {
-    console.log(posts);
     return (
         <AppLayout>
             <SubpageHeader
-                title={'Galeria'}
-                background={bannerBackground}
+                title={'Blog'}
+                background={subpageHeader4}
                 text={'Praktyczne porady, nowinki i ekspercka wiedza ze świata podologii. Sprawdź nasze artykuły o zdrowiu stóp!'}
             />
 
@@ -23,9 +22,12 @@ const GetAll = ({ posts }) => {
                     <div className={'pt-15'}>
                         <div className={'container mx-auto'}>
                             {posts.data.map((item, index) => (
-                                <div key={index} className={'mb-15 flex justify-between gap-7 border-b-2 border-[#F7AACBFF] pb-15'}>
+                                <div
+                                    key={index}
+                                    className={'mb-15 flex flex-col justify-between gap-7 border-b-2 border-[#F7AACBFF] pb-15 md:flex-row'}
+                                >
                                     <img
-                                        className={`${index % 2 === 0 ? 'order-2' : 'order-1'} aspect-square w-full max-w-1/5 rounded-2xl object-cover`}
+                                        className={`${index % 2 === 0 ? 'order-1 md:order-2' : 'order-1'} aspect-square w-48 rounded-2xl object-cover`}
                                         src={`${import.meta.env.VITE_R2_PUBLIC_URL}/${item.image}`}
                                     />
                                     <div className={`${index % 2 === 0 ? 'order-1' : 'order-2'} flex w-full flex-col justify-between`}>

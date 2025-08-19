@@ -23,13 +23,13 @@ const Login = ({ status }) => {
     };
 
     return (
-        <AuthLayout title="Log in to your account" description="Enter your email and password below to log in">
+        <AuthLayout title="Zaloguj się na konto" description="Wprowadź poniżej swój adres e-mail i hasło, aby się zalogować">
             <Head title="Log in" />
 
             <form className="flex flex-col gap-6" onSubmit={submit}>
                 <div className="grid gap-6">
                     <div className="grid gap-2">
-                        <Label htmlFor="email">Email address</Label>
+                        <Label htmlFor="email">Email</Label>
                         <Input
                             id="email"
                             type="email"
@@ -45,6 +45,7 @@ const Login = ({ status }) => {
                     </div>
 
                     <div className="grid gap-2">
+                        <Label htmlFor="password">Hasło</Label>
                         <Input
                             id="password"
                             type="password"
@@ -66,12 +67,12 @@ const Login = ({ status }) => {
                             onClick={() => setData('remember', !data.remember)}
                             tabIndex={3}
                         />
-                        <Label htmlFor="remember">Remember me</Label>
+                        <Label htmlFor="remember">Zapamiętaj mnie</Label>
                     </div>
 
                     <Button type="submit" className="mt-4 w-full" tabIndex={4} disabled={processing}>
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
-                        Log in
+                        Zaloguj się
                     </Button>
                 </div>
             </form>

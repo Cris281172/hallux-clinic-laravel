@@ -13,7 +13,7 @@ class NewCommentNotification extends Notification
 
     private $comment;
     /**
-     * Create a new notification instance.
+     * EditorPost a new notification instance.
      */
     public function __construct($comment)
     {

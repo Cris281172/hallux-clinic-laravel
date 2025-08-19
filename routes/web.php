@@ -20,12 +20,13 @@ use App\Http\Controllers\Web\Settings\PasswordController;
 use App\Http\Controllers\GithubDeployController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Web\Dashboard\InvoiceController;
+use App\Http\Controllers\Web\Dashboard\VoucherController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/cennik', [PageController::class, 'priceList'])->name('price-list');
-Route::get('/galeria', [PageController::class, 'gallery'])->name('gallery');
+Route::get('/galeria/{type}', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/kontakt', [PageController::class, 'contact'])->name('contact');
 Route::get('/o-mnie', [PageController::class, 'aboutMe'])->name('about-me');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
@@ -119,7 +120,7 @@ Route::group(['middleware' => 'auth'], function (){
 
             //TODO: delete permission
 
-            Route::get('delete/{id}', [GalleryController::class, 'deleteImage'])->name('dashboard.gallery.delete.image');
+            Route::delete('delete/{id}', [GalleryController::class, 'deleteImage'])->name('dashboard.gallery.delete.image');
 
         });
 
@@ -141,13 +142,20 @@ Route::group(['middleware' => 'auth'], function (){
 
                 });
 
-                //TODO: edit/delete permission
+                Route::group(['middleware' => ['can:usuwanie wpisów na blogu']], function (){
 
-                Route::get('delete/{id}', [PostController::class, 'deletePost'])->name('dashboard.blog.post.delete');
+                    Route::delete('delete/{id}', [PostController::class, 'deletePost'])->name('dashboard.blog.post.delete');
 
-                Route::get('edit/{id}', [PostController::class, 'editPostView'])->name('dashboard.blog.post.edit.view');
+                });
 
-                Route::post('edit/{id}', [PostController::class, 'editPost'])->name('dashboard.blog.post.edit');
+
+                Route::group(['middleware' => ['can:edytowanie wpisów na blogu']], function (){
+
+                    Route::get('edit/{id}', [PostController::class, 'editPostView'])->name('dashboard.blog.post.edit.view');
+
+                    Route::post('edit/{id}', [PostController::class, 'editPost'])->name('dashboard.blog.post.edit');
+
+                });
 
             });
 
@@ -260,7 +268,7 @@ Route::group(['middleware' => 'auth'], function (){
 
             Route::group(['middleware' => ['can:usuwanie użytkowników']], function (){
 
-                Route::get('/delete/{id}', [UserManagement::class, 'deleteUser'])->name('dashboard.user.delete');
+                Route::delete('/delete/{id}', [UserManagement::class, 'deleteUser'])->name('dashboard.user.delete');
 
             });
 
@@ -306,6 +314,51 @@ Route::group(['middleware' => 'auth'], function (){
             Route::post('/create', [InvoiceController::class, 'createInvoice'])->name('dashboard.invoice.create');
 
             Route::get('/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('dashboard.invoice.download');
+
+        });
+
+        Route::group(['prefix' => 'vouchers'], function (){
+
+            Route::group(['middleware' => ['can:dodawanie voucherów']], function (){
+
+                Route::get('/create', [VoucherController::class, 'createVoucherView'])->name('dashboard.voucher.create.view');
+
+                Route::post('/create', [VoucherController::class, 'createVoucher'])->name('dashboard.voucher.create');
+
+            });
+
+            Route::group(['middleware' => ['can:wyświetlanie wszystkich voucherów']], function (){
+
+                Route::get('/get/all', [VoucherController::class, 'getAllVouchers'])->name('dashboard.voucher.get.all');
+
+            });
+
+
+            Route::group(['middleware' => 'can:edytowanie voucherów'], function (){
+
+                Route::get('/edit/{id}', [VoucherController::class, 'editVoucherView'])->name('dashboard.voucher.edit.view');
+
+                Route::post('/edit/{id}', [VoucherController::class, 'editVoucher'])->name('dashboard.voucher.edit');
+
+            });
+
+            Route::group(['middleware' => 'can:aktualizowanie statusu vouchera'], function (){
+
+                Route::post('/used/update/{id}', [VoucherController::class, 'updateUsedStatus'])->name('dashboard.voucher.used.update');
+
+            });
+
+            Route::group(['middleware' => ['can:generowanie pdf vouchera']], function (){
+
+                Route::get('/generate/{id}', [VoucherController::class, 'generateVoucher'])->name('dashboard.voucher.generate');
+
+            });
+
+            Route::group(['middleware' => ['can:usuwanie voucherów']], function (){
+
+                Route::delete('/delete/{id}', [VoucherController::class, 'deleteVoucher'])->name('dashboard.voucher.delete');
+
+            });
 
         });
 

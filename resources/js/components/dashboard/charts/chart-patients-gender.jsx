@@ -27,8 +27,6 @@ const ChartPatientsGender = () => {
         fetchPatientsGender();
     }, []);
 
-    console.log(statistics);
-
     return (
         <ResponsiveContainer width="100%" height={300} className={'mt-15'}>
             <BarChart data={statistics} margin={{ top: 20, right: 30, bottom: 20, left: 0 }}>

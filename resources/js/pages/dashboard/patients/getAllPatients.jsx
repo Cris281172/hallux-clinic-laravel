@@ -6,7 +6,7 @@ import { FaCalendarAlt, FaEye } from 'react-icons/fa';
 import AppPagination from '../../../components/app-pagination.jsx';
 import DetailsWindow from '../../../components/dashboard/details-window.jsx';
 import PatientSingleCard from '../../../components/dashboard/patinets/patient-single-card.jsx';
-import VisitCreate from '../../../components/dashboard/visit-create.jsx';
+import VisitCreate from '../../../components/dashboard/visits/visit-create.jsx';
 import Heading from '../../../components/heading.js';
 import {
     AlertDialog,

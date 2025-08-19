@@ -8,13 +8,15 @@ import removePrintsGallery4 from '../assets/images/service/remove-prints/image-4
 export const servicesConfig = [
     {
         key: 'diagnostyka-podologiczna',
-        title: 'Diagnostyka podologiczna',
-        shortDesc: 'test',
+        title: 'Diagnostyka Podologiczna',
+        shortDesc:
+            'Nasza oferta diagnostyki podologicznej zapewnia kompleksową opiekę i wsparcie dla zdrowia Twoich stóp. Specjalizujemy się w dwóch kluczowych usługach:',
         services: [
             {
                 key: 'konsultacja-podologiczna',
-                title: 'konsultacja podologiczna',
-                shortDesc: 'Profesjonalne konsultacje podologiczne – diagnoza i indywidualne podejście do zdrowia Twoich stóp.',
+                title: 'Konsultacja podologiczna',
+                shortDesc:
+                    'Podczas tej wizyty przeprowadzamy szczegółową ocenę stanu zdrowia stóp, diagnozujemy potencjalne problemy oraz dobieramy odpowiednie metody leczenia i profilaktyki. Konsultacja odbywa się bezpośrednio w gabinecie lub opcjonalnie w Twoim domu lub innym wybranym przez Ciebie miejscu, co gwarantuje wygodę i dostosowanie do indywidualnych potrzeb.',
                 desc: (
                     <>
                         <p>
@@ -41,8 +43,9 @@ export const servicesConfig = [
             },
             {
                 key: 'konsultacja-online',
-                title: 'konsultacja Online',
-                shortDesc: 'Konsultacja podologiczna online – wygodna i bezpieczna pomoc specjalisty bez wychodzenia z domu.',
+                title: 'Konsultacja Online',
+                shortDesc:
+                    'Dla naszych klientów, którzy preferują zdalny kontakt, oferujemy konsultacje online. Ta forma wizyty umożliwia szybką i efektywną ocenę problemów podologicznych bez potrzeby wychodzenia z domu. Wystarczy dostęp do Internetu, aby otrzymać profesjonalne porady i wskazówki dotyczące dbania o zdrowie stóp.',
                 desc: (
                     <>
                         <p>
@@ -76,13 +79,13 @@ export const servicesConfig = [
     {
         key: 'profilaktyka-podologiczna',
         title: 'Profilaktyka podologiczna',
-        shortDesc: 'test',
+        shortDesc: 'Profilaktyka podologiczna w mobilnym gabinecie podologicznym - Łódź',
         services: [
             {
                 key: 'podstawowy-zabieg-podologiczny',
                 title: 'Podstawowy zabieg podologiczny',
                 shortDesc:
-                    'Podstawowy zabieg podologiczny – kompleksowa pielęgnacja stóp obejmująca usunięcie zrogowaceń, opracowanie paznokci i nawilżenie skóry.',
+                    'Idealny wybór dla tych z Państwa, którzy chcą zadbać o podstawową higienę stóp. Zabieg obejmuje podstawowe czynności pielęgnacyjne, takie jak obcinanie paznokci, usuwanie zrogowaceń oraz porady dotyczące codziennej opieki nad stopami.',
                 desc: (
                     <>
                         <p>
@@ -115,7 +118,7 @@ export const servicesConfig = [
                 key: 'rozszerzony-zabieg-podologiczny',
                 title: 'Rozszerzony zabieg podologiczny',
                 shortDesc:
-                    'Rozszerzony zabieg podologiczny – zaawansowana pielęgnacja stóp z indywidualnym podejściem, obejmująca m.in. usunięcie odcisków, modzeli i opracowanie zmian skórnych.',
+                    'To kompleksowe rozwiązanie dla osób potrzebujących intensywniejszej opieki. Pedicure leczniczy to głębokie oczyszczanie, usuwanie problemów takich jak modzele czy wrastające paznokcie, a także specjalistyczne zabiegi mające na celu poprawę kondycji skóry stóp i paznokci.',
                 desc: (
                     <>
                         <p>
@@ -150,13 +153,13 @@ export const servicesConfig = [
     {
         key: 'terapie-problemow-skornych',
         title: 'Terapie problemów skórnych',
-        shortDesc: 'test',
+        shortDesc: 'Oferujemy szeroki zakres zabiegów, które pomogą Ci pozbyć się uporczywych problemów skórnych:',
         services: [
             {
                 key: 'pekajace-piety',
                 title: 'Pękające pięty',
-                shortDesc: 'Terapia na pękające pięty – skuteczne opracowanie i regeneracja suchej, popękanej skóry dla gładkich i zdrowych stóp.',
-                price: 'od 180,00',
+                shortDesc:
+                    'Intensywnie nawilżające i regenerujące zabiegi, które przywracają skórze pięt zdrowy wygląd i miękkość. Idealne rozwiązanie dla osób borykających się z suchą, popękaną skórą.',
                 desc: (
                     <>
                         <p>
@@ -203,7 +206,8 @@ export const servicesConfig = [
             {
                 key: 'usuwanie-brodawek-wirusowych',
                 title: 'Usuwanie brodawek wirusowych',
-                shortDesc: 'Usuwanie brodawek wirusowych – bezpieczna i skuteczna terapia podologiczna w walce z brodawkami (kurzajkami) na stopach.',
+                shortDesc:
+                    'Bezpieczne i skuteczne metody usuwania brodawek, wykorzystujące nowoczesne techniki, które minimalizują dyskomfort i przyspieszają gojenie.',
                 desc: (
                     <>
                         <p>
@@ -243,7 +247,8 @@ export const servicesConfig = [
             {
                 key: 'usuwanie-modzeli',
                 title: 'Usuwanie Modzeli',
-                shortDesc: 'Usuwanie modzeli – precyzyjne i bezbolesne opracowanie zgrubiałej skóry dla komfortu i ulgi w chodzeniu.',
+                shortDesc:
+                    'Nasze zabiegi pomagają zredukować nadmierną zrogowaciałą skórę, przywracając stopom zdrowy wygląd i komfort podczas chodzenia.',
                 desc: (
                     <>
                         <p>
@@ -280,7 +285,8 @@ export const servicesConfig = [
             {
                 key: 'usuwanie-odciskow',
                 title: 'Usuwanie odcisków',
-                shortDesc: 'Usuwanie odcisków – szybka i skuteczna ulga w bólu poprzez bezpieczne usunięcie zrogowaceń punktowych.',
+                shortDesc:
+                    'Specjalistyczne metody usuwania bolesnych odcisków, które zapewniają ulgę i przeciwdziałają ich powstawaniu w przyszłości.',
                 desc: (
                     <>
                         <p>
@@ -318,13 +324,13 @@ export const servicesConfig = [
         key: 'terapie-problemow-aparatu-paznockiowego',
         title: 'Terapie problemów aparatu paznokciowego',
         shortDesc:
-            'Odkryj skuteczne terapie problemów aparatu paznokciowego w Łodzi z dojazdem. Mobilny podolog oferuje leczenie grzybicy, wrastających paznokci i innych dolegliwości. Dbaj o zdrowie swoich paznokci, umawiając się na wizytę już dziś!',
+            'Oferujemy zaawansowane terapie dla problemów aparatu paznokciowego. Nasze usługi są skierowane do osób borykających się z różnorodnymi dolegliwościami paznokci, zapewniając profesjonalną opiekę i skuteczne leczenie:',
         services: [
             {
                 key: 'grzybica-stop-i-paznokci',
                 title: 'Grzybica Stóp i Paznokci',
-                shortDesc: '',
-                price: '',
+                shortDesc:
+                    'Skuteczne leczenie grzybicy, wykorzystujące nowoczesne preparaty antygrzybicze, które pomagają przywrócić zdrowy wygląd paznokciom i skórze stóp.',
                 desc: (
                     <>
                         <p>
@@ -373,8 +379,8 @@ export const servicesConfig = [
             {
                 key: 'leczenie-wrastajacych-i-wkrecających-paznokci',
                 title: 'Leczenie Wrastających i Wkręcających Paznokci',
-                shortDesc: '',
-                price: '',
+                shortDesc:
+                    'Specjalistyczne podejście do problemu wrastających paznokci, włączając innowacyjne techniki korygowania kształtu paznokcia, które zapobiegają bólowi i infekcjom.',
                 desc: (
                     <>
                         <p>
@@ -413,8 +419,8 @@ export const servicesConfig = [
             {
                 key: 'onycholiza',
                 title: 'Onycholiza',
-                shortDesc: '',
-                price: '',
+                shortDesc:
+                    'Terapia dla pacjentów cierpiących na onycholizę, czyli odspajanie się paznokcia od łożyska, z indywidualnie dopasowanym planem leczenia mającym na celu regenerację paznokcia.',
                 desc: (
                     <>
                         <p>
@@ -456,8 +462,8 @@ export const servicesConfig = [
             {
                 key: 'usuniecie-krwiaka',
                 title: 'Usunięcie Krwiaka',
-                shortDesc: '',
-                price: '',
+                shortDesc:
+                    'Delikatne i bezpieczne usunięcie krwiaków podpaznokciowych, które może być spowodowane urazami lub innymi formami uszkodzeń.',
                 desc: (
                     <>
                         <p>
@@ -510,8 +516,7 @@ export const servicesConfig = [
             {
                 key: 'zalozenie-klamry-korygujacej',
                 title: 'Założenie klamry korygującej',
-                shortDesc: '',
-                price: '',
+                shortDesc: 'Precyzyjne dopasowanie i założenie klamry, które pomagają w korygowaniu wrastających i wkręcających się paznokci.',
                 desc: (
                     <>
                         <p>
@@ -536,8 +541,8 @@ export const servicesConfig = [
             {
                 key: 'przelozenie-klamry-korygujacej',
                 title: 'Przełożenie klamry korygującej',
-                shortDesc: '',
-                price: '',
+                shortDesc:
+                    'Regularne kontrolowanie i dostosowywanie klamry do postępującej korekty paznokcia, co jest kluczowe dla efektywności leczenia.',
                 desc: (
                     <>
                         <p>
@@ -560,8 +565,7 @@ export const servicesConfig = [
             {
                 key: 'podklejenie-klamry-korygujacej',
                 title: 'Podklejenie klamry korygującej',
-                shortDesc: '',
-                price: '',
+                shortDesc: 'Zabieg podklejania zapewnia lepsze przyleganie klamry oraz większy komfort użytkowania.',
                 desc: (
                     <>
                         <p>
@@ -583,8 +587,7 @@ export const servicesConfig = [
             {
                 key: 'zdjecie-klamry-korygujacej-na-zakonczenie-zabiegu',
                 title: 'Zdjęcie klamry korygującej na zakończenie zabiegu',
-                shortDesc: '',
-                price: '',
+                shortDesc: 'Usunięcie klamry po zakończeniu procesu korekty, co stanowi finalny etap leczenia.',
                 desc: (
                     <>
                         <p>
@@ -614,8 +617,8 @@ export const servicesConfig = [
             {
                 key: 'tamponada-wrastajacego-paznokcia',
                 title: 'Tamponada wrastającego paznokcia',
-                shortDesc: 'Delikatna metoda łagodzenia bólu przy wrastającym paznokciu.',
-                price: '',
+                shortDesc:
+                    'Skuteczna metoda łagodzenia bólu i zapobiegania dalszemu wrastaniu paznokci, polegająca na umieszczeniu specjalnej poduszeczki pod brzeg paznokcia.',
                 desc: (
                     <>
                         <p>
@@ -633,8 +636,8 @@ export const servicesConfig = [
             {
                 key: 'opatrunek-z-odciazeniem',
                 title: 'Opatrunek z odciążeniem',
-                shortDesc: 'Zabezpieczenie zmienionych miejsc na stopie przed uciskiem i bólem.',
-                price: '',
+                shortDesc:
+                    'Idealne rozwiązanie dla osób cierpiących na bóle spowodowane nadmiernym obciążeniem określonych części stopy. Opatrunek zmniejsza nacisk i zapewnia szybsze gojenie.',
                 desc: (
                     <>
                         <p>
@@ -653,8 +656,7 @@ export const servicesConfig = [
             {
                 key: 'opatrunek-z-preparatem-specjalistycznym',
                 title: 'Opatrunek z preparatem specjalistycznym',
-                shortDesc: 'Opatrunek wspomagający leczenie ran, pęknięć i stanów zapalnych.',
-                price: '',
+                shortDesc: 'Użycie specjalnych preparatów medycznych w opatrunkach, co przyspiesza proces leczenia i regeneracji skóry.',
                 desc: (
                     <>
                         <p>
@@ -673,8 +675,8 @@ export const servicesConfig = [
             {
                 key: 'taping-podologiczny',
                 title: 'Taping podologiczny (taping palucha)',
-                shortDesc: 'Korygowanie ustawienia palców i odciążenie miejsc przeciążonych.',
-                price: '',
+                shortDesc:
+                    'Technika ta jest stosowana do stabilizacji i odciążenia palucha, co pomaga w leczeniu kontuzji oraz innych problemów funkcjonalnych stopy.',
                 desc: (
                     <>
                         <p>
@@ -692,8 +694,7 @@ export const servicesConfig = [
             {
                 key: 'usuniecie-lakieru-hybrydowego',
                 title: 'Usunięcie lakieru hybrydowego – w przypadku pedicure podologicznego',
-                shortDesc: 'Bezpieczne usunięcie lakieru hybrydowego przed zabiegiem podologicznym.',
-                price: '',
+                shortDesc: 'Bezpieczne usunięcie lakieru hybrydowego, co jest ważnym etapem przygotowania do pedicure leczniczego.',
                 desc: (
                     <>
                         <p>
@@ -711,8 +712,7 @@ export const servicesConfig = [
             {
                 key: 'badanie-stop-na-podoskopie',
                 title: 'Badanie stóp na podoskopie',
-                shortDesc: 'Nieinwazyjna analiza rozkładu nacisku i ustawienia stóp.',
-                price: '',
+                shortDesc: 'Diagnostyka struktury stopy za pomocą podoskopu, umożliwiająca dokładną analizę i planowanie odpowiedniego leczenia.',
                 desc: (
                     <>
                         <p>

@@ -6,6 +6,9 @@ import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 
 const DatetimeVisit = ({ selected, onChange, data, setAvailableTimes, availableTimes }) => {
     useEffect(() => {
+        if (!availableTimes) {
+            return;
+        }
         const fetchAvailableHours = async () => {
             if (!data.date || !data.userID) return;
 

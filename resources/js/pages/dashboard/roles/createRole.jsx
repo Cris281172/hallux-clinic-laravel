@@ -1,9 +1,9 @@
 import { useForm } from '@inertiajs/react';
-import Heading from '../../../components/heading.js';
-import { Button } from '../../../components/ui/button.js';
-import { Input } from '../../../components/ui/input.js';
-import { Label } from '../../../components/ui/label.js';
-import { Switch } from '../../../components/ui/switch.js';
+import Heading from '../../../components/heading.tsx';
+import { Button } from '../../../components/ui/button.tsx';
+import { Input } from '../../../components/ui/input.tsx';
+import { Label } from '../../../components/ui/label.tsx';
+import { Switch } from '../../../components/ui/switch.tsx';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const CreateRole = ({ permissions }) => {

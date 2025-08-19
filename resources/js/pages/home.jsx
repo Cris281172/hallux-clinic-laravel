@@ -1,8 +1,10 @@
 import { Head, Link } from '@inertiajs/react';
 import { motion } from 'motion/react';
+import { useEffect, useRef } from 'react';
 import headerBackground from '../assets/images/header.webp';
 import officeBackground from '../assets/images/office/office.jpeg';
 import selfPhoto from '../assets/images/self-photo.webp';
+import heroVideo2 from '../assets/videos/hero-video-3.mp4';
 import AnimatedText from '../components/animation/animated-text.jsx';
 import HeadingHome from '../components/heading-home.jsx';
 import Map from '../components/map.jsx';
@@ -18,26 +20,50 @@ import { homePrices } from '../config/configPrice.js';
 import AppLayout from '../layouts/app-layout.jsx';
 
 export default function Home() {
-    const statisticsConfig = [
-        {
-            name: 'Liczba wizyt',
-        },
-    ];
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        const videoElement = videoRef.current;
+
+        return () => {
+            if (videoElement) {
+                videoElement.pause();
+                videoElement.removeAttribute('src');
+                videoElement.load();
+            }
+        };
+    }, []);
 
     return (
         <AppLayout>
             <Head title="Home">
+                <title>Profesjonalny Gabinet Podologiczny w Łodzi | Hallux Clinic</title>
+                <meta
+                    name="description"
+                    content="Specjalistyczna opieka i leczenie chorób stóp w Łódzi. Oferuję skuteczne terapie na wrastające paznokcie, odciski, modzele i grzybicę. Umów wizytę! 👣"
+                />
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
             </Head>
-            <div className={`relative h-200 w-full bg-cover bg-center`} style={{ backgroundImage: `url("${headerBackground}")` }}>
-                <div className={'absolute top-0 left-0 h-full w-full bg-black opacity-35'}></div>
+            <div className={`relative flex min-h-screen items-center justify-center overflow-hidden`}>
+                <video
+                    ref={videoRef}
+                    src={heroVideo2}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    poster={headerBackground}
+                    className="absolute h-full w-full object-cover object-[var(--mobile-position)] md:object-center"
+                />
 
-                <div className="absolute top-1/4 left-1/2 flex -translate-x-1/2 transform flex-col items-center gap-3 text-center">
+                <div className={'absolute top-0 left-0 h-full w-full bg-gradient-to-t from-black/80 to-black/40'}></div>
+
+                <div className="relative z-10 container mx-auto px-4 text-center">
                     <AnimatedText
                         text="Gabinet Podologiczny"
                         as="h1"
-                        className="text-5xl font-bold text-white sm:text-6xl"
+                        className="mb-6 text-5xl font-bold text-white sm:text-7xl"
                         spanClassName={'mr-0 md:mr-5'}
                     />
                     <motion.p
@@ -45,27 +71,10 @@ export default function Home() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
                         viewport={{ once: true }}
-                        className={'text-lg text-white'}
+                        className="mx-auto mb-10 max-w-xl text-base text-white sm:text-lg"
                     >
-                        Profesjonalna opieka podologiczna w komfortowych warunkach
-                    </motion.p>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        viewport={{ once: true }}
-                        className={'text-lg text-white'}
-                    >
-                        Zapraszamy do naszego gabinetu w Łodzi
-                    </motion.p>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        viewport={{ once: true }}
-                        className={'text-lg text-white'}
-                    >
-                        Zadbaj o zdrowie i estetykę swoich stóp już dziś
+                        Zadbaj o zdrowie i estetykę swoich stóp. Zapraszamy do naszego profesjonalnego gabinetu w Łodzi, gdzie zapewniamy opiekę w
+                        komfortowych warunkach.
                     </motion.p>
                     <div className="mt-2">
                         <motion.a
@@ -93,7 +102,8 @@ export default function Home() {
                     <TreatmentsTiles />
                 </Container>
             </div>
-            <div className={'relative min-h-350 bg-[url(/images/test.jpeg)] bg-cover bg-fixed bg-center bg-no-repeat md:min-h-300 lg:min-h-175'}>
+            <div className={'relative min-h-350 md:min-h-300 lg:min-h-175'}>
+                <div className={'fixed top-0 left-0 -z-10 h-full w-full bg-[url(/images/test.jpeg)] bg-cover bg-center bg-no-repeat'}></div>
                 <div className={'bg-dark-plum absolute top-0 left-0 h-full w-full opacity-25'}></div>
                 <div className={'absolute top-1/2 w-full -translate-y-1/2'}>
                     <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
@@ -126,13 +136,14 @@ export default function Home() {
                                 a zdrowie Twoich stóp jest naszym największym zobowiązaniem.
                             </motion.p>
                             <div className={'flex justify-center'}>
-                                <button
+                                <Button
+                                    asChild
                                     className={
                                         'bg-dark-plum hover:bg-dark-plum-500 mt-3 h-12 w-50 rounded-full px-4 py-2 font-bold text-white transition'
                                     }
                                 >
-                                    Zobacz więcej
-                                </button>
+                                    <Link href={route('about-me')}>Zobacz więcej</Link>
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -149,13 +160,14 @@ export default function Home() {
                     </div>
                     <PricesAccordion data={homePrices} />
                     <div className={'flex justify-center'}>
-                        <button
+                        <Button
+                            asChild
                             className={
                                 "bg-neon-blossom hover:bg-dark-plum-500 transition' mt-6 h-12 w-50 rounded-full px-4 py-2 font-bold text-white"
                             }
                         >
-                            Poznaj wszystkie ceny
-                        </button>
+                            <Link href={route('price-list')}>Poznaj wszystkie ceny</Link>
+                        </Button>
                     </div>
                 </Container>
             </div>
@@ -168,23 +180,23 @@ export default function Home() {
                         <div className={'w-full rounded-md bg-[rgba(83,2,54,0.7)] p-7 shadow-2xl'}>
                             <HeadingHome>Gabinet stacjonarny</HeadingHome>
                             <p className={'mt-5'}>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                                type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-                                essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                                passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                Mój gabinet w sercu Łodzi to przestrzeń stworzona z myślą o Twoim komforcie i bezpieczeństwie. Połączyłam nowoczesny
+                                design z najwyższymi standardami higieny, aby każda wizyta przebiegała w atmosferze relaksu i pełnego zaufania. Dbamy
+                                o każdy detal – od wygodnego fotela podologicznego, po zaawansowany sprzęt diagnostyczny i terapeutyczny.
                             </p>
                             <ul>
                                 <li></li>
                             </ul>
                             <div className={'mt-5 flex items-center justify-center gap-5'}>
-                                <button
+                                <a
+                                    href={'https://maps.app.goo.gl/AYsaeVkj7LU1nRSY6'}
                                     className={
-                                        'bg-neon-blossom hover:bg-dark-plum-500 h-12 w-50 rounded-full px-4 py-2 font-bold text-white transition'
+                                        'bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition'
                                     }
+                                    target={'_blank'}
                                 >
                                     Jak dojechać?
-                                </button>
+                                </a>
                                 <a
                                     href="tel:+48459410096"
                                     className="bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition"
@@ -234,7 +246,7 @@ export default function Home() {
                                 "bg-neon-blossom hover:bg-dark-plum-500 transition' mt-6 h-12 w-50 rounded-full px-4 py-2 font-bold text-white"
                             }
                         >
-                            <Link href={''}>Zobacz więcej</Link>
+                            <Link href={route('faq')}>Zobacz więcej</Link>
                         </Button>
                     </div>
                 </Container>

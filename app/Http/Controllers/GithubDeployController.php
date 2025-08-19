@@ -36,7 +36,6 @@ class GithubDeployController extends Controller
                 return response("Deployment failed during: $command", 500);
             }
 
-            // Czyść output przed kolejną komendą
             $output = [];
         }
 

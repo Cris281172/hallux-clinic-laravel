@@ -69,25 +69,19 @@ export const allPrices = [
                 shortDesc: 'Profesjonalne skracanie i czyszczenie paznokci.',
             },
             {
-                value: 'Obcięcie i oczyszczenie paznokci stóp zmienionych chorobowo (grzybica, łuszczyca, wrastający paznokieć, onycholiza)',
-                price: null,
-                link: 'pekajace-piety',
-                shortDesc: 'Indywidualna wycena zabiegów na zmienionych paznokciach.',
-            },
-            {
-                value: '1 palec',
+                value: 'Obcięcie i oczyszczenie paznokci stóp zmienionych chorobowo (grzybica, łuszczyca, wrastający paznokieć, onycholiza) - 1 palec',
                 price: '150,00',
                 link: 'pekajace-piety',
                 shortDesc: 'Zabieg obejmujący jeden paznokieć zmieniony chorobowo.',
             },
             {
-                value: '2 palce',
+                value: 'Obcięcie i oczyszczenie paznokci stóp zmienionych chorobowo (grzybica, łuszczyca, wrastający paznokieć, onycholiza) - 2 palce',
                 price: '200,00',
                 link: 'pekajace-piety',
                 shortDesc: 'Zabieg obejmujący dwa paznokcie zmienione chorobowo.',
             },
             {
-                value: 'więcej',
+                value: 'Obcięcie i oczyszczenie paznokci stóp zmienionych chorobowo (grzybica, łuszczyca, wrastający paznokieć, onycholiza) - więcej',
                 price: 'od 250,00',
                 link: 'pekajace-piety',
                 shortDesc: 'Zabieg obejmujący więcej niż dwa paznokcie – cena ustalana indywidualnie.',

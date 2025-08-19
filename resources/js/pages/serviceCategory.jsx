@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import favico from '../assets/images/favicon.ico';
 import headerBackground from '../assets/images/header.webp';
@@ -11,6 +11,10 @@ const ServiceCategory = ({ category }) => {
 
     return (
         <AppLayout>
+            <Head>
+                <title>{`${filteredConfig.title} | Usługi Podologiczne | Hallux Clinic`}</title>
+                <meta name="description" content={filteredConfig.shortDesc} />
+            </Head>
             <SubpageHeader title={filteredConfig.title} background={headerBackground} text={filteredConfig.shortDesc} />
             <SubpageLayoutContainer>
                 <div className={'grid gap-4 lg:grid-cols-2 xl:grid-cols-3'}>

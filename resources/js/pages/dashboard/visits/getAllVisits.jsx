@@ -23,6 +23,7 @@ import { Calendar } from '../../../components/ui/calendar.js';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../../components/ui/dialog.js';
 import { Label } from '../../../components/ui/label.js';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select.js';
+import usePermissions from '../../../hooks/usePermissions.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const GetAllVisits = ({ visits, date, users, user_id }) => {
@@ -34,7 +35,7 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
         const [day, month, year] = str.split('-').map(Number);
         return new Date(year, month - 1, day);
     };
-
+    const { checkUserHasPermission } = usePermissions();
     const handleSelect = (value) => {
         if (!value) return;
         const day = String(value.getDate()).padStart(2, '0');
@@ -97,7 +98,7 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                                             <Button className={'flex-1'} asChild>
                                                 <Link href={route('dashboard.visit.edit.view', visit.id)}>Edytuj</Link>
                                             </Button>
-                                            {permissions.find((el) => el.name === 'usuwanie wizyt') && (
+                                            {checkUserHasPermission('usuwanie wizyt') && (
                                                 <AlertDialog>
                                                     <AlertDialogTrigger asChild>
                                                         <Button variant="outline" className={'flex-1'}>

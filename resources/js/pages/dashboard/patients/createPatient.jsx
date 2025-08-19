@@ -25,7 +25,6 @@ const CreatePatient = ({ statuses }) => {
         patientCard: false,
         email: '',
     });
-    console.log(errors);
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('dashboard.patient.create'));

@@ -13,7 +13,7 @@ class SendContactFormNotification extends Notification
 
     private $data;
     /**
-     * Create a new notification instance.
+     * EditorPost a new notification instance.
      */
     public function __construct($data)
     {

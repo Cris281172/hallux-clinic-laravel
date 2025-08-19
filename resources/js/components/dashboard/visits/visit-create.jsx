@@ -1,13 +1,13 @@
 import { useForm, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
-import formatToMySQLDateTime from '../../utils/formatToMySQLDateTime.js';
-import FormError from '../form-error.jsx';
-import { Button } from '../ui/button.js';
-import { Input } from '../ui/input.js';
-import { Label } from '../ui/label.js';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../ui/select.js';
-import { Textarea } from '../ui/textarea.js';
-import DatetimeVisit from './visits/datetime-visit.jsx';
+import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
+import FormError from '../../form-error.jsx';
+import { Button } from '../../ui/button.tsx';
+import { Input } from '../../ui/input.tsx';
+import { Label } from '../../ui/label.tsx';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../ui/select.tsx';
+import { Textarea } from '../../ui/textarea.tsx';
+import DatetimeVisit from './datetime-visit.jsx';
 
 const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) => {
     const { props } = usePage();
@@ -97,7 +97,7 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
-                        <FormError id="surname-error" message={errors.userID} />
+                        <FormError id="user-id-error" message={errors.userID} />
                     </div>
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor={'price'}>Kod</Label>

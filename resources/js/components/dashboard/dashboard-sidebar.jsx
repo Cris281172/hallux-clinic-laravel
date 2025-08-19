@@ -16,10 +16,11 @@ import { SidebarFooter, SidebarMenuSub, SidebarMenuSubItem } from '../ui/sidebar
 
 const DashboardSidebar = () => {
     const { props } = usePage();
-    console.log(props);
     const permissions = props.userPermissions;
     const user = props.auth.user;
     const location = props.ziggy.location;
+    console.log(permissions);
+
     return (
         <Sidebar>
             <SidebarContent>

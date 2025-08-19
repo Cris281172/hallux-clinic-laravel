@@ -1,22 +1,21 @@
 import { useForm } from '@inertiajs/react';
-import Heading from '../../../components/heading.js';
-import { Button } from '../../../components/ui/button.js';
-import { Input } from '../../../components/ui/input.js';
-import { Label } from '../../../components/ui/label.js';
-import { Switch } from '../../../components/ui/switch.js';
+import Heading from '../../../components/heading.tsx';
+import { Button } from '../../../components/ui/button.tsx';
+import { Input } from '../../../components/ui/input.tsx';
+import { Label } from '../../../components/ui/label.tsx';
+import { Switch } from '../../../components/ui/switch.tsx';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const EditRole = ({ role, permissions }) => {
+    console.log(permissions);
     const { data, setData, post } = useForm({
         roleName: role.name,
         permissions: role.permissions.map((item) => item.id),
     });
-    console.log(permissions);
     const handleSwitchChange = (id, value) => {
         setData('permissions', value ? [...data.permissions, id] : data.permissions.filter((el) => el !== id));
     };
 
-    console.log(data);
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('dashboard.role.edit', role.id));

@@ -1,0 +1,12 @@
+{
+    "old standard tt": {
+        "normal": "\/var\/www\/html\/hallux-clinic.local\/storage\/fonts\/old_standard_tt_normal_e6663db8a8947519e1ab963633852b48",
+        "bold": "\/var\/www\/html\/hallux-clinic.local\/storage\/fonts\/old_standard_tt_bold_de25a97f8a216b54cce6bfabc51dfb4d",
+        "italic": "old_standard_tt_italic_2c298aaec0e1092f686a23a568652893"
+    },
+    "open sans": {
+        "300": "\/var\/www\/html\/hallux-clinic.local\/storage\/fonts\/open_sans_300_f763f849be88b27e8314bc383c746060",
+        "300_italic": "\/var\/www\/html\/hallux-clinic.local\/storage\/fonts\/open_sans_300_italic_ceb4190e6b6aa4ad15bfcc4677d147df",
+        "bold": "open_sans_bold_2cc676dbdfbea97ed6918bba37366fd5"
+    }
+}

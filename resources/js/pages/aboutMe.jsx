@@ -1,9 +1,10 @@
+import { Head } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import annaImage from '../assets/images/cooperation/anna.jpg';
 import jakubImage from '../assets/images/cooperation/jakub.jpg';
 import katarzynaImage from '../assets/images/cooperation/katarzyna.webp';
-import headerBackground from '../assets/images/header.webp';
 import selfPhoto from '../assets/images/self-photo.webp';
+import subpageHeader5 from '../assets/images/subpage-header/subpage-header-5.jpg';
 import AnimatedText from '../components/animation/animated-text.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
@@ -38,7 +39,20 @@ const AboutMe = () => {
 
     return (
         <AppLayout>
-            <SubpageHeader title={'O mnie'} background={headerBackground} />
+            <Head>
+                <title>O Mnie – Specjalista Podolog | Hallux Clinic</title>
+                <meta
+                    name="description"
+                    content="Dowiedz się więcej o moim doświadczeniu, kwalifikacjach i pasji do podologii. Profesjonalizm i indywidualne podejście w trosce o zdrowie Twoich stóp."
+                />
+            </Head>
+            <SubpageHeader
+                title={'O mnie'}
+                background={subpageHeader5}
+                text={
+                    'Dowiedz się więcej o moim doświadczeniu, kwalifikacjach i pasji do podologii. Profesjonalizm i indywidualne podejście w trosce o zdrowie Twoich stóp.'
+                }
+            />
             <SubpageLayoutContainer>
                 <div className={'flex flex-col items-start gap-5 sm:flex-row sm:items-center'}>
                     <motion.img src={selfPhoto} className={'w-30 sm:w-15'} />

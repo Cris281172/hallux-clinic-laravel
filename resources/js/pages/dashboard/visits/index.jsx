@@ -4,7 +4,6 @@ import Heading from '../../../components/heading.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const Visits = ({ futureVisits }) => {
-    console.log(futureVisits);
     return (
         <DashboardLayout>
             <Heading title={'Wizyty'} />
