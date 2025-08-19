@@ -65,6 +65,25 @@ const AboutMe = () => {
                     />
                 </div>
                 <div className={'mt-10 flex flex-col gap-5'}>
+                    <ul>
+                        {[
+                            'Absolwentka Wyższej Szkoły Kosmetyki i Nauk o Zdrowiu w Łodzi',
+                            'Absolwentka Wyższej Szkoły Edukacji Zdrowotnej i Nauk Społecznych w Łodzi',
+                            'Absolwentka Wyższej Szkoły Teologiczno-Humanistycznej w Łodzi',
+                            'Absolwentka Prywatnej Policealnej Szkoły Kosmetycznej w Łodzi',
+                        ].map((el, index) => (
+                            <motion.li
+                                key={index}
+                                initial={{ opacity: 0, x: -25 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8, ease: 'easeOut' }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                className={'text-dark-plum'}
+                            >
+                                🎓 {el}
+                            </motion.li>
+                        ))}
+                    </ul>
                     <div>
                         <motion.p
                             initial={{ opacity: 0, x: -25 }}
@@ -74,10 +93,8 @@ const AboutMe = () => {
                             className={'text-dark-plum mt-3 w-full sm:w-1/2'}
                         >
                             Podologia to moja pasja. Stale poszerzam swoją wiedzę uczestnicząc w licznych szkoleniach i kongresach podologicznych.
-                            Pracuję z dorosłymi i dziećmi - jednak nie ukrywam, że moim priorytetem są seniorzy, którzy ze względu na choroby
-                            współistniejące nie są w stanie samodzielnie dotrzeć do gabinetu podologicznego. Dla uzyskania najwyższych standardów
-                            usług współpracuję z cenionymi specjalistami. W moim Mobilnym Gabinecie Podologicznym stosuje nowoczesne technologie i
-                            procedury aby zapewnić Ci bezpieczną i skuteczną usługę, a dodatkowo wygodę i oszczędność Twojego czasu.
+                            Pracuję z dorosłymi jak i z dziećmi. Dla uzyskania najwyższych standardów usług współpracuję z cenionymi specjalistami. W
+                            moim Gabinecie Podologicznym stosuje nowoczesne technologie i procedury aby zapewnić Ci bezpieczną i skuteczną usługę.
                         </motion.p>
                     </div>
                     <div className={'flex w-full justify-end'}>
@@ -88,12 +105,11 @@ const AboutMe = () => {
                             viewport={{ once: true, amount: 0.3 }}
                             className={'text-dark-plum mt-3 w-full sm:w-1/2'}
                         >
-                            Zawsze jestem gotowa Tobie pomóc i przyjechać niezależnie od położenia Twojego miejsca zamieszkania na terenie Łodzi,
-                            zapewniając najlepszą opiekę dla Twoich stóp. Podzielam słuszność stwierdzenia , że zdrowe stopy są kluczem do pełni
-                            życia. Chore stopy przeszkadzają jak wiesz w realizacji codziennych obowiązków i negatywnie wpływają na Twoje ogólne
-                            samopoczucie. Dlatego pozwól Sobie pomóc w zaciszu Twojego domu i pozbądź się problemów ze stopami. W moim Mobilnym
-                            Gabinecie Podologicznym stosuje nowoczesne technologie i procedury aby zapewnić Ci bezpieczną i skuteczną usługę, a
-                            dodatkowo wygodę i oszczędność Twojego czasu.
+                            Zawsze jestem gotowa Tobie pomóc. Mogę również przyjechać niezależnie od położenia Twojego miejsca zamieszkania na terenie
+                            Łodzi, zapewniając najlepszą opiekę dla Twoich stóp. Podzielam słuszność stwierdzenia , że zdrowe stopy są kluczem do
+                            pełni życia. Chore stopy przeszkadzają jak wiesz w realizacji codziennych obowiązków i negatywnie wpływają na Twoje ogólne
+                            samopoczucie. W moim Gabinecie Podologicznym stosuje nowoczesne technologie i procedury aby zapewnić Ci bezpieczną i
+                            skuteczną usługę..
                         </motion.p>
                     </div>
                     <div>
@@ -104,13 +120,23 @@ const AboutMe = () => {
                             viewport={{ once: true, amount: 0.3 }}
                             className={'text-dark-plum mt-3 w-full sm:w-1/2'}
                         >
-                            Podologia to moja pasja. Stale poszerzam swoją wiedzę uczestnicząc w licznych szkoleniach i kongresach podologicznych.
-                            Pracuję z dorosłymi i dziećmi - jednak nie ukrywam, że moim priorytetem są seniorzy, którzy ze względu na choroby
-                            współistniejące nie są w stanie samodzielnie dotrzeć do gabinetu podologicznego. Dla uzyskania najwyższych standardów
-                            usług współpracuję z cenionymi specjalistami. W moim Mobilnym Gabinecie Podologicznym stosuje nowoczesne technologie i
-                            procedury aby zapewnić Ci bezpieczną i skuteczną usługę, a dodatkowo wygodę i oszczędność Twojego czasu.
+                            Współpracuję również z Centrum Medycznym SALVE, gdzie w każdy wtorek pozostaję do Waszej dyspozycji.
                         </motion.p>
                     </div>
+                    <h3 className={'text-dark-plum font-bold'}>Zobowiązana do Najwyższych Standardów Higieny i Sterylizacji!!!</h3>
+                    <p className={'text-dark-plum'}>
+                        Pełna Sterylność Narzędzi i Frezów: Każde narzędzie i frez używany podczas moich zabiegów przechodzi przez rygorystyczny
+                        proces sterylizacji , zapewniając pełną dezynfekcję i bezpieczeństwo dla każdego klienta.
+                    </p>
+                    <p className={'text-dark-plum'}>
+                        Sterylny Pakiet Medyczny dla Każdego Klienta: Dla Twojego bezpieczeństwa, każdy zabieg wykonuje przy użyciu nowego, sterylnego
+                        pakietu medycznego, gwarantującego najwyższe standardy higieniczne.
+                    </p>
+                    <p className={'text-dark-plum'}>
+                        Autoklaw – Złoty Standard Sterylizacji: Mój mobilny gabinet wykorzystuje autoklaw, urządzenie do sterylizacji, które
+                        zabezpiecza przed bakteriami, wirusami i innymi mikroorganizmami, zapewniając, że wszystkie nasze narzędzia są sterylne i
+                        bezpieczne w użyciu.
+                    </p>
                 </div>
                 <Timeline />
                 <div>

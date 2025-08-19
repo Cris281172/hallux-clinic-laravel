@@ -125,15 +125,14 @@ export default function Home() {
                                 viewport={{ once: true, amount: 0.2 }}
                                 className="text-md mt-3 text-center tracking-wider"
                             >
-                                Podologia to nie tylko moja profesja, ale przede wszystkim pasja. Dążąc do perfekcji, nieustannie rozwijam swoje
-                                umiejętności, uczestnicząc w licznych szkoleniach i prestiżowych kongresach podologicznych. Jako doświadczony
-                                specjalista w gabinecie podologicznym w Łodzi, moim celem jest dostarczanie usług najwyższej jakości dla każdego –
-                                zarówno dorosłych, jak i dzieci. Szczególną uwagę poświęcam seniorom, którzy z różnych przyczyn, w tym chorób
-                                współistniejących, nie mogą samodzielnie dotrzeć do naszego gabinetu. Ich dobrostan i komfort są dla mnie priorytetem,
-                                co motywuje mnie do ciągłego poszerzania mojej wiedzy i umiejętności. Współpraca z cenionymi specjalistami z różnych
-                                dziedzin medycyny pozwala mi na utrzymanie najwyższych standardów usług podologicznych, co potwierdzają liczne
-                                pozytywne opinie naszych pacjentów. Gabinet podologiczny w Łodzi to miejsce, gdzie pasja łączy się z profesjonalizmem,
-                                a zdrowie Twoich stóp jest naszym największym zobowiązaniem.
+                                Podologia to dla mnie nie tylko zawód, lecz przede wszystkim prawdziwa pasja. Dążąc do perfekcji, nieustannie rozwijam
+                                swoje umiejętności, uczestnicząc w licznych szkoleniach oraz prestiżowych kongresach podologicznych. Jako doświadczony
+                                specjalista prowadzący gabinet podologiczny w Łodzi, stawiam sobie za cel świadczenie usług na najwyższym poziomie –
+                                zarówno dla dorosłych, jak i dzieci. Szczególną troską otaczam seniorów, którzy z powodu chorób współistniejących lub
+                                ograniczeń zdrowotnych nie zawsze mogą dotrzeć do naszego gabinetu. Dla nich mam mobilną wersję gabinetu. Bliska
+                                współpraca z cenionymi specjalistami z różnych dziedzin medycyny pozwalają mi utrzymywać najwyższe standardy usług
+                                podologicznych, co potwierdzają liczne pozytywne opinie pacjentów. Gabinet podologiczny w Łodzi to miejsce, w którym
+                                pasja łączy się z profesjonalizmem, a troska o zdrowie Twoich stóp jest naszym najważniejszym zobowiązaniem.
                             </motion.p>
                             <div className={'flex justify-center'}>
                                 <Button
