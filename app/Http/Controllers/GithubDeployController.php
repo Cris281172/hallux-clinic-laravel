@@ -23,7 +23,7 @@ class GithubDeployController extends Controller
             "php artisan view:clear",
             "HOME=/tmp php composer.phar install --no-interaction --prefer-dist --optimize-autoloader",
             "/home/juczynsk/.nvm/versions/node/v20.19.4/bin/npm install",
-            "/home/juczynsk/.nvm/versions/node/v20.19.4/bin/npm run build"
+            'NODE_OPTIONS="--max-old-space-size=4096" /home/juczynsk/.nvm/versions/node/v20.19.4/bin/npm run build'
         ];
 
 
