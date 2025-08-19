@@ -22,7 +22,7 @@ const Timeline = () => {
             title: 'Rozpoczęcia współpracy z Salve',
         },
         {
-            date: formatDate('2025-01-01'),
+            date: formatDate('2025-09-01'),
             icon: <span className="text-xl text-white">🏁</span>,
             title: 'Otwarcie gabinetu stacjonarnego',
         },

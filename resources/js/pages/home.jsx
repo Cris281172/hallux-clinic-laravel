@@ -1,10 +1,11 @@
 import { Head, Link } from '@inertiajs/react';
 import { motion } from 'motion/react';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import headerImagePoster from '../assets/images/hero-image-poster.webp';
 import officeBackground from '../assets/images/office/office.jpeg';
 import selfPhoto from '../assets/images/self-photo.webp';
-import heroVideo2 from '../assets/videos/hero-video-3.mp4';
+import desktopHeroVideo from '../assets/videos/desktop-hero-video.mp4';
+import mobileHeroVideo from '../assets/videos/mobile-hero-video.mp4';
 import AnimatedText from '../components/animation/animated-text.jsx';
 import HeadingHome from '../components/heading-home.jsx';
 import Map from '../components/map.jsx';
@@ -20,19 +21,25 @@ import { homePrices } from '../config/configPrice.js';
 import AppLayout from '../layouts/app-layout.jsx';
 
 export default function Home() {
+    const [videoSrc, setVideoSrc] = useState('');
     const videoRef = useRef(null);
 
     useEffect(() => {
-        const videoElement = videoRef.current;
-
-        return () => {
-            if (videoElement) {
-                videoElement.pause();
-                videoElement.removeAttribute('src');
-                videoElement.load();
+        const updateVideoSrc = () => {
+            if (window.innerWidth < 768) {
+                setVideoSrc(mobileHeroVideo);
+            } else {
+                setVideoSrc(desktopHeroVideo);
             }
         };
-    }, []);
+
+        updateVideoSrc(); // ustawienie przy pierwszym renderze
+        window.addEventListener('resize', updateVideoSrc);
+
+        return () => {
+            window.removeEventListener('resize', updateVideoSrc);
+        };
+    }, [desktopHeroVideo, mobileHeroVideo]);
 
     return (
         <AppLayout>
@@ -48,7 +55,7 @@ export default function Home() {
             <div className={`relative flex min-h-screen items-center justify-center overflow-hidden`}>
                 <video
                     ref={videoRef}
-                    src={heroVideo2}
+                    src={videoSrc}
                     autoPlay
                     loop
                     muted
