@@ -34,7 +34,7 @@ class GithubDeployController extends Controller
             if ($statusCode !== 0) {
                 Log::error(":x: Command failed: $command");
                 Log::error(":x: Status code: $statusCode");
-                return response("Deployment failed during: $command", 500);
+                return response("Deployment failed during:" . implode("\n", $output), 500);
             }
 
             $output = [];
