@@ -1,7 +1,7 @@
 import { Head, Link } from '@inertiajs/react';
 import { motion } from 'motion/react';
 import { useEffect, useRef } from 'react';
-import headerBackground from '../assets/images/header.webp';
+import headerImagePoster from '../assets/images/hero-image-poster.webp';
 import officeBackground from '../assets/images/office/office.jpeg';
 import selfPhoto from '../assets/images/self-photo.webp';
 import heroVideo2 from '../assets/videos/hero-video-3.mp4';
@@ -53,7 +53,7 @@ export default function Home() {
                     loop
                     muted
                     playsInline
-                    poster={headerBackground}
+                    poster={headerImagePoster}
                     className="absolute h-full w-full object-cover object-[var(--mobile-position)] md:object-center"
                 />
 
