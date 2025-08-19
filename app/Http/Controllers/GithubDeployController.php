@@ -12,6 +12,7 @@ class GithubDeployController extends Controller
         $project_path = base_path();
         Log::info("🚀 Webhook started at " . now());
 
+
         $commands = [
             "git pull --no-rebase origin main",
             "php artisan cache:clear",
