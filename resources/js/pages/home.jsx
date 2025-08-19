@@ -61,7 +61,7 @@ export default function Home() {
 
                 <div className="relative z-10 container mx-auto px-4 text-center">
                     <AnimatedText
-                        text="Gabinet Podologicznyy"
+                        text="Gabinet Podologiczny"
                         as="h1"
                         className="mb-6 text-5xl font-bold text-white sm:text-7xl"
                         spanClassName={'mr-0 md:mr-5'}
