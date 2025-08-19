@@ -10,7 +10,7 @@ class GithubDeployController extends Controller
     public function deploy(Request $request)
     {
         $project_path = base_path();
-        Log::info("🚀 Webhook started at " . now());
+        Log::info(":rocket: Webhook started at " . now());
 
 
         $commands = [
@@ -26,21 +26,21 @@ class GithubDeployController extends Controller
 
 
         foreach ($commands as $command) {
-            Log::info("▶️ Running: $command");
+            Log::info(":arrow_forward: Running: $command");
             exec("cd $project_path && $command" . " 2>&1", $output, $statusCode);
 
-            Log::info("📤 Output:\n" . implode("\n", $output));
+            Log::info(":outbox_tray: Output:\n" . implode("\n", $output));
 
             if ($statusCode !== 0) {
-                Log::error("❌ Command failed: $command");
-                Log::error("❌ Status code: $statusCode");
+                Log::error(":x: Command failed: $command");
+                Log::error(":x: Status code: $statusCode");
                 return response("Deployment failed during: $command", 500);
             }
 
             $output = [];
         }
 
-        Log::info("✅ Deployment completed successfully.");
+        Log::info(":white_check_mark: Deployment completed successfully.");
         return response('OK', 200);
     }
 
