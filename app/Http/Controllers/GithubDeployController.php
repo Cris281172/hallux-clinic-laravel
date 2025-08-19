@@ -12,6 +12,7 @@ class GithubDeployController extends Controller
         $project_path = base_path();
         Log::info(":rocket: Webhook started at " . now());
 
+        ini_set('memory_limit', -1);
         putenv('PATH=/home/juczynsk/.nvm/versions/node/v20.19.4/bin:' . getenv('PATH'));
 
 
