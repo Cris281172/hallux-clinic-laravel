@@ -1,5 +1,5 @@
-import { Head } from '@inertiajs/react';
 import subpageHeader2 from '../assets/images/subpage-header/subpage-header-2.jpg';
+import SEO from '../components/page/SEO.jsx';
 import PricesAccordion from '../components/prices-accordion.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
@@ -8,13 +8,13 @@ import AppLayout from '../layouts/app-layout.jsx';
 const PriceList = () => {
     return (
         <AppLayout>
-            <Head>
-                <title>Cennik Usług Podologicznych | Hallux Clinic</title>
-                <meta
-                    name="description"
-                    content="Sprawdź aktualny cennik zabiegów podologicznych w moim gabinecie w Łodzi. Poznaj ceny konsultacji, pedicure leczniczego, usuwania odcisków i innych usług."
-                />
-            </Head>
+            <SEO
+                title={'Cennik Usług Podologicznych - Sprawdź Ceny Zabiegów'}
+                description={
+                    'Zapoznaj się z cennikiem usług gabinetu podologicznego Hallux Clinic w Łodzi. Transparentne ceny zabiegów na odciski, modzele, wrastające paznokcie i inne.'
+                }
+                url={'/cennik'}
+            />
             <SubpageHeader
                 title={'Cennik'}
                 background={subpageHeader2}

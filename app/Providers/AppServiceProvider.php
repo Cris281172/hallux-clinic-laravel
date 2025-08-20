@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
 
         Inertia::share([
             'userPermissions' => fn () => auth()->user() ? auth()->user()->getPermissionsViaRoles() : [],
+            'treatments' =>   config('treatments'),
         ]);
+
     }
 }

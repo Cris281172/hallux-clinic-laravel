@@ -1,27 +1,26 @@
-import { Head, Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { IoFootstepsOutline } from 'react-icons/io5';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import headerBackground from '../assets/images/header.webp';
 import ContactSection from '../components/page/contact-section.jsx';
+import SEO from '../components/page/SEO.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
-import { servicesConfig } from '../config/servicesConfig.jsx';
 import AppLayout from '../layouts/app-layout.jsx';
 
 const Service = ({ category, service }) => {
-    const serviceData = servicesConfig.filter((el) => el.key === category)[0]?.services?.filter((el) => el.key === service)[0];
-
+    const { props } = usePage();
+    const serviceData = props.treatments[category].services[service];
+    console.log(props);
     if (!serviceData) {
         return router.visit('/404');
     }
 
     return (
         <AppLayout>
-            <Head>
-                <title>{`${serviceData.title} | Hallux Clinic w Łodzi`}</title>
-                <meta name="description" content={serviceData.shortDesc} />
-            </Head>
+            <SEO title={serviceData.head.title} description={serviceData.head.description} url={`/uslugi/${props.category}/${props.service}`} />
+
             <SubpageHeader title={serviceData.title} background={headerBackground} text={serviceData.shortDesc} />
             <SubpageLayoutContainer>
                 <div className={'text-black'}>
@@ -31,8 +30,8 @@ const Service = ({ category, service }) => {
                                 <ImageGallery
                                     showPlayButton={false}
                                     items={serviceData.images.map((el) => ({
-                                        original: el,
-                                        thumbnail: el,
+                                        original: props.ziggy.url + `/images/services/${el}`,
+                                        thumbnail: props.ziggy.url + `/images/services/${el}`,
                                     }))}
                                     renderLeftNav={(onClick, disabled) => (
                                         <div onClick={onClick} className={'absolute top-1/2 left-4 z-20 -translate-y-1/2 cursor-pointer'}>
@@ -51,7 +50,7 @@ const Service = ({ category, service }) => {
                             <Link href={route('price-list')} className={'text-md mb-2 block font-bold underline'}>
                                 Zobacz cennik
                             </Link>
-                            <div className={'service-desc'}>{serviceData.desc}</div>
+                            <div className="service-desc" dangerouslySetInnerHTML={{ __html: serviceData.desc }} />
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,8 @@
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { useState } from 'react';
 import subpageHeader3 from '../assets/images/subpage-header/subpage-header-3.jpg';
 import AppPagination from '../components/app-pagination.jsx';
+import SEO from '../components/page/SEO.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
 import { Button } from '../components/ui/button.js';
@@ -17,13 +18,13 @@ const Gallery = ({ images, type }) => {
 
     return (
         <AppLayout>
-            <Head>
-                <title>Galeria Zdjęć Gabinetu i Efektów | Hallux Clinic</title>
-                <meta
-                    name="description"
-                    content="Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług."
-                />
-            </Head>
+            <SEO
+                title={'Galeria Zdjęć Gabinetu i Zabiegów'}
+                description={
+                    'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
+                }
+                url={'/galeria/wszystkie'}
+            />
             <SubpageHeader
                 title={'Galeria'}
                 background={subpageHeader3}

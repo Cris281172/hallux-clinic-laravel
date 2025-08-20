@@ -8,5 +8,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('app:update-patient-statuses')->everyMinute();
+Schedule::command('app:update-patient-statuses')->daily('02:00');
+Schedule::command('generate:sitemap')->daily('02:00');
 Schedule::command('app:backup-database-command')->daily('02:00');

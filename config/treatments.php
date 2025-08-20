@@ -1,93 +1,71 @@
-import basicPodiatryTreatmentGallery1 from '../assets/images/service/basic-podiatry-treatment/image-1.webp';
-import basicPodiatryTreatmentGallery2 from '../assets/images/service/basic-podiatry-treatment/image-2.webp';
-import basicPodiatryTreatmentGallery3 from '../assets/images/service/basic-podiatry-treatment/image-3.webp';
-import removePrintsGallery1 from '../assets/images/service/remove-prints/image-1.webp';
-import removePrintsGallery2 from '../assets/images/service/remove-prints/image-2.webp';
-import removePrintsGallery3 from '../assets/images/service/remove-prints/image-3.webp';
-import removePrintsGallery4 from '../assets/images/service/remove-prints/image-4.webp';
-export const servicesConfig = [
-    {
-        key: 'diagnostyka-podologiczna',
-        title: 'Diagnostyka Podologiczna',
-        shortDesc:
-            'Nasza oferta diagnostyki podologicznej zapewnia kompleksową opiekę i wsparcie dla zdrowia Twoich stóp. Specjalizujemy się w dwóch kluczowych usługach:',
-        services: [
-            {
-                key: 'konsultacja-podologiczna',
-                title: 'Konsultacja podologiczna',
-                shortDesc:
-                    'Podczas tej wizyty przeprowadzamy szczegółową ocenę stanu zdrowia stóp, diagnozujemy potencjalne problemy oraz dobieramy odpowiednie metody leczenia i profilaktyki. Konsultacja odbywa się bezpośrednio w gabinecie lub opcjonalnie w Twoim domu lub innym wybranym przez Ciebie miejscu, co gwarantuje wygodę i dostosowanie do indywidualnych potrzeb.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>W</strong>izyta u podologa zawsze zaczyna się od szczegółowego wywiadu z klientem, by zrozumieć źródło jego
-                            dolegliwości oraz przeszłość zdrowotną. Następnie, analizuje się przyczynę problemów i proponuje odpowiedni program
-                            leczenia podologicznego. Każdy klient po konsultacji dostaje zalecenia dotyczące opieki nad stopami w domu.
-                        </p>
-                        <strong>Warto wiedzieć!</strong>
-                        <p>
-                            <strong>D</strong>ecydując się na rozpoczęcie zalecanej terapii podczas pierwszej wizyty, nie ponosisz kosztów
-                            konsultacji! W skład konsultacji podologicznej wchodzą:
-                        </p>
-                        <ul>
-                            <li>🔶 Analiza kondycji skóry stóp oraz stanu paznokci</li>
-                            <li>🔶 Zdiagnozowanie zmian na stopach</li>
-                            <li>🔶 Badanie na podoskopie</li>
-                            <li>🔶 Ocena postawy i statyki ciała</li>
-                            <li>🔶 Omówienie zaproponowanego planu leczenia</li>
-                            <li>🔶 Rekomendacja spersonalizowanej domowej pielęgnacji</li>
-                        </ul>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'konsultacja-online',
-                title: 'Konsultacja Online',
-                shortDesc:
-                    'Dla naszych klientów, którzy preferują zdalny kontakt, oferujemy konsultacje online. Ta forma wizyty umożliwia szybką i efektywną ocenę problemów podologicznych bez potrzeby wychodzenia z domu. Wystarczy dostęp do Internetu, aby otrzymać profesjonalne porady i wskazówki dotyczące dbania o zdrowie stóp.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>W</strong> ramach konsultacji podologicznej online masz możliwość skonsultowania swojego problemu ze specjalistą
-                            bez konieczności wizyty w gabinecie. To doskonałe rozwiązanie dla osób, które z różnych względów nie mogą stawić się
-                            osobiście, mieszkają daleko lub potrzebują szybkiej porady.
-                        </p>
-                        <p>
-                            <strong>K</strong>onsultacja odbywa się za pośrednictwem wybranego komunikatora (np. Zoom, Skype, WhatsApp). Podczas
-                            spotkania online omówimy Twoje dolegliwości, ocenimy przesłane zdjęcia zmian na stopach, a następnie zaproponuję możliwe
-                            rozwiązania oraz zalecenia pielęgnacyjne.
-                        </p>
-                        <strong>Jak przygotować się do konsultacji online?</strong>
-                        <ul>
-                            <li>🔶 Przygotuj dokładny opis objawów i historii problemu,</li>
-                            <li>🔶 Wykonaj dobrej jakości zdjęcia zmian na stopach (najlepiej w świetle dziennym),</li>
-                            <li>🔶 Zadbaj o stabilne połączenie internetowe i spokojne miejsce do rozmowy,</li>
-                            <li>🔶 Zapisz swoje pytania i wątpliwości, które chcesz poruszyć.</li>
-                        </ul>
-                        <p>
-                            <strong>Warto wiedzieć!</strong> Konsultacja online nie zastępuje wizyty stacjonarnej w przypadku konieczności wykonania
-                            zabiegu, ale jest skuteczną formą wstępnej diagnozy, oceny sytuacji i uzyskania profesjonalnych wskazówek oraz planu
-                            działania.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
+<?php
+
+return [
+    'diagnostyka-podologiczna' => [
+        'head' => [
+            "title" => "Diagnostyka Podologiczna Łódź - Konsultacja i Badanie",
+            "description" => "Profesjonalna diagnostyka schorzeń stóp w Łodzi. Umów się na konsultację podologiczną, aby poznać przyczynę problemu i zaplanować skuteczne leczenie.",
         ],
-    },
-    {
-        key: 'profilaktyka-podologiczna',
-        title: 'Profilaktyka podologiczna',
-        shortDesc: 'Profilaktyka podologiczna w mobilnym gabinecie podologicznym - Łódź',
-        services: [
-            {
-                key: 'podstawowy-zabieg-podologiczny',
-                title: 'Podstawowy zabieg podologiczny',
-                shortDesc:
-                    'Idealny wybór dla tych z Państwa, którzy chcą zadbać o podstawową higienę stóp. Zabieg obejmuje podstawowe czynności pielęgnacyjne, takie jak obcinanie paznokci, usuwanie zrogowaceń oraz porady dotyczące codziennej opieki nad stopami.',
-                desc: (
-                    <>
+        'title' => 'Diagnostyka Podologiczna',
+        'shortDesc' => 'Nasza oferta diagnostyki podologicznej zapewnia kompleksową opiekę i wsparcie dla zdrowia Twoich stóp. Specjalizujemy się w dwóch kluczowych usługach:',
+        'services' => [
+            'konsultacja-podologiczna' => [
+                'head' => [
+                    "title" => "Konsultacja Podologiczna Łódź - Diagnoza i Plan Leczenia",
+                    "description" => "Umów się na profesjonalną konsultację podologiczną w Łodzi. Dokładna diagnoza problemów stóp, wywiad i ustalenie indywidualnego planu terapii. Zrób pierwszy krok do zdrowych stóp!",
+                ],
+                'title' => 'Konsultacja podologiczna',
+                'shortDesc' => 'Podczas tej wizyty przeprowadzamy szczegółową ocenę stanu zdrowia stóp, diagnozujemy potencjalne problemy oraz dobieramy odpowiednie metody leczenia i profilaktyki. Konsultacja odbywa się bezpośrednio w gabinecie lub opcjonalnie w Twoim domu lub innym wybranym przez Ciebie miejscu, co gwarantuje wygodę i dostosowanie do indywidualnych potrzeb.',
+                'desc' => '<p><strong>W</strong>izyta u podologa zawsze zaczyna się od szczegółowego wywiadu z klientem, by zrozumieć źródło jego dolegliwości oraz przeszłość zdrowotną. Następnie, analizuje się przyczynę problemów i proponuje odpowiedni program leczenia podologicznego. Każdy klient po konsultacji dostaje zalecenia dotyczące opieki nad stopami w domu.</p>
+                           <strong>Warto wiedzieć!</strong>
+                           <p><strong>D</strong>ecydując się na rozpoczęcie zalecanej terapii podczas pierwszej wizyty, nie ponosisz kosztów konsultacji! W skład konsultacji podologicznej wchodzą:</p>
+                           <ul>
+                               <li>🔶 Analiza kondycji skóry stóp oraz stanu paznokci</li>
+                               <li>🔶 Zdiagnozowanie zmian na stopach</li>
+                               <li>🔶 Badanie na podoskopie</li>
+                               <li>🔶 Ocena postawy i statyki ciała</li>
+                               <li>🔶 Omówienie zaproponowanego planu leczenia</li>
+                               <li>🔶 Rekomendacja spersonalizowanej domowej pielęgnacji</li>
+                           </ul>',
+                'images' => [],
+            ],
+            'konsultacja-online' => [
+                'head' => [
+                    "title" => "Konsultacja Podologiczna Online - Porada Eksperta",
+                    "description" => "Potrzebujesz porady podologa? Umów się na konsultację online w Hallux Clinic w Łodzi. Uzyskaj profesjonalną diagnozę i plan leczenia bez wychodzenia z domu. Wygodnie i bezpiecznie.",
+                ],
+                'title' => 'Konsultacja Online',
+                'shortDesc' => 'Dla naszych klientów, którzy preferują zdalny kontakt, oferujemy konsultacje online. Ta forma wizyty umożliwia szybką i efektywną ocenę problemów podologicznych bez potrzeby wychodzenia z domu. Wystarczy dostęp do Internetu, aby otrzymać profesjonalne porady i wskazówki dotyczące dbania o zdrowie stóp.',
+                'desc' => '<p><strong>W</strong> ramach konsultacji podologicznej online masz możliwość skonsultowania swojego problemu ze specjalistą bez konieczności wizyty w gabinecie. To doskonałe rozwiązanie dla osób, które z różnych względów nie mogą stawić się osobiście, mieszkają daleko lub potrzebują szybkiej porady.</p>
+                           <p><strong>K</strong>onsultacja odbywa się za pośrednictwem wybranego komunikatora (np. Zoom, Skype, WhatsApp). Podczas spotkania online omówimy Twoje dolegliwości, ocenimy przesłane zdjęcia zmian na stopach, a następnie zaproponuję możliwe rozwiązania oraz zalecenia pielęgnacyjne.</p>
+                           <strong>Jak przygotować się do konsultacji online?</strong>
+                           <ul>
+                               <li>🔶 Przygotuj dokładny opis objawów i historii problemu,</li>
+                               <li>🔶 Wykonaj dobrej jakości zdjęcia zmian na stopach (najlepiej w świetle dziennym),</li>
+                               <li>🔶 Zadbaj o stabilne połączenie internetowe i spokojne miejsce do rozmowy,</li>
+                               <li>🔶 Zapisz swoje pytania i wątpliwości, które chcesz poruszyć.</li>
+                           </ul>
+                           <p><strong>Warto wiedzieć!</strong> Konsultacja online nie zastępuje wizyty stacjonarnej w przypadku konieczności wykonania zabiegu, ale jest skuteczną formą wstępnej diagnozy, oceny sytuacji i uzyskania profesjonalnych wskazówek oraz planu działania.</p>',
+                'images' => [],
+            ],
+        ],
+    ],
+    'profilaktyka-podologiczna' => [
+        'head' => [
+            "title" => "Profilaktyka i Podstawowy Zabieg Podologiczny Łódź",
+            "description" => "Zadbaj o zdrowie swoich stóp! Oferujemy podstawowy i rozszerzony zabieg podologiczny w Łodzi, który zapobiega powstawaniu bolesnych zmian.",
+        ],
+        "title" => "Profilaktyka podologiczna",
+        "shortDesc" => "Profilaktyka podologiczna w mobilnym gabinecie podologicznym - Łódź",
+        "services" => [
+            "podstawowy-zabieg-podologiczny" => [
+                'head' => [
+                    "title" => "Podstawowy Zabieg Podologiczny Łódź (Pedicure Leczniczy)",
+                    "description" => "Odkryj pedicure leczniczy w Hallux Clinic w Łodzi! Nasz podstawowy zabieg podologiczny to profesjonalna pielęgnacja paznokci i skóry stóp. Idealna profilaktyka dla zdrowia i komfortu. Umów wizytę.",
+                ],
+                "title" => "Podstawowy zabieg podologiczny",
+                "shortDesc" => "Idealny wybór dla tych z Państwa, którzy chcą zadbać o podstawową higienę stóp. Zabieg obejmuje podstawowe czynności pielęgnacyjne, takie jak obcinanie paznokci, usuwanie zrogowaceń oraz porady dotyczące codziennej opieki nad stopami.",
+                "desc" => "
                         <p>
                             <strong>P</strong>odstawowy zabieg podologiczny to profesjonalna usługa, która ma na celu przywrócenie estetyki i komfortu
                             Twoim stopom. To idealna propozycja dla osób, które chcą zadbać o zdrowie i higienę swoich stóp lub przygotować je do
@@ -110,17 +88,17 @@ export const servicesConfig = [
                             wysterylizowanych narzędzi. Regularne wizyty pomagają w utrzymaniu zdrowia stóp, zapobiegają powstawaniu nowych zmian i
                             poprawiają komfort chodzenia.
                         </p>
-                    </>
-                ),
-                images: [basicPodiatryTreatmentGallery1, basicPodiatryTreatmentGallery2, basicPodiatryTreatmentGallery3],
-            },
-            {
-                key: 'rozszerzony-zabieg-podologiczny',
-                title: 'Rozszerzony zabieg podologiczny',
-                shortDesc:
-                    'To kompleksowe rozwiązanie dla osób potrzebujących intensywniejszej opieki. Pedicure leczniczy to głębokie oczyszczanie, usuwanie problemów takich jak modzele czy wrastające paznokcie, a także specjalistyczne zabiegi mające na celu poprawę kondycji skóry stóp i paznokci.',
-                desc: (
-                    <>
+                        ",
+                "images" => ["/basic-podiatry-treatment/image-1.webp", "/basic-podiatry-treatment/image-2.webp", "/basic-podiatry-treatment/image-3.webp"],
+            ],
+            "rozszerzony-zabieg-podologiczny" => [
+                'head' => [
+                    "title" => "Rozszerzony Zabieg Podologiczny Łódź - Dla Wymagających Stóp",
+                    "description" => "Gdy podstawowa pielęgnacja to za mało, wybierz rozszerzony zabieg podologiczny w Hallux Clinic w Łodzi. Kompleksowa opieka dla wymagających stóp, w tym usunięcie zrogowaceń i regeneracja. Poczuj ulgę i komfort. Umów wizytę.",
+                ],
+                "title" => "Rozszerzony zabieg podologiczny",
+                "shortDesc" => "To kompleksowe rozwiązanie dla osób potrzebujących intensywniejszej opieki. Pedicure leczniczy to głębokie oczyszczanie, usuwanie problemów takich jak modzele czy wrastające paznokcie, a także specjalistyczne zabiegi mające na celu poprawę kondycji skóry stóp i paznokci.",
+                "desc" => "
                         <p>
                             <strong>R</strong>ozszerzony zabieg podologiczny to kompleksowa usługa skierowana do osób borykających się z bardziej
                             zaawansowanymi problemami stóp. Zabieg ten łączy standardowe elementy pielęgnacji z opracowaniem specyficznych zmian
@@ -144,25 +122,27 @@ export const servicesConfig = [
                             <strong>Warto wiedzieć!</strong> Zabieg jest szczególnie polecany osobom z przewlekłymi problemami skórnymi, diabetykom,
                             sportowcom, a także wszystkim, którzy chcą zadbać o zdrowie i komfort swoich stóp w sposób kompleksowy i profesjonalny.
                         </p>
-                    </>
-                ),
-                images: [],
-            },
+                ",
+                "images" => ""
+            ]
+        ]
+    ],
+    'terapie-problemow-skornych' => [
+        'head' => [
+            "title" => "Terapie Skórne Stóp Łódź - Leczenie Odcisków, Modzeli",
+            "description" => "Skuteczne leczenie problemów skórnych stóp w Łodzi. Usuwamy odciski, modzele, brodawki wirusowe i pomagamy w terapii pękających pięt.",
         ],
-    },
-    {
-        key: 'terapie-problemow-skornych',
-        title: 'Terapie problemów skórnych',
-        shortDesc: 'Oferujemy szeroki zakres zabiegów, które pomogą Ci pozbyć się uporczywych problemów skórnych:',
-        services: [
-            {
-                key: 'pekajace-piety',
-                title: 'Pękające pięty',
-                shortDesc:
-                    'Intensywnie nawilżające i regenerujące zabiegi, które przywracają skórze pięt zdrowy wygląd i miękkość. Idealne rozwiązanie dla osób borykających się z suchą, popękaną skórą.',
-                desc: (
-                    <>
-                        <p>
+        "title" => "Terapie problemów skórnych",
+        "shortDesc" => "Oferujemy szeroki zakres zabiegów, które pomogą Ci pozbyć się uporczywych problemów skórnych:",
+        "services" => [
+            "pekajace-piety" => [
+                'head' => [
+                    "title" => "Leczenie Pękających Pięt Łódź - Skuteczna Terapia",
+                    "description" => "Borykasz się z problemem bolesnych, pękających pięt? W Hallux Clinic w Łodzi oferujemy profesjonalne terapie regenerujące. Zabieg przynosi ulgę, wygładza skórę i zapobiega powstawaniu rozpadlin. Odzyskaj komfort chodzenia!",
+                ],
+                "title" => "Pękające pięty",
+                "shortDesc" => "Intensywnie nawilżające i regenerujące zabiegi, które przywracają skórze pięt zdrowy wygląd i miękkość. Idealne rozwiązanie dla osób borykających się z suchą, popękaną skórą.",
+                "desc" => "<p>
                             Jeśli zmagasz się z problemem suchych i popękanych pięt, które stają się bolesne, to oferuję profesjonalną pomoc. Pękające
                             pięty to powszechny problem, który może wynikać z różnych przyczyn, takich jak niewłaściwa pielęgnacja stóp, złe obuwie,
                             niedobory witaminowe czy zaburzenia krzepnięcia krwi. Zajmuję się nie tylko usuwaniem widocznych zmian skórnych, ale
@@ -198,19 +178,17 @@ export const servicesConfig = [
                             bezpieczne i skuteczne, a dzięki indywidualnemu podejściu do każdego klienta, możesz liczyć na najlepsze rozwiązania
                             dostosowane do Twoich potrzeb. Jeśli Twoje stopy wymagają profesjonalnej opieki, nie zwlekaj – umów się na konsultację i
                             pozwól mi zadbać o Twoje zdrowie.
-                        </p>
-                    </>
-                ),
-                images: [removePrintsGallery1, removePrintsGallery2, removePrintsGallery3, removePrintsGallery4],
-            },
-            {
-                key: 'usuwanie-brodawek-wirusowych',
-                title: 'Usuwanie brodawek wirusowych',
-                shortDesc:
-                    'Bezpieczne i skuteczne metody usuwania brodawek, wykorzystujące nowoczesne techniki, które minimalizują dyskomfort i przyspieszają gojenie.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ["/cracked-heels/image-1.webp", "/cracked-heels/image-2.webp", "/cracked-heels/image-3.webp", '/cracked-heels/image-4.webp'],
+            ],
+            "usuwanie-brodawek-wirusowych" => [
+                'head' => [
+                    "title" => "Usuwanie Brodawki Wirusowej (Kurzajki) na Stopie Łódź",
+                    "description" => "Masz kurzajkę na stopie, która powoduje ból? W gabinecie Hallux Clinic w Łodzi skutecznie i bezpiecznie usuwamy brodawki wirusowe HPV. Stosujemy nowoczesne, skuteczne metody. Umów się na wizytę u specjalisty.",
+                ],
+                "title" => "Usuwanie brodawek wirusowych",
+                "shortDesc" => "Bezpieczne i skuteczne metody usuwania brodawek, wykorzystujące nowoczesne techniki, które minimalizują dyskomfort i przyspieszają gojenie.",
+                "desc" => "<p>
                             <strong>B</strong>rodawek wirusowych, potocznie nazywanych kurzajkami, nie należy lekceważyć – są to zmiany skórne
                             wywołane przez wirusa HPV, które mogą się rozprzestrzeniać, powodować dyskomfort, ból oraz trudności w chodzeniu.
                             Skuteczne usunięcie brodawek wymaga odpowiedniego podejścia i doświadczenia podologicznego.
@@ -239,19 +217,17 @@ export const servicesConfig = [
                         <p>
                             Nie podejmuj prób usuwania brodawek na własną rękę – niewłaściwe działanie może prowadzić do pogłębienia zmian, infekcji
                             oraz rozprzestrzenienia się wirusa na inne partie stóp.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'usuwanie-modzeli',
-                title: 'Usuwanie Modzeli',
-                shortDesc:
-                    'Nasze zabiegi pomagają zredukować nadmierną zrogowaciałą skórę, przywracając stopom zdrowy wygląd i komfort podczas chodzenia.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ""
+            ],
+            "usuwanie-modzeli" => [
+                'head' => [
+                    "title" => "Usuwanie Modzeli Łódź - Bezbolesny Zabieg u Podologa",
+                    "description" => "Cierpisz z powodu bolesnych modzeli i zrogowaceń na stopach? Oferujemy profesjonalne i bezbolesne usuwanie modzeli w naszym gabinecie w Łodzi. Zabieg natychmiastowo przywraca komfort chodzenia. Umów się i poczuj ulgę.",
+                ],
+                "title" => "Usuwanie Modzeli",
+                "shortDesc" => "Nasze zabiegi pomagają zredukować nadmierną zrogowaciałą skórę, przywracając stopom zdrowy wygląd i komfort podczas chodzenia.",
+                "desc" => "<p>
                             <strong>M</strong>odzele to zrogowacenia skóry, które powstają w wyniku długotrwałego ucisku lub tarcia – najczęściej na
                             przodostopiu, piętach lub palcach. Choć na początku mogą być jedynie defektem estetycznym, z czasem mogą prowadzić do
                             bólu, pieczenia, a nawet problemów z chodzeniem.
@@ -277,19 +253,17 @@ export const servicesConfig = [
                         <p>
                             Regularne usuwanie modzeli u podologa pomaga utrzymać stopy w dobrej kondycji, zapobiega ich narastaniu i znacząco
                             poprawia komfort codziennego funkcjonowania.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'usuwanie-odciskow',
-                title: 'Usuwanie odcisków',
-                shortDesc:
-                    'Specjalistyczne metody usuwania bolesnych odcisków, które zapewniają ulgę i przeciwdziałają ich powstawaniu w przyszłości.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ""
+            ],
+            "usuwanie-odciskow" => [
+                'head' => [
+                    "title" => "Usuwanie Odcisków Łódź - Natychmiastowa Ulga w Bólu",
+                    "description" => "Bolesny odcisk na stopie utrudnia Ci chodzenie? W Hallux Clinic w Łodzi specjalizujemy się w profesjonalnym usuwaniu odcisków. Zabieg jest precyzyjny, niemal bezbolesny i przynosi natychmiastową ulgę. Umów wizytę!",
+                ],
+                "title" => "Usuwanie odcisków",
+                "shortDesc" => "Specjalistyczne metody usuwania bolesnych odcisków, które zapewniają ulgę i przeciwdziałają ich powstawaniu w przyszłości.",
+                "desc" => "<p>
                             <strong>O</strong>dciski to bolesne, zrogowaciałe zmiany skórne powstające najczęściej w wyniku długotrwałego nacisku lub
                             tarcia, np. przez źle dopasowane obuwie. Mogą one powodować duży dyskomfort podczas chodzenia, a nieleczone – prowadzić do
                             stanów zapalnych i pogłębienia problemu.
@@ -313,27 +287,27 @@ export const servicesConfig = [
                         <p>
                             W przypadku nawracających odcisków warto wykonać analizę chodu oraz rozważyć zastosowanie indywidualnych wkładek
                             ortopedycznych, które eliminują przyczyny mechaniczne powstawania zmian.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
+                        </p>",
+                "images" => ["/callus-removal/image-1.webp", "/callus-removal/image-2.webp"],
+            ]
+        ]
+    ],
+    'terapie-problemow-aparatu-paznockiowego' => [
+        'head' => [
+            "title" => "Leczenie Chorób Paznokci Łódź - Wrastające, Grzybica",
+            "description" => "Masz problem z paznokciami? Specjalizujemy się w leczeniu wrastających i wkręcających paznokci, grzybicy, onycholizy oraz urazów. Gabinet w Łodzi.",
         ],
-    },
-    {
-        key: 'terapie-problemow-aparatu-paznockiowego',
-        title: 'Terapie problemów aparatu paznokciowego',
-        shortDesc:
-            'Oferujemy zaawansowane terapie dla problemów aparatu paznokciowego. Nasze usługi są skierowane do osób borykających się z różnorodnymi dolegliwościami paznokci, zapewniając profesjonalną opiekę i skuteczne leczenie:',
-        services: [
-            {
-                key: 'grzybica-stop-i-paznokci',
-                title: 'Grzybica Stóp i Paznokci',
-                shortDesc:
-                    'Skuteczne leczenie grzybicy, wykorzystujące nowoczesne preparaty antygrzybicze, które pomagają przywrócić zdrowy wygląd paznokciom i skórze stóp.',
-                desc: (
-                    <>
-                        <p>
+        "title" => "Terapie problemów aparatu paznokciowego",
+        "shortDesc" => "Oferujemy zaawansowane terapie dla problemów aparatu paznokciowego. Nasze usługi są skierowane do osób borykających się z różnorodnymi dolegliwościami paznokci, zapewniając profesjonalną opiekę i skuteczne leczenie:",
+        "services" => [
+            "grzybica-stop-i-paznokci" => [
+                'head' => [
+                    "title" => "Terapia Grzybicy Paznokci i Stóp Łódź - Skuteczne Leczenie",
+                    "description" => "Prowadzimy skuteczne terapie przeciwgrzybicze paznokci i skóry stóp. Oczyszczanie paznokci i dobór indywidualnego planu leczenia w gabinecie w Łodzi.",
+                ],
+                "title" => "Grzybica Stóp i Paznokci",
+                "shortDesc" => "Skuteczne leczenie grzybicy, wykorzystujące nowoczesne preparaty antygrzybicze, które pomagają przywrócić zdrowy wygląd paznokciom i skórze stóp.",
+                "desc" => "<p>
                             <strong>Z</strong>auważyłaś/eś, że skóra na Twoich stopach stała się biała lub zaczęła się nadmiernie łuszczyć? A może
                             Twoje paznokcie zmieniły barwę i są teraz bardziej kruche? Te objawy mogą wskazywać na grzybicę stóp lub paznokci. Chociaż
                             ten problem może być dla wielu osób źródłem wstydu, nie zawsze jest wynikiem nieodpowiedniej higieny. Zajmuje się
@@ -371,19 +345,17 @@ export const servicesConfig = [
                             <strong>G</strong>rzybica paznokci może być problemem wstydliwym, ale unikanie wizyty u specjalisty tylko pogłębia
                             problem. Nie czekaj, aż infekcja się rozwinie – skuteczne leczenie może szybko poprawić jakość Twojego życia. Ponadto,
                             zajmuję się również leczeniem innych problemów stóp. Zapraszam do umówienia się na konsultację i rozpoczęcia leczenia.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'leczenie-wrastajacych-i-wkrecających-paznokci',
-                title: 'Leczenie Wrastających i Wkręcających Paznokci',
-                shortDesc:
-                    'Specjalistyczne podejście do problemu wrastających paznokci, włączając innowacyjne techniki korygowania kształtu paznokcia, które zapobiegają bólowi i infekcjom.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ""
+            ],
+            "leczenie-wrastajacych-i-wkrecających-paznokci" => [
+                'head' => [
+                    "title" => "Leczenie Wrastających Paznokci Łódź - Metody i Terapie",
+                    "description" => "Borykasz się z problemem wrastającego paznokcia? Oferujemy nowoczesne metody leczenia, w tym klamry korygujące. Bezbolesna pomoc podologa w Łodzi.",
+                ],
+                "title" => "Leczenie Wrastających i Wkręcających Paznokci",
+                "shortDesc" => "Specjalistyczne podejście do problemu wrastających paznokci, włączając innowacyjne techniki korygowania kształtu paznokcia, które zapobiegają bólowi i infekcjom.",
+                "desc" => "<p>
                             <strong>C</strong>zy doświadczasz bólu spowodowanego przez paznokcie, które nieprawidłowo rosną i wbijają się w skórę
                             palców, zwłaszcza w okolicy palucha, wywołując dyskomfort? Jeśli tak to możliwe, że borykasz się z problemem wrastających
                             lub wkręcających się paznokci.
@@ -411,19 +383,17 @@ export const servicesConfig = [
                         <p>
                             <strong>Z</strong>achęcam do kontaktu ze mną, aby umówić się na wizytę i rozpocząć skuteczne leczenie. Dbając o zdrowie
                             stóp, możesz uniknąć wielu nieprzyjemnych dolegliwości i cieszyć się komfortem na co dzień.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'onycholiza',
-                title: 'Onycholiza',
-                shortDesc:
-                    'Terapia dla pacjentów cierpiących na onycholizę, czyli odspajanie się paznokcia od łożyska, z indywidualnie dopasowanym planem leczenia mającym na celu regenerację paznokcia.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ""
+            ],
+            "onycholiza" => [
+                'head' => [
+                    "title" => "Leczenie Onycholizy Łódź - Terapia Odchodzącego Paznokcia",
+                    "description" => "Zauważyłeś, że paznokieć odkleja się od łożyska? To onycholiza. W Hallux Clinic w Łodzi oferujemy skuteczną terapię, która polega na oczyszczeniu łożyska i stymulacji paznokcia do regeneracji. Umów wizytę i zadbaj o zdrowie paznokci.",
+                ],
+                "title" => "Onycholiza",
+                "shortDesc" => "Terapia dla pacjentów cierpiących na onycholizę, czyli odspajanie się paznokcia od łożyska, z indywidualnie dopasowanym planem leczenia mającym na celu regenerację paznokcia.",
+                "desc" => "<p>
                             <strong>J</strong>eśli zauważyłaś/eś, że Twoje paznokcie zmieniły kształt, zaczęły się rozwarstwiać lub odchodzić od
                             łożyska to prawdopodobnie mierzymy się z onycholizą. Stan ten może mieć różnorodne przyczyny, co czyni diagnozę i leczenie
                             sprawą złożoną, wymagającą profesjonalnego podejścia. Zajmuję się profesjonalnym leczeniem onycholizy, a w odpowiednich
@@ -454,19 +424,17 @@ export const servicesConfig = [
                             ze mną, aby uzyskać profesjonalną diagnozę i rozpocząć skuteczne leczenie. Stosuję kompleksowe metody leczenia onycholizy
                             oraz oferuję rekonstrukcję paznokci, aby przywrócić im zdrowy wygląd i funkcjonowanie. Zapraszam do kontaktu i umówienia
                             się na wizytę.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'usuniecie-krwiaka',
-                title: 'Usunięcie Krwiaka',
-                shortDesc:
-                    'Delikatne i bezpieczne usunięcie krwiaków podpaznokciowych, które może być spowodowane urazami lub innymi formami uszkodzeń.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ""
+            ],
+            "usuniecie-krwiaka" => [
+                'head' => [
+                    "title" => "Usunięcie Krwiaka pod Paznokciem Łódź - Natychmiastowa Ulga w Bólu",
+                    "description" => "Masz bolesny krwiak pod paznokciem po urazie? Zapraszamy do Hallux Clinic w Łodzi na bezpieczny zabieg jego usunięcia. Drenaż krwiaka przynosi natychmiastową ulgę w bólu i chroni paznokieć. Nie czekaj, umów się na wizytę.",
+                ],
+                "title" => "Usunięcie Krwiaka",
+                "shortDesc" => "Delikatne i bezpieczne usunięcie krwiaków podpaznokciowych, które może być spowodowane urazami lub innymi formami uszkodzeń.",
+                "desc" => "<p>
                             <strong>Z</strong>auważyłaś/eś, że na Twoim ciele pojawił się obrzęk, który zmienia kolor z czerwonego na niebieski, a
                             potem na żółto-zielony? Czy dotknięta okolica jest bolesna przy nacisku? To mogą być objawy krwiaka, czyli nagromadzenia
                             krwi poza naczyniami krwionośnymi, często wynikające z urazu. Krwiaki mogą wystąpić niemal w każdej części ciała i choć
@@ -500,26 +468,27 @@ export const servicesConfig = [
                             <strong>K</strong>rwiaki, choć często lekceważone, mogą być sygnałem poważniejszych problemów. Nie ignoruj ich obecności i
                             skonsultuj się ze specjalistą. Skuteczne leczenie może nie tylko zapewnić szybką ulgę w bólu, ale także zapobiec
                             poważniejszym komplikacjom. Zapraszam do umówienia się na konsultację i rozpoczęcia leczenia.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
+                        </p>",
+                "images" => ""
+            ]
+        ]
+    ],
+    'ortonyksja' => [
+        'head' => [
+            "title" => "Ortonyksja Łódź - Korekta Wrastających Paznokci Klamrą",
+            "description" => "Nowoczesna i bezbolesna metoda korekty wrastających paznokci. Sprawdź, jak działają klamry ortonyksyjne i umów się na zabieg w naszym gabinecie w Łodzi.",
         ],
-    },
-    {
-        key: 'ortonyksja',
-        title: 'Ortonyksja',
-        shortDesc:
-            'Skuteczna terapia ortoniksyjna dla wrastających paznokci w Łodzi. Zminimalizuj ból i uniknij operacji dzięki naszym mobilnym usługom podologicznym. Umów się już dziś!',
-        services: [
-            {
-                key: 'zalozenie-klamry-korygujacej',
-                title: 'Założenie klamry korygującej',
-                shortDesc: 'Precyzyjne dopasowanie i założenie klamry, które pomagają w korygowaniu wrastających i wkręcających się paznokci.',
-                desc: (
-                    <>
-                        <p>
+        "title" => "Ortonyksja",
+        "shortDesc" => "Skuteczna terapia ortoniksyjna dla wrastających paznokci w Łodzi. Zminimalizuj ból i uniknij operacji dzięki naszym mobilnym usługom podologicznym. Umów się już dziś!",
+        "services" => [
+            "zalozenie-klamry-korygujacej" => [
+                'head' => [
+                    "title" => "Zakładanie Klamry na Wrastający Paznokieć Łódź",
+                    "description" => "Bezbolesne zakładanie klamry korygującej na wrastające paznokcie. To nieinwazyjna metoda, która przynosi ulgę i koryguje tor wzrostu paznokcia. Umów się.",
+                ],
+                "title" => "Założenie klamry korygującej",
+                "shortDesc" => "Precyzyjne dopasowanie i założenie klamry, które pomagają w korygowaniu wrastających i wkręcających się paznokci.",
+                "desc" => "<p>
                             <strong>Z</strong>ałożenie klamry korygującej to pierwszy i kluczowy etap terapii wrastających paznokci. Proces rozpoczyna
                             się od szczegółowej <strong>diagnozy</strong>, która pozwala dobrać odpowiedni rodzaj klamry ortonyksyjnej dopasowanej do
                             problemu pacjenta.
@@ -533,20 +502,18 @@ export const servicesConfig = [
                             <strong>P</strong>o zabiegu ustalana jest <strong>kolejna wizyta kontrolna</strong>, podczas której sprawdzana będzie
                             skuteczność działania klamry. Pacjent otrzymuje również <strong>zalecenia domowe</strong> dotyczące codziennej pielęgnacji
                             i postępowania z paznokciem.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'przelozenie-klamry-korygujacej',
-                title: 'Przełożenie klamry korygującej',
-                shortDesc:
-                    'Regularne kontrolowanie i dostosowywanie klamry do postępującej korekty paznokcia, co jest kluczowe dla efektywności leczenia.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>K</strong>orekta wzrostu paznokcia za pomocą klamry to proces, który może wymagać{' '}
+                        </p>",
+                "images" => ""
+            ],
+            "przelozenie-klamry-korygujacej" => [
+                'head' => [
+                    "title" => "Przełożenie Klamry Korygującej Łódź - Kontrola Terapii",
+                    "description" => "Regularne wizyty kontrolne to klucz do sukcesu terapii wrastającego paznokcia. W Hallux Clinic w Łodzi profesjonalnie przełożymy Twoją klamrę ortonyksyjną, aby zapewnić ciągłość i skuteczność leczenia. Umów się na wizytę kontrolną.",
+                ],
+                "title" => "Przełożenie klamry korygującej",
+                "shortDesc" => "Regularne kontrolowanie i dostosowywanie klamry do postępującej korekty paznokcia, co jest kluczowe dla efektywności leczenia.",
+                "desc" => "<p>
+                            <strong>K</strong>orekta wzrostu paznokcia za pomocą klamry to proces, który może wymagać
                             <strong>okresowego przełożenia</strong> klamry – w zależności od tego, jak szybko rośnie paznokieć i jak zmienia się jego
                             kształt.
                         </p>
@@ -557,18 +524,17 @@ export const servicesConfig = [
                         <p>
                             <strong>Z</strong>abieg jest szybki i bezbolesny, a jego regularność wpływa na skuteczność całej terapii i zapobiega
                             nawrotom problemu.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'podklejenie-klamry-korygujacej',
-                title: 'Podklejenie klamry korygującej',
-                shortDesc: 'Zabieg podklejania zapewnia lepsze przyleganie klamry oraz większy komfort użytkowania.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ""
+            ],
+            "podklejenie-klamry-korygujacej" => [
+                'head' => [
+                    "title" => "Podklejenie Klamry Ortodontycznej Łódź",
+                    "description" => "Czy Twoja klamra korygująca się odkleiła lub obluzowała? Zapraszamy do Hallux Clinic w Łodzi na szybkie i profesjonalne podklejenie klamry, aby zapewnić jej prawidłowe działanie i kontynuować terapię wrastającego paznokcia.",
+                ],
+                "title" => "Podklejenie klamry korygującej",
+                "shortDesc" => "Zabieg podklejania zapewnia lepsze przyleganie klamry oraz większy komfort użytkowania.",
+                "desc" => "<p>
                             <strong>W</strong> przypadku, gdy klamra korygująca częściowo się odklei – np. wskutek urazu, zbyt mocnego uderzenia lub
                             nieprawidłowej pielęgnacji – konieczne jest jej <strong>ponowne podklejenie</strong>.
                         </p>
@@ -579,170 +545,124 @@ export const servicesConfig = [
                         <p>
                             <strong>C</strong>ena usługi zależy od <strong>czasu noszenia klamry</strong> – im dłużej od zabiegu minęło, tym większe
                             może być ryzyko jej przesunięcia lub uszkodzenia.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'zdjecie-klamry-korygujacej-na-zakonczenie-zabiegu',
-                title: 'Zdjęcie klamry korygującej na zakończenie zabiegu',
-                shortDesc: 'Usunięcie klamry po zakończeniu procesu korekty, co stanowi finalny etap leczenia.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>P</strong>o zakończeniu terapii i uzyskaniu prawidłowego wzrostu paznokcia, klamra korygująca jest{' '}
+                        </p>",
+                "images" => ""
+            ],
+            "zdjecie-klamry-korygujacej-na-zakonczenie-zabiegu" => [
+                'head' => [
+                    "title" => "Zdjęcie Klamry Korygującej Łódź - Zakończenie Terapii",
+                    "description" => "Zakończyłeś terapię wrastającego paznokcia? Gratulacje! W Hallux Clinic w Łodzi bezpiecznie zdejmiemy Twoją klamrę korygującą i ocenimy efekty leczenia. Ciesz się zdrowymi paznokciami bez bólu. Umów się na ostatnią wizytę.",
+                ],
+                "title" => "Zdjęcie klamry korygującej na zakończenie zabiegu",
+                "shortDesc" => "Usunięcie klamry po zakończeniu procesu korekty, co stanowi finalny etap leczenia.",
+                "desc" => "<p>
+                            <strong>P</strong>o zakończeniu terapii i uzyskaniu prawidłowego wzrostu paznokcia, klamra korygująca jest
                             <strong>delikatnie usuwana</strong> z płytki. To końcowy etap leczenia.
                         </p>
                         <p>
-                            <strong>D</strong>odatkowo wykonuje się <strong>obcięcie, oszlifowanie paznokcia</strong> oraz{' '}
+                            <strong>D</strong>odatkowo wykonuje się <strong>obcięcie, oszlifowanie paznokcia</strong> oraz
                             <strong>oczyszczenie wałów okołopaznokciowych</strong>, by zapobiec nawrotom problemu.
                         </p>
                         <p>
                             <strong>P</strong>acjent otrzymuje zalecenia domowe oraz rekomendację kontroli, która pomoże upewnić się, że efekt
                             leczenia zostanie utrzymany na długo.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
+                        </p>",
+                "images" => ""
+            ]
+        ]
+    ],
+    'zabiegi-uzupelniajace' => [
+        'head' => [
+            "title" => "Zabiegi Uzupełniające - Opatrunki, Taping Podologiczny",
+            "description" => "Oferujemy specjalistyczne zabiegi wspomagające terapie podologiczne: odciążenia, opatrunki, tamponadę oraz taping. Profesjonalna pomoc w Łodzi.",
         ],
-    },
-    {
-        key: 'zabiegi-uzupelniajace',
-        title: 'Zabiegi uzupełniające',
-        shortDesc:
-            'Zadbaj o stopy z zabiegami uzupełniającymi w Łodzi. Mobilny podolog oferuje indywidualne usługi pielęgnacyjne. Umów się na wizytę już dziś i ciesz się zdrowymi stopami!',
-        services: [
-            {
-                key: 'tamponada-wrastajacego-paznokcia',
-                title: 'Tamponada wrastającego paznokcia',
-                shortDesc:
-                    'Skuteczna metoda łagodzenia bólu i zapobiegania dalszemu wrastaniu paznokci, polegająca na umieszczeniu specjalnej poduszeczki pod brzeg paznokcia.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>T</strong>amponada to skuteczna i nieinwazyjna metoda łagodzenia objawów wrastającego paznokcia. Polega na{' '}
+        "title" => "Zabiegi uzupełniające",
+        "shortDesc" => "Zadbaj o stopy z zabiegami uzupełniającymi w Łodzi. Mobilny podolog oferuje indywidualne usługi pielęgnacyjne. Umów się na wizytę już dziś i ciesz się zdrowymi stopami!",
+        "services" => [
+            "tamponada-wrastajacego-paznokcia" => [
+                'head' => [
+                    "title" => "Tamponada na Wrastający Paznokieć Łódź - Szybka Ulga w Bólu",
+                    "description" => "Cierpisz z powodu wrastającego paznokcia? Tamponada to specjalistyczny opatrunek, który natychmiastowo łagodzi ból i chroni wał paznokciowy. W Hallux Clinic w Łodzi wykonujemy ten zabieg, by przynieść Ci szybką ulgę.",
+                ],
+                "title" => "Tamponada wrastającego paznokcia",
+                "shortDesc" => "Skuteczna metoda łagodzenia bólu i zapobiegania dalszemu wrastaniu paznokci, polegająca na umieszczeniu specjalnej poduszeczki pod brzeg paznokcia.",
+                "desc" => "<p>
+                            <strong>T</strong>amponada to skuteczna i nieinwazyjna metoda łagodzenia objawów wrastającego paznokcia. Polega na
                             <strong>umieszczeniu delikatnego opatrunku</strong> (tampony) między paznokciem a wałem okołopaznokciowym.
                         </p>
                         <p>
-                            <strong>Z</strong>abieg ten redukuje ból i zapobiega dalszemu wrastaniu, pozwalając paznokciowi{' '}
+                            <strong>Z</strong>abieg ten redukuje ból i zapobiega dalszemu wrastaniu, pozwalając paznokciowi
                             <strong>odrastać we właściwym kierunku</strong>. Tamponada może być stosowana jednorazowo lub cyklicznie w ramach terapii.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'opatrunek-z-odciazeniem',
-                title: 'Opatrunek z odciążeniem',
-                shortDesc:
-                    'Idealne rozwiązanie dla osób cierpiących na bóle spowodowane nadmiernym obciążeniem określonych części stopy. Opatrunek zmniejsza nacisk i zapewnia szybsze gojenie.',
-                desc: (
-                    <>
-                        <p>
+                        </p>",
+                "images" => ""
+            ],
+            "opatrunek-z-odciazeniem" => [
+                'head' => [
+                    "title" => "Opatrunki i Odciążenia Podologiczne Łódź",
+                    "description" => "Potrzebujesz odciążyć bolesne miejsce na stopie? Oferujemy profesjonalne, indywidualnie dobrane opatrunki odciążające w Łodzi. Idealne rozwiązanie po usunięciu odcisków, modzeli lub w terapii pękających pięt.",
+                ],
+                "title" => "Opatrunek z odciążeniem",
+                "shortDesc" => "Idealne rozwiązanie dla osób cierpiących na bóle spowodowane nadmiernym obciążeniem określonych części stopy. Opatrunek zmniejsza nacisk i zapewnia szybsze gojenie.",
+                "desc" => "<p>
                             <strong>O</strong>patrunek z odciążeniem stosowany jest w miejscach szczególnie narażonych na ucisk – np. przy modzelach,
                             odciskach czy stanach zapalnych. Jego zadaniem jest <strong>zredukowanie nacisku</strong> i zmniejszenie bólu podczas
                             chodzenia.
                         </p>
                         <p>
-                            <strong>W</strong>ykonywany z materiałów ochronnych, opatrunek tworzy barierę amortyzującą i wspomaga{' '}
+                            <strong>W</strong>ykonywany z materiałów ochronnych, opatrunek tworzy barierę amortyzującą i wspomaga
                             <strong>naturalne procesy regeneracji skóry</strong>.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'opatrunek-z-preparatem-specjalistycznym',
-                title: 'Opatrunek z preparatem specjalistycznym',
-                shortDesc: 'Użycie specjalnych preparatów medycznych w opatrunkach, co przyspiesza proces leczenia i regeneracji skóry.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>W</strong> przypadku ran, pęknięć, rozpadlin lub infekcji podolog stosuje opatrunki nasączone{' '}
+                        </p>",
+                "images" => ""
+            ],
+            "opatrunek-z-preparatem-specjalistycznym" => [
+                'head' => [
+                    "title" => "Specjalistyczne Opatrunki Lecznicze na Stopy Łódź",
+                    "description" => "Przyspiesz gojenie i regenerację skóry stóp. W Hallux Clinic w Łodzi stosujemy specjalistyczne opatrunki z preparatami leczniczymi, które wspomagają terapię ran, pęknięć czy stanów zapalnych. Profesjonalna opieka podologiczna.",
+                ],
+                "title" => "Opatrunek z preparatem specjalistycznym",
+                "shortDesc" => "Użycie specjalnych preparatów medycznych w opatrunkach, co przyspiesza proces leczenia i regeneracji skóry.",
+                "desc" => "<p>
+                            <strong>W</strong> przypadku ran, pęknięć, rozpadlin lub infekcji podolog stosuje opatrunki nasączone
                             <strong>specjalistycznymi preparatami leczniczymi</strong>. Mogą one działać przeciwbakteryjnie, przeciwgrzybiczo,
                             regenerująco lub łagodząco.
                         </p>
                         <p>
                             <strong>D</strong>obrany indywidualnie preparat <strong>wspiera proces leczenia</strong> i zabezpiecza skórę przed
                             dalszymi uszkodzeniami. Tego typu opatrunki są bardzo pomocne w terapii przewlekłych zmian skórnych.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'taping-podologiczny',
-                title: 'Taping podologiczny (taping palucha)',
-                shortDesc:
-                    'Technika ta jest stosowana do stabilizacji i odciążenia palucha, co pomaga w leczeniu kontuzji oraz innych problemów funkcjonalnych stopy.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>T</strong>aping to technika terapeutyczna wykorzystująca specjalistyczne taśmy, które{' '}
+                        </p>",
+                "images" => ""
+            ],
+            "taping-podologiczny" => [
+                'head' => [
+                    "title" => "Taping Podologiczny Stóp Łódź",
+                    "description" => " Odkryj taping podologiczny w Łodzi! To skuteczna metoda wspierająca leczenie bólu, korekcję wad postawy stóp (np. hallux valgus) i odciążanie tkanek. W Hallux Clinic profesjonalnie aplikujemy plastry, by przynieść Ci ulgę.",
+                ],
+                "title" => "Taping podologiczny (taping palucha)",
+                "shortDesc" => "Technika ta jest stosowana do stabilizacji i odciążenia palucha, co pomaga w leczeniu kontuzji oraz innych problemów funkcjonalnych stopy.",
+                "desc" => "<p>
+                            <strong>T</strong>aping to technika terapeutyczna wykorzystująca specjalistyczne taśmy, które
                             <strong>korygują ustawienie palców</strong>, zwłaszcza palucha, oraz odciążają zmienione miejsca na stopie.
                         </p>
                         <p>
                             <strong>Z</strong>abieg ten jest często stosowany przy haluksach, przeciążeniach oraz jako element wspomagający terapię
                             ortopedyczną i podologiczną. <strong>Redukuje ból</strong> i poprawia biomechanikę chodu.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'usuniecie-lakieru-hybrydowego',
-                title: 'Usunięcie lakieru hybrydowego – w przypadku pedicure podologicznego',
-                shortDesc: 'Bezpieczne usunięcie lakieru hybrydowego, co jest ważnym etapem przygotowania do pedicure leczniczego.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>P</strong>odczas pedicure podologicznego usunięcie lakieru hybrydowego przeprowadzane jest w sposób{' '}
-                            <strong>bezpieczny dla płytki paznokcia</strong>, bez jej mechanicznego uszkodzenia.
-                        </p>
-                        <p>
-                            <strong>D</strong>zięki użyciu odpowiednich preparatów i narzędzi, proces jest szybki, skuteczny i przygotowuje paznokieć
-                            do dalszego zabiegu podologicznego lub aplikacji terapeutycznej.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-            {
-                key: 'badanie-stop-na-podoskopie',
-                title: 'Badanie stóp na podoskopie',
-                shortDesc: 'Diagnostyka struktury stopy za pomocą podoskopu, umożliwiająca dokładną analizę i planowanie odpowiedniego leczenia.',
-                desc: (
-                    <>
-                        <p>
-                            <strong>B</strong>adanie na podoskopie to nieinwazyjna diagnostyka umożliwiająca <strong>analizę rozkładu nacisku</strong>{' '}
-                            stóp, łuków podłużnych i poprzecznych oraz ustawienia palców i pięt.
-                        </p>
-                        <p>
-                            <strong>N</strong>a podstawie obrazu stóp specjalista może <strong>wczesne wykryć nieprawidłowości</strong> postawy ciała,
-                            przeciążenia oraz dobrać odpowiednie wkładki ortopedyczne lub dalsze działania terapeutyczne.
-                        </p>
-                    </>
-                ),
-                images: [],
-            },
-        ],
-    },
+                        </p>",
+                "images" => ""
+            ]
+        ]
+    ]
 ];
 
-// {
-//     key: '',
-//         title: '',
-//     shortDesc: '',
-//     services: [
-//     {
-//         key: '',
-//         title: '',
-//         shortDesc: '',
-//         price: '',
-//         desc: <></>,
-//         images: [],
-//     },
-// ],
-// },
+
+//'' => [
+//    "title" => "",
+//    "shortDesc" => "",
+//    "services" => [
+//        "" => [
+//            "title" => "",
+//            "shortDesc" => "",
+//            "desc" => "",
+//            "images" => ""
+//        ]
+//    ]
+//]

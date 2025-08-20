@@ -4,27 +4,30 @@ const Footer = () => {
     const navigationConfig = [
         {
             name: 'Strona główna',
-            link: '',
+            link: 'home',
         },
         {
             name: 'Usługi',
-            link: '',
+            link: 'services',
         },
         {
             name: 'Cennik',
-            link: '',
+            link: 'price-list',
         },
         {
             name: 'O mnie',
-            link: '',
+            link: 'about-me',
         },
         {
             name: 'Galeria',
-            link: '',
+            link: 'gallery',
+            params: {
+                type: 'wszystkie',
+            },
         },
         {
             name: 'Kontakt',
-            link: '',
+            link: 'contact',
         },
     ];
 
@@ -175,7 +178,7 @@ const Footer = () => {
                     <ul className={'mt-2 grid grid-cols-1 gap-5 md:grid-cols-2'}>
                         {servicesConfig.map((item, index) => (
                             <li key={index}>
-                                <Link className={'underline'}>{item.name}</Link>
+                                <Link>{item.name}</Link>
                                 <div className={'flex flex-col'}>
                                     {item.children.map((children) => (
                                         <Link className={'ml-5 text-sm'}>- {children.name}</Link>
@@ -190,7 +193,7 @@ const Footer = () => {
                     <ul className={'mt-2'}>
                         {navigationConfig.map((item, index) => (
                             <li key={index}>
-                                <Link className={'underline'}>{item.name}</Link>
+                                <Link href={route(item.link, item.params)}>{item.name}</Link>
                             </li>
                         ))}
                     </ul>
@@ -200,8 +203,8 @@ const Footer = () => {
                 <p>&copy; Wszelkie prawa zastrzeżone.</p>
                 <p>
                     Created & Design by{' '}
-                    <a href={''} className={'font-bold underline'}>
-                        Krzysztof Juczyński
+                    <a href={'https://dark-site.pl/'} target={'_blank'} className={'font-bold underline'}>
+                        Dark Site
                     </a>
                 </p>
             </div>

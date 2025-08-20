@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import headerImagePoster from '../assets/images/hero-image-poster.webp';
@@ -13,6 +13,7 @@ import Opinions from '../components/opinions.jsx';
 import ContactSection from '../components/page/contact-section.jsx';
 import Container from '../components/page/container.jsx';
 import { FAQ } from '../components/page/faq.jsx';
+import SEO from '../components/page/SEO.jsx';
 import PricesAccordion from '../components/prices-accordion.jsx';
 import TreatmentsTiles from '../components/treatments-tiles.jsx';
 import { Button } from '../components/ui/button.js';
@@ -21,6 +22,8 @@ import { homePrices } from '../config/configPrice.js';
 import AppLayout from '../layouts/app-layout.jsx';
 
 export default function Home() {
+    const { props } = usePage();
+    console.log(props);
     const [videoSrc, setVideoSrc] = useState('');
     const videoRef = useRef(null);
 
@@ -43,15 +46,12 @@ export default function Home() {
 
     return (
         <AppLayout>
-            <Head title="Home">
-                <title>Profesjonalny Gabinet Podologiczny w Łodzi | Hallux Clinic</title>
-                <meta
-                    name="description"
-                    content="Specjalistyczna opieka i leczenie chorób stóp w Łódzi. Oferuję skuteczne terapie na wrastające paznokcie, odciski, modzele i grzybicę. Umów wizytę! 👣"
-                />
-                <link rel="preconnect" href="https://fonts.bunny.net" />
-                <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-            </Head>
+            <SEO
+                title={'Gabinet Podologiczny Łódź - Profesjonalna Pielęgnacja Stóp'}
+                description={
+                    'Szukasz dobrego podologa w Łodzi? Hallux Clinic oferuje kompleksową diagnostykę i leczenie chorób stóp. Wrastające paznokcie, odciski, grzybica. Umów wizytę!'
+                }
+            />
             <div className={`relative flex min-h-screen items-center justify-center overflow-hidden`}>
                 <video
                     ref={videoRef}

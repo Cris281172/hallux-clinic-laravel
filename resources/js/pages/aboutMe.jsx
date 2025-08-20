@@ -1,4 +1,3 @@
-import { Head } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import annaImage from '../assets/images/cooperation/anna.jpg';
 import jakubImage from '../assets/images/cooperation/jakub.jpg';
@@ -6,6 +5,7 @@ import katarzynaImage from '../assets/images/cooperation/katarzyna.webp';
 import selfPhoto from '../assets/images/self-photo.webp';
 import subpageHeader5 from '../assets/images/subpage-header/subpage-header-5.jpg';
 import AnimatedText from '../components/animation/animated-text.jsx';
+import SEO from '../components/page/SEO.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
 import Timeline from '../components/timeline.jsx';
@@ -39,13 +39,14 @@ const AboutMe = () => {
 
     return (
         <AppLayout>
-            <Head>
-                <title>O Mnie – Specjalista Podolog | Hallux Clinic</title>
-                <meta
-                    name="description"
-                    content="Dowiedz się więcej o moim doświadczeniu, kwalifikacjach i pasji do podologii. Profesjonalizm i indywidualne podejście w trosce o zdrowie Twoich stóp."
-                />
-            </Head>
+            <SEO
+                title={'O Mnie - Poznaj Specjalistę Podologa w Łodzi'}
+                description={
+                    'Nazywam się Monika Juczyńska i jestem certyfikowanym podologiem. Poznaj moje doświadczenie, kwalifikacje i misję dbania o zdrowie Twoich stóp w Łodzi.'
+                }
+                url={'/o-mnie'}
+            />
+
             <SubpageHeader
                 title={'O mnie'}
                 background={subpageHeader5}
