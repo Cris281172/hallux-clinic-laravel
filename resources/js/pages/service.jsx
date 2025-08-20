@@ -12,7 +12,7 @@ import AppLayout from '../layouts/app-layout.jsx';
 const Service = ({ category, service }) => {
     const { props } = usePage();
     const serviceData = props.treatments[category].services[service];
-    console.log(props);
+
     if (!serviceData) {
         return router.visit('/404');
     }
