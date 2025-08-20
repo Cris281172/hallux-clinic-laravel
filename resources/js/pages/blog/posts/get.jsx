@@ -9,7 +9,6 @@ import AppLayout from '../../../layouts/app-layout.jsx';
 import getR2Url from '../../../utils/getR2Url.js';
 
 const GetPost = ({ post, similar }) => {
-    console.log(similar, post);
     return (
         <AppLayout>
             <SEO title={post.title} description={post.short_desc} url={`/${post.slug}`} />
