@@ -34,6 +34,7 @@ class GenerateSitemapCommand extends Command
 
         $sitemap = Sitemap::create();
 
+
         $sitemap->add(Url::create('/'));
         $sitemap->add(Url::create('/o-mnie'));
         $sitemap->add(Url::create('/cennik'));
