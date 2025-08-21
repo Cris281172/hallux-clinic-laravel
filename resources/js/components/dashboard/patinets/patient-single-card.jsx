@@ -1,6 +1,7 @@
 import { HiOutlinePhone } from 'react-icons/hi';
 import { MdOutlineEmail } from 'react-icons/md';
 import ageFromDate from '../../../utils/ageFromDate.js';
+import formatDatePolish from '../../../utils/formatDatePolish.js';
 import { Card } from '../../ui/card.js';
 import StatusPatient from '../status-patient.jsx';
 
@@ -9,9 +10,7 @@ const PatientSingleCard = ({ patient, children, visitInfoVisible = true }) => {
         <Card className={'rounded-xl border-1 p-8'}>
             <div className={` ${visitInfoVisible ? 'mb-4 border-b-1 pb-4' : ''} `}>
                 <div className={'flex items-center justify-between'}>
-                    <h3 className={'text-xl font-bold'}>
-                        {patient.name} {patient.surname}
-                    </h3>
+                    <h3 className={'text-xl font-bold'}>{patient.full_name}</h3>
                     <StatusPatient status={patient.status} />
                 </div>
                 <div>
@@ -32,11 +31,11 @@ const PatientSingleCard = ({ patient, children, visitInfoVisible = true }) => {
                 <div>
                     <div className={'flex items-center justify-between'}>
                         <p>Ostatnia wizyta:</p>
-                        <p>{patient.lastVisit ? patient.lastVisit.date : 'Brak'}</p>
+                        <p>{patient.lastVisit ? formatDatePolish(patient.lastVisit.date) : 'Brak'}</p>
                     </div>
                     <div className={'flex items-center justify-between'}>
                         <p>Następna wizyta:</p>
-                        <p>{patient.upcomingVisit ? patient.upcomingVisit.date : 'Brak'}</p>
+                        <p>{patient.upcomingVisit ? formatDatePolish(patient.upcomingVisit.date) : 'Brak'}</p>
                     </div>
                     <div className={'flex items-center justify-between'}>
                         <p>Liczba wizyt:</p>

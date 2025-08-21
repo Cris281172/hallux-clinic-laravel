@@ -23,7 +23,6 @@ import AppLayout from '../layouts/app-layout.jsx';
 
 export default function Home() {
     const { props } = usePage();
-    console.log(props);
     const [videoSrc, setVideoSrc] = useState('');
     const videoRef = useRef(null);
 
@@ -61,6 +60,7 @@ export default function Home() {
                     muted
                     playsInline
                     poster={headerImagePoster}
+                    fetchpriority="high"
                     className="absolute h-full w-full object-cover object-[var(--mobile-position)] md:object-center"
                 />
 

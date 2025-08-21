@@ -8,7 +8,6 @@ import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
 import { Button } from '../components/ui/button.js';
 import AppLayout from '../layouts/app-layout.jsx';
 const Gallery = ({ images, type }) => {
-    console.log(type);
     const [activeImage, setActiveImage] = useState(null);
     const [active, setActive] = useState(false);
     const handleClickImage = (index) => {

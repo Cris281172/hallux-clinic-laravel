@@ -56,7 +56,7 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
             <Heading title={'Wszystkie wizyty'} />
             <div className={'flex w-full gap-1'}>
                 <div className={'flex w-full max-w-[250px] flex-col gap-1.5'}>
-                    <Label>Użytkownik</Label>
+                    <Label>Lekarz</Label>
                     <Select defaultValue={userFilter} onValueChange={handleUserChange}>
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Wybierz użytkownika" />

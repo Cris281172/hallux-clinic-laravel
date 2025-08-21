@@ -7,7 +7,6 @@ import { Switch } from '../../../components/ui/switch.tsx';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const EditRole = ({ role, permissions }) => {
-    console.log(permissions);
     const { data, setData, post } = useForm({
         roleName: role.name,
         permissions: role.permissions.map((item) => item.id),

@@ -1,9 +1,13 @@
 import { useForm } from '@inertiajs/react';
-import { useState } from 'react';
+import { Ban } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import PatientSingleCard from '../../../components/dashboard/patinets/patient-single-card.jsx';
 import DatetimeVisit from '../../../components/dashboard/visits/datetime-visit.jsx';
+import VisitAddPatient from '../../../components/dashboard/visits/visit-add-patient.jsx';
 import FormError from '../../../components/form-error.jsx';
 import Heading from '../../../components/heading.js';
+import { Alert, AlertTitle } from '../../../components/ui/alert.js';
 import { Button } from '../../../components/ui/button.js';
 import { Input } from '../../../components/ui/input.js';
 import { Label } from '../../../components/ui/label.js';
@@ -13,6 +17,7 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 
 const EditVisit = ({ visit, statuses, users }) => {
+    const [selectedPatientID, setSelectedPatientID] = useState(visit.patient_id || null);
     const [availableTimes, setAvailableTimes] = useState([]);
     const { data, setData, post, errors } = useForm({
         description: visit.description,
@@ -25,7 +30,15 @@ const EditVisit = ({ visit, statuses, users }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('dashboard.visit.edit', visit.id));
+        console.log(data);
+        post(route('dashboard.visit.edit', visit.id), {
+            onSuccess: () => {
+                toast('Wizyta została edytowana');
+            },
+            onError: (err) => {
+                toast('Błąd podczas edytowania wizyty');
+            },
+        });
     };
 
     const handleUserSelect = (value) => {
@@ -33,11 +46,26 @@ const EditVisit = ({ visit, statuses, users }) => {
         setData('date', undefined);
         setAvailableTimes([]);
     };
+
+    useEffect(() => {
+        setData('patientID', selectedPatientID);
+    }, [selectedPatientID]);
+
     return (
         <DashboardLayout>
-            <Heading title={'Edytuj wizytę'} />
-            <PatientSingleCard patient={visit.patient} visitInfoVisible={false} />
-            <form className="px-4" onSubmit={handleSubmit}>
+            <Heading title={'Edytuj widzytę'} />
+            <div>
+                <h4>Aktualny pacjent: </h4>
+                {visit.patient ? (
+                    <PatientSingleCard patient={visit.patient} visitInfoVisible={false} />
+                ) : (
+                    <Alert>
+                        <Ban />
+                        <AlertTitle>Nie ma żadnego pacjenta przypisanego do tej wizyty!</AlertTitle>
+                    </Alert>
+                )}
+            </div>
+            <form className="py-4" onSubmit={handleSubmit}>
                 <div className={'flex flex-col gap-5'}>
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor="date">Data i godzina wizyty</Label>
@@ -103,6 +131,7 @@ const EditVisit = ({ visit, statuses, users }) => {
                     Edytuj wizytę
                 </Button>
             </form>
+            <VisitAddPatient setSelectedPatientID={setSelectedPatientID} selectedPatientID={selectedPatientID} />
         </DashboardLayout>
     );
 };

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Patient\PatientCreateRequest;
+use App\Http\Requests\Dashboard\Patient\PatientEditRequest;
 use App\Models\Patient;
 use App\Models\PatientStatus;
 use App\Models\User;
@@ -43,8 +44,7 @@ class PatientController extends Controller
     }
     public function createPatient(PatientCreateRequest $request){
         Patient::create([
-            "name" => $request->name,
-            "surname" => $request->surname,
+            "full_name" => $request->fullName,
             "phone" => $request->phone,
             "description" => $request->description,
             "comments" => $request->comments,
@@ -62,10 +62,9 @@ class PatientController extends Controller
         $statuses = PatientStatus::all();
         return Inertia::render('dashboard/patients/editPatient', compact('patient', 'statuses'));
     }
-    public function editPatient(Request $request, $id){
+    public function editPatient(PatientEditRequest $request, $id){
         Patient::where('id', $id)->update([
-            "name" => $request->name,
-            "surname" => $request->surname,
+            "full_name" => $request->fullName,
             "phone" => $request->phone,
             "description" => $request->description,
             "comments" => $request->comments,

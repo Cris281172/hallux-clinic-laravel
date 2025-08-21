@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard\Patient;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PatientCreateRequest extends FormRequest
+class PatientEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

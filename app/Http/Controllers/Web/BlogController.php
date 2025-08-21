@@ -10,7 +10,7 @@ use Inertia\Inertia;
 class BlogController extends Controller
 {
     public function getAllPosts(){
-        $posts = Post::select(['image', 'title', 'short_desc', 'slug', 'created_at', 'id'])->paginate(25);
+        $posts = Post::select(['image', 'title', 'short_desc', 'slug', 'created_at', 'id'])->paginate(1);
         return Inertia::render('blog/posts/getAll', compact('posts'));
     }
     public function getPost(string $slug){

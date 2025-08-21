@@ -1,6 +1,6 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useForm } from '@inertiajs/react';
-import { useState } from 'react';
+import { toast } from 'sonner';
 import DateBirthday from '../../../components/dashboard/patinets/date-birthday.jsx';
 import FormError from '../../../components/form-error.jsx';
 import Heading from '../../../components/heading.js';
@@ -12,11 +12,8 @@ import { Textarea } from '../../../components/ui/textarea.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 const CreatePatient = ({ statuses }) => {
-    const [showCalendar, setShowCalendar] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(null);
     const { data, setData, processing, post, errors } = useForm({
-        name: '',
-        surname: '',
+        fullName: '',
         phone: '',
         description: '',
         comments: '',
@@ -27,7 +24,14 @@ const CreatePatient = ({ statuses }) => {
     });
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('dashboard.patient.create'));
+        post(route('dashboard.patient.create'), {
+            onSuccess: () => {
+                toast('Pacjent został dodany');
+            },
+            onError: () => {
+                toast('Błąd podczas dodawania pacjenta');
+            },
+        });
     };
 
     return (
@@ -36,26 +40,15 @@ const CreatePatient = ({ statuses }) => {
             <form onSubmit={handleSubmit} className="space-y-8">
                 <div className={'grid grid-cols-2 gap-4'}>
                     <div className="flex w-full flex-col gap-1.5">
-                        <Label htmlFor="name">Imię</Label>
+                        <Label htmlFor="fullName">Imię i nazwisko</Label>
                         <Input
-                            value={data.name}
-                            onChange={(e) => setData('name', e.target.value)}
+                            value={data.fullName}
+                            onChange={(e) => setData('fullName', e.target.value)}
                             type="text"
-                            id="name"
-                            placeholder="Podaj imię pacjenta"
+                            id="fullName"
+                            placeholder="Podaj imię i nazwisko pacjenta"
                         />
-                        <FormError id="name-error" message={errors.name} />
-                    </div>
-                    <div className="flex w-full flex-col gap-1.5">
-                        <Label htmlFor="surname">Nazwisko</Label>
-                        <Input
-                            value={data.surname}
-                            onChange={(e) => setData('surname', e.target.value)}
-                            type="text"
-                            id="surname"
-                            placeholder="Podaj nazwisko pacjenta"
-                        />
-                        <FormError id="surname-error" message={errors.surname} />
+                        <FormError id="fullName-error" message={errors.fullName} />
                     </div>
 
                     <div className="flex w-full flex-col gap-1.5">

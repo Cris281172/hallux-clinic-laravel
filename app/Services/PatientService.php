@@ -18,24 +18,9 @@ class PatientService
         }])
             ->when($search, function ($query, $search) {
                 $query->where(function ($q) use ($search) {
-                    $q->where('name', 'like', "%$search%")
-                        ->orWhere('surname', 'like', "%$search%")
+                    $q->where('full_name', 'like', "%$search%")
                         ->orWhere('email', 'like', "%$search%")
                         ->orWhere('phone', 'like', "%$search%");
-
-                    if (strpos($search, ' ') !== false) {
-                        $terms = explode(' ', $search);
-                        if (count($terms) == 2) {
-                            $q->orWhere(function ($subQuery) use ($terms) {
-                                $subQuery->where('name', 'like', "%{$terms[0]}%")
-                                    ->where('surname', 'like', "%{$terms[1]}%");
-                            })
-                                ->orWhere(function ($subQuery) use ($terms) {
-                                    $subQuery->where('name', 'like', "%{$terms[1]}%")
-                                        ->where('surname', 'like', "%{$terms[0]}%");
-                                });
-                        }
-                    }
                 });
             })
             ->when($status_id, function ($query, $status_id){

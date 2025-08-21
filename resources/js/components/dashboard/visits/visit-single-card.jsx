@@ -17,9 +17,7 @@ const VisitSingleCard = ({ children, visit }) => {
                 </div>
                 <div className={'flex items-center gap-1'}>
                     <FaUser className={'text-sm'} />
-                    <p>
-                        Pacjent: {visit.patient?.name} {visit.patient?.surname}
-                    </p>
+                    <p>Pacjent: {visit.patient?.full_name}</p>
                 </div>
                 {visit.price && +visit.price !== 0 && <p>Kod: {visit.price}</p>}
                 <div className="line-clamp-5 w-full overflow-hidden">{visit.description ? visit.description : 'Brak opisu'}</div>

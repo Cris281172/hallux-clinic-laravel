@@ -105,10 +105,10 @@ const DetailsWindow = ({ patient }) => {
                             <p>Liczba wizyt: {patient.totalVisits ? patient.totalVisits : 0}</p>
                         </li>
                         <li className={'flex items-center'}>
-                            <p>Ostatnia wizyta: {patient.lastVisit ? patient.lastVisit.date : 'Brak'}</p>
+                            <p>Ostatnia wizyta: {patient.lastVisit ? formatDatePolish(patient.lastVisit.date) : 'Brak'}</p>
                         </li>
                         <li className={'flex items-center'}>
-                            <p>Następna wizyta: {patient.upcomingVisit ? patient.upcomingVisit.date : 'Brak'}</p>
+                            <p>Następna wizyta: {patient.upcomingVisit ? formatDatePolish(patient.upcomingVisit.date) : 'Brak'}</p>
                         </li>
                     </ul>
                 </div>

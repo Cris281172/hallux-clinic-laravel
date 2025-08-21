@@ -63,6 +63,7 @@ class VisitController extends Controller
         Visit::where('id', $id)->update([
             "user_id" => auth()->id(),
             "description" => "$request->description",
+            'patient_id' => $request->patientID,
             "status_id" => $request->statusID,
             "price" => 0,
             "date" => $request->date

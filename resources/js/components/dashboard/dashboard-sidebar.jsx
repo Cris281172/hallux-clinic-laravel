@@ -19,7 +19,6 @@ const DashboardSidebar = () => {
     const permissions = props.userPermissions;
     const user = props.auth.user;
     const location = props.ziggy.location;
-    console.log(permissions);
 
     return (
         <Sidebar>

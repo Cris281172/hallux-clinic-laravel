@@ -9,7 +9,6 @@ import AppLayout from '../layouts/app-layout.jsx';
 const ServiceCategory = ({ category }) => {
     const { props } = usePage();
     const filteredConfig = props.treatments[category];
-    console.log(props);
     return (
         <AppLayout>
             <SEO title={filteredConfig.head.title} description={filteredConfig.head.description} url={`/uslugi/${props.category}`} />

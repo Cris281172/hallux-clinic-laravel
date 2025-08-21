@@ -1,6 +1,6 @@
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Link, router } from '@inertiajs/react';
-import { Ban } from 'lucide-react';
+import { Ban, Edit, Trash } from 'lucide-react';
 import React, { useState } from 'react';
 import { FaCalendarAlt, FaEye } from 'react-icons/fa';
 import AppPagination from '../../../components/app-pagination.jsx';
@@ -85,7 +85,13 @@ const GetAllPatients = ({ data, statuses, users }) => {
                     {patients.data.map((patient, index) => (
                         <React.Fragment key={index}>
                             <PatientSingleCard patient={patient}>
-                                <div className={'mt-5 flex w-full gap-4'}>
+                                <div className={'mt-5 grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-4'}>
+                                    <Button className={'flex-1 cursor-pointer'} asChild>
+                                        <Link href={route('dashboard.patient.edit.view', patient.id)}>
+                                            <Edit />
+                                            Edytuj pacjenta
+                                        </Link>
+                                    </Button>
                                     <Dialog open={infoOpen === patient.id} onOpenChange={(value) => setInfoOpen(value ? patient.id : null)}>
                                         <DialogTrigger asChild>
                                             <Button className={'flex-1 cursor-pointer'}>
@@ -124,6 +130,7 @@ const GetAllPatients = ({ data, statuses, users }) => {
                                     <AlertDialog>
                                         <AlertDialogTrigger asChild>
                                             <Button variant="outline" className={'flex-1'}>
+                                                <Trash />
                                                 Usuń pacjenta
                                             </Button>
                                         </AlertDialogTrigger>

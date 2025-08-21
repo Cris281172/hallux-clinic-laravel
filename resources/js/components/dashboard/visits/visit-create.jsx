@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 import FormError from '../../form-error.jsx';
 import { Button } from '../../ui/button.tsx';
+import { Checkbox } from '../../ui/checkbox.js';
 import { Input } from '../../ui/input.tsx';
 import { Label } from '../../ui/label.tsx';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../ui/select.tsx';
@@ -11,6 +12,7 @@ import DatetimeVisit from './datetime-visit.jsx';
 
 const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) => {
     const { props } = usePage();
+    const [visitWithoutPatient, setVisitWithoutPatient] = useState(false);
     const userID = props.auth.user.id;
     const { data, setData, post, errors } = useForm({
         description: '',
@@ -103,8 +105,13 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                         <Label htmlFor={'price'}>Kod</Label>
                         <Input value={data.price} onChange={(e) => setData('price', e.target.value)} type="text" id="price" placeholder="Podaj kod" />
                     </div>
+                    <div className="flex items-center gap-3">
+                        <Checkbox onCheckedChange={(value) => setVisitWithoutPatient(value)} id="patientWithoutVisit" />
+                        <Label htmlFor="patientWithoutVisit">Dodaj wizytę bez pacjenta</Label>
+                    </div>
                 </div>
-                <Button disabled={!patientID} type={'submit'} className={'mt-5'}>
+
+                <Button disabled={!patientID && !visitWithoutPatient} type={'submit'} className={'mt-5'}>
                     Dodaj wizytę
                 </Button>
             </form>

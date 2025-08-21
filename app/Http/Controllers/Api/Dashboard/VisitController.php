@@ -12,7 +12,7 @@ class VisitController extends Controller
         $visits = Visit::where('patient_id', $patientID)
             ->with('status')
             ->orderBy('date', 'desc')
-            ->paginate(6);
+            ->paginate(40);
         $statuses = VisitStatus::all();
         return response()->json(['visits' => $visits, 'statuses' => $statuses]);
     }

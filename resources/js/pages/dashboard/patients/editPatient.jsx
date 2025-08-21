@@ -2,6 +2,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
 import { toast } from 'sonner';
+import FormError from '../../../components/form-error.jsx';
 import Heading from '../../../components/heading.js';
 import { Button } from '../../../components/ui/button.js';
 import { Calendar } from '../../../components/ui/calendar.js';
@@ -14,9 +15,8 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 const EditPatient = ({ patient, statuses }) => {
     const [showCalendar, setShowCalendar] = useState(false);
 
-    const { data, setData, processing, post } = useForm({
-        name: patient.name,
-        surname: patient.surname,
+    const { data, setData, processing, post, errors } = useForm({
+        fullName: patient.full_name,
         phone: patient.phone,
         description: patient.description,
         comments: patient.comments,
@@ -29,37 +29,32 @@ const EditPatient = ({ patient, statuses }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('dashboard.patient.edit', patient.id));
-        toast('Pacjent został edytowany');
+        post(route('dashboard.patient.edit', patient.id), {
+            onSuccess: () => {
+                toast('Pacjent został edytowany');
+            },
+            onError: (err) => {
+                toast(`Błąd podczas edytowania.`);
+            },
+        });
     };
 
     return (
         <DashboardLayout>
-            <Heading title={`Edytowanie pacjenta ${patient.name} ${patient.surname}`} />
+            <Heading title={`Edytowanie pacjenta ${patient.full_name}`} />
             <form onSubmit={handleSubmit} className="space-y-8">
                 <div className={'grid grid-cols-2 gap-4'}>
                     <div className="grid w-full items-center gap-1.5">
-                        <Label htmlFor="name">Imię</Label>
+                        <Label htmlFor="fullName">Imię i nazwisko</Label>
                         <Input
-                            value={data.name}
-                            onChange={(e) => setData('name', e.target.value)}
+                            value={data.fullName}
+                            onChange={(e) => setData('fullName', e.target.value)}
                             type="text"
-                            id="name"
-                            placeholder="Podaj imię pacjenta"
+                            id="fullName"
+                            placeholder="Podaj imię i nazwisko pacjenta"
                         />
+                        <FormError id="fullName-error" message={errors.fullName} />
                     </div>
-                    <div className="grid w-full items-center gap-1.5">
-                        <Label htmlFor="surname">Nazwisko</Label>
-                        <Input
-                            value={data.surname}
-                            onChange={(e) => setData('surname', e.target.value)}
-                            type="text"
-                            id="surname"
-                            placeholder="Podaj nazwisko pacjenta"
-                        />
-                        {/*{errors.slug && <>Bład w slug</>}*/}
-                    </div>
-
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor="phone">Numer telefonu</Label>
                         <Input
@@ -124,7 +119,7 @@ const EditPatient = ({ patient, statuses }) => {
                     </div>
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor="age">Status</Label>
-                        <Select defaultValue={'1'} onValueChange={(value) => setData('statusID', value)}>
+                        <Select defaultValue={`${data.statusID}`} onValueChange={(value) => setData('statusID', value)}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Wybierz status pacjenta" />
                             </SelectTrigger>
@@ -165,8 +160,8 @@ const EditPatient = ({ patient, statuses }) => {
                     <Checkbox defaultChecked={data.patientCard === 1} onCheckedChange={(value) => setData('patientCard', value)} id="patientCard" />
                     <Label htmlFor="patientCard">Karta pacjenta wypełniona</Label>
                 </div>
-                <Button type="submit" disabled={processing}>
-                    Edytuj pacjenta
+                <Button type="submit" loading={processing}>
+                    {processing ? 'Edytowanie...' : 'Edytuj pacjenta'}
                 </Button>
             </form>
         </DashboardLayout>
