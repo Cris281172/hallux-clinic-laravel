@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Notification;
 class MailController extends Controller
 {
     public function sendContactForm(SendContactFormRequest $request){
-        Notification::route('mail', $request->email)->notify(new SendContactFormNotification($request));
+        $additionalMail = 'hallux.clinic@gmail.com';
+        Notification::route('mail', [$request->email, $additionalMail])->notify(new SendContactFormNotification($request));
         return back();
     }
 }

@@ -1,8 +1,8 @@
 import { Link, usePage } from '@inertiajs/react';
+import { Accessibility, Atom, HeartHandshake, Music, ShieldPlus, ShoppingCart, SquareParking, TicketCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import headerImagePoster from '../assets/images/hero-image-poster.webp';
-import officeBackground from '../assets/images/office/office.jpeg';
 import selfPhoto from '../assets/images/self-photo.webp';
 import desktopHeroVideo from '../assets/videos/desktop-hero-video.mp4';
 import mobileHeroVideo from '../assets/videos/mobile-hero-video.mp4';
@@ -42,6 +42,55 @@ export default function Home() {
             window.removeEventListener('resize', updateVideoSrc);
         };
     }, [desktopHeroVideo, mobileHeroVideo]);
+
+    const whyUsConfig = [
+        {
+            title: 'Indywidualny Plan i Komfortowa Atmosfera',
+            text: 'Każdy pacjent to dla nas unikalna historia. Poświęcamy czas, aby wysłuchać, dokładnie zdiagnozować problem i stworzyć spersonalizowany plan terapii w przyjaznej i bezstresowej atmosferze.',
+            Icon: <HeartHandshake size={60} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Bezpieczeństwo i Najwyższy Standard Higieny',
+            text: 'Twoje zdrowie jest dla nas bezcenne. Stosujemy rygorystyczne procedury dezynfekcji, a wszystkie narzędzia sterylizujemy w autoklawie medycznym klasy B. W naszym gabinecie możesz czuć się w pełni bezpiecznie.',
+            Icon: <ShieldPlus size={60} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Nowoczesne Technologie i Terapie',
+            text: 'Inwestujemy w najnowszej generacji sprzęt podologiczny i innowacyjne metody leczenia. Dzięki temu nasze zabiegi są precyzyjne, skuteczne i maksymalnie komfortowe, co znacząco skraca czas terapii.',
+            Icon: <Atom size={60} className={'text-electric-romance'} />,
+        },
+    ];
+
+    const benefitsConfig = [
+        {
+            title: 'Relaksująca atmosfera',
+            Icon: <Music size={40} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Dostęp dla osób z niepełnosprawnościami',
+            Icon: <Accessibility size={40} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Łatwy dojazd i parking',
+            Icon: <SquareParking size={40} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Sprzedaż specjalistycznych produktów',
+            Icon: <ShoppingCart size={40} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Bony podarunkowe',
+            Icon: <TicketCheck size={40} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Bezpieczeństwo i higiena',
+            Icon: <HeartHandshake size={40} className={'text-electric-romance'} />,
+        },
+        {
+            title: 'Nowoczesny i ergonomiczny',
+            Icon: <HeartHandshake size={40} className={'text-electric-romance'} />,
+        },
+    ];
 
     return (
         <AppLayout>
@@ -177,23 +226,31 @@ export default function Home() {
                     </div>
                 </Container>
             </div>
-            <div
-                className={'relative min-h-200 bg-cover bg-fixed bg-center bg-no-repeat lg:min-h-175 lg:bg-[50%_-900px]'}
-                style={{ backgroundImage: `url("${officeBackground}")` }}
-            >
-                <div className={'absolute top-1/2 w-full -translate-y-1/2'}>
-                    <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
-                        <div className={'w-full rounded-md bg-[rgba(83,2,54,0.7)] p-7 shadow-2xl'}>
+            <div className={'bg-dark-plum-secondary pt-20 pb-20'}>
+                <Container>
+                    <div className={'flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
+                        <div className={'mb-5 flex w-full flex-col items-center'}>
                             <HeadingHome>Gabinet stacjonarny</HeadingHome>
-                            <p className={'mt-5'}>
+                            <p className={'mt-2 max-w-200 text-center'}>
                                 Mój gabinet w sercu Łodzi to przestrzeń stworzona z myślą o Twoim komforcie i bezpieczeństwie. Połączyłam nowoczesny
                                 design z najwyższymi standardami higieny, aby każda wizyta przebiegała w atmosferze relaksu i pełnego zaufania. Dbamy
                                 o każdy detal – od wygodnego fotela podologicznego, po zaawansowany sprzęt diagnostyczny i terapeutyczny.
                             </p>
-                            <ul>
-                                <li></li>
-                            </ul>
-                            <div className={'mt-5 flex items-center justify-center gap-5'}>
+                            <div
+                                className={'mt-10 grid w-3/4 grid-cols-1 gap-5 sm:w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'}
+                            >
+                                {benefitsConfig.map((item, index) => (
+                                    <div
+                                        className={
+                                            'flex aspect-square flex-col items-center justify-center gap-4 rounded-2xl border-2 px-2 shadow-2xl'
+                                        }
+                                    >
+                                        {item.Icon}
+                                        <h4 className={'text-center text-xl font-bold'}>{item.title}</h4>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className={'mt-5 flex flex-col items-center justify-center gap-5 md:flex-row'}>
                                 <a
                                     href={'https://maps.app.goo.gl/AYsaeVkj7LU1nRSY6'}
                                     className={
@@ -212,9 +269,111 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </Container>
             </div>
+
+            {/*<div*/}
+            {/*    className={'relative min-h-200 bg-cover bg-fixed bg-center bg-no-repeat lg:min-h-175 lg:bg-[50%_-900px]'}*/}
+            {/*    style={{ backgroundImage: `url("${officeBackground}")` }}*/}
+            {/*>*/}
+            {/*    <div className={'absolute top-1/2 w-full -translate-y-1/2'}>*/}
+            {/*        <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>*/}
+            {/*            <div className={'w-full rounded-md bg-[rgba(83,2,54,0.7)] p-7 shadow-2xl'}>*/}
+            {/*                <HeadingHome>Gabinet stacjonarny</HeadingHome>*/}
+            {/*                <p className={'mt-5'}>*/}
+            {/*                    Mój gabinet w sercu Łodzi to przestrzeń stworzona z myślą o Twoim komforcie i bezpieczeństwie. Połączyłam nowoczesny*/}
+            {/*                    design z najwyższymi standardami higieny, aby każda wizyta przebiegała w atmosferze relaksu i pełnego zaufania. Dbamy*/}
+            {/*                    o każdy detal – od wygodnego fotela podologicznego, po zaawansowany sprzęt diagnostyczny i terapeutyczny.*/}
+            {/*                </p>*/}
+            {/*                <ul>*/}
+            {/*                    <li></li>*/}
+            {/*                </ul>*/}
+            {/*                <div className={'mt-5 flex items-center justify-center gap-5'}>*/}
+            {/*                    <a*/}
+            {/*                        href={'https://maps.app.goo.gl/AYsaeVkj7LU1nRSY6'}*/}
+            {/*                        className={*/}
+            {/*                            'bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition'*/}
+            {/*                        }*/}
+            {/*                        target={'_blank'}*/}
+            {/*                    >*/}
+            {/*                        Jak dojechać?*/}
+            {/*                    </a>*/}
+            {/*                    <a*/}
+            {/*                        href="tel:+48459410096"*/}
+            {/*                        className="bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition"*/}
+            {/*                    >*/}
+            {/*                        Umów wizytę*/}
+            {/*                    </a>*/}
+            {/*                </div>*/}
+            {/*            </div>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*<div className={'bg-dark-plum-secondary pt-20 pb-20'}>*/}
+            {/*    <Container>*/}
+            {/*        <div className={'mb-5 flex w-full flex-col items-center'}>*/}
+            {/*            <HeadingHome>Gabinet mobilny</HeadingHome>*/}
+            {/*            <p className={'mt-2 max-w-200 text-center'}>*/}
+            {/*                Nasz gabinet w Łodzi to więcej niż tylko miejsce pracy – to przestrzeń, w której z troską i zaangażowaniem podchodzimy do*/}
+            {/*                zdrowia Twoich stóp. Rozumiemy, jak ważny jest komfort codziennego poruszania się, dlatego do każdego problemu podchodzimy*/}
+            {/*                z pełną empatią i skupieniem. U nas nie jesteś kolejnym pacjentem, ale gościem, któremu poświęcamy czas i uwagę. Pozwól*/}
+            {/*                nam zadbać o Twoje stopy, by każdy Twój krok był lekki i bezbolesny.*/}
+            {/*            </p>*/}
+            {/*        </div>*/}
+            {/*        <div className={'mt-10 grid grid-cols-1 gap-5 xl:grid-cols-3'}>*/}
+            {/*            {whyUsConfig.map((item, index) => (*/}
+            {/*                <div key={index} className={'flex flex-col items-center rounded-2xl border-2 p-10 shadow-2xl'}>*/}
+            {/*                    {item.Icon}*/}
+            {/*                    <h4 className={'mt-5 mb-2 text-center text-xl font-bold'}>{item.title}</h4>*/}
+            {/*                    <p className={'text-center'}>{item.text}</p>*/}
+            {/*                </div>*/}
+            {/*            ))}*/}
+            {/*        </div>*/}
+            {/*        <div className={'flex justify-center'}>*/}
+            {/*            <Button*/}
+            {/*                asChild*/}
+            {/*                className={*/}
+            {/*                    "bg-neon-blossom hover:bg-dark-plum-500 transition' mt-6 h-12 w-50 rounded-full px-4 py-2 font-bold text-white"*/}
+            {/*                }*/}
+            {/*            >*/}
+            {/*                <a href="tel:+48459410096">Skontakuj się</a>*/}
+            {/*            </Button>*/}
+            {/*        </div>*/}
+            {/*    </Container>*/}
+            {/*</div>*/}
             <div className={'bg-dark-plum pt-20 pb-20'}>
+                <Container>
+                    <div className={'mb-5 flex w-full flex-col items-center'}>
+                        <HeadingHome>Dlaczego my?</HeadingHome>
+                        <p className={'mt-2 max-w-200 text-center'}>
+                            Nasz gabinet w Łodzi to więcej niż tylko miejsce pracy – to przestrzeń, w której z troską i zaangażowaniem podchodzimy do
+                            zdrowia Twoich stóp. Rozumiemy, jak ważny jest komfort codziennego poruszania się, dlatego do każdego problemu podchodzimy
+                            z pełną empatią i skupieniem. U nas nie jesteś kolejnym pacjentem, ale gościem, któremu poświęcamy czas i uwagę. Pozwól
+                            nam zadbać o Twoje stopy, by każdy Twój krok był lekki i bezbolesny.
+                        </p>
+                    </div>
+                    <div className={'mt-10 grid grid-cols-1 gap-5 xl:grid-cols-3'}>
+                        {whyUsConfig.map((item, index) => (
+                            <div key={index} className={'flex flex-col items-center rounded-2xl border-2 p-10 shadow-2xl'}>
+                                {item.Icon}
+                                <h4 className={'mt-5 mb-2 text-center text-xl font-bold'}>{item.title}</h4>
+                                <p className={'text-center'}>{item.text}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <div className={'flex justify-center'}>
+                        <Button
+                            asChild
+                            className={
+                                "bg-neon-blossom hover:bg-dark-plum-500 transition' mt-6 h-12 w-50 rounded-full px-4 py-2 font-bold text-white"
+                            }
+                        >
+                            <a href="tel:+48459410096">Skontakuj się</a>
+                        </Button>
+                    </div>
+                </Container>
+            </div>
+            <div className={'bg-dark-plum-secondary pt-20'}>
                 <Container>
                     <HeadingHome>Kontakt</HeadingHome>
                     <div className={'relative top-[30px] z-15 rounded-2xl bg-gray-200 p-10'}>
@@ -223,7 +382,7 @@ export default function Home() {
                 </Container>
                 <Map />
             </div>
-            <div className={'bg-dark-plum'}>
+            <div className={'bg-dark-plum pt-40 pb-20'}>
                 <Container>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Opinie</HeadingHome>
@@ -235,7 +394,7 @@ export default function Home() {
                     <Opinions />
                 </Container>
             </div>
-            <div className={'bg-dark-plum'}>
+            <div className={'bg-dark-plum-secondary'}>
                 <Container className={'pt-20 pb-20'}>
                     <div className={'mb-5 flex w-full flex-col items-center'}>
                         <HeadingHome>Najczęściej zadawane pytania</HeadingHome>

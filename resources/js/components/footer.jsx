@@ -159,7 +159,7 @@ const Footer = () => {
     ];
 
     return (
-        <div className={'bg-dark-plum'}>
+        <div className={'bg-dark-plum pt-10'}>
             <footer className={'container mx-auto grid grid-cols-12 border-t-2 border-gray-200 px-4 pt-10 pb-10'}>
                 <div className={'col-span-12 sm:col-span-12 lg:col-span-3'}>
                     <Link className={'inline-block'}>

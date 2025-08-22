@@ -150,6 +150,7 @@
 
 .dark {
     --dark-plum: #530236;
+    --dark-plum-secondary: #470730;
     --neon-blossom: #dc0b78;
     --electric-romance: #f7aacb;
     --background:
@@ -337,6 +338,9 @@
     }
     .bg-dark-plum{
         background-color: var(--dark-plum);
+    }
+    .bg-dark-plum-secondary{
+        background-color: var(--dark-plum-secondary);
     }
     .border-dark-plum{
         border-color: var(--dark-plum)
