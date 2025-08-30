@@ -8,6 +8,9 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 const CreateVisit = ({ statuses, users }) => {
     const [selectedPatientID, setSelectedPatientID] = useState(null);
 
+    const [patientPhoneVisible, setPatientPhoneVisible] = useState(false);
+    const [patientEmailVisible, setPatientEmailVisible] = useState(false);
+
     return (
         <DashboardLayout>
             <Heading title={'Dodaj wizytę'} />
@@ -18,7 +21,11 @@ const CreateVisit = ({ statuses, users }) => {
                 onSuccess={() => router.visit(route('dashboard.patient.get.all'))}
                 users={users}
             >
-                <VisitAddPatient setSelectedPatientID={setSelectedPatientID} />
+                <VisitAddPatient
+                    setSelectedPatientID={setSelectedPatientID}
+                    setPatientEmailVisible={setPatientEmailVisible}
+                    setPatientPhoneVisible={setPatientPhoneVisible}
+                />
             </VisitCreate>
         </DashboardLayout>
     );

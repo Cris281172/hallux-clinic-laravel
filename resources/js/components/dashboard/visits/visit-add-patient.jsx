@@ -49,7 +49,9 @@ const VisitAddPatient = ({ setSelectedPatientID, selectedPatientID }) => {
                 <>
                     <RadioGroup
                         value={selectedPatientID}
-                        onValueChange={(value) => setSelectedPatientID(value)}
+                        onValueChange={(value) => {
+                            setSelectedPatientID(value);
+                        }}
                         className={'mb-10 grid grid-cols-2 gap-5'}
                     >
                         {patients.data && patients?.data.length !== 0 && (

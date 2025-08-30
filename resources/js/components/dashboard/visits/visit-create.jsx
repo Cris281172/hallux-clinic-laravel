@@ -14,6 +14,7 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
     const { props } = usePage();
     const [visitWithoutPatient, setVisitWithoutPatient] = useState(false);
     const userID = props.auth.user.id;
+    const [reminderVisible, setReminderVisible] = useState(false);
     const { data, setData, post, errors } = useForm({
         description: '',
         patientID: patientID,
@@ -21,6 +22,8 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
         statusID: '1',
         price: '',
         userID: users.find((item) => item.id === userID) ? userID : '',
+        emailReminder: '',
+        phoneRemidner: '',
     });
 
     const [availableTimes, setAvailableTimes] = useState([]);
@@ -109,6 +112,60 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                         <Checkbox onCheckedChange={(value) => setVisitWithoutPatient(value)} id="patientWithoutVisit" />
                         <Label htmlFor="patientWithoutVisit">Dodaj wizytę bez pacjenta</Label>
                     </div>
+                    <div className="flex items-center gap-3">
+                        <Checkbox onCheckedChange={(value) => setReminderVisible(value)} id="remider" />
+                        <Label htmlFor="remider">Przypomnienie wiyty (wymagane podanie nr telefonu lub email)</Label>
+                    </div>
+                    {reminderVisible && (
+                        <div className={'flex gap-5'}>
+                            <div className="flex flex-1 flex-col gap-1.5">
+                                <Label>Przypomnienie email</Label>
+
+                                <Select value={data.emailReminder} onValueChange={(value) => setData('emailReminder', value)}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value={null}>Brak</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="flex flex-1 flex-col gap-1.5">
+                                <Label>Przypomnienie email</Label>
+
+                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value={null}>Brak</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <Button disabled={!patientID && !visitWithoutPatient} type={'submit'} className={'mt-5'}>

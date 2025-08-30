@@ -13,7 +13,7 @@ use App\Models\Visit;
 class Patient extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'surname', 'pesel', 'phone', 'description', 'comments', 'gender', 'status_id', 'birth_date', 'address', 'city', 'postal_code', "patient_card", "user_id", "email"];
+    protected $fillable = ['full_name', 'pesel', 'phone', 'description', 'comments', 'gender', 'status_id', 'birth_date', 'address', 'city', 'postal_code', "patient_card", "user_id", "email"];
 
     public function status(){
         return $this->belongsTo(PatientStatus::class, 'status_id', 'id');

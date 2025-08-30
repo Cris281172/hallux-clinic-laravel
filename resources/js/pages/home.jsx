@@ -35,7 +35,7 @@ export default function Home() {
             }
         };
 
-        updateVideoSrc(); // ustawienie przy pierwszym renderze
+        updateVideoSrc();
         window.addEventListener('resize', updateVideoSrc);
 
         return () => {

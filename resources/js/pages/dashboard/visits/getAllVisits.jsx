@@ -54,8 +54,8 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
     return (
         <DashboardLayout>
             <Heading title={'Wszystkie wizyty'} />
-            <div className={'flex w-full gap-1'}>
-                <div className={'flex w-full max-w-[250px] flex-col gap-1.5'}>
+            <div className={'flex w-full flex-col gap-1'}>
+                <div className={'flex w-full flex-col gap-1.5'}>
                     <Label>Lekarz</Label>
                     <Select defaultValue={userFilter} onValueChange={handleUserChange}>
                         <SelectTrigger className="w-full">
@@ -73,7 +73,7 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                         </SelectContent>
                     </Select>
                 </div>
-                <Calendar locale={pl} mode="single" selected={parseDate(date)} onSelect={handleSelect} className="" />
+                <Calendar locale={pl} mode="single" selected={parseDate(date)} onSelect={handleSelect} />
             </div>
             <div className={'mt-5'}>
                 {visits && visits.length !== 0 ? (

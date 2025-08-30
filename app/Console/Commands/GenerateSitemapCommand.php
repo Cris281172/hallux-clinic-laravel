@@ -5,8 +5,6 @@ namespace App\Console\Commands;
 use App\Models\Post;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
-use Spatie\Sitemap\SitemapGenerator;
-use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\Tags\Url;
 
 class GenerateSitemapCommand extends Command
