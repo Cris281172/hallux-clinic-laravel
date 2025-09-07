@@ -2,15 +2,18 @@
 
 namespace App\Jobs;
 
+use App\Models\ReminderPhone;
 use App\Models\Visit;
+use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
-
+use Illuminate\Support\Str;
 class SendVisitReminder implements ShouldQueue
 {
     use Queueable;
 
     private $visit_id;
+    public $jobID;
 
     /**
      * Create a new job instance.
@@ -18,6 +21,7 @@ class SendVisitReminder implements ShouldQueue
     public function __construct($visit_id)
     {
         $this->visit_id = $visit_id;
+        $this->jobID = 'visit:' . Str::uuid();
     }
 
     /**
@@ -31,14 +35,18 @@ class SendVisitReminder implements ShouldQueue
             return;
         }
 
-        if(!$visit->patient || !$visit->patient->phone){
+        if(!$visit->reminderPhone || !$visit->reminderPhone->phone){
             return;
         }
 
+        $carbon = Carbon::parse($visit->date);
+        $date = $carbon->format('d.m.Y');
+        $time = $carbon->format('H:i');
+
         $params = array(
-            'to'       => $visit->patient->phone,
+            'to'       => $visit->reminderPhone->phone,
             'from'     => 'Podolog',
-            'message'  => 'Przypomnienie: wizyta u podologa 26.08.2025, godz. 18:00 – Hallux Clinic.',
+            'message'  => 'Przypomnienie: wizyta u podologa ' . $date  . ' godz. ' . $time . ' Hallux Clinic. Aby potwierdzic, odpisz: TAK. W razie pytan prosimy o tel. 459 410 096.',
             'fast'     => '0',
             'format'   => 'json'
         );
@@ -56,6 +64,8 @@ class SendVisitReminder implements ShouldQueue
 
         $content = curl_exec($c);
         curl_close($c);
+
+        ReminderPhone::where('visit_id', $this->visit_id)->delete();
 
         var_dump($content);
     }

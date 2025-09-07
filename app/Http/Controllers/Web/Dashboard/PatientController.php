@@ -49,6 +49,7 @@ class PatientController extends Controller
             "description" => $request->description,
             "comments" => $request->comments,
             "gender" => $request->gender,
+            "address" => $request->address,
             "birth_date" => $request->birthdate,
             "user_id" => auth()->id(),
             "status_id" => $request->statusID,
@@ -73,7 +74,8 @@ class PatientController extends Controller
             "user_id" => auth()->id(),
             "status_id" => $request->statusID,
             "patient_card" => $request->patientCard,
-            "email" => $request->email
+            "email" => $request->email,
+            "address" => $request->address,
         ]);
         return back();
     }

@@ -21,6 +21,7 @@ const CreatePatient = ({ statuses }) => {
         statusID: '1',
         patientCard: false,
         email: '',
+        address: null,
     });
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -72,6 +73,16 @@ const CreatePatient = ({ statuses }) => {
                             placeholder="Podaj email pacjenta"
                         />
                         <FormError id="email-error" message={errors.email} />
+                    </div>
+                    <div className="grid w-full items-center gap-1.5">
+                        <Label htmlFor="address">Adres zamieszkania</Label>
+                        <Input
+                            value={data.address}
+                            onChange={(e) => setData('address', e.target.value)}
+                            type="text"
+                            id="address"
+                            placeholder="Podaj adres zamieszkania"
+                        />
                     </div>
                 </div>
                 <div className={'grid grid-cols-2 gap-4'}>

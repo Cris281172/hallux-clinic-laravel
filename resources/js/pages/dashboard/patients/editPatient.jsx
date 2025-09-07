@@ -25,6 +25,7 @@ const EditPatient = ({ patient, statuses }) => {
         patientCard: patient.patient_card,
         email: patient.email,
         gender: patient.gender,
+        address: patient.address,
     });
 
     const handleSubmit = (e) => {
@@ -76,6 +77,16 @@ const EditPatient = ({ patient, statuses }) => {
                             placeholder="Podaj email pacjenta"
                         />
                         {/*{errors.slug && <>Bład w slug</>}*/}
+                    </div>
+                    <div className="grid w-full items-center gap-1.5">
+                        <Label htmlFor="address">Adres zamieszkania</Label>
+                        <Input
+                            value={data.address}
+                            onChange={(e) => setData('address', e.target.value)}
+                            type="text"
+                            id="address"
+                            placeholder="Podaj adres zamieszkania"
+                        />
                     </div>
                 </div>
                 <div className={'grid grid-cols-2 gap-4'}>

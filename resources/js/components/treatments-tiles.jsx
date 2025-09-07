@@ -25,8 +25,8 @@ const TreatmentsTiles = () => {
             image: treatment3Image,
         },
         {
-            text: 'Terapie problemów aparatu paznockiowego',
-            url: 'terapie-problemow-aparatu-paznockiowego',
+            text: 'Terapie problemów aparatu paznokciowego',
+            url: 'terapie-problemow-aparatu-paznokciowego',
             image: treatment4Image,
         },
         {

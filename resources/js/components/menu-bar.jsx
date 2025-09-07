@@ -22,10 +22,6 @@ const MenuBar = () => {
                             id: 'konsultacja-podologiczna',
                             name: 'Konsultacja podologiczna',
                         },
-                        {
-                            id: 'konsultacja-online',
-                            name: 'Konsultacja Online',
-                        },
                     ],
                 },
                 {
@@ -128,12 +124,8 @@ const MenuBar = () => {
                             name: 'Taping podologiczny (taping palucha)',
                         },
                         {
-                            id: 'usuniecie-lakieru-hybrydowego-w-przypadku-pedicure-podologicznego',
-                            name: 'Usunięcie lakieru hybrydowego – w przypadku pedicure podologicznego',
-                        },
-                        {
-                            id: 'badanie-stop-na-podoskopie',
-                            name: 'Badanie stóp na podoskopie',
+                            id: 'zabieg-relaksujaco-odswiezajacy-dla-stop',
+                            name: 'Zabieg relaksująco-odświeżający dla stóp',
                         },
                     ],
                 },

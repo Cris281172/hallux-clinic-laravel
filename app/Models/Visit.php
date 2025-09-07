@@ -10,7 +10,7 @@ use App\Models\VisitStatus;
 class Visit extends Model
 {
     use HasFactory;
-    protected $fillable = ['patient_id', 'user_id', 'description', 'status_id', 'price', 'date'];
+    protected $fillable = ['patient_id', 'user_id', 'description', 'status_id', 'price', 'date', "job_id"];
 
     public function status(){
         return $this->belongsTo(VisitStatus::class, 'status_id', 'id');
@@ -20,5 +20,8 @@ class Visit extends Model
     }
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+    public function reminderPhone(){
+        return $this->hasone(ReminderPhone::class, 'visit_id', 'id');
     }
 }

@@ -4,15 +4,9 @@ export const allPrices = [
         items: [
             {
                 value: 'Konsultacja podologiczna',
-                price: '120,00',
+                price: '100,00',
                 link: 'konsultacja-podologiczna',
                 shortDesc: 'Ocena stanu stóp i dobór odpowiedniego leczenia.',
-            },
-            {
-                value: 'Konsultacja online',
-                price: '0,00',
-                link: 'konsultacja-online',
-                shortDesc: 'Bezpłatna konsultacja online z podologiem.',
             },
         ],
         link: 'diagnostyka-podologiczna',
@@ -33,6 +27,18 @@ export const allPrices = [
                 shortDesc: 'Usunięcie zrogowaceń i pielęgnacja podeszew stóp.',
             },
             {
+                value: 'Opracowanie skóry stóp zmienionych chorobowo (rogowiec, rybia łuska)',
+                price: 'od 250,00',
+                link: 'pekajace-piety',
+                shortDesc: 'Usunięcie zrogowaceń i pielęgnacja podeszew stóp.',
+            },
+            {
+                value: 'Rogowiec dużego stopnia',
+                price: '300,00',
+                link: 'pekajace-piety',
+                shortDesc: 'Usunięcie zrogowaceń i pielęgnacja podeszew stóp.',
+            },
+            {
                 value: 'Usunięcie odcisku na palcu, podeszwie lub przestrzeni międzypalcowej (1 zmiana)',
                 price: '130,00',
                 link: 'pekajace-piety',
@@ -45,8 +51,8 @@ export const allPrices = [
                 shortDesc: 'Dodatkowa opłata za kolejne odciski w trakcie zabiegu.',
             },
             {
-                value: 'Terapia brodawki wirusowej (kurzajka) 1-2 zmiany',
-                price: '130,00',
+                value: 'Brodawka - terapia kilkuetapowa + konsultacja (1-2 zmiany)',
+                price: '150,00',
                 link: 'pekajace-piety',
                 shortDesc: 'Usuwanie kurzajek metodą podologiczną.',
             },
@@ -64,7 +70,7 @@ export const allPrices = [
         items: [
             {
                 value: 'Obcięcie i oczyszczenie zdrowych paznokci stóp',
-                price: '130,00',
+                price: 'od 130,00',
                 link: 'pekajace-piety',
                 shortDesc: 'Profesjonalne skracanie i czyszczenie paznokci.',
             },
@@ -178,7 +184,7 @@ export const allPrices = [
             },
             {
                 value: 'Usunięcie lakieru hybrydowego w przypadku pedicure podologicznego',
-                price: '40,00',
+                price: '50,00',
                 link: 'pekajace-piety',
                 shortDesc: 'Delikatne usunięcie hybrydy przed zabiegiem.',
             },
@@ -188,6 +194,20 @@ export const allPrices = [
                 link: 'pekajace-piety',
                 shortDesc: 'Analiza rozkładu nacisku stopy przy użyciu podoskopu.',
             },
+            {
+                value: 'Wizyta kontrolna',
+                price: '100,00',
+                link: 'pekajace-piety',
+                // TOOD
+                shortDesc: 'DODAĆ OPIS.',
+            },
+            {
+                value: 'Zabieg relaksująco-odświeżający dla stóp (kąpiel - peeling - maska - masaż)',
+                price: '120,00',
+                link: 'pekajace-piety',
+                // TOOD
+                shortDesc: 'DODAĆ OPIS.',
+            },
         ],
         link: 'zabiegi-uzupelniajace',
     },
@@ -195,23 +215,15 @@ export const allPrices = [
 
 export const homePrices = [
     {
-        value: 'Konsultacja podologiczna',
-        price: 'GRATIS',
-        categoryLink: 'diagnostyka-podologiczna',
-        link: 'konsultacja-podologiczna',
-        shortDesc: 'Ocena stanu stóp i dobór odpowiedniego leczenia.',
-        noPrice: true,
-    },
-    {
-        value: 'Terapia brodawki wirusowej (kurzajka) 1-2 zmiany',
-        price: '130,00',
+        value: 'Brodawka - terapia kilkuetapowa + konsultacja (1-2 zmiany)',
+        price: '150,00',
         categoryLink: 'terapie-problemow-skornych',
         link: 'konsultacja-podologiczna',
         shortDesc: 'Usuwanie kurzajek metodą podologiczną.',
     },
     {
         value: 'Obcięcie i oczyszczenie zdrowych paznokci stóp',
-        price: '130,00',
+        price: 'od 130,00',
         categoryLink: 'terapie-problemow-aparatu-paznokciowego',
         link: 'konsultacja-podologiczna',
         shortDesc: 'Profesjonalne skracanie i czyszczenie paznokci.',

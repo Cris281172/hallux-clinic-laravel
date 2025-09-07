@@ -5,8 +5,8 @@ import StatusVisit from '../status-visit.jsx';
 
 const VisitSingleCard = ({ children, visit }) => {
     return (
-        <Card className={'justify-between rounded-xl border-1 p-8'}>
-            <div className={'mb-4 border-b-1 pb-4'}>
+        <Card className={'relative justify-between rounded-xl border-1 pt-12 pr-8 pb-12 pl-8'}>
+            <div className={''}>
                 <div className={'flex items-center justify-between'}>
                     <div className={'text-lg font-bold'}>{formatDatePolish(visit.date)}</div>
                     <StatusVisit status={visit.status} />

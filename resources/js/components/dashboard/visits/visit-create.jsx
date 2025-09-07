@@ -22,8 +22,9 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
         statusID: '1',
         price: '',
         userID: users.find((item) => item.id === userID) ? userID : '',
-        emailReminder: '',
-        phoneRemidner: '',
+        emailReminder: null,
+        phoneReminder: null,
+        phone: '',
     });
 
     const [availableTimes, setAvailableTimes] = useState([]);
@@ -106,7 +107,13 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                     </div>
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor={'price'}>Kod</Label>
-                        <Input value={data.price} onChange={(e) => setData('price', e.target.value)} type="text" id="price" placeholder="Podaj kod" />
+                        <Input
+                            value={data.price}
+                            onChange={(e) => setData('price', e.target.value)}
+                            type="text"
+                            id="price"
+                            placeholder="Podaj numer telefonu"
+                        />
                     </div>
                     <div className="flex items-center gap-3">
                         <Checkbox onCheckedChange={(value) => setVisitWithoutPatient(value)} id="patientWithoutVisit" />
@@ -119,15 +126,21 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                     {reminderVisible && (
                         <div className={'flex gap-5'}>
                             <div className="flex flex-1 flex-col gap-1.5">
-                                <Label>Przypomnienie email</Label>
+                                <Label>Przypomnienie sms</Label>
 
-                                <Select value={data.emailReminder} onValueChange={(value) => setData('emailReminder', value)}>
+                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Wybierz czas przypomnienia" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
                                             <SelectItem value={null}>Brak</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'5'}>5 minut przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'10'}>10 minut przed</SelectItem>
                                         </SelectGroup>
                                         <SelectGroup>
                                             <SelectItem value={'60'}>Godzine przed</SelectItem>
@@ -142,27 +155,13 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                                 </Select>
                             </div>
                             <div className="flex flex-1 flex-col gap-1.5">
-                                <Label>Przypomnienie email</Label>
-
-                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectItem value={null}>Brak</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
+                                <Label>Numer telefonu</Label>
+                                <Input
+                                    value={data.phone}
+                                    onChange={(e) => setData('phone', e.target.value)}
+                                    type="text"
+                                    placeholder="Podaj numer telefonu"
+                                />
                             </div>
                         </div>
                     )}

@@ -1,6 +1,6 @@
 import { Link, router, usePage } from '@inertiajs/react';
 import { pl } from 'date-fns/locale';
-import { Ban } from 'lucide-react';
+import { Ban, Settings } from 'lucide-react';
 import React, { useState } from 'react';
 import { route } from 'ziggy-js';
 import DetailsWindow from '../../../components/dashboard/details-window.jsx';
@@ -18,9 +18,9 @@ import {
     AlertDialogTrigger,
 } from '../../../components/ui/alert-dialog.js';
 import { Alert, AlertTitle } from '../../../components/ui/alert.js';
-import { Button } from '../../../components/ui/button.js';
 import { Calendar } from '../../../components/ui/calendar.js';
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../../components/ui/dialog.js';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../components/ui/dropdown-menu.js';
 import { Label } from '../../../components/ui/label.js';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select.js';
 import usePermissions from '../../../hooks/usePermissions.js';
@@ -28,6 +28,7 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const GetAllVisits = ({ visits, date, users, user_id }) => {
     const { props } = usePage();
+    console.log(visits);
     const permissions = props.userPermissions;
     const [infoOpen, setInfoOpen] = useState(null);
     const [userFilter, setUserFilter] = useState(user_id?.toString() ?? 'all');
@@ -83,44 +84,58 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                             .map((visit, index) => (
                                 <React.Fragment key={index}>
                                     <VisitSingleCard visit={visit}>
-                                        <div className={'flex gap-5'}>
-                                            <Dialog open={infoOpen === visit.id} onOpenChange={(value) => setInfoOpen(value ? visit.id : null)}>
-                                                <DialogTrigger asChild>
-                                                    <Button className={'flex-1 cursor-pointer'}>Szczegóły</Button>
-                                                </DialogTrigger>
-                                                <DialogContent className="sm:max-w-[900px]">
-                                                    <DialogTitle>
-                                                        <div>test</div>
-                                                    </DialogTitle>
-                                                    <DetailsWindow patient={visit.patient} />
-                                                </DialogContent>
-                                            </Dialog>
-                                            <Button className={'flex-1'} asChild>
-                                                <Link href={route('dashboard.visit.edit.view', visit.id)}>Edytuj</Link>
-                                            </Button>
-                                            {checkUserHasPermission('usuwanie wizyt') && (
-                                                <AlertDialog>
-                                                    <AlertDialogTrigger asChild>
-                                                        <Button variant="outline" className={'flex-1'}>
-                                                            Usuń wizytę
-                                                        </Button>
-                                                    </AlertDialogTrigger>
-                                                    <AlertDialogContent>
-                                                        <AlertDialogHeader>
-                                                            <AlertDialogTitle>Czy jesteś pewna/y usunięcia wizyty?</AlertDialogTitle>
-                                                            <AlertDialogDescription>
-                                                                Ta czynność spowoduje trwałe usunięcie wizyty bez możliwości jej przywrócenia.
-                                                            </AlertDialogDescription>
-                                                        </AlertDialogHeader>
-                                                        <AlertDialogFooter>
-                                                            <AlertDialogCancel>Anuluj</AlertDialogCancel>
-                                                            <AlertDialogAction asChild>
-                                                                <Link href={route('dashboard.visit.delete', visit.id)}>Potwierdz</Link>
-                                                            </AlertDialogAction>
-                                                        </AlertDialogFooter>
-                                                    </AlertDialogContent>
-                                                </AlertDialog>
-                                            )}
+                                        <div className={'absolute top-0 right-0 m-2'}>
+                                            <DropdownMenu>
+                                                <DropdownMenuTrigger className={'cursor-pointer'}>
+                                                    <Settings />
+                                                </DropdownMenuTrigger>
+                                                <DropdownMenuContent>
+                                                    <DropdownMenuItem>
+                                                        <Link href={''}>Dodaj pacjenta do wizyty</Link>
+                                                    </DropdownMenuItem>
+                                                    {visit.patient_id && (
+                                                        <Dialog
+                                                            open={infoOpen === visit.id}
+                                                            onOpenChange={(value) => setInfoOpen(value ? visit.id : null)}
+                                                        >
+                                                            <DialogTrigger asChild>
+                                                                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Szczegóły</DropdownMenuItem>
+                                                            </DialogTrigger>
+                                                            <DialogContent className="sm:max-w-[900px]">
+                                                                <DialogTitle>
+                                                                    <div>test</div>
+                                                                </DialogTitle>
+                                                                <DetailsWindow patient={visit.patient} />
+                                                            </DialogContent>
+                                                        </Dialog>
+                                                    )}
+                                                    {checkUserHasPermission('usuwanie wizyt') && (
+                                                        <AlertDialog>
+                                                            <AlertDialogTrigger asChild>
+                                                                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Usuń</DropdownMenuItem>
+                                                            </AlertDialogTrigger>
+                                                            <AlertDialogContent>
+                                                                <AlertDialogHeader>
+                                                                    <AlertDialogTitle>Czy jesteś pewna/y usunięcia wizyty?</AlertDialogTitle>
+                                                                    <AlertDialogDescription>
+                                                                        Ta czynność spowoduje trwałe usunięcie wizyty bez możliwości jej przywrócenia.
+                                                                    </AlertDialogDescription>
+                                                                </AlertDialogHeader>
+                                                                <AlertDialogFooter>
+                                                                    <AlertDialogCancel>Anuluj</AlertDialogCancel>
+                                                                    <AlertDialogAction asChild>
+                                                                        <Link href={route('dashboard.visit.delete', visit.id)}>Potwierdz</Link>
+                                                                    </AlertDialogAction>
+                                                                </AlertDialogFooter>
+                                                            </AlertDialogContent>
+                                                        </AlertDialog>
+                                                    )}
+
+                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                                                        <Link href={route('dashboard.visit.edit.view', visit.id)}>Edytuj</Link>
+                                                    </DropdownMenuItem>
+                                                </DropdownMenuContent>
+                                            </DropdownMenu>
                                         </div>
                                     </VisitSingleCard>
                                 </React.Fragment>

@@ -24,6 +24,9 @@ const PriceList = () => {
             />
             <SubpageLayoutContainer>
                 <div className={'flex flex-col gap-12'}>
+                    <p className={'text-sm text-gray-700'}>
+                        Ostateczna cena zabiegu może różnić się w zależności od ilości zużytego materiału lub stopnia zaawansowania choroby.
+                    </p>
                     {allPrices.map((price, index) => (
                         <div key={index}>
                             <h2 className={'text-neon-blossom mb-3 text-2xl font-bold'}>{price.title}</h2>

@@ -7,6 +7,7 @@ use App\Models\Visit;
 use Illuminate\Http\Request;
 use App\Models\NewsletterEmail;
 use Carbon\Carbon;
+use DB;
 
 class NewsletterEmailController extends Controller
 {
@@ -17,19 +18,28 @@ class NewsletterEmailController extends Controller
         return back();
     }
     public function test(){
-//        $visit = Visit::find(176);
+        $visit = Visit::find(176);
+
+        $nowDate = Carbon::now();
+        $visitDate = Carbon::parse($visit->date);
+
+        $diffTime = floor($nowDate->diffInMinutes($visitDate)) - 15;
+
+        if($diffTime > 0){
+            $job = new SendVisitReminder($visit->id);
+            dispatch($job)->delay(Carbon::now()->addMinutes($diffTime));
+            dd($job->jobID);
+        }
 //
-//        $nowDate = Carbon::now();
-//        $visitDate = Carbon::parse($visit->date);
+////        SendVisitReminder::dispatch(176);
 //
-//        $diffTime = floor($nowDate->diffInMinutes($visitDate)) - 15;
+
+//        $jobs = DB::table('jobs')->get();
 //
-//        if($diffTime > 0){
-//            dispatch(new SendVisitReminder($visit->id))->delay(Carbon::now()->addMinutes($diffTime));
+//        foreach($jobs as $job){
+//            dd(json_decode($job->payload), true);
 //        }
-
-        SendVisitReminder::dispatch(176);
-
 //
+//        dd($jobs);
     }
 }

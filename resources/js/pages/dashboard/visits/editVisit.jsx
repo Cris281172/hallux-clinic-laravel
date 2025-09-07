@@ -9,6 +9,7 @@ import FormError from '../../../components/form-error.jsx';
 import Heading from '../../../components/heading.js';
 import { Alert, AlertTitle } from '../../../components/ui/alert.js';
 import { Button } from '../../../components/ui/button.js';
+import { Checkbox } from '../../../components/ui/checkbox.js';
 import { Input } from '../../../components/ui/input.js';
 import { Label } from '../../../components/ui/label.js';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select.js';
@@ -19,6 +20,7 @@ import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 const EditVisit = ({ visit, statuses, users }) => {
     const [selectedPatientID, setSelectedPatientID] = useState(visit.patient_id || null);
     const [availableTimes, setAvailableTimes] = useState([]);
+    const [reminderVisible, setReminderVisible] = useState(false);
     const { data, setData, post, errors } = useForm({
         description: visit.description,
         patientID: visit.patient_id,
@@ -26,6 +28,8 @@ const EditVisit = ({ visit, statuses, users }) => {
         userID: visit.user_id,
         statusID: `${visit.status_id}`,
         price: visit.price,
+        emailReminder: null,
+        phoneReminder: null,
     });
 
     const handleSubmit = (e) => {
@@ -126,6 +130,60 @@ const EditVisit = ({ visit, statuses, users }) => {
                         <Label htmlFor={'price'}>Kod</Label>
                         <Input value={data.price} onChange={(e) => setData('price', e.target.value)} type="text" id="price" placeholder="Podaj kod" />
                     </div>
+                    <div className="flex items-center gap-3">
+                        <Checkbox onCheckedChange={(value) => setReminderVisible(value)} id="remider" />
+                        <Label htmlFor="remider">Przypomnienie wiyty (wymagane podanie nr telefonu lub email)</Label>
+                    </div>
+                    {reminderVisible && (
+                        <div className={'flex gap-5'}>
+                            <div className="flex flex-1 flex-col gap-1.5">
+                                <Label>Przypomnienie email</Label>
+
+                                <Select value={data.emailReminder} onValueChange={(value) => setData('emailReminder', value)}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value={null}>Brak</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="flex flex-1 flex-col gap-1.5">
+                                <Label>Przypomnienie email</Label>
+
+                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
+                                    <SelectTrigger className="w-full">
+                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectItem value={null}>Brak</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <Button type={'submit'} className={'mt-5'}>
                     Edytuj wizytę

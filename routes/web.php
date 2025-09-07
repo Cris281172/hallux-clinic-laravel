@@ -38,7 +38,6 @@ Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/{category}/{service}', [PageController::class, 'service'])->name('service');
 });
 Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewEmail'])->name('newsletter-add-email');
-Route::get('/test', [NewsletterEmailController::class, 'test'])->name('test');
 
 
 Route::get('/404', [PageController::class, 'notFound'])->name('notFound');

@@ -29,25 +29,6 @@ return [
                            </ul>',
                 'images' => [],
             ],
-            'konsultacja-online' => [
-                'head' => [
-                    "title" => "Konsultacja Podologiczna Online - Porada Eksperta",
-                    "description" => "Potrzebujesz porady podologa? Umów się na konsultację online w Hallux Clinic w Łodzi. Uzyskaj profesjonalną diagnozę i plan leczenia bez wychodzenia z domu. Wygodnie i bezpiecznie.",
-                ],
-                'title' => 'Konsultacja Online',
-                'shortDesc' => 'Dla naszych klientów, którzy preferują zdalny kontakt, oferujemy konsultacje online. Ta forma wizyty umożliwia szybką i efektywną ocenę problemów podologicznych bez potrzeby wychodzenia z domu. Wystarczy dostęp do Internetu, aby otrzymać profesjonalne porady i wskazówki dotyczące dbania o zdrowie stóp.',
-                'desc' => '<p><strong>W</strong> ramach konsultacji podologicznej online masz możliwość skonsultowania swojego problemu ze specjalistą bez konieczności wizyty w gabinecie. To doskonałe rozwiązanie dla osób, które z różnych względów nie mogą stawić się osobiście, mieszkają daleko lub potrzebują szybkiej porady.</p>
-                           <p><strong>K</strong>onsultacja odbywa się za pośrednictwem wybranego komunikatora (np. Zoom, Skype, WhatsApp). Podczas spotkania online omówimy Twoje dolegliwości, ocenimy przesłane zdjęcia zmian na stopach, a następnie zaproponuję możliwe rozwiązania oraz zalecenia pielęgnacyjne.</p>
-                           <strong>Jak przygotować się do konsultacji online?</strong>
-                           <ul>
-                               <li>🔶 Przygotuj dokładny opis objawów i historii problemu,</li>
-                               <li>🔶 Wykonaj dobrej jakości zdjęcia zmian na stopach (najlepiej w świetle dziennym),</li>
-                               <li>🔶 Zadbaj o stabilne połączenie internetowe i spokojne miejsce do rozmowy,</li>
-                               <li>🔶 Zapisz swoje pytania i wątpliwości, które chcesz poruszyć.</li>
-                           </ul>
-                           <p><strong>Warto wiedzieć!</strong> Konsultacja online nie zastępuje wizyty stacjonarnej w przypadku konieczności wykonania zabiegu, ale jest skuteczną formą wstępnej diagnozy, oceny sytuacji i uzyskania profesjonalnych wskazówek oraz planu działania.</p>',
-                'images' => [],
-            ],
         ],
     ],
     'profilaktyka-podologiczna' => [
@@ -72,14 +53,13 @@ return [
                             dalszych terapii specjalistycznych.
                         </p>
                         <p>
-                            Zabieg obejmuje kompleksową pielęgnację, podczas której usuwane są zrogowacenia, odciski oraz modzele, opracowywane są
-                            paznokcie, a także oceniany jest ogólny stan skóry i płytki paznokciowej.
+                            Zabieg obejmuje kompleksową pielęgnację podczas której opracowywane są
+                            paznokcie, oraz zdrowa podeszwa skóry stóp.
                         </p>
                         <h3>W skład zabiegu wchodzą:</h3>
                         <ul>
                             <li>🔶 Dokładna dezynfekcja i ocena stanu stóp,</li>
                             <li>🔶 Skracanie i opracowanie paznokci,</li>
-                            <li>🔶 Usunięcie zrogowaceń, odcisków i modzeli,</li>
                             <li>🔶 Wygładzenie naskórka przy pomocy specjalistycznych frezów,</li>
                             <li>🔶 Aplikacja kremu pielęgnacyjnego i krótki masaż stóp.</li>
                         </ul>
@@ -153,6 +133,10 @@ return [
                             <li>🔶 Niewłaściwa pielęgnacja stóp,</li>
                             <li>🔶 Złe obuwie,</li>
                             <li>🔶 Niedobory witaminy A,</li>
+                            <li>🔶 Zła biomechanika chodu,</li>
+                            <li>🔶 AZS (atopowe zapalenie skóry),</li>
+                            <li>🔶 Choroby współistniejące,</li>
+                            <li>🔶 Zaburzony płaszcz hydrolipidowy,</li>
                             <li>🔶 Zaburzenia krzepnięcia krwi.</li>
                         </ul>
                         <h3>Jak skutecznie wyleczyć pękające pięty?</h3>
@@ -292,7 +276,7 @@ return [
             ]
         ]
     ],
-    'terapie-problemow-aparatu-paznockiowego' => [
+    'terapie-problemow-aparatu-paznokciowego' => [
         'head' => [
             "title" => "Leczenie Chorób Paznokci Łódź - Wrastające, Grzybica",
             "description" => "Masz problem z paznokciami? Specjalizujemy się w leczeniu wrastających i wkręcających paznokci, grzybicy, onycholizy oraz urazów. Gabinet w Łodzi.",
