@@ -76,7 +76,6 @@ const EditPatient = ({ patient, statuses }) => {
                             id="email"
                             placeholder="Podaj email pacjenta"
                         />
-                        {/*{errors.slug && <>Bład w slug</>}*/}
                     </div>
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor="address">Adres zamieszkania</Label>
