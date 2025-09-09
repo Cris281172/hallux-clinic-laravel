@@ -30,6 +30,8 @@ class SendVisitReminder implements ShouldQueue
     public function handle(): void
     {
         $visit = Visit::find($this->visit_id);
+        \Log::info($this->visit_id);
+        \Log::info($this->visit);
 
         if(!$visit || $visit->status_id !== 1){
             \Log::info("Visit not found");
