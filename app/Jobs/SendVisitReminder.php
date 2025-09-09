@@ -30,16 +30,12 @@ class SendVisitReminder implements ShouldQueue
     public function handle(): void
     {
         $visit = Visit::find($this->visit_id);
-        \Log::info($this->visit_id);
-        \Log::info($visit);
 
         if(!$visit || $visit->status_id !== 1){
-            \Log::info("Visit not found");
             return;
         }
 
-        if(!$visit->reminderPhone || !$visit->reminderPhone->phone){
-            \Log::info("reminderPhone not found");
+        if(!$visit->visitNotification || !$visit->visitNotification->phone){
             return;
         }
 
@@ -67,10 +63,7 @@ class SendVisitReminder implements ShouldQueue
         ));
 
         $content = curl_exec($c);
-        \Log::info($content);
         curl_close($c);
-
-        ReminderPhone::where('visit_id', $this->visit_id)->delete();
 
         var_dump($content);
     }

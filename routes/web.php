@@ -22,6 +22,7 @@ use App\Http\Controllers\GithubDeployController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Web\Dashboard\InvoiceController;
 use App\Http\Controllers\Web\Dashboard\VoucherController;
+use App\Http\Controllers\Web\Dashboard\VisitNotificationController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -38,6 +39,8 @@ Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/{category}/{service}', [PageController::class, 'service'])->name('service');
 });
 Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewEmail'])->name('newsletter-add-email');
+
+Route::get('/puupcyv4gmhkryjnbmmigqym9wgi9p', [VisitNotificationController::class, 'updateNotificationStatus'])->name('update-notification-status');
 
 
 Route::get('/404', [PageController::class, 'notFound'])->name('notFound');

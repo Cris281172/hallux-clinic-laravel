@@ -8,6 +8,7 @@ use App\Jobs\SendVisitReminder;
 use App\Models\ReminderPhone;
 use App\Models\User;
 use App\Models\Visit;
+use App\Models\VisitNotification;
 use App\Models\VisitStatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -55,9 +56,10 @@ class VisitController extends Controller
         ]);
 
         if($request->phone){
-            ReminderPhone::create([
+            VisitNotification::create([
                 "visit_id" => $visit->id,
-                "phone" => $request->phone
+                "phone" => $request->phone,
+                "status" => 'pending'
             ]);
         }
         $this->sendReminder($visit, $request->phoneReminder);

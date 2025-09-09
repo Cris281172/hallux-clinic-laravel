@@ -21,7 +21,7 @@ class Visit extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-    public function reminderPhone(){
-        return $this->hasone(ReminderPhone::class, 'visit_id', 'id');
+    public function visitNotification(){
+        return $this->hasone(VisitNotification::class, 'visit_id', 'id');
     }
 }
