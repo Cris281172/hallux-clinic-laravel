@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Models\ReminderPhone;
+use App\Models\VisitNotification;
 use Illuminate\Http\Request;
 
 class SmsController extends Controller
@@ -18,7 +18,7 @@ class SmsController extends Controller
         ]));
 
         if ($text === 'TAK') {
-            $appointment = ReminderPhone::where('phone', $from)
+            $appointment = VisitNotification::where('phone', $from)
                 ->where('msg_id', $msgId)
                 ->first();
 
