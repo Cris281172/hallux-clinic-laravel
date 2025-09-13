@@ -14,9 +14,9 @@ class SmsController extends Controller
         $text = strtoupper(trim($request->input('sms_text')));
         $msgId = $request->input('MsgId');
 
-        \Log::info($from);
-        \Log::info($text);
-        \Log::info($msgId);
+        \Log::info('Inbound SMS', $request->only([
+            'sms_from', 'sms_to', 'sms_text', 'sms_date', 'username', 'MsgId'
+        ]));
 
         if ($text === 'TAK') {
             $appointment = ReminderPhone::where('phone', $from)
@@ -29,7 +29,7 @@ class SmsController extends Controller
                     'status' => 'confirmed'
                 ]);
 
-                auth()->user()->notify(new AppointmentConfirmedNotification($appointment));
+//                auth()->user()->notify(new AppointmentConfirmedNotification($appointment));
             }
         }
 
