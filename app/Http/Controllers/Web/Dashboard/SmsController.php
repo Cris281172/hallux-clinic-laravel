@@ -14,6 +14,10 @@ class SmsController extends Controller
         $text = strtoupper(trim($request->input('sms_text')));
         $msgId = $request->input('MsgId');
 
+        \Log::info($from);
+        \Log::info($text);
+        \Log::info($msgId);
+
         if ($text === 'TAK') {
             $appointment = ReminderPhone::where('phone', $from)
                 ->where('msg_id', $msgId)
