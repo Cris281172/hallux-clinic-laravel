@@ -16,15 +16,16 @@ class SmsController extends Controller
         $text = $request->input('sms_text');
         $msgId = $request->input('MsgId');
 
-        \Log::info('Inbound SMS', $request->only([
-            'sms_from', 'sms_to', 'sms_text', 'sms_date', 'username', 'MsgId'
-        ]));
+        \Log::info($to);
+        \Log::info($text);
+        \Log::info($msgId);
 
         if ($text === 'TAK') {
+            \Log::info('If yes');
             $appointment = VisitNotification::where('phone', $to)
                 ->where('msg_id', $msgId)
                 ->first();
-
+            \Log::info($appointment);
             if ($appointment) {
                 $appointment->update([
                     'status' => 'confirmed'
