@@ -22,8 +22,7 @@ class SmsController extends Controller
 
         if ($text === 'TAK') {
             \Log::info('If yes');
-            $appointment = VisitNotification::where('phone', $to)
-                ->where('msg_id', $msgId)
+            $appointment = VisitNotification::where('msg_id', $msgId)
                 ->first();
             \Log::info($appointment);
             if ($appointment) {
