@@ -11,16 +11,15 @@ use Illuminate\Support\Facades\Notification;
 class VisitNotificationController extends Controller
 {
     public function updateNotificationStatus(Request $request){
-        \Log::info($request->all());
-//        $data = $request->all();
-//
-//        $id = $data['list'][0]['id'] ?? null;
-//
-//        if($id == null){
-//            return response('OK', 200)->header('Content-Type', 'text/plain');
-//        }
-//
-//        VisitNotification::where('msg_id', $id)->update(['status' => $data['status']]);
+        $data = $request->all();
+
+        $id = $data["MsgId"];
+
+        if($id == null){
+            return response('OK', 200)->header('Content-Type', 'text/plain');
+        }
+
+        VisitNotification::where('msg_id', $id)->update(['status' => strtolower($data['status_name'])]);
 
         return response('OK', 200)->header('Content-Type', 'text/plain');
     }
