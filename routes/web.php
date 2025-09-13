@@ -43,7 +43,7 @@ Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewE
 
 Route::group(['prefix' => 'sms'], function () {
     Route::get('/puupcyv4gmhkryjnbmmigqym9wgi9p', [VisitNotificationController::class, 'updateNotificationStatus'])->name('update-notification-status');
-    Route::get('/qMHa97QuT0H5ZvdJ8DQu7NbR8t5VRK', [SmsController::class, 'inbound'])->name('inbound');
+    Route::post('/qMHa97QuT0H5ZvdJ8DQu7NbR8t5VRK', [SmsController::class, 'inbound'])->name('inbound');
 });
 
 
