@@ -14,9 +14,10 @@ class AppointmentConfirmedNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($appointment)
+    public function __construct($appointment, $statusMessage)
     {
         $this->appointment = $appointment;
+        $this->statusMessage = $statusMessage;
     }
 
     /**
@@ -37,7 +38,7 @@ class AppointmentConfirmedNotification extends Notification
         return (new MailMessage)
             ->subject('Potwierdzenie wizyty')
             ->greeting('Cześć!')
-            ->line("Klient potwierdził wizytę:")
+            ->line($this->statusMessage)
             ->line("Telefon: {$this->appointment->phone}")
             ->line('---')
             ->line('Pozdrawiamy, Twój system rezerwacji');

@@ -15,7 +15,7 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
     const [visitWithoutPatient, setVisitWithoutPatient] = useState(false);
     const userID = props.auth.user.id;
     const [reminderVisible, setReminderVisible] = useState(false);
-    const { data, setData, post, errors } = useForm({
+    const { data, setData, post, errors, processing } = useForm({
         description: '',
         patientID: patientID,
         date: undefined,
@@ -167,7 +167,7 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                     )}
                 </div>
 
-                <Button disabled={!patientID && !visitWithoutPatient} type={'submit'} className={'mt-5'}>
+                <Button disabled={(!patientID && !visitWithoutPatient) || processing} type={'submit'} className={'mt-5'}>
                     Dodaj wizytę
                 </Button>
             </form>

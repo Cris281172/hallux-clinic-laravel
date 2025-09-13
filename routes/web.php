@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Dashboard\PatientController as PatientControllerAPI;
 use App\Http\Controllers\Api\Dashboard\VisitController as VisitControllerAPI;
+use App\Http\Controllers\Api\Dashboard\VisitNotificationController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\GithubDeployController;
 use App\Http\Controllers\NewsletterEmailController;
@@ -16,7 +17,6 @@ use App\Http\Controllers\Web\Dashboard\PostController;
 use App\Http\Controllers\Web\Dashboard\RoleController;
 use App\Http\Controllers\Web\Dashboard\UserManagement;
 use App\Http\Controllers\Web\Dashboard\VisitController;
-use App\Http\Controllers\Web\Dashboard\VisitNotificationController;
 use App\Http\Controllers\Web\Dashboard\VoucherController;
 use App\Http\Controllers\Web\MailController;
 use App\Http\Controllers\Web\PageController;
@@ -39,10 +39,6 @@ Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/{category}/{service}', [PageController::class, 'service'])->name('service');
 });
 Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewEmail'])->name('newsletter-add-email');
-
-Route::group(['prefix' => 'sms'], function () {
-    Route::get('/puupcyv4gmhkryjnbmmigqym9wgi9p', [VisitNotificationController::class, 'updateNotificationStatus'])->name('update-notification-status');
-});
 
 
 Route::get('/404', [PageController::class, 'notFound'])->name('notFound');
