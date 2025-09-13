@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\VisitNotification;
+use App\Notifications\AppointmentConfirmedNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class SmsController extends Controller
 {
@@ -28,7 +31,7 @@ class SmsController extends Controller
                     'status' => 'confirmed'
                 ]);
 
-//                auth()->user()->notify(new AppointmentConfirmedNotification($appointment));
+                Notification::route('mail', 'hallux.clinic@gmail.com')->notify(new AppointmentConfirmedNotification($appointment));
             }
         }
 
