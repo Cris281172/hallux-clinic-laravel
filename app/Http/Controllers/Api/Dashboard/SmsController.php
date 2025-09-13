@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Notification;
 class SmsController extends Controller
 {
     public function inbound(Request $request){
-        $from = $request->input('sms_from');
+        $to = $request->input('sms_to');
         $text = $request->input('sms_text');
         $msgId = $request->input('MsgId');
 
@@ -21,13 +21,12 @@ class SmsController extends Controller
         ]));
 
         if ($text === 'TAK') {
-            $appointment = VisitNotification::where('phone', $from)
+            $appointment = VisitNotification::where('phone', $to)
                 ->where('msg_id', $msgId)
                 ->first();
 
-            if ($appointment && !$appointment->confirmed_at) {
+            if ($appointment) {
                 $appointment->update([
-                    'confirmed_at' => now(),
                     'status' => 'confirmed'
                 ]);
 
