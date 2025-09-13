@@ -13,7 +13,7 @@ class SmsController extends Controller
 {
     public function inbound(Request $request){
         $from = $request->input('sms_from');
-        $text = strtoupper(trim($request->input('sms_text')));
+        $text = $request->input('sms_text');
         $msgId = $request->input('MsgId');
 
         \Log::info('Inbound SMS', $request->only([
