@@ -22,6 +22,12 @@ const VisitSingleCard = ({ children, visit }) => {
                 {visit.price && +visit.price !== 0 && <p>Kod: {visit.price}</p>}
                 <div className="line-clamp-5 w-full overflow-hidden">{visit.description ? visit.description : 'Brak opisu'}</div>
             </div>
+            {visit.visit_notification && (
+                <div>
+                    <p>Przypomienie sms</p>
+                    <p>Status: {visit.visit_notification.status}</p>
+                </div>
+            )}
             {children}
         </Card>
     );

@@ -69,7 +69,7 @@ class VisitController extends Controller
             $query->where('name', 'Doktor');
         })->get();
         $parsed = Carbon::parse($date);
-        $visits = Visit::with(['status', 'patient.status'])->whereDate('date', $parsed)->with('user');
+        $visits = Visit::with(['status', 'patient.status', 'visitNotification'])->whereDate('date', $parsed)->with('user');
         if($user_id && $user_id != 'all'){
             $visits = $visits->where('user_id', $user_id);
         }

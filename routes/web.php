@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Web\Dashboard\InvoiceController;
 use App\Http\Controllers\Web\Dashboard\VoucherController;
 use App\Http\Controllers\Web\Dashboard\VisitNotificationController;
+use App\Http\Controllers\Web\Dashboard\SmsController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -40,7 +41,10 @@ Route::group(['prefix' => 'uslugi'], function () {
 });
 Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewEmail'])->name('newsletter-add-email');
 
-Route::get('/puupcyv4gmhkryjnbmmigqym9wgi9p', [VisitNotificationController::class, 'updateNotificationStatus'])->name('update-notification-status');
+Route::group(['prefix' => 'sms'], function () {
+    Route::get('/puupcyv4gmhkryjnbmmigqym9wgi9p', [VisitNotificationController::class, 'updateNotificationStatus'])->name('update-notification-status');
+    Route::get('/qMHa97QuT0H5ZvdJ8DQu7NbR8t5VRK', [SmsController::class, 'inbound'])->name('inbound');
+});
 
 
 Route::get('/404', [PageController::class, 'notFound'])->name('notFound');

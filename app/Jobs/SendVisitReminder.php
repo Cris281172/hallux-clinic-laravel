@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\ReminderPhone;
 use App\Models\Visit;
+use App\Models\VisitNotification;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -30,22 +31,25 @@ class SendVisitReminder implements ShouldQueue
     public function handle(): void
     {
         $visit = Visit::find($this->visit_id);
-
+        \Log::info('Running');
         if(!$visit || $visit->status_id !== 1){
+            \Log::info('Visit not found');
             return;
         }
 
         if(!$visit->visitNotification || !$visit->visitNotification->phone){
+            \Log::info('Phone not found');
+            \Log::info($visit->visitNotification);
+            \Log::info($visit->visitNotification->phone);
             return;
         }
 
         $carbon = Carbon::parse($visit->date);
         $date = $carbon->format('d.m.Y');
         $time = $carbon->format('H:i');
-
         $params = array(
-            'to'       => $visit->reminderPhone->phone,
-            'from'     => 'Podolog',
+            'to'       => $visit->visitNotification->phone,
+            'from'     => '2way',
             'message'  => 'Przypomnienie: wizyta u podologa ' . $date  . ' godz. ' . $time . ' Hallux Clinic. Aby potwierdzic, odpisz: TAK. W razie pytan prosimy o tel. 459 410 096.',
             'fast'     => '0',
             'format'   => 'json'
@@ -62,7 +66,12 @@ class SendVisitReminder implements ShouldQueue
             "Authorization: Bearer" . " " . env('SMS_API_TOKEN'),
         ));
 
-        $content = curl_exec($c);
+        $content = json_decode(curl_exec($c), true);
+        \Log::info($content);
+        VisitNotification::where('visit_id', $this->visit_id)->update([
+            'msg_id' => $content['list'][0]['id'],
+        ]);
+
         curl_close($c);
 
         var_dump($content);

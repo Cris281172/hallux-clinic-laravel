@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class VisitNotification extends Model
 {
-    protected $fillable = ['visit_id', 'phone', 'status'];
+    protected $fillable = ['visit_id', 'phone', 'status', 'msg_id'];
 }
