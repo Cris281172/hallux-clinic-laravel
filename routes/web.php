@@ -1,29 +1,28 @@
 <?php
 
+use App\Http\Controllers\Api\Dashboard\PatientController as PatientControllerAPI;
+use App\Http\Controllers\Api\Dashboard\VisitController as VisitControllerAPI;
+use App\Http\Controllers\Api\StatisticsController;
+use App\Http\Controllers\GithubDeployController;
 use App\Http\Controllers\NewsletterEmailController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\Web\CommentController;
 use App\Http\Controllers\Web\Dashboard\DashboardController;
 use App\Http\Controllers\Web\Dashboard\GalleryController;
+use App\Http\Controllers\Web\Dashboard\InvoiceController;
 use App\Http\Controllers\Web\Dashboard\PatientController;
-use App\Http\Controllers\Api\Dashboard\PatientController as PatientControllerAPI;
 use App\Http\Controllers\Web\Dashboard\PostController;
 use App\Http\Controllers\Web\Dashboard\RoleController;
 use App\Http\Controllers\Web\Dashboard\UserManagement;
 use App\Http\Controllers\Web\Dashboard\VisitController;
-use App\Http\Controllers\Api\Dashboard\VisitController as VisitControllerAPI;
+use App\Http\Controllers\Web\Dashboard\VisitNotificationController;
+use App\Http\Controllers\Web\Dashboard\VoucherController;
 use App\Http\Controllers\Web\MailController;
 use App\Http\Controllers\Web\PageController;
+use App\Http\Controllers\Web\Settings\PasswordController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Web\Settings\PasswordController;
-use App\Http\Controllers\GithubDeployController;
-use App\Http\Controllers\Api\StatisticsController;
-use App\Http\Controllers\Web\Dashboard\InvoiceController;
-use App\Http\Controllers\Web\Dashboard\VoucherController;
-use App\Http\Controllers\Web\Dashboard\VisitNotificationController;
-use App\Http\Controllers\Web\Dashboard\SmsController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -43,7 +42,6 @@ Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewE
 
 Route::group(['prefix' => 'sms'], function () {
     Route::get('/puupcyv4gmhkryjnbmmigqym9wgi9p', [VisitNotificationController::class, 'updateNotificationStatus'])->name('update-notification-status');
-    Route::post('/qMHa97QuT0H5ZvdJ8DQu7NbR8t5VRK', [SmsController::class, 'inbound'])->name('inbound');
 });
 
 

@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Api\Dashboard\PatientController;
+use App\Http\Controllers\Api\Dashboard\SmsController;
 use App\Http\Controllers\Api\MailController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard')->name('api.dashboard.')->middleware('auth')->group(function () {
 
@@ -18,3 +18,4 @@ Route::prefix('dashboard')->name('api.dashboard.')->middleware('auth')->group(fu
 
 Route::post('/contact-form', [MailController::class, 'sendContactForm'])->name('send.contact.form');
 
+Route::post('/sms/qMHa97QuT0H5ZvdJ8DQu7NbR8t5VRK', [SmsController::class, 'inbound'])->name('inbound');

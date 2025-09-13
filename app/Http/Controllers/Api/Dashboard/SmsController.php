@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Web\Dashboard;
+namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\ReminderPhone;
-use App\Notifications\AppointmentConfirmedNotification;
 use Illuminate\Http\Request;
 
 class SmsController extends Controller
