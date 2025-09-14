@@ -42,6 +42,7 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
 
     const handleUserSelect = (value) => {
         setData('userID', value);
+
         setData('date', undefined);
         setAvailableTimes([]);
     };
