@@ -48,10 +48,11 @@ const Gallery = ({ images, type }) => {
                             src={`${import.meta.env.VITE_R2_PUBLIC_URL}/${image.filename}`}
                             key={index}
                             fullscreenOnMobile={true}
+                            onClick={(e) => e.stopPropagation()}
                         />
                     ))}
                 </div>
-                <AppPagination currentPage={images.current_page} lastPage={images.last_page} url={'/galeria'} />
+                <AppPagination currentPage={images.current_page} lastPage={images.last_page} url={`/galeria/${type}`} />
             </SubpageLayoutContainer>
         </AppLayout>
     );
