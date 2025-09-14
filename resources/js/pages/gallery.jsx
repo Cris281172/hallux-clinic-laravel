@@ -10,9 +10,9 @@ import AppLayout from '../layouts/app-layout.jsx';
 const Gallery = ({ images, type }) => {
     const [activeImage, setActiveImage] = useState(null);
     const [active, setActive] = useState(false);
-    const handleClickImage = (index) => {
+    const handleClickImage = (filename) => {
         setActive(true);
-        setActiveImage(index);
+        setActiveImage(filename);
     };
 
     return (
@@ -52,12 +52,22 @@ const Gallery = ({ images, type }) => {
                             className={'mb-3 w-full break-inside-avoid'}
                             src={`${import.meta.env.VITE_R2_PUBLIC_URL}/${image.filename}`}
                             key={index}
-                            onClick={() => handleClickImage(index)}
+                            onClick={() => handleClickImage(image.filename)}
                         />
                     ))}
                 </div>
                 <AppPagination currentPage={images.current_page} lastPage={images.last_page} url={'/galeria'} />
             </SubpageLayoutContainer>
+            {active && (
+                <div onClick={() => setActive(false)} className={'fixed inset-0 z-50 flex cursor-pointer items-center justify-center p-5'}>
+                    <div className={'absolute z-10 h-full w-full bg-black opacity-60'}></div>
+                    <img
+                        src={`${import.meta.env.VITE_R2_PUBLIC_URL}/${activeImage}`}
+                        className={'relative z-20 m-10 max-h-full max-w-full'}
+                        onClick={(e) => e.stopPropagation()}
+                    />
+                </div>
+            )}
         </AppLayout>
     );
 };
