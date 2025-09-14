@@ -26,7 +26,7 @@ class VisitController extends Controller
 
             if($diffTime > 0){
                 $job = new SendVisitReminder($visit->id);
-                dispatch($job);
+                dispatch($job)->delay(Carbon::now()->addMinutes($diffTime));;
                 $visit->update([
                     'job_id' => $job->jobID,
                 ]);
