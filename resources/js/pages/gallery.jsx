@@ -1,5 +1,6 @@
 import { Link } from '@inertiajs/react';
-import { useState } from 'react';
+import 'inner-image-zoom/lib/styles.min.css';
+import InnerImageZoom from 'react-inner-image-zoom';
 import subpageHeader3 from '../assets/images/subpage-header/subpage-header-3.jpg';
 import AppPagination from '../components/app-pagination.jsx';
 import SEO from '../components/page/SEO.jsx';
@@ -7,14 +8,8 @@ import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
 import { Button } from '../components/ui/button.js';
 import AppLayout from '../layouts/app-layout.jsx';
-const Gallery = ({ images, type }) => {
-    const [activeImage, setActiveImage] = useState(null);
-    const [active, setActive] = useState(false);
-    const handleClickImage = (filename) => {
-        setActive(true);
-        setActiveImage(filename);
-    };
 
+const Gallery = ({ images, type }) => {
     return (
         <AppLayout>
             <SEO
@@ -48,26 +43,16 @@ const Gallery = ({ images, type }) => {
                 </div>
                 <div className="mb-10 columns-1 gap-5 sm:mb-20 sm:columns-2 md:columns-3">
                     {images.data.map((image, index) => (
-                        <img
+                        <InnerImageZoom
                             className={'mb-3 w-full break-inside-avoid'}
                             src={`${import.meta.env.VITE_R2_PUBLIC_URL}/${image.filename}`}
                             key={index}
-                            onClick={() => handleClickImage(image.filename)}
+                            fullscreenOnMobile={true}
                         />
                     ))}
                 </div>
                 <AppPagination currentPage={images.current_page} lastPage={images.last_page} url={'/galeria'} />
             </SubpageLayoutContainer>
-            {active && (
-                <div onClick={() => setActive(false)} className={'fixed inset-0 z-50 flex cursor-pointer items-center justify-center p-5'}>
-                    <div className={'absolute z-10 h-full w-full bg-black opacity-60'}></div>
-                    <img
-                        src={`${import.meta.env.VITE_R2_PUBLIC_URL}/${activeImage}`}
-                        className={'relative z-20 m-10 max-h-full max-w-full'}
-                        onClick={(e) => e.stopPropagation()}
-                    />
-                </div>
-            )}
         </AppLayout>
     );
 };
