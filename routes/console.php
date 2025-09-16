@@ -11,4 +11,5 @@ Artisan::command('inspire', function () {
 Schedule::command('app:update-patient-statuses')->daily('02:00');
 Schedule::command('generate:sitemap')->daily('02:00');
 Schedule::command('app:backup-database-command')->daily('02:00');
+Schedule::command('app:visit-notification-status-command')->daily('02:00');
 Schedule::command('queue:work --stop-when-empty')->everyMinute()->withoutOverlapping();

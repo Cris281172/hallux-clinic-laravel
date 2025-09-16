@@ -108,13 +108,7 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                     </div>
                     <div className="grid w-full items-center gap-1.5">
                         <Label htmlFor={'price'}>Kod</Label>
-                        <Input
-                            value={data.price}
-                            onChange={(e) => setData('price', e.target.value)}
-                            type="text"
-                            id="price"
-                            placeholder="Podaj numer telefonu"
-                        />
+                        <Input value={data.price} onChange={(e) => setData('price', e.target.value)} type="text" id="price" placeholder="Podaj kod" />
                     </div>
                     <div className="flex items-center gap-3">
                         <Checkbox onCheckedChange={(value) => setVisitWithoutPatient(value)} id="patientWithoutVisit" />
