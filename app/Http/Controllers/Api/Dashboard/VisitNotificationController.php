@@ -29,16 +29,18 @@ class VisitNotificationController extends Controller
 
         $appointment = VisitNotification::where('msg_id', $msgId)->first();
 
-        $statusMessage = '';
-
         if($appointment){
             if($text === 'tak'){
                 $appointment->update([
-                    'status' => 'confirmed'
+                    'status' => 'confirmed',
+                    'is_confirmed' => 1
                 ]);
                 $statusMessage = 'Klient potwierdził wizytę.';
             }
             else{
+                $appointment->update([
+                    'status' => 'answered'
+                ]);
                 $statusMessage = "Klient wysłał inną odpowiedź: '{$text}'.";
             }
 

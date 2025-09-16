@@ -121,35 +121,6 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
                     {reminderVisible && (
                         <div className={'flex gap-5'}>
                             <div className="flex flex-1 flex-col gap-1.5">
-                                <Label>Przypomnienie sms</Label>
-
-                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectItem value={null}>Brak</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'5'}>5 minut przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'10'}>10 minut przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div className="flex flex-1 flex-col gap-1.5">
                                 <Label>Numer telefonu</Label>
                                 <Input
                                     value={data.phone}

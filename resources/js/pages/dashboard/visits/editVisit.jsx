@@ -20,7 +20,7 @@ import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 const EditVisit = ({ visit, statuses, users }) => {
     const [selectedPatientID, setSelectedPatientID] = useState(visit.patient_id || null);
     const [availableTimes, setAvailableTimes] = useState([]);
-    const [reminderVisible, setReminderVisible] = useState(false);
+    const [reminderVisible, setReminderVisible] = useState(!!visit.visit_notification?.phone);
     const { data, setData, post, errors } = useForm({
         description: visit.description,
         patientID: visit.patient_id,
@@ -29,7 +29,8 @@ const EditVisit = ({ visit, statuses, users }) => {
         statusID: `${visit.status_id}`,
         price: visit.price,
         emailReminder: null,
-        phoneReminder: null,
+        phoneReminder: !!visit.visit_notification?.phone,
+        phone: visit.visit_notification?.phone,
     });
 
     const handleSubmit = (e) => {
@@ -131,21 +132,27 @@ const EditVisit = ({ visit, statuses, users }) => {
                         <Input value={data.price} onChange={(e) => setData('price', e.target.value)} type="text" id="price" placeholder="Podaj kod" />
                     </div>
                     <div className="flex items-center gap-3">
-                        <Checkbox onCheckedChange={(value) => setReminderVisible(value)} id="remider" />
+                        <Checkbox defaultChecked={data.phoneReminder} onCheckedChange={(value) => setReminderVisible(value)} id="remider" />
                         <Label htmlFor="remider">Przypomnienie wiyty (wymagane podanie nr telefonu lub email)</Label>
                     </div>
                     {reminderVisible && (
                         <div className={'flex gap-5'}>
                             <div className="flex flex-1 flex-col gap-1.5">
-                                <Label>Przypomnienie email</Label>
+                                <Label>Przypomnienie sms</Label>
 
-                                <Select value={data.emailReminder} onValueChange={(value) => setData('emailReminder', value)}>
+                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Wybierz czas przypomnienia" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
                                             <SelectItem value={null}>Brak</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'5'}>5 minut przed</SelectItem>
+                                        </SelectGroup>
+                                        <SelectGroup>
+                                            <SelectItem value={'10'}>10 minut przed</SelectItem>
                                         </SelectGroup>
                                         <SelectGroup>
                                             <SelectItem value={'60'}>Godzine przed</SelectItem>
@@ -160,27 +167,13 @@ const EditVisit = ({ visit, statuses, users }) => {
                                 </Select>
                             </div>
                             <div className="flex flex-1 flex-col gap-1.5">
-                                <Label>Przypomnienie email</Label>
-
-                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectItem value={null}>Brak</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
+                                <Label>Numer telefonu</Label>
+                                <Input
+                                    value={data.phone}
+                                    onChange={(e) => setData('phone', e.target.value)}
+                                    type="text"
+                                    placeholder="Podaj numer telefonu"
+                                />
                             </div>
                         </div>
                     )}

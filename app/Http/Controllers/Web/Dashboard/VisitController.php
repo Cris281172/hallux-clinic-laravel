@@ -17,20 +17,18 @@ use Illuminate\Support\Facades\DB;
 
 class VisitController extends Controller
 {
-    private function sendReminder($visit, $phoneReminder){
-        if($phoneReminder){
-            $nowDate = Carbon::now();
-            $visitDate = Carbon::parse($visit->date);
+    private function sendReminder($visit){
+        $nowDate = Carbon::now();
+        $visitDate = Carbon::parse($visit->date);
 
-            $diffTime = floor($nowDate->diffInMinutes($visitDate)) - $phoneReminder;
+        $diffTime = floor($nowDate->diffInMinutes($visitDate)) - 60 * 24;
 
-            if($diffTime > 0){
-                $job = new SendVisitReminder($visit->id);
-                dispatch($job);
-                $visit->update([
-                    'job_id' => $job->jobID,
-                ]);
-            }
+        if($diffTime > 0){
+            $job = new SendVisitReminder($visit->id);
+            dispatch($job)->delay(Carbon::now()->addMinutes($diffTime));;
+            $visit->update([
+                'job_id' => $job->jobID,
+            ]);
         }
     }
     public function index(){
@@ -62,7 +60,7 @@ class VisitController extends Controller
                 "status" => 'pending'
             ]);
         }
-        $this->sendReminder($visit, $request->phoneReminder);
+        $this->sendReminder($visit);
     }
     public function getAllVisits(string $date, $user_id = null){
         $users = User::whereHas('roles', function ($query) {
@@ -77,11 +75,12 @@ class VisitController extends Controller
         return Inertia::render('dashboard/visits/getAllVisits',  compact('visits', 'users', 'date', 'user_id'));
     }
     public function deleteVisit(string $id){
-        Visit::where('id', $id)->delete();
+        $visit = Visit::find($id);
+        $visit->delete();
         return back();
     }
     public function editVisitView(string $id){
-        $visit = Visit::with(['status', 'patient.status', 'user'])->where('id', $id)->first();
+        $visit = Visit::with(['status', 'patient.status', 'user', 'visitNotification'])->where('id', $id)->first();
         $users = User::whereHas('roles', function ($query) {
             $query->where('name', 'Doktor');
         })->get();
@@ -90,12 +89,24 @@ class VisitController extends Controller
     }
     public function editVisit(Request $request, string $id){
         $visit = Visit::find($id);
+        $visitNotification = VisitNotification::where('visit_id', $visit->id)->first();
 
 
-        if($visit->date !== $request->date && $visit->job_id !== null){
+        if($visit->date !== $request->date && $visit->job_id !== null || $request->phone !== $visitNotification?->phone){
+            if($request->phone){
+                if($visitNotification?->phone && $request->phone !== $visitNotification?->phone){
+                    $visitNotification->delete();
+                }
+                VisitNotification::create([
+                    "visit_id" => $visit->id,
+                    "phone" => $request->phone,
+                    "status" => 'pending'
+                ]);
+            }
+
             DB::table('jobs')->where('payload', 'like', "%" . $visit->job_id . "%")->delete();
 
-            $this->sendReminder($visit, $request->phoneReminder);
+            $this->sendReminder($visit);
         }
 
         $visit->update([

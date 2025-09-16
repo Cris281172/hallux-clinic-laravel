@@ -36,11 +36,14 @@ class VisitNotificationStatusCommand extends Command
                 $visit = Visit::where('id', $visitNotification->visit_id)->first();
                 $visitDate = Carbon::parse($visit->date);
                 $now = Carbon::now();
-
-                if($now->greaterThanOrEqualTo($visitDate->subDay()) && $now->lessThan($visitDate) || $visitNotification->status !== 'confirmed' || $visitNotification->status !== 'answered') {
+                if(($now->greaterThanOrEqualTo($visitDate->subDay()) || $now->lessThan($visitDate)) && $visitNotification->status === 'delivered' && $visitNotification->is_confirmed === false) {
                     Notification::route('mail', 'hallux.clinic@gmail.com')->notify(new AppointmentConfirmedNotification($visitNotification, 'Klient nie potwierdził wizyty'));
                     $visitNotification->update(['status' => 'unconfirmed']);
                 }
+                if($now->greaterThan($visitDate)) {
+                    $visitNotification->delete();
+                }
+
             }
         });
     }

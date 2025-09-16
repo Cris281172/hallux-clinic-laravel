@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\VisitStatus;
+use App\Observers\VisitObserver;
 
+
+#[ObservedBy(VisitObserver::class)]
 class Visit extends Model
 {
     use HasFactory;
@@ -24,4 +28,5 @@ class Visit extends Model
     public function visitNotification(){
         return $this->hasone(VisitNotification::class, 'visit_id', 'id');
     }
+
 }
