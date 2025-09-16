@@ -29,7 +29,6 @@ const EditVisit = ({ visit, statuses, users }) => {
         statusID: `${visit.status_id}`,
         price: visit.price,
         emailReminder: null,
-        phoneReminder: !!visit.visit_notification?.phone,
         phone: visit.visit_notification?.phone,
     });
 
@@ -137,35 +136,6 @@ const EditVisit = ({ visit, statuses, users }) => {
                     </div>
                     {reminderVisible && (
                         <div className={'flex gap-5'}>
-                            <div className="flex flex-1 flex-col gap-1.5">
-                                <Label>Przypomnienie sms</Label>
-
-                                <Select value={data.phoneReminder} onValueChange={(value) => setData('phoneReminder', value)}>
-                                    <SelectTrigger className="w-full">
-                                        <SelectValue placeholder="Wybierz czas przypomnienia" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            <SelectItem value={null}>Brak</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'5'}>5 minut przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'10'}>10 minut przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={'60'}>Godzine przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 3}`}>3 godziny przed</SelectItem>
-                                        </SelectGroup>
-                                        <SelectGroup>
-                                            <SelectItem value={`${60 * 24}`}>Dzień przed</SelectItem>
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
-                            </div>
                             <div className="flex flex-1 flex-col gap-1.5">
                                 <Label>Numer telefonu</Label>
                                 <Input

@@ -22,8 +22,6 @@ const VisitCreate = ({ children, patientID, statuesVisit, onSuccess, users }) =>
         statusID: '1',
         price: '',
         userID: users.find((item) => item.id === userID) ? userID : '',
-        emailReminder: null,
-        phoneReminder: null,
         phone: '',
     });
 
