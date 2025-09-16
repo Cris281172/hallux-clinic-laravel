@@ -4,6 +4,14 @@ import { Card } from '../../ui/card.js';
 import StatusVisit from '../status-visit.jsx';
 
 const VisitSingleCard = ({ children, visit }) => {
+    const smsStatus = {
+        delivered: 'Wysłany',
+        pending: 'Oczekujący na wysłanie',
+        confirmed: 'Wizyta potwierdzona',
+        unconfirmed: 'Wizyta niepotwierdzona',
+        answered: 'Odpowiedziano sms',
+    };
+
     return (
         <Card className={'relative justify-between rounded-xl border-1 pt-12 pr-8 pb-12 pl-8'}>
             <div className={''}>
@@ -24,8 +32,7 @@ const VisitSingleCard = ({ children, visit }) => {
             </div>
             {visit.visit_notification && (
                 <div>
-                    <p>Przypomienie sms</p>
-                    <p>Status: {visit.visit_notification.status}</p>
+                    <p>Status przypomnienia: {smsStatus[visit.visit_notification.status] ?? 'Status nieznaleziony'}</p>
                 </div>
             )}
             {children}
