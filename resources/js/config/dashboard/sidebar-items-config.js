@@ -1,4 +1,4 @@
-import { Book, Home, Image } from 'lucide-react';
+import { Book, Home, Image, ShoppingCart } from 'lucide-react';
 
 const sidebarItemsConfig = [
     {
@@ -141,6 +141,82 @@ const sidebarItemsConfig = [
                 title: 'Wszystkie vouchery',
                 url: 'dashboard.voucher.get.all',
                 permission: 'wyświetlanie wszystkich voucherów',
+            },
+        ],
+    },
+    {
+        title: 'Sklep',
+        url: 'dashboard',
+        icon: ShoppingCart,
+        permissions: ['dodawanie voucherów', 'wyświetlanie wszystkich voucherów'], //TODO zmiana permisji
+        children: [
+            {
+                title: 'Produkty',
+                url: 'dashboard',
+                permission: 'dodawanie voucherów', //TODO zmiana permisji
+                children: [
+                    {
+                        title: 'Dodawanie',
+                        url: 'dashboard.product.create.view',
+                        permission: 'dodawanie produktów',
+                    },
+                    {
+                        title: 'Wszystkie',
+                        url: 'dashboard.product.get.all',
+                        permission: 'dodawanie produktów',
+                    },
+                ],
+            },
+            {
+                title: 'Kategorie',
+                url: 'dashboard',
+                permission: 'dodawanie voucherów', //TODO zmiana permisji
+                children: [
+                    {
+                        title: 'Dodawanie',
+                        url: 'dashboard.category.create.view',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                    {
+                        title: 'Wszystkie',
+                        url: 'dashboard.category.get.all',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                ],
+            },
+            {
+                title: 'Warianty',
+                url: 'dashboard',
+                permission: 'dodawanie voucherów', //TODO zmiana permisji
+                children: [
+                    {
+                        title: 'Dodawanie',
+                        url: 'dashboard.variant.create.view',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                    {
+                        title: 'Wszystkie',
+                        url: 'dashboard.variant.get.all',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                ],
+            },
+            {
+                title: 'Atrybuty',
+                url: 'dashboard',
+                permission: 'dodawanie voucherów', //TODO zmiana permisji
+                children: [
+                    {
+                        title: 'Dodawanie',
+                        url: 'dashboard.attribute.create.view',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                    {
+                        title: 'Wszystkie',
+                        url: 'dashboard.attribute.get.all',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                ],
             },
         ],
     },

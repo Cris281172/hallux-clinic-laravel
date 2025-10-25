@@ -9,6 +9,7 @@ use App\Http\Controllers\NewsletterEmailController;
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\Web\CommentController;
+use App\Http\Controllers\Web\Dashboard\AttributeController;
 use App\Http\Controllers\Web\Dashboard\DashboardController;
 use App\Http\Controllers\Web\Dashboard\GalleryController;
 use App\Http\Controllers\Web\Dashboard\InvoiceController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Web\Dashboard\PatientController;
 use App\Http\Controllers\Web\Dashboard\PostController;
 use App\Http\Controllers\Web\Dashboard\RoleController;
 use App\Http\Controllers\Web\Dashboard\UserManagement;
+use App\Http\Controllers\Web\Dashboard\VariantController;
 use App\Http\Controllers\Web\Dashboard\VisitController;
 use App\Http\Controllers\Web\Dashboard\VoucherController;
 use App\Http\Controllers\Web\MailController;
@@ -23,6 +25,17 @@ use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\Settings\PasswordController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Web\Store\StoreController;
+use App\Http\Controllers\Web\Dashboard\ProductController;
+use App\Http\Controllers\Web\Dashboard\CategoryController;
+use App\Http\Controllers\Web\Store\ProductController as StoreProductController;
+use App\Http\Controllers\Api\Store\CartController as CartControllerAPI;
+use App\Http\Controllers\Web\Store\AuthController as StoreAuthController;
+use App\Http\Controllers\Web\Store\GoogleAuthController as StoreGoogleAuthController;
+use App\Http\Middleware\AdminAccessMiddleware;
+use App\Http\Controllers\Api\Dashboard\Store\ProductController as ProductControllerAPI;
+use App\Http\Controllers\Api\Dashboard\Store\AttributeController as AttributeControllerAPI;
+use App\Http\Controllers\Api\Dashboard\Store\VariantController as VariantControllerAPI;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -40,6 +53,38 @@ Route::group(['prefix' => 'uslugi'], function () {
 });
 Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewEmail'])->name('newsletter-add-email');
 
+Route::get('/profile', function () {
+    return Inertia::render('test');
+})->middleware(['auth', 'verified']);
+
+Route::group(['prefix' => 'sklep'], function () {
+   Route::get('/', [StoreController::class, 'storeView'])->name('store.view');
+
+   Route::get('/produkty', [StoreProductController::class, 'getAllProducts'])->name('store.products');
+
+   Route::get('/produkty/{slug}', [StoreProductController::class, 'getProduct'])->name('store.product');
+
+   Route::get('/kategoria/{slug}', [StoreProductController::class, 'getCategoryProducts'])->name('store.category.products');
+
+   Route::group(['prefix' => 'auth'], function () {
+
+       Route::post('/sign-up', [StoreAuthController::class, 'signUp'])->name('store.auth.sign-up');
+
+       Route::post('/sign-in', [StoreAuthController::class, 'signIn'])->name('store.auth.sign-in');
+
+       Route::get('/verify-email/{id}/{hash}', [StoreAuthController::class, 'verificationEmail'])->name('verification.verify');
+
+       Route::get('/verify-email/notice', [StoreAuthController::class, 'verifyEmailNotice'])->name('verification.notice');
+
+       Route::get('/verify-email-resend', [StoreAuthController::class, 'verificationEmailResend'])->name('verification.resend');
+
+       Route::get('/google/redirect', [StoreGoogleAuthController::class, 'redirect'])->name('store.auth.google.redirect');
+
+       Route::get('/google/callback', [StoreGoogleAuthController::class, 'callback'])->name('store.auth.google.callback');
+
+   });
+
+});
 
 Route::get('/404', [PageController::class, 'notFound'])->name('notFound');
 
@@ -47,8 +92,6 @@ Route::get('/404', [PageController::class, 'notFound'])->name('notFound');
 Route::group(['prefix' => 'auth'], function (){
 
    Route::get('login', [AuthController::class, 'create'])->name('login');
-
-   Route::post('login', [AuthController::class, 'store']);
 
 });
 
@@ -60,10 +103,23 @@ Route::prefix('api')->name('api.')->group(function (){
 
     });
 
+    Route::prefix('store')->name('store.')->group(function () {
+
+        Route::prefix('categories')->name('categories.')->group(function () {
+
+        });
+
+        Route::prefix('cart')->name('cart.')->group(function () {
+
+           Route::post('get-products', [CartControllerAPI::class, 'getCartProducts'])->name('get.products');
+
+        });
+
+    });
+
 });
 
-Route::group(['middleware' => 'auth'], function (){
-
+Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function (){
 
     Route::prefix('api')->name('api.dashboard.')->group(function () {
 
@@ -84,6 +140,28 @@ Route::group(['middleware' => 'auth'], function (){
         Route::prefix('visits')->name('visits.')->group(function () {
 
             Route::get('/get/all/{patientID}/patient', [VisitControllerAPI::class, 'getPatientVisits'])->name('get.all.patient.visits');
+
+        });
+
+        Route::prefix('store')->name('store.')->group(function () {
+
+            Route::prefix('products')->name('products.')->group(function () {
+
+                Route::get('/get/all', [ProductControllerAPI::class, 'getAllProducts'])->name('get.all');
+
+            });
+
+            Route::prefix('attributes')->name('attributes.')->group(function () {
+
+                Route::get('/get/all', [AttributeControllerAPI::class, 'getAllAttributes'])->name('get.all');
+
+            });
+
+            Route::prefix('variants')->name('variants.')->group(function () {
+
+                Route::get('/get/all', [VariantControllerAPI::class, 'getAllVariants'])->name('get.all');
+
+            });
 
         });
 
@@ -363,6 +441,69 @@ Route::group(['middleware' => 'auth'], function (){
 
             });
 
+        });
+
+        Route::group(['prefix' => 'store'], function (){
+
+            Route::group(['prefix' => 'products'], function (){
+
+                Route::get('create', [ProductController::class, 'createProductView'])->name('dashboard.product.create.view');
+
+                Route::post('create', [ProductController::class, 'createProduct'])->name('dashboard.product.create');
+
+                Route::get('get/all', [ProductController::class, 'getAllProducts'])->name('dashboard.product.get.all');
+
+                Route::get('delete/{id}', [ProductController::class, 'deleteProduct'])->name('dashboard.product.delete');
+
+                Route::get('active/{id}/{status}', [ProductController::class, 'activeToggle'])->name('dashboard.product.active.toggle');
+
+                Route::get('edit/{id}', [ProductController::class, 'editProductView'])->name('dashboard.product.edit.view');
+
+                Route::post('edit/{id}', [ProductController::class, 'editProduct'])->name('dashboard.product.edit');
+
+            });
+
+            Route::group(['prefix' => 'categories'], function (){
+
+                Route::get('/create', [CategoryController::class, 'createCategoryView'])->name('dashboard.category.create.view');
+
+                Route::post('/create', [CategoryController::class, 'createCategory'])->name('dashboard.category.create');
+
+                Route::get('/get/all', [CategoryController::class, 'getAllCategories'])->name('dashboard.category.get.all');
+
+            });
+
+            Route::group(['prefix' => 'variants'], function (){
+
+                Route::get('create', [VariantController::class, 'createVariantView'])->name('dashboard.variant.create.view');
+
+                Route::post('create', [VariantController::class, 'createVariant'])->name('dashboard.variant.create');
+
+                Route::get('get/all', [VariantController::class, 'getAllVariants'])->name('dashboard.variant.get.all');
+
+                Route::get('delete/{id}', [VariantController::class, 'deleteVariant'])->name('dashboard.variant.delete');
+
+                Route::get('edit/{id}', [VariantController::class, 'editVariantView'])->name('dashboard.variant.edit.view');
+
+                Route::post('edit/{id}', [VariantController::class, 'editVariant'])->name('dashboard.variant.edit');
+
+            });
+
+            Route::group(['prefix' => 'attributes'], function (){
+
+                Route::get('create', [AttributeController::class, 'createAttributeView'])->name('dashboard.attribute.create.view');
+
+                Route::post('create', [AttributeController::class, 'createAttribute'])->name('dashboard.attribute.create');
+
+                Route::get('get/all', [AttributeController::class, 'getAllAttributes'])->name('dashboard.attribute.get.all');
+
+                Route::get('delete/{id}', [AttributeController::class, 'deleteAttribute'])->name('dashboard.attribute.delete');
+
+                Route::get('edit/{id}', [AttributeController::class, 'editAttributeView'])->name('dashboard.attribute.edit.view');
+
+                Route::post('edit/{id}', [AttributeController::class, 'editAttribute'])->name('dashboard.attribute.edit');
+
+            });
         });
 
     });

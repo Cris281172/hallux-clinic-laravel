@@ -11,7 +11,7 @@
         <meta name="author" content="Krzysztof Juczyński" />
         <meta name="keywords" content="Podologia Łódź, Gabinet Podologiczny, Monika Juczyńska" />
         <meta name="google-adsense-account" content="ca-pub-7882476332353334">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <script defer src="https://www.googletagmanager.com/gtag/js?id=AW-11343238376"></script>
         <script>
             window.dataLayer = window.dataLayer || [];

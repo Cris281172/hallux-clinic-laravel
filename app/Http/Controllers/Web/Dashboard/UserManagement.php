@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Web\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Dashboard\Hash;
+use App\Models\AdminsUser;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Role;
@@ -22,6 +24,9 @@ class UserManagement extends Controller
             "password" => $request->password,
         ]);
         $user->assignRole($request->role);
+        AdminsUser::create([
+            "user_id" => $user->id,
+        ]);
     }
     public function getAllUsers(){
         $users = User::all()->map(function ($user) {

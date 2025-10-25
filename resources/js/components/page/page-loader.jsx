@@ -10,7 +10,7 @@ const PageLoader = () => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                backgroundColor: '#000',
                 zIndex: 9999,
             }}
         >

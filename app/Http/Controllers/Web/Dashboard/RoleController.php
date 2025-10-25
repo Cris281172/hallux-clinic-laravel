@@ -39,6 +39,10 @@ class RoleController extends Controller
             [
                 "title" => 'Vouchery',
                 "permissions" => [$permissions[18], $permissions[19], $permissions[20], $permissions[21], $permissions[22], $permissions[23]]
+            ],
+            [
+                "title" => 'Produkty',
+                "permissions" => [$permissions[26]]
             ]
         ];
     }

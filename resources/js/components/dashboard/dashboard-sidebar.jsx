@@ -20,6 +20,36 @@ const DashboardSidebar = () => {
     const user = props.auth.user;
     const location = props.ziggy.location;
 
+    const renderSubItems = (items) => (
+        <SidebarMenuSub>
+            {items
+                .filter((child) => permissions.find((el) => el.name === child.permission) || user.is_super_admin)
+                .map((child) =>
+                    child.children ? (
+                        <Collapsible defaultOpen className="group/collapsible" key={child.title}>
+                            <SidebarMenuSubItem>
+                                <CollapsibleTrigger asChild>
+                                    <Link className={'flex'} href={route(child.url, child.params)}>
+                                        {child.title}
+                                    </Link>
+                                </CollapsibleTrigger>
+                                <CollapsibleContent>{renderSubItems(child.children)}</CollapsibleContent>
+                            </SidebarMenuSubItem>
+                        </Collapsible>
+                    ) : (
+                        <SidebarMenuSubItem
+                            key={child.title}
+                            className={`pt-0.5 pb-0.5 pl-2 ${route(child.url, child.params) === location ? 'bg-sidebar-accent rounded-md' : ''}`}
+                        >
+                            <Link className={'flex'} href={route(child.url, child.params)}>
+                                {child.title}
+                            </Link>
+                        </SidebarMenuSubItem>
+                    ),
+                )}
+        </SidebarMenuSub>
+    );
+
     return (
         <Sidebar>
             <SidebarContent>
@@ -45,29 +75,7 @@ const DashboardSidebar = () => {
                                                                 </a>
                                                             </SidebarMenuButton>
                                                         </CollapsibleTrigger>
-                                                        <CollapsibleContent>
-                                                            <SidebarMenuSub>
-                                                                {item.children.map((childrenItem) => (
-                                                                    <>
-                                                                        {permissions.find((el) => el.name === childrenItem.permission) ||
-                                                                        user.is_super_admin ? (
-                                                                            <SidebarMenuSubItem
-                                                                                className={`pt-0.5 pb-0.5 pl-2 ${route(childrenItem.url, childrenItem.params) === location ? 'bg-sidebar-accent rounded-md' : ''}`}
-                                                                            >
-                                                                                <Link
-                                                                                    className={'flex'}
-                                                                                    href={route(childrenItem.url, childrenItem.params)}
-                                                                                >
-                                                                                    {childrenItem.title}
-                                                                                </Link>
-                                                                            </SidebarMenuSubItem>
-                                                                        ) : (
-                                                                            <></>
-                                                                        )}
-                                                                    </>
-                                                                ))}
-                                                            </SidebarMenuSub>
-                                                        </CollapsibleContent>
+                                                        <CollapsibleContent>{item.children && renderSubItems(item.children)}</CollapsibleContent>
                                                     </SidebarMenuItem>
                                                 </Collapsible>
                                             ) : (

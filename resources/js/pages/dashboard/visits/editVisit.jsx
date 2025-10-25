@@ -34,7 +34,7 @@ const EditVisit = ({ visit, statuses, users }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data);
+
         post(route('dashboard.visit.edit', visit.id), {
             onSuccess: () => {
                 toast('Wizyta została edytowana');
