@@ -517,3 +517,21 @@
     @apply max-w-full rounded-lg my-4;
 }
 
+.fixed-gallery .image-gallery-content .image-gallery-slide img {
+    height: 400px; /* dowolna wysokość */
+    width: 100%;
+    object-fit: cover; /* lub cover, jeśli chcesz przycięcie */
+    background-color: #f8f8f8; /* żeby tło było spójne */
+}
+
+.fixed-gallery .image-gallery-content.fullscreen .image-gallery-slide img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+    background-color: transparent;
+}
+
+.image-gallery-thumbnail .image-gallery-thumbnail-image{
+    aspect-ratio: 1/1;
+}
+

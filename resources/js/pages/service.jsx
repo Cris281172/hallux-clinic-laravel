@@ -69,6 +69,7 @@ const Service = ({ category, service, images }) => {
                                                 <IoFootstepsOutline className="text-dark-plum rotate-90 text-4xl" />
                                             </div>
                                         )}
+                                        additionalClass="fixed-gallery"
                                     />
                                 )}
                             </div>
