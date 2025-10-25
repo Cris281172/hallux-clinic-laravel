@@ -36,22 +36,22 @@ const Gallery = ({ images, type }) => {
                 }
             />
             <SubpageLayoutContainer>
-                <div className={'mb-10 flex w-full gap-4 md:gap-10'}>
+                <div className={'mb-10 flex w-full flex-col gap-4 md:flex-row md:gap-10'}>
                     <Button
                         asChild
-                        className={`${type !== 'wszystkie' ? 'text-dark-plum border-dark-plum border-1 bg-transparent' : 'bg-dark-plum text-white'} hover:bg-dark-plum mt-3 h-12 flex-1 cursor-pointer rounded-full px-4 py-2 font-bold transition`}
+                        className={`${type !== 'wszystkie' ? 'text-dark-plum border-dark-plum border-1 bg-transparent' : 'bg-dark-plum text-white'} hover:bg-dark-plum h-12 flex-1 cursor-pointer rounded-full px-4 py-2 font-bold transition`}
                     >
                         <Link href={route('gallery', { type: 'wszystkie' })}>Wszystkie</Link>
                     </Button>
                     <Button
                         asChild
-                        className={`${type !== 'gabinet' ? 'text-dark-plum border-dark-plum border-1 bg-transparent' : 'bg-dark-plum text-white'} hover:bg-dark-plum mt-3 h-12 flex-1 cursor-pointer rounded-full px-4 py-2 font-bold transition`}
+                        className={`${type !== 'gabinet' ? 'text-dark-plum border-dark-plum border-1 bg-transparent' : 'bg-dark-plum text-white'} hover:bg-dark-plum h-12 flex-1 cursor-pointer rounded-full px-4 py-2 font-bold transition`}
                     >
                         <Link href={route('gallery', { type: 'gabinet' })}>Zdjęcia gabinetu</Link>
                     </Button>
                     <Button
                         asChild
-                        className={`${type !== 'uslugi' ? 'text-dark-plum border-dark-plum border-1 bg-transparent' : 'bg-dark-plum text-white'} hover:bg-dark mt-3 h-12 flex-1 cursor-pointer rounded-full px-4 py-2 font-bold transition`}
+                        className={`${type !== 'uslugi' ? 'text-dark-plum border-dark-plum border-1 bg-transparent' : 'bg-dark-plum text-white'} hover:bg-dark h-12 flex-1 cursor-pointer rounded-full px-4 py-2 font-bold transition`}
                     >
                         <Link href={route('gallery', { type: 'uslugi' })}>Zdjęcia usług</Link>
                     </Button>
