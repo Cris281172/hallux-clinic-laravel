@@ -14,19 +14,39 @@ use Intervention\Image\ImageManager;
 class GalleryController extends Controller
 {
     public function uploadImageView(){
-        return Inertia::render('dashboard/gallery/uploadImage');
+        $config = config('treatments');
+        $services = [];
+
+        foreach ($config as $categoryKey => $category) {
+            foreach ($category['services'] as $serviceKey => $service) {
+                $services[] = [
+                    'key' => $serviceKey,
+                    'title' => $service['title'],
+                    'category' => $category['title'],
+                ];
+            }
+        }
+        return Inertia::render('dashboard/gallery/uploadImage', compact('services'));
     }
     public function uploadImage(Request $request){
         $files = $request->images;
-
         foreach ($files as $file){
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
 
-            Storage::disk('r2')->put($filename, file_get_contents($file));
+            if($request->type === 'office'){
+                $path = $request->type . '/' . $filename;
+            }
 
+            else if($request->type === 'services'){
+                $path = $request->service ? $request->type . '/' . $request->service . '/' . $filename : $request->type . '/' . $filename;
+
+            }
+
+            Storage::disk('r2')->put($path, file_get_contents($file));
             GalleryPhoto::create([
-                "filename" => $filename,
-                "type" => $request->type
+                "filename" => $path,
+                "type" => $request->type,
+                'service' => $request->service
             ]);
         }
 
