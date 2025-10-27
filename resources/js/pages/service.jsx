@@ -35,7 +35,7 @@ const Service = ({ category, service, images }) => {
                 <div className="text-black">
                     <div className="flex flex-col gap-10 lg:flex-row">
                         {images.length !== 0 && (
-                            <div className="order-2 lg:order-1 xl:w-4/12">
+                            <div className="order-2 lg:order-1 lg:w-5/12 xl:w-4/12">
                                 {!showGallery ? (
                                     <div className="relative aspect-square rounded-2xl border border-gray-200 bg-gray-50 text-center">
                                         <div className={'absolute top-1/2 left-0 mx-5 -translate-y-1/2'}>
@@ -75,7 +75,7 @@ const Service = ({ category, service, images }) => {
                             </div>
                         )}
 
-                        <div className={`${serviceData.images.length !== 0 ? 'xl:w-8/12' : 'w-full'} order-1 lg:order-2`}>
+                        <div className={`${images.length !== 0 ? 'lg:w-7/12 xl:w-8/12' : 'w-full'} order-1 lg:order-2`}>
                             <Link href={route('price-list')} className="text-md mb-2 block font-bold underline">
                                 Zobacz cennik
                             </Link>
