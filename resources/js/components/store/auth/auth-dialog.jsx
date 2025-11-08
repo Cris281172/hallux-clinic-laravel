@@ -68,12 +68,12 @@ const AuthDialog = () => {
                 setOpen(false);
             }}
         >
-            <DialogContent>
+            <DialogContent className={'rounded-2xl bg-gray-100'}>
                 <DialogHeader>
                     <div className={'flex justify-center'}>
                         <img src={logo} alt={'Logo hallux clinic'} className={'w-1/2'} />
                     </div>
-                    <DialogTitle className={'text-center text-xl'}>{activeTab?.title}</DialogTitle>
+                    <DialogTitle className={'text-dark-plum text-center text-xl'}>{activeTab?.title}</DialogTitle>
                     {activeTab?.component}
                 </DialogHeader>
             </DialogContent>

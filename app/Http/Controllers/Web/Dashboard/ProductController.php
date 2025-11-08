@@ -121,8 +121,9 @@ class ProductController extends Controller
     public function editProductView(string $id){
         $categories = Category::whereNull('parent_id')->get();
         $categories = $this->categoryService->map($categories);
-        $product = Product::with('images', 'categories', 'attributes', 'variants', 'similarProducts')->find($id);
-        return Inertia::render('dashboard/store/products/editProduct', compact('product', 'categories'));
+        $product = Product::with('images', 'categories', 'attributes', 'variants')->find($id);
+        $similarProducts = $product->similarProducts();
+        return Inertia::render('dashboard/store/products/editProduct', compact('product', 'categories', 'similarProducts'));
     }
     public function editProduct(string $id, EditProductRequest $request){
         $product = Product::findOrFail($id);
@@ -212,5 +213,12 @@ class ProductController extends Controller
         }
 
         return back();
+    }
+    public function cloneProductView(string $id){
+        $categories = Category::whereNull('parent_id')->get();
+        $categories = $this->categoryService->map($categories);
+        $product = Product::with('images', 'categories', 'attributes', 'variants')->find($id);
+        $similarProducts = $product->similarProducts();
+        return Inertia::render('dashboard/store/products/cloneProduct', compact('categories', 'product', 'similarProducts'));
     }
 }

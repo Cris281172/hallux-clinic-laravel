@@ -15,7 +15,7 @@ import DashboardLayout from '../../../../layouts/dashboard-layout.jsx';
 import { callToApi } from '../../../../utils/api/callToApi.js';
 import toSlug from '../../../../utils/toSlug.js';
 
-const EditProduct = ({ product, categories }) => {
+const EditProduct = ({ product, categories, similarProducts }) => {
     const { data, setData, errors, processing, post } = useForm({
         name: product.name || '',
         slug: product.slug || '',
@@ -27,7 +27,7 @@ const EditProduct = ({ product, categories }) => {
         images: product.images,
         attributes: product.attributes,
         variants: product.variants,
-        similar: product.similar_products,
+        similar: similarProducts,
     });
     const handleSubmit = (e) => {
         e.preventDefault();

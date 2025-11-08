@@ -8,7 +8,6 @@ import DashboardLayout from '../../../../layouts/dashboard-layout.jsx';
 import getR2Url from '../../../../utils/getR2Url.js';
 
 const GetAllProducts = ({ products }) => {
-    console.log(products);
     return (
         <DashboardLayout>
             <Heading title={'Wszystkie produkty'} />
@@ -33,6 +32,9 @@ const GetAllProducts = ({ products }) => {
                                     </DropdownMenuItem>
                                     <DropdownMenuItem asChild>
                                         <Link href={route('dashboard.product.edit.view', { id: product.id })}>Edytuj produkt</Link>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem asChild>
+                                        <Link href={route('dashboard.product.clone.view', { id: product.id })}>Klonowanie</Link>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem>
                                         <a target={'_blank'} href={`/sklep/produkty/${product.slug}`}>

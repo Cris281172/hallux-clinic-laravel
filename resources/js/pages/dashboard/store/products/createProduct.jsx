@@ -19,7 +19,6 @@ import { callToApi } from '../../../../utils/api/callToApi.js';
 import toSlug from '../../../../utils/toSlug.js';
 
 const CreateProduct = ({ categories }) => {
-    console.log(categories);
     const { data, setData, errors, processing, post } = useForm({
         name: '',
         slug: '',

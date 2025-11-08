@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\Dashboard\GalleryController;
 use App\Http\Controllers\Web\Dashboard\InvoiceController;
 use App\Http\Controllers\Web\Dashboard\PatientController;
 use App\Http\Controllers\Web\Dashboard\PostController;
+use App\Http\Controllers\Web\Dashboard\PromotionController;
 use App\Http\Controllers\Web\Dashboard\RoleController;
 use App\Http\Controllers\Web\Dashboard\UserManagement;
 use App\Http\Controllers\Web\Dashboard\VariantController;
@@ -36,6 +37,11 @@ use App\Http\Middleware\AdminAccessMiddleware;
 use App\Http\Controllers\Api\Dashboard\Store\ProductController as ProductControllerAPI;
 use App\Http\Controllers\Api\Dashboard\Store\AttributeController as AttributeControllerAPI;
 use App\Http\Controllers\Api\Dashboard\Store\VariantController as VariantControllerAPI;
+use App\Http\Controllers\Web\Store\OrderController;
+use App\Http\Controllers\Web\Dashboard\UserController;
+use App\Http\Controllers\Web\Dashboard\CartItemController;
+use App\Http\Controllers\Api\Store\ShippingMethodController as ShippingMethodControllerAPI;
+use App\Http\Controllers\Web\Store\PaymentController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -84,6 +90,23 @@ Route::group(['prefix' => 'sklep'], function () {
 
    });
 
+   Route::get('/zamowienie', [OrderController::class, 'getOrderView'])->name('store.order.get.view');
+
+   Route::group(['prefix' => 'order'], function () {
+
+       Route::post('/account', [OrderController::class, 'account'])->name('store.order.account');
+
+       Route::post('/delivery-details', [OrderController::class, 'deliveryDetails'])->name('store.order.delivery.details');
+
+       Route::post('/shipping-method', [OrderController::class, 'shippingMethod'])->name('store.order.shipping.method');
+
+       Route::post('/create-order', [OrderController::class, 'createOrder'])->name('store.order.create');
+
+   });
+
+    Route::get('/platnosc/{uuid}', [PaymentController::class, 'getPaymentView'])->name('store.payment.get.view');
+
+
 });
 
 Route::get('/404', [PageController::class, 'notFound'])->name('notFound');
@@ -112,6 +135,16 @@ Route::prefix('api')->name('api.')->group(function (){
         Route::prefix('cart')->name('cart.')->group(function () {
 
            Route::post('get-products', [CartControllerAPI::class, 'getCartProducts'])->name('get.products');
+
+           Route::post('update', [CartControllerAPI::class, 'cartUpdate'])->name('update');
+
+           Route::post('add-products', [CartControllerAPI::class, 'addToCart'])->name('add.products');
+
+        });
+
+        Route::prefix('shipping-methods')->name('shipping-methods.')->group(function () {
+
+            Route::get('get/{id}', [ShippingMethodControllerAPI::class, 'getShippingMethods'])->name('get');
 
         });
 
@@ -461,6 +494,8 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
 
                 Route::post('edit/{id}', [ProductController::class, 'editProduct'])->name('dashboard.product.edit');
 
+                Route::get('clone/{id}', [ProductController::class, 'cloneProductView'])->name('dashboard.product.clone.view');
+
             });
 
             Route::group(['prefix' => 'categories'], function (){
@@ -502,6 +537,28 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
                 Route::get('edit/{id}', [AttributeController::class, 'editAttributeView'])->name('dashboard.attribute.edit.view');
 
                 Route::post('edit/{id}', [AttributeController::class, 'editAttribute'])->name('dashboard.attribute.edit');
+
+            });
+
+            Route::group(['prefix' => 'users'], function (){
+
+               Route::get('get/all', [UserController::class, 'getUsers'])->name('dashboard.user.get.all');
+
+               Route::get('delete/{id}', [UserController::class, 'deleteUser'])->name('dashboard.user.delete');
+
+               Route::get('details/{id}', [UserController::class, 'getUserDetails'])->name('dashboard.user.details');
+
+            });
+
+            Route::group(['prefix' => "promotions"], function (){
+
+                Route::get('create', [PromotionController::class, 'createPromotionView'])->name('dashboard.promotion.create.view');
+
+            });
+
+            Route::group(['prefix' => 'cart-items'], function (){
+
+                Route::get('delete-item/{id}', [CartItemController::class, 'deleteCartItem'])->name('dashboard.cart-item.delete');
 
             });
         });

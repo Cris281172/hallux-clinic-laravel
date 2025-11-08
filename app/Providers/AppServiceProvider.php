@@ -9,12 +9,15 @@ use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Gate;
 use App\Models\User;
+use Illuminate\Cookie\Middleware\EncryptCookies;
 class AppServiceProvider extends ServiceProvider
 {
     protected $policies = [];
 
     public function boot(): void
     {
+        EncryptCookies::except('cart');
+
         VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
             return (new MailMessage)
                 ->subject('Potwierdź e-mail')

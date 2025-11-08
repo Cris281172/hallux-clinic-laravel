@@ -34,7 +34,6 @@ function SortableItem({ id, url, onRemove, isMain }) {
 
 export default function SortableGallery({ images, setImages }) {
     const [idCounter, setIdCounter] = useState(0);
-    console.log('img', images);
     const handleAddImages = (e) => {
         const files = Array.from(e.target.files);
         const newImages = files.map((file, idx) => ({

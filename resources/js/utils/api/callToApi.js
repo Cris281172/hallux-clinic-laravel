@@ -9,6 +9,7 @@ export const callToApi = async ({ url, method = 'GET', data = null, headers = {}
                 ...headers,
             },
             body: data ? JSON.stringify(data) : null,
+            credentials: 'include',
         };
 
         if (method.toUpperCase() === 'GET') {

@@ -526,3 +526,13 @@
     object-fit: cover !important;
     aspect-ratio: 1/1;
 }
+
+.radio-dot:checked::after {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #4B0082; /* Twój kolor */
+    border-radius: 50%;
+    margin: auto;
+}

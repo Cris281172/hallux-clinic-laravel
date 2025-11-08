@@ -47,7 +47,6 @@ const CreateCategory = ({ categories }) => {
         ));
     };
 
-    console.log(data);
     return (
         <DashboardLayout>
             <Heading title={'Dodawanie kategorii do sklepu'} />

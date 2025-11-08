@@ -6,7 +6,6 @@ import AuthDialog from './auth/auth-dialog.jsx';
 import CartSheet from './cart/cart-sheet.jsx';
 const StoreHeader = () => {
     const { url, props } = usePage();
-    console.log(props);
     const params = new URLSearchParams(url.split('?')[1] || '');
     const openDialog = (type) => {
         params.set('auth', type);
@@ -23,6 +22,7 @@ const StoreHeader = () => {
                             <img src={logoImage} alt="Logo" className="w-50 md:w-60" />
                         </Link>
                         <div className={'flex items-center gap-3'}>
+                            <Link href={route('store.products')}>Odkryj produkty</Link>
                             {props.auth.user ? (
                                 <Button variant={'ghost'} asChild>
                                     <Link href={'/profile'}>

@@ -9,7 +9,6 @@ import SubpageLayoutContainer from '../../components/subpage-layout-container.js
 import StoreLayout from '../../layouts/store-layout.jsx';
 
 const Products = ({ products, categories, parentCategory }) => {
-    console.log(categories);
     const { props } = usePage();
 
     const currentCategory = props.ziggy.location.slice(props.ziggy.location.lastIndexOf('/') + 1);

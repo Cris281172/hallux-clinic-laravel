@@ -4,7 +4,6 @@ import { Command, CommandGroup, CommandList } from '../../../../components/ui/co
 import DashboardLayout from '../../../../layouts/dashboard-layout.jsx';
 
 const GetAllCategories = ({ categories }) => {
-    console.log(categories);
     return (
         <DashboardLayout>
             <Heading title={'Wszystkie kategorie'} />

@@ -28,12 +28,23 @@ const SignUp = () => {
             <div className={'mb-5 flex flex-col gap-5'}>
                 <div className={'flex gap-5'}>
                     <div className="grid flex-1 gap-1">
-                        <Label htmlFor="name">Imię</Label>
-                        <Input value={data.name} name={'name'} placeholder={'Podaj imię'} onChange={(e) => setData('name', e.target.value)} />
+                        <Label className={'text-dark-plum'} htmlFor="name">
+                            Imię
+                        </Label>
+                        <Input
+                            className={'border-dark-plum text-black'}
+                            value={data.name}
+                            name={'name'}
+                            placeholder={'Podaj imię'}
+                            onChange={(e) => setData('name', e.target.value)}
+                        />
                     </div>
                     <div className="grid flex-1 gap-1">
-                        <Label htmlFor="name">Nazwisko</Label>
+                        <Label className={'text-dark-plum'} htmlFor="surname">
+                            Nazwisko
+                        </Label>
                         <Input
+                            className={'border-dark-plum text-black'}
                             value={data.surname}
                             name={'surname'}
                             placeholder={'Podaj nazwisko'}
@@ -41,13 +52,24 @@ const SignUp = () => {
                         />
                     </div>
                 </div>
-                <div className="grid flex-1 gap-1">
-                    <Label htmlFor="name">Email</Label>
-                    <Input value={data.email} name={'email'} placeholder={'Podaj email'} onChange={(e) => setData('email', e.target.value)} />
-                </div>
-                <div className="grid flex-1 gap-1">
-                    <Label htmlFor="name">Hasło</Label>
+                <div className="flex w-full flex-col gap-1.5">
+                    <Label className={'text-dark-plum'} htmlFor="email">
+                        Email
+                    </Label>
                     <Input
+                        className={'border-dark-plum text-black'}
+                        value={data.email}
+                        name={'email'}
+                        placeholder={'Podaj email'}
+                        onChange={(e) => setData('email', e.target.value)}
+                    />
+                </div>
+                <div className="flex w-full flex-col gap-1.5">
+                    <Label className={'text-dark-plum'} htmlFor="password">
+                        Hasło
+                    </Label>
+                    <Input
+                        className={'border-dark-plum text-black'}
                         value={data.password}
                         name={'password'}
                         placeholder={'Podaj hasło'}
@@ -56,14 +78,16 @@ const SignUp = () => {
                 </div>
             </div>
             <div className="mb-3 flex gap-2">
-                <Checkbox id="terms" />
-                <Label htmlFor="terms">Zgadzam się na Umowę Użytkowania oraz Politykę Prywatności Hallux Clinic.</Label>
+                <Checkbox className={'border-black'} id="terms" />
+                <Label className={'text-black'} htmlFor="terms">
+                    Zgadzam się na Umowę Użytkowania oraz Politykę Prywatności Hallux Clinic.
+                </Label>
             </div>
-            <Button className={'mb-3 w-full'} type={'submit'}>
+            <Button className={'mb-3 w-full'} type={'submit'} variant={'darkPlum'}>
                 Zarejestruj się
             </Button>
-            <Separator className={'mt-5 mb-5'} />
-            <div className={'flex justify-center gap-1'}>
+            <Separator className={'mt-5 mb-5 bg-red-200'} />
+            <div className={'flex justify-center gap-1 text-black'}>
                 <p>Masz konto?</p>
                 <Link className={'underline'}>Zaloguj się</Link>
             </div>

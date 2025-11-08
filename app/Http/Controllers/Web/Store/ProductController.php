@@ -23,8 +23,9 @@ class ProductController extends Controller
         return Inertia::render('store/products', compact('products', 'categories'));
     }
     public function getProduct($slug){
-        $product = Product::where('slug', $slug)->with('images', 'categories', 'variants', 'attributes', 'similarProducts')->first();
-        return Inertia::render('store/product', compact('product'));
+        $product = Product::where('slug', $slug)->with('images', 'categories', 'variants', 'attributes')->first();
+        $similarProducts = $product->similarProducts()->select(['is_active', 'name', 'price', 'slug', 'type', 'categories', 'images']);
+        return Inertia::render('store/product', compact('product', 'similarProducts'));
     }
 
     public function getCategoryProducts($slug){

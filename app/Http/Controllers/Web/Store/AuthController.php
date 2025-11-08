@@ -6,6 +6,8 @@ use App\Events\MessageSent;
 use App\Events\UserVerified;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Store\Cart;
+use App\Models\Store\CartItem;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -26,6 +28,27 @@ class AuthController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+
+        if ($request->hasCookie('cart')) {
+            $userCart = Cart::create([
+                "user_id" => $user->id,
+                "status" => 'new'
+            ]);
+            $cart = json_decode($request->cookie('cart'), true);
+
+            if (!empty($cart)) {
+                foreach ($cart as $item) {
+                    CartItem::create([
+                        "product_id" => $item["id"],
+                        "cart_id" => $userCart->id,
+                        "quantity" => $item["quantity"],
+                    ]);
+                }
+            }
+
+            cookie()->queue(cookie()->forget('cart'));
+        }
 
         return redirect()->to('/sklep?auth=weryfikacja');
     }

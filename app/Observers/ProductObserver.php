@@ -14,7 +14,7 @@ class ProductObserver
 {
     public function deleted(Product $product): void
     {
-        $product->similarProducts()->detach();
+        $product->similarProductsObserver()->detach();
         $product->variants()->detach();
         $product->attributes()->detach();
         $product->categories()->detach();

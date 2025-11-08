@@ -218,6 +218,30 @@ const sidebarItemsConfig = [
                     },
                 ],
             },
+            {
+                title: 'Użytkownicy',
+                url: 'dashboard',
+                permission: 'dodawanie voucherów', //TODO zmiana permisji
+                children: [
+                    {
+                        title: 'Wszyscy',
+                        url: 'dashboard.user.get.all',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                ],
+            },
+            {
+                title: 'Promocje',
+                url: 'dashboard',
+                permission: 'dodawanie voucherów', //TODO zmiana permisji
+                children: [
+                    {
+                        title: 'Dodawanie',
+                        url: 'dashboard.promotion.create.view',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                ],
+            },
         ],
     },
 ];

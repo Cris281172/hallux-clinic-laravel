@@ -7,7 +7,7 @@ use App\Http\Requests\SendContactFormRequest;
 use App\Models\ContactMessage;
 use App\Notifications\SendContactFormNotification;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Http\Request;
+
 class MailController extends Controller
 {
     public function sendContactForm(SendContactFormRequest $request){
