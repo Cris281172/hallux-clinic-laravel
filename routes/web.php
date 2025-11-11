@@ -42,6 +42,7 @@ use App\Http\Controllers\Web\Dashboard\UserController;
 use App\Http\Controllers\Web\Dashboard\CartItemController;
 use App\Http\Controllers\Api\Store\ShippingMethodController as ShippingMethodControllerAPI;
 use App\Http\Controllers\Web\Store\PaymentController;
+use App\Http\Controllers\Api\Dashboard\VisitStatusController as VisitStatusControllerAPI;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -166,7 +167,11 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
 
             });
 
+            Route::get('/get/search', [PatientControllerAPI::class, 'searchPatients'])->name('get.search');
+
             Route::get('/get/all', [PatientControllerAPI::class, 'getAllPatients'])->name('get.all');
+
+            Route::get('/get/{id}', [PatientControllerAPI::class, 'getPatient'])->name('get');
 
         });
 
@@ -195,6 +200,10 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
                 Route::get('/get/all', [VariantControllerAPI::class, 'getAllVariants'])->name('get.all');
 
             });
+
+        Route::prefix('visit-status')->name('visit.status.')->group(function () {
+
+           Route::get('/get/all', [VisitStatusControllerAPI::class, 'getVisitStatuses'])->name('get.all');
 
         });
 

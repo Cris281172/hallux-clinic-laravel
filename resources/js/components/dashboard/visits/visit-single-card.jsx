@@ -21,7 +21,7 @@ const VisitSingleCard = ({ children, visit }) => {
                 </div>
                 <div className={'flex items-center gap-1'}>
                     <FaUserDoctor className={'text-sm text-blue-700'} />
-                    <p>Lekarz: {visit.user?.name}</p>
+                    <p>Pracownik: {visit.user?.name}</p>
                 </div>
                 <div className={'flex items-center gap-1'}>
                     <FaUser className={'text-sm'} />

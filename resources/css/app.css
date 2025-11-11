@@ -517,7 +517,6 @@
     @apply max-w-full rounded-lg my-4;
 }
 
-
 .image-gallery-image {
     object-fit: cover !important;
     aspect-ratio: 1/1;
@@ -532,7 +531,26 @@
     display: block;
     width: 0.5rem;
     height: 0.5rem;
-    background-color: #4B0082; /* Twój kolor */
+    background-color: #4B0082; 
     border-radius: 50%;
     margin: auto;
 }
+=======
+.fixed-gallery .image-gallery-content .image-gallery-slide img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover; 
+    background-color: #f8f8f8; 
+}
+
+.fixed-gallery .image-gallery-content.fullscreen .image-gallery-slide img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+    background-color: transparent;
+}
+
+.image-gallery-thumbnail .image-gallery-thumbnail-image{
+    aspect-ratio: 1/1;
+}
+

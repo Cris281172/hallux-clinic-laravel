@@ -1,8 +1,8 @@
-import { Book, Home, Image, ShoppingCart } from 'lucide-react';
+import { Book, Calendar, Home, Image, Shield, User, ShoppingCart } from 'lucide-react';
 
 const sidebarItemsConfig = [
     {
-        title: 'Dashboard',
+        title: 'Strona główna',
         url: 'dashboard',
         icon: Home,
     },
@@ -50,7 +50,7 @@ const sidebarItemsConfig = [
     {
         title: 'Pacjenci',
         url: 'dashboard.patient',
-        icon: Image,
+        icon: User,
         permissions: ['dodawanie pacjentów', 'wyświetlanie wszystkich pacjentów'],
         children: [
             {
@@ -68,7 +68,7 @@ const sidebarItemsConfig = [
     {
         title: 'Wizyty',
         url: 'dashboard.visit',
-        icon: Image,
+        icon: Calendar,
         permissions: ['dodawanie wizyt', 'wyświetlanie wszystkich wizyt'],
         children: [
             {
@@ -89,7 +89,7 @@ const sidebarItemsConfig = [
     {
         title: 'Zarządzanie użytkownikami',
         url: 'dashboard',
-        icon: Image,
+        icon: Shield,
         permissions: ['dodawnie użytkowników', 'wyświetlanie wszystkich użytkowników', 'wyświetlanie wszystkich ról', 'dodawanie ról'],
         children: [
             {

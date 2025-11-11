@@ -7,14 +7,14 @@ import StatusPatient from '../status-patient.jsx';
 
 const PatientSingleCard = ({ patient, children, visitInfoVisible = true }) => {
     return (
-        <Card className={'rounded-xl border-1 p-8'}>
+        <Card className={'relative rounded-xl border-1 px-8 py-12'}>
             <div className={` ${visitInfoVisible ? 'mb-4 border-b-1 pb-4' : ''} `}>
                 <div className={'flex items-center justify-between'}>
                     <h3 className={'text-xl font-bold'}>{patient.full_name}</h3>
                     <StatusPatient status={patient.status} />
                 </div>
                 <div>
-                    Data urodzenia: {patient.birth_date} ({ageFromDate(patient.birth_date)} lat)
+                    Data urodzenia: {formatDatePolish(patient.birth_date, false)} ({ageFromDate(patient.birth_date)} lat)
                 </div>
                 <ul>
                     <li className={'flex items-center gap-1'}>

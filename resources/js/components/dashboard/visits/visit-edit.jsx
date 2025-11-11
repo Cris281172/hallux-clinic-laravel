@@ -1,9 +1,10 @@
-import { useForm, usePage } from '@inertiajs/react';
+import { useForm } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+
 import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
 import FormError from '../../form-error.jsx';
 import { Button } from '../../ui/button.tsx';
-import { Checkbox } from '../../ui/checkbox.js';
+import { Checkbox } from '../../ui/checkbox.tsx';
 import { Input } from '../../ui/input.tsx';
 import { Label } from '../../ui/label.tsx';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../ui/select.tsx';
@@ -11,35 +12,27 @@ import { Textarea } from '../../ui/textarea.tsx';
 import PatientSelect from '../patinets/patient-select.jsx';
 import DatetimeVisit from './datetime-visit.jsx';
 
-const VisitCreate = ({ children, patientID, onSuccess, allowWithoutPatient = true, selectPatientVisible }) => {
-    const { props } = usePage();
-    const [visitWithoutPatient, setVisitWithoutPatient] = useState(false);
-    const userID = props.auth.user.id;
-    const [visitStatuses, setVisitStatuses] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [reminderVisible, setReminderVisible] = useState(false);
-    const { data, setData, post, errors, processing } = useForm({
-        description: '',
-        patientID: patientID,
-        date: undefined,
-        statusID: '1',
-        price: '',
-        userID: users.find((item) => item.id === userID) ? userID : '',
-        phone: '',
-    });
-
-    console.log(data);
-
+const VisitEdit = ({ visit, children, allowWithoutPatient = true, selectPatientVisible, onSuccess }) => {
     const [availableTimes, setAvailableTimes] = useState([]);
-
-    useEffect(() => {
-        setData('patientID', patientID);
-    }, [patientID]);
+    const [visitStatuses, setVisitStatuses] = useState([]);
+    const [reminderVisible, setReminderVisible] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [visitWithoutPatient, setVisitWithoutPatient] = useState(false);
+    const { data, setData, post, errors, processing } = useForm({
+        description: visit.description,
+        patientID: visit.patient_id,
+        date: visit.date,
+        userID: visit.user_id,
+        statusID: `${visit.status_id}`,
+        price: '',
+    });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('dashboard.visit.create'), {
-            onSuccess: () => onSuccess(),
+        post(route('dashboard.visit.edit', visit.id), {
+            onSuccess: () => {
+                onSuccess();
+            },
         });
     };
 
@@ -158,11 +151,13 @@ const VisitCreate = ({ children, patientID, onSuccess, allowWithoutPatient = tru
                             </div>
                         </div>
                     )}
-                    {selectPatientVisible && <PatientSelect patientID={data.patientID} onSelect={(value) => setData('patientID', value)} />}
+                    {selectPatientVisible && (
+                        <PatientSelect patientID={data.patientID} onSelect={(value) => setData('patientID', value)} visit={visit} />
+                    )}
                 </div>
 
                 <Button disabled={(!data.patientID && !visitWithoutPatient) || processing} type={'submit'} className={'mt-5'}>
-                    Dodaj wizytę
+                    Edytuj wizytę
                 </Button>
             </form>
             {children}
@@ -170,4 +165,4 @@ const VisitCreate = ({ children, patientID, onSuccess, allowWithoutPatient = tru
     );
 };
 
-export default VisitCreate;
+export default VisitEdit;

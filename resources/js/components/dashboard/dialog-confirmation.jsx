@@ -15,7 +15,7 @@ const DialogConfirmation = ({ title, text, handleConfirmation, confirmationAlert
     };
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={setOpen} modal={false}>
             <DialogTrigger asChild>{children}</DialogTrigger>
             <DialogContent showCloseButton={true} className="sm:max-w-[650px]">
                 <DialogHeader>

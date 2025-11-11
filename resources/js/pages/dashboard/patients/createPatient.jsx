@@ -1,5 +1,6 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useForm } from '@inertiajs/react';
+import { Star } from 'lucide-react';
 import { toast } from 'sonner';
 import DateBirthday from '../../../components/dashboard/patinets/date-birthday.jsx';
 import FormError from '../../../components/form-error.jsx';
@@ -11,6 +12,7 @@ import { Label } from '../../../components/ui/label.js';
 import { Textarea } from '../../../components/ui/textarea.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 import formatToMySQLDateTime from '../../../utils/formatToMySQLDateTime.js';
+
 const CreatePatient = ({ statuses }) => {
     const { data, setData, processing, post, errors } = useForm({
         fullName: '',
@@ -38,10 +40,15 @@ const CreatePatient = ({ statuses }) => {
     return (
         <DashboardLayout>
             <Heading title={'Dodaj pacjenta'} />
+            <p className={'mb-3 text-right text-xs text-gray-300'}>
+                <Star className="inline h-2 w-2 fill-white text-white" /> - wymagane pola
+            </p>
             <form onSubmit={handleSubmit} className="space-y-8">
                 <div className={'grid grid-cols-2 gap-4'}>
                     <div className="flex w-full flex-col gap-1.5">
-                        <Label htmlFor="fullName">Imię i nazwisko</Label>
+                        <Label requiredStar={true} htmlFor="fullName">
+                            Imię i nazwisko
+                        </Label>
                         <Input
                             value={data.fullName}
                             onChange={(e) => setData('fullName', e.target.value)}
@@ -87,12 +94,16 @@ const CreatePatient = ({ statuses }) => {
                 </div>
                 <div className={'grid grid-cols-2 gap-4'}>
                     <div className="flex w-full flex-col gap-1.5">
-                        <Label htmlFor="birthdate">Data urodzenia</Label>
+                        <Label requiredStar={true} htmlFor="birthdate">
+                            Data urodzenia
+                        </Label>
                         <DateBirthday selected={data.birthdate} onChange={(date) => setData('birthdate', formatToMySQLDateTime(date))} />
                         <FormError id="birthdate-error" message={errors.birthdate} />
                     </div>
                     <div className="flex w-full flex-col gap-1.5">
-                        <Label htmlFor="age">Płeć</Label>
+                        <Label requiredStar={true} htmlFor="age">
+                            Płeć
+                        </Label>
                         <Select onValueChange={(value) => setData('gender', value)}>
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Wybierz płeć pacjenta" />
@@ -149,13 +160,7 @@ const CreatePatient = ({ statuses }) => {
                     <Checkbox onCheckedChange={(value) => setData('patientCard', value)} id="patientCard" />
                     <Label htmlFor="patientCard">Karta pacjenta wypełniona</Label>
                 </div>
-                {/*<div className="w-full">*/}
-                {/*    <Label htmlFor="image">Zdjęcie</Label>*/}
-                {/*    <div className={'grid grid-cols-2 gap-4'}>*/}
-                {/*        <Input id="image" type="file" onChange={handleFileChange} />*/}
-                {/*        <img className={'aspect-square w-full max-w-100 object-cover'} src={blobImagePreview} />*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+
                 <Button type="submit" disabled={processing}>
                     Dodaj pacjenta
                 </Button>

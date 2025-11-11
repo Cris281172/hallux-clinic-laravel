@@ -105,9 +105,10 @@
 
         .price {
             margin-bottom: 50px;
-
-            line-height: 70px;
-            font-size: 90px;
+            line-height: 50px;
+            text-transform: lowercase;
+            font-weight: 200;
+            font-size: 30px;
             font-style: italic;
         }
 
@@ -138,7 +139,7 @@
         </div>
         <div class="contact-info">
             ul. Armii krajowej 44 <br />
-            Monika juczyńska <br />
+            Hallux Clinic <br />
             +48 459 410 096
         </div>
     </div>
@@ -161,7 +162,7 @@
         </div>
 
         <div class="contact-info">
-            Voucher jest ważny do {{$voucher->valid_to_formatted}}<br />
+            Ważny do {{$voucher->valid_to_formatted}}<br />
             Nr: {{ $voucher->code }} <br />
             www.hallux.clinic
         </div>

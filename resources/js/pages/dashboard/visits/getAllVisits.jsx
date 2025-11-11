@@ -1,9 +1,10 @@
 import { Link, router, usePage } from '@inertiajs/react';
 import { pl } from 'date-fns/locale';
-import { Ban, Settings } from 'lucide-react';
+import { Ban, Settings, Trash } from 'lucide-react';
 import React, { useState } from 'react';
 import { route } from 'ziggy-js';
 import DetailsWindow from '../../../components/dashboard/details-window.jsx';
+import DialogConfirmation from '../../../components/dashboard/dialog-confirmation.jsx';
 import VisitSingleCard from '../../../components/dashboard/visits/visit-single-card.jsx';
 import Heading from '../../../components/heading.js';
 import {
@@ -28,7 +29,6 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
 const GetAllVisits = ({ visits, date, users, user_id }) => {
     const { props } = usePage();
-
     const permissions = props.userPermissions;
     const [infoOpen, setInfoOpen] = useState(null);
     const [userFilter, setUserFilter] = useState(user_id?.toString() ?? 'all');
@@ -56,7 +56,10 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
         <DashboardLayout>
             <Heading title={'Wszystkie wizyty'} />
             <div className={'flex w-full flex-col gap-1'}>
-                <div className={'flex w-full flex-col gap-1.5'}>
+                <div className={'flex w-full justify-center'}>
+                    <Calendar className={'w-1/4'} locale={pl} mode="single" selected={parseDate(date)} onSelect={handleSelect} />
+                </div>
+                <div className={'flex flex-col gap-1.5'}>
                     <Label>Lekarz</Label>
                     <Select defaultValue={userFilter} onValueChange={handleUserChange}>
                         <SelectTrigger className="w-full">
@@ -74,7 +77,6 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                         </SelectContent>
                     </Select>
                 </div>
-                <Calendar locale={pl} mode="single" selected={parseDate(date)} onSelect={handleSelect} />
             </div>
             <div className={'mt-5'}>
                 {visits && visits.length !== 0 ? (
@@ -84,7 +86,15 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                             .map((visit, index) => (
                                 <React.Fragment key={index}>
                                     <VisitSingleCard visit={visit}>
-                                        <div className={'absolute top-0 right-0 m-2'}>
+                                        <div className={'absolute top-0 right-0 m-2 flex gap-2'}>
+                                            <DialogConfirmation
+                                                title={'Potwierdź usunięcie wizyty'}
+                                                text={`Czy na pewno chcesz usunąć wizytę pacjenta ${visit.patient.full_name}?`}
+                                                confirmationAlert={'Usnięto wizytę'}
+                                                handleConfirmation={() => router.get(route('dashboard.visit.delete', visit.id))}
+                                            >
+                                                <Trash className={'text-red-600'} />
+                                            </DialogConfirmation>
                                             <DropdownMenu>
                                                 <DropdownMenuTrigger className={'cursor-pointer'}>
                                                     <Settings />

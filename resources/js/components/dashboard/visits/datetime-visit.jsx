@@ -48,7 +48,7 @@ const DatetimeVisit = ({ selected, onChange, data, setAvailableTimes, availableT
             timeIntervals={15}
             timeFormat="HH:mm"
             dateFormat="dd-MM-yyyy HH:mm"
-            className="border-input bg-background placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-sm shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+            className="border-input placeholder:text-muted-foreground focus-visible:ring-ring w-full rounded-md border px-3 py-2 text-sm shadow-sm focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
             placeholderText={data.userID ? 'Wybierz datę i godzinę' : 'WYBÓR LEKARZA WYMAGANY!'}
         />
     );

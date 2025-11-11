@@ -36,11 +36,7 @@ class VisitController extends Controller
         return Inertia::render('dashboard/visits/index', compact('futureVisits'));
     }
     public function createVisitView(){
-        $users = User::whereHas('roles', function ($query) {
-            $query->where('name', 'Doktor');
-        })->get();
-        $statuses = VisitStatus::all();
-        return Inertia::render('dashboard/visits/createVisit', compact('statuses', 'users'));
+        return Inertia::render('dashboard/visits/createVisit');
     }
     public function createVisit(VisitCreateRequest $request){
 

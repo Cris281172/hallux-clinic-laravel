@@ -42,7 +42,8 @@ class PageController extends Controller
         return Inertia::render('serviceCategory', compact('category'));
     }
     public function service(string $category, string $service){
-        return Inertia::render('service', compact('category', 'service'));
+        $images = GalleryPhoto::where('service', $service)->get();
+        return Inertia::render('service', compact('category', 'service', 'images'));
     }
     public function notFound(){
         return Inertia::render('notFound');
