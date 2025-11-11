@@ -184,11 +184,11 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
 
             });
 
-            Route::prefix('visit-status')->name('visit.status.')->group(function () {
+        });
 
-                Route::get('/get/all', [VisitStatusControllerAPI::class, 'getVisitStatuses'])->name('get.all');
+        Route::prefix('visit-status')->name('visit.status.')->group(function () {
 
-            });
+            Route::get('/get/all', [VisitStatusControllerAPI::class, 'getVisitStatuses'])->name('get.all');
 
         });
     });
