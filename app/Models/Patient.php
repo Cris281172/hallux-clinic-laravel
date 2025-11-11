@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use App\Observers\PatientObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
-use App\Models\PatientStatus;
-
-use App\Models\Visit;
-
+#[ObservedBy(PatientObserver::class)]
 class Patient extends Model
 {
     use HasFactory;

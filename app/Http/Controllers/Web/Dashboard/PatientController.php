@@ -81,14 +81,9 @@ class PatientController extends Controller
     }
     public function getAllPatients(Request $request)
     {
-        $users = User::whereHas('roles', function ($query) {
-            $query->where('name', 'Doktor');
-        })->get();
         $data = $this->patientService->fetchPatientsData($request);
 
-        $statuses = PatientStatus::all();
-
-        return Inertia::render('dashboard/patients/getAllPatients', compact('data', 'statuses', 'users'));
+        return Inertia::render('dashboard/patients/getAllPatients', compact('data'));
     }
     public function deletePatient(string $id){
         $patient = Patient::findOrFail($id);

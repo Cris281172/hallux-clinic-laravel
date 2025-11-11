@@ -1,38 +1,30 @@
 import { Alert, AlertTitle } from '@/components/ui/alert';
-import { Link, router } from '@inertiajs/react';
-import { Ban, Edit, Trash } from 'lucide-react';
+import { router } from '@inertiajs/react';
+import { Ban, Settings, Trash } from 'lucide-react';
 import React, { useState } from 'react';
-import { FaCalendarAlt, FaEye } from 'react-icons/fa';
+import { route } from 'ziggy-js';
 import AppPagination from '../../../components/app-pagination.jsx';
-import DetailsWindow from '../../../components/dashboard/details-window.jsx';
+import DialogConfirmation from '../../../components/dashboard/dialog-confirmation.jsx';
+import FullPatientsInfoSheet from '../../../components/dashboard/patinets/get/full-patients-info-sheet.jsx';
 import PatientSingleCard from '../../../components/dashboard/patinets/patient-single-card.jsx';
-import VisitCreate from '../../../components/dashboard/visits/visit-create.jsx';
 import Heading from '../../../components/heading.js';
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '../../../components/ui/alert-dialog.js';
 import { Button } from '../../../components/ui/button.js';
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../../components/ui/dialog.js';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../components/ui/dropdown-menu.tsx';
 import { Input } from '../../../components/ui/input.js';
 import { Label } from '../../../components/ui/label.js';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select.js';
+import usePermissions from '../../../hooks/usePermissions.js';
 import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 
-const GetAllPatients = ({ data, statuses, users }) => {
+const GetAllPatients = ({ data }) => {
     const { patients, filters, visitStatuses } = data;
-
     const [statusID, setStatusID] = useState(filters.status_id || '');
     const [search, setSearch] = useState(filters.search || '');
     const [addVisitOpen, setAddVisitOpen] = useState(null);
     const [infoOpen, setInfoOpen] = useState(null);
+    const [optionsOpen, setOptionsOpen] = useState(null);
+
+    const { checkUserHasPermission } = usePermissions();
 
     return (
         <DashboardLayout>
@@ -69,7 +61,7 @@ const GetAllPatients = ({ data, statuses, users }) => {
                         <SelectContent>
                             <SelectGroup>
                                 <SelectItem value={null}>Brak</SelectItem>
-                                {statuses.map((status, index) => (
+                                {visitStatuses.map((status, index) => (
                                     <SelectItem key={index} value={`${status.id}`}>
                                         {status.name}
                                     </SelectItem>
@@ -81,74 +73,40 @@ const GetAllPatients = ({ data, statuses, users }) => {
                 <Button type={'submit'}>Wyszukaj pacjenta</Button>
             </form>
             {patients?.data.length !== 0 ? (
-                <div className={'grid grid-cols-2 gap-5'}>
+                <div className={'grid grid-cols-1 gap-5 xl:grid-cols-2'}>
                     {patients.data.map((patient, index) => (
                         <React.Fragment key={index}>
-                            <PatientSingleCard patient={patient}>
-                                <div className={'mt-5 grid w-full grid-cols-1 gap-4 lg:grid-cols-2 2xl:grid-cols-4'}>
-                                    <Button className={'flex-1 cursor-pointer'} asChild>
-                                        <Link href={route('dashboard.patient.edit.view', patient.id)}>
-                                            <Edit />
-                                            Edytuj pacjenta
-                                        </Link>
-                                    </Button>
-                                    <Dialog open={infoOpen === patient.id} onOpenChange={(value) => setInfoOpen(value ? patient.id : null)}>
-                                        <DialogTrigger asChild>
-                                            <Button className={'flex-1 cursor-pointer'}>
-                                                <FaEye />
-                                                Szczegóły
-                                            </Button>
-                                        </DialogTrigger>
-                                        <DialogContent className="sm:max-w-[900px]">
-                                            <DialogTitle>
-                                                <div>test</div>
-                                            </DialogTitle>
-                                            <DetailsWindow patient={patient} className="px-4" />
-                                        </DialogContent>
-                                    </Dialog>
+                            {infoOpen === patient.id && (
+                                <FullPatientsInfoSheet open={infoOpen === patient.id} setOpen={setInfoOpen} patientID={infoOpen} />
+                            )}
+                            {/*{infoOpen === patient.id && <DetailsWindow patient={patient} open={infoOpen === patient.id} setOpen={setInfoOpen} />}*/}
 
-                                    <Dialog open={addVisitOpen === patient.id} onOpenChange={(value) => setAddVisitOpen(value ? patient.id : null)}>
-                                        <DialogTrigger asChild>
-                                            <Button className={'flex-1 cursor-pointer'} variant={'outline'}>
-                                                <FaCalendarAlt />
-                                                Dodaj wizytę
-                                            </Button>
-                                        </DialogTrigger>
-                                        <DialogContent className="sm:max-w-[650px]">
-                                            <DialogTitle>
-                                                <div>test</div>
-                                            </DialogTitle>
-                                            <VisitCreate
-                                                patientID={patient.id}
-                                                statuesVisit={visitStatuses}
-                                                onSuccess={() => setAddVisitOpen(null)}
-                                                className="px-4"
-                                                users={users}
-                                            />
-                                        </DialogContent>
-                                    </Dialog>
-                                    <AlertDialog>
-                                        <AlertDialogTrigger asChild>
-                                            <Button variant="outline" className={'flex-1'}>
-                                                <Trash />
-                                                Usuń pacjenta
-                                            </Button>
-                                        </AlertDialogTrigger>
-                                        <AlertDialogContent>
-                                            <AlertDialogHeader>
-                                                <AlertDialogTitle>Czy jesteś pewna/y usunięcia pacjenta?</AlertDialogTitle>
-                                                <AlertDialogDescription>
-                                                    Ta czynność spowoduje trwałe usunięcie pacjenta bez możliwości jej przywrócenia.
-                                                </AlertDialogDescription>
-                                            </AlertDialogHeader>
-                                            <AlertDialogFooter>
-                                                <AlertDialogCancel>Anuluj</AlertDialogCancel>
-                                                <AlertDialogAction asChild>
-                                                    <Link href={route('dashboard.patient.delete', patient.id)}>Potwierdz</Link>
-                                                </AlertDialogAction>
-                                            </AlertDialogFooter>
-                                        </AlertDialogContent>
-                                    </AlertDialog>
+                            <PatientSingleCard patient={patient}>
+                                <div className={'absolute top-0 right-0 m-2 flex gap-2'}>
+                                    <DialogConfirmation
+                                        title={'Usunięcie pacjenta'}
+                                        text={`Czy na pewno chcesz usunąć pacjenta "${patient.name}"?`}
+                                        handleConfirmation={() => router.get(route('dashboard.patient.delete', patient.id))}
+                                        confirmationAlert={'Pacjent został usunięty'}
+                                    >
+                                        <Trash className={'text-red-600'} />
+                                    </DialogConfirmation>
+
+                                    <DropdownMenu open={optionsOpen === index} onOpenChange={(value) => setOptionsOpen(value ? index : null)}>
+                                        <DropdownMenuTrigger className={'cursor-pointer'}>
+                                            <Settings />
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent>
+                                            <DropdownMenuItem
+                                                onClick={() => {
+                                                    setInfoOpen(patient.id);
+                                                    setOptionsOpen(null);
+                                                }}
+                                            >
+                                                Szczegóły
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
                                 </div>
                             </PatientSingleCard>
                         </React.Fragment>

@@ -23,6 +23,7 @@ use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\Settings\PasswordController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Api\Dashboard\VisitStatusController as VisitStatusControllerAPI;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -77,13 +78,23 @@ Route::group(['middleware' => 'auth'], function (){
 
             });
 
+            Route::get('/get/search', [PatientControllerAPI::class, 'searchPatients'])->name('get.search');
+
             Route::get('/get/all', [PatientControllerAPI::class, 'getAllPatients'])->name('get.all');
+
+            Route::get('/get/{id}', [PatientControllerAPI::class, 'getPatient'])->name('get');
 
         });
 
         Route::prefix('visits')->name('visits.')->group(function () {
 
             Route::get('/get/all/{patientID}/patient', [VisitControllerAPI::class, 'getPatientVisits'])->name('get.all.patient.visits');
+
+        });
+
+        Route::prefix('visit-status')->name('visit.status.')->group(function () {
+
+           Route::get('/get/all', [VisitStatusControllerAPI::class, 'getVisitStatuses'])->name('get.all');
 
         });
 

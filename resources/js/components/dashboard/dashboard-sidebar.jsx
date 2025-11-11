@@ -1,17 +1,7 @@
-import {
-    Sidebar,
-    SidebarContent,
-    SidebarGroup,
-    SidebarGroupContent,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { Link, usePage } from '@inertiajs/react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@radix-ui/react-collapsible';
 import sidebarItemsConfig from '../../config/dashboard/sidebar-items-config.js';
-import { Button } from '../ui/button.js';
 import { SidebarFooter, SidebarMenuSub, SidebarMenuSubItem } from '../ui/sidebar.js';
 
 const DashboardSidebar = () => {
@@ -22,9 +12,8 @@ const DashboardSidebar = () => {
 
     return (
         <Sidebar>
-            <SidebarContent>
+            <SidebarContent className={'border-r-2 pt-20'}>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Panel Hallux Clinic</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {sidebarItemsConfig.map((item) => (
@@ -88,11 +77,9 @@ const DashboardSidebar = () => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter className="flex flex-col gap-2 border-t p-4">
-                <p className={'text-sm text-gray-400'}>Zalogowano: {user.name}</p>
-                <Button asChild variant="outline" className="flex-1">
-                    <Link href={route('logout')}>Wyloguj się</Link>
-                </Button>
+            <SidebarFooter className="flex flex-col gap-2 border-t-2 border-r-2 p-4">
+                <p className={'text-sm text-gray-400'}>Wersja: v.1.0.0</p>
+                <p className={'text-sm text-gray-400'}>Created By Krzysztof Juczyński</p>
             </SidebarFooter>
         </Sidebar>
     );

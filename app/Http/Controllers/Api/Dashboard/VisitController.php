@@ -10,9 +10,9 @@ class VisitController extends Controller
 {
     public function getPatientVisits(string $patientID){
         $visits = Visit::where('patient_id', $patientID)
-            ->with('status')
+            ->with('status', 'user')
             ->orderBy('date', 'desc')
-            ->paginate(40);
+            ->paginate(5);
         $statuses = VisitStatus::all();
         return response()->json(['visits' => $visits, 'statuses' => $statuses]);
     }

@@ -91,4 +91,29 @@ class PatientController extends Controller
 
         return response()->json($data);
     }
+    public function getPatient(string $id){
+        $patient = Patient::where('id', $id)->with('visits', 'status')->first();
+        $visits = $patient->visits;
+
+        $pastVisits = $visits->where('date','<', now());
+        $futureVisits = $visits->where('date','>=', now());
+        $patient->lastVisit = $pastVisits->sortByDesc('date')->first();
+        $patient->upcomingVisit = $futureVisits->sortBy('date')->first();
+        $patient->totalVisits = $visits->count();
+
+
+        return response()->json(['success' => true, 'data' => $patient]);
+    }
+    public function searchPatients(Request $request){
+        $query = Patient::query();
+
+        if ($search = $request->get('q')) {
+            $query->where(function($q) use ($search) {
+                $q->where('full_name', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%");
+            });
+        }
+
+        return response()->json(['success' => true, 'data' => $query->take(5)->get()]);
+    }
 }
