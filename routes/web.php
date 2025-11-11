@@ -153,7 +153,7 @@ Route::prefix('api')->name('api.')->group(function (){
 
 });
 
-Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function (){
+Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function () {
 
     Route::prefix('api')->name('api.dashboard.')->group(function () {
 
@@ -201,379 +201,380 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
 
             });
 
-        Route::prefix('visit-status')->name('visit.status.')->group(function () {
+            Route::prefix('visit-status')->name('visit.status.')->group(function () {
 
-           Route::get('/get/all', [VisitStatusControllerAPI::class, 'getVisitStatuses'])->name('get.all');
+                Route::get('/get/all', [VisitStatusControllerAPI::class, 'getVisitStatuses'])->name('get.all');
+
+            });
+
+        });
+
+        Route::prefix('auth')->group(function () {
+
+            Route::get('logout', [AuthController::class, 'destroy'])->name('logout');
+
+        });
+
+        Route::group(['prefix' => 'dashboard'], function () {
+
+            Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+            Route::group(['prefix' => 'password'], function () {
+
+                Route::post('/update', [PasswordController::class, 'update'])->name('password.update');
+
+            });
+
+            Route::group(['prefix' => 'gallery'], function () {
+
+                Route::group(['middleware' => ['can:dodawanie zdjęc do galerii']], function () {
+
+                    Route::get('/upload', [GalleryController::class, 'uploadImageView'])->name('dashboard.gallery.upload.view');
+
+                    Route::post('/upload', [GalleryController::class, 'uploadImage'])->name('dashboard.gallery.upload');
+
+                });
+
+                Route::group(['middleware' => ['can:wyświetlanie wszystkich zdjęć w galerii']], function () {
+
+                    Route::get('get/all', [GalleryController::class, 'getAllImages'])->name('dashboard.gallery.get.all');
+
+                });
+
+                //TODO: delete permission
+
+                Route::delete('delete/{id}', [GalleryController::class, 'deleteImage'])->name('dashboard.gallery.delete.image');
+
+            });
+
+            Route::group(['prefix' => 'blog'], function () {
+
+                Route::group(['prefix' => 'post'], function () {
+
+                    Route::group(['middleware' => ['can:dodawanie wpisów na bloga']], function () {
+
+                        Route::get('create', [PostController::class, 'createPostView'])->name('dashboard.blog.post.create.view');
+
+                        Route::post('create', [PostController::class, 'createPost'])->name('dashboard.blog.post.create');
+
+                    });
+
+                    Route::group(['middleware' => ['can:wyświetlanie wszystkich wpisów na blogu']], function () {
+
+                        Route::get('get/all', [PostController::class, 'getAllPosts'])->name('dashboard.blog.post.get.all');
+
+                    });
+
+                    Route::group(['middleware' => ['can:usuwanie wpisów na blogu']], function () {
+
+                        Route::delete('delete/{id}', [PostController::class, 'deletePost'])->name('dashboard.blog.post.delete');
+
+                    });
+
+
+                    Route::group(['middleware' => ['can:edytowanie wpisów na blogu']], function () {
+
+                        Route::get('edit/{id}', [PostController::class, 'editPostView'])->name('dashboard.blog.post.edit.view');
+
+                        Route::post('edit/{id}', [PostController::class, 'editPost'])->name('dashboard.blog.post.edit');
+
+                    });
+
+                });
+
+                Route::group(['prefix' => 'comment'], function () {
+
+                    Route::group(['middleware' => ['can:wyświetlanie wszystkich komentarzy']], function () {
+
+                        Route::get('get/all', [CommentController::class, 'getAllComments'])->name('dashboard.blog.comment.get.all');
+
+                    });
+
+                    //TODO: edit/change-published permission
+
+                    Route::get('delete/{id}', [CommentController::class, 'deleteComment'])->name('dashboard.blog.comment.delete');
+
+                    Route::get('change-published/{id}/{published}', [CommentController::class, 'changePublished'])->name('dashboard.blog.comment.change.published');
+
+                });
+
+            });
+
+            Route::group(['prefix' => 'patients'], function () {
+
+                Route::get('/', [PatientController::class, 'index'])->name('dashboard.patient');
+
+                Route::group(['middleware' => ['can:dodawanie pacjentów']], function () {
+
+                    Route::get('/create', [PatientController::class, 'createPatientView'])->name('dashboard.patient.create.view');
+
+                    Route::post('/create', [PatientController::class, 'createPatient'])->name('dashboard.patient.create');
+
+                });
+
+                Route::group(['middleware' => ['can:wyświetlanie wszystkich pacjentów']], function () {
+
+                    Route::get('/get/all', [PatientController::class, 'getAllPatients'])->name('dashboard.patient.get.all');
+
+                });
+
+                //TODO: edit permission and move /get/all/json to api.php file
+
+                Route::get('/delete/{id}', [PatientController::class, 'deletePatient'])->name('dashboard.patient.delete');
+
+                Route::get('/edit/{id}', [PatientController::class, 'editPatientView'])->name('dashboard.patient.edit.view');
+
+                Route::post('/edit/{id}', [PatientController::class, 'editPatient'])->name('dashboard.patient.edit');
+
+                Route::get('/get/all/json', [PatientController::class, 'getAllPatientsJson'])->name('dashboard.patient.get.all.json');
+
+            });
+
+            Route::group(['prefix' => 'visits'], function () {
+
+                Route::group(['middleware' => ['can:dodawanie wizyt']], function () {
+
+                    Route::get('/create', [VisitController::class, 'createVisitView'])->name('dashboard.visit.create.view');
+
+                    Route::post('/create', [VisitController::class, 'createVisit'])->name('dashboard.visit.create');
+
+                });
+
+                Route::group(['middleware' => ['can:wyświetlanie wszystkich wizyt']], function () {
+
+                    Route::get('/get/all/{date}/{user_id?}', [VisitController::class, 'getAllVisits'])->name('dashboard.visit.get.all');
+
+                });
+
+                //TODO: delete/edit/available-hours permission and move /get/all/{id}/patient to api.php file
+
+                Route::group(['middleware' => ['can:usuwanie wizyt']], function () {
+
+                    Route::get('/delete/{id}', [VisitController::class, 'deleteVisit'])->name('dashboard.visit.delete');
+
+                });
+
+                Route::get('/', [VisitController::class, 'index'])->name('dashboard.visit');
+
+
+                Route::get('/edit/{id}', [VisitController::class, 'editVisitView'])->name('dashboard.visit.edit.view');
+
+                Route::post('/edit/{id}', [VisitController::class, 'editVisit'])->name('dashboard.visit.edit');
+
+                Route::get('/available-hours/{date}/{user_id}', [VisitController::class, 'getAvailableHours'])->name('dashboard.visit.get.available.hours');
+
+            });
+
+            Route::group(['prefix' => 'users'], function () {
+
+                Route::group(['middleware' => ['can:dodawnie użytkowników']], function () {
+
+                    Route::get('/create', [UserManagement::class, 'createUserView'])->name('dashboard.user.create.view');
+
+                    Route::post('/create', [UserManagement::class, 'createUser'])->name('dashboard.user.create');
+
+                });
+
+                Route::group(['middleware' => ['can:wyświetlanie wszystkich użytkowników']], function () {
+
+                    Route::get('/get/all', [UserManagement::class, 'getAllUsers'])->name('dashboard.user.get.all');
+
+                });
+
+                Route::group(['middleware' => ['can:edytowanie użytkowników']], function () {
+
+                    Route::get('/edit/{id}', [UserManagement::class, 'editUserView'])->name('dashboard.user.edit.view');
+
+                    Route::post('/edit/{id}', [UserManagement::class, 'editUser'])->name('dashboard.user.edit');
+
+                });
+
+                Route::group(['middleware' => ['can:usuwanie użytkowników']], function () {
+
+                    Route::delete('/delete/{id}', [UserManagement::class, 'deleteUser'])->name('dashboard.user.delete');
+
+                });
+
+            });
+
+            Route::group(['prefix' => 'role'], function () {
+
+                Route::group(['middleware' => ['can:dodawanie ról']], function () {
+
+                    Route::get('/create', [RoleController::class, 'createRoleView'])->name('dashboard.role.create.view');
+
+                    Route::post('/create', [RoleController::class, 'createRole'])->name('dashboard.role.create');
+
+                });
+
+                Route::group(['middleware' => ['can:wyświetlanie wszystkich ról']], function () {
+
+                    Route::get('/get/all', [RoleController::class, 'getAllRoles'])->name('dashboard.role.get.all');
+
+                });
+
+                Route::group(['middleware' => ['can:edytowanie ról']], function () {
+
+                    Route::get('/edit/{id}', [RoleController::class, 'editRoleView'])->name('dashboard.role.edit.view');
+
+                    Route::post('/edit/{id}', [RoleController::class, 'editRole'])->name('dashboard.role.edit');
+
+                });
+
+                Route::group(['middleware' => ['can:usuwanie ról']], function () {
+
+                    Route::get('/delete/{id}', [RoleController::class, 'deleteRole'])->name('dashboard.role.delete');
+
+                });
+
+
+            });
+
+            Route::group(['prefix' => 'invoices'], function () {
+
+                Route::get('/create', [InvoiceController::class, 'createInvoiceView'])->name('dashboard.invoice.create.view');
+
+                Route::post('/create', [InvoiceController::class, 'createInvoice'])->name('dashboard.invoice.create');
+
+                Route::get('/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('dashboard.invoice.download');
+
+            });
+
+            Route::group(['prefix' => 'vouchers'], function () {
+
+                Route::group(['middleware' => ['can:dodawanie voucherów']], function () {
+
+                    Route::get('/create', [VoucherController::class, 'createVoucherView'])->name('dashboard.voucher.create.view');
+
+                    Route::post('/create', [VoucherController::class, 'createVoucher'])->name('dashboard.voucher.create');
+
+                });
+
+                Route::group(['middleware' => ['can:wyświetlanie wszystkich voucherów']], function () {
+
+                    Route::get('/get/all', [VoucherController::class, 'getAllVouchers'])->name('dashboard.voucher.get.all');
+
+                });
+
+
+                Route::group(['middleware' => 'can:edytowanie voucherów'], function () {
+
+                    Route::get('/edit/{id}', [VoucherController::class, 'editVoucherView'])->name('dashboard.voucher.edit.view');
+
+                    Route::post('/edit/{id}', [VoucherController::class, 'editVoucher'])->name('dashboard.voucher.edit');
+
+                });
+
+                Route::group(['middleware' => 'can:aktualizowanie statusu vouchera'], function () {
+
+                    Route::post('/used/update/{id}', [VoucherController::class, 'updateUsedStatus'])->name('dashboard.voucher.used.update');
+
+                });
+
+                Route::group(['middleware' => ['can:generowanie pdf vouchera']], function () {
+
+                    Route::get('/generate/{id}', [VoucherController::class, 'generateVoucher'])->name('dashboard.voucher.generate');
+
+                });
+
+                Route::group(['middleware' => ['can:usuwanie voucherów']], function () {
+
+                    Route::delete('/delete/{id}', [VoucherController::class, 'deleteVoucher'])->name('dashboard.voucher.delete');
+
+                });
+
+            });
+
+            Route::group(['prefix' => 'store'], function () {
+
+                Route::group(['prefix' => 'products'], function () {
+
+                    Route::get('create', [ProductController::class, 'createProductView'])->name('dashboard.product.create.view');
+
+                    Route::post('create', [ProductController::class, 'createProduct'])->name('dashboard.product.create');
+
+                    Route::get('get/all', [ProductController::class, 'getAllProducts'])->name('dashboard.product.get.all');
+
+                    Route::get('delete/{id}', [ProductController::class, 'deleteProduct'])->name('dashboard.product.delete');
+
+                    Route::get('active/{id}/{status}', [ProductController::class, 'activeToggle'])->name('dashboard.product.active.toggle');
+
+                    Route::get('edit/{id}', [ProductController::class, 'editProductView'])->name('dashboard.product.edit.view');
+
+                    Route::post('edit/{id}', [ProductController::class, 'editProduct'])->name('dashboard.product.edit');
+
+                    Route::get('clone/{id}', [ProductController::class, 'cloneProductView'])->name('dashboard.product.clone.view');
+
+                });
+
+                Route::group(['prefix' => 'categories'], function () {
+
+                    Route::get('/create', [CategoryController::class, 'createCategoryView'])->name('dashboard.category.create.view');
+
+                    Route::post('/create', [CategoryController::class, 'createCategory'])->name('dashboard.category.create');
+
+                    Route::get('/get/all', [CategoryController::class, 'getAllCategories'])->name('dashboard.category.get.all');
+
+                });
+
+                Route::group(['prefix' => 'variants'], function () {
+
+                    Route::get('create', [VariantController::class, 'createVariantView'])->name('dashboard.variant.create.view');
+
+                    Route::post('create', [VariantController::class, 'createVariant'])->name('dashboard.variant.create');
+
+                    Route::get('get/all', [VariantController::class, 'getAllVariants'])->name('dashboard.variant.get.all');
+
+                    Route::get('delete/{id}', [VariantController::class, 'deleteVariant'])->name('dashboard.variant.delete');
+
+                    Route::get('edit/{id}', [VariantController::class, 'editVariantView'])->name('dashboard.variant.edit.view');
+
+                    Route::post('edit/{id}', [VariantController::class, 'editVariant'])->name('dashboard.variant.edit');
+
+                });
+
+                Route::group(['prefix' => 'attributes'], function () {
+
+                    Route::get('create', [AttributeController::class, 'createAttributeView'])->name('dashboard.attribute.create.view');
+
+                    Route::post('create', [AttributeController::class, 'createAttribute'])->name('dashboard.attribute.create');
+
+                    Route::get('get/all', [AttributeController::class, 'getAllAttributes'])->name('dashboard.attribute.get.all');
+
+                    Route::get('delete/{id}', [AttributeController::class, 'deleteAttribute'])->name('dashboard.attribute.delete');
+
+                    Route::get('edit/{id}', [AttributeController::class, 'editAttributeView'])->name('dashboard.attribute.edit.view');
+
+                    Route::post('edit/{id}', [AttributeController::class, 'editAttribute'])->name('dashboard.attribute.edit');
+
+                });
+
+                Route::group(['prefix' => 'users'], function () {
+
+                    Route::get('get/all', [UserController::class, 'getUsers'])->name('dashboard.user.get.all');
+
+                    Route::get('delete/{id}', [UserController::class, 'deleteUser'])->name('dashboard.user.delete');
+
+                    Route::get('details/{id}', [UserController::class, 'getUserDetails'])->name('dashboard.user.details');
+
+                });
+
+                Route::group(['prefix' => "promotions"], function () {
+
+                    Route::get('create', [PromotionController::class, 'createPromotionView'])->name('dashboard.promotion.create.view');
+
+                });
+
+                Route::group(['prefix' => 'cart-items'], function () {
+
+                    Route::get('delete-item/{id}', [CartItemController::class, 'deleteCartItem'])->name('dashboard.cart-item.delete');
+
+                });
+            });
 
         });
 
     });
-
-    Route::prefix('auth')->group(function () {
-
-        Route::get('logout', [AuthController::class, 'destroy'])->name('logout');
-
-    });
-
-    Route::group(['prefix' => 'dashboard'], function (){
-
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-        Route::group(['prefix' => 'password'], function (){
-
-            Route::post('/update', [PasswordController::class, 'update'])->name('password.update');
-
-        });
-
-        Route::group(['prefix' => 'gallery'], function (){
-
-            Route::group(['middleware' => ['can:dodawanie zdjęc do galerii']], function (){
-
-                Route::get('/upload', [GalleryController::class, 'uploadImageView'])->name('dashboard.gallery.upload.view');
-
-                Route::post('/upload', [GalleryController::class, 'uploadImage'])->name('dashboard.gallery.upload');
-
-            });
-
-            Route::group(['middleware' => ['can:wyświetlanie wszystkich zdjęć w galerii']], function (){
-
-                Route::get('get/all', [GalleryController::class, 'getAllImages'])->name('dashboard.gallery.get.all');
-
-            });
-
-            //TODO: delete permission
-
-            Route::delete('delete/{id}', [GalleryController::class, 'deleteImage'])->name('dashboard.gallery.delete.image');
-
-        });
-
-        Route::group(['prefix' => 'blog'], function (){
-
-            Route::group(['prefix' => 'post'], function (){
-
-                Route::group(['middleware' =>  ['can:dodawanie wpisów na bloga']], function (){
-
-                    Route::get('create', [PostController::class, 'createPostView'])->name('dashboard.blog.post.create.view');
-
-                    Route::post('create', [PostController::class, 'createPost'])->name('dashboard.blog.post.create');
-
-                });
-
-                Route::group(['middleware' => ['can:wyświetlanie wszystkich wpisów na blogu']], function (){
-
-                    Route::get('get/all', [PostController::class, 'getAllPosts'])->name('dashboard.blog.post.get.all');
-
-                });
-
-                Route::group(['middleware' => ['can:usuwanie wpisów na blogu']], function (){
-
-                    Route::delete('delete/{id}', [PostController::class, 'deletePost'])->name('dashboard.blog.post.delete');
-
-                });
-
-
-                Route::group(['middleware' => ['can:edytowanie wpisów na blogu']], function (){
-
-                    Route::get('edit/{id}', [PostController::class, 'editPostView'])->name('dashboard.blog.post.edit.view');
-
-                    Route::post('edit/{id}', [PostController::class, 'editPost'])->name('dashboard.blog.post.edit');
-
-                });
-
-            });
-
-            Route::group(['prefix', 'comment'], function (){
-
-                Route::group(['middleware' => ['can:wyświetlanie wszystkich komentarzy']], function (){
-
-                    Route::get('get/all', [CommentController::class, 'getAllComments'])->name('dashboard.blog.comment.get.all');
-
-                });
-
-                //TODO: edit/change-published permission
-
-                Route::get('delete/{id}', [CommentController::class, 'deleteComment'])->name('dashboard.blog.comment.delete');
-
-                Route::get('change-published/{id}/{published}', [CommentController::class, 'changePublished'])->name('dashboard.blog.comment.change.published');
-
-            });
-
-        });
-
-        Route::group(['prefix' => 'patients'], function (){
-
-            Route::get('/', [PatientController::class, 'index'])->name('dashboard.patient');
-
-            Route::group(['middleware' => ['can:dodawanie pacjentów'] ], function (){
-
-                Route::get('/create', [PatientController::class, 'createPatientView'])->name('dashboard.patient.create.view');
-
-                Route::post('/create', [PatientController::class, 'createPatient'])->name('dashboard.patient.create');
-
-            });
-
-            Route::group(['middleware' => ['can:wyświetlanie wszystkich pacjentów']], function (){
-
-                Route::get('/get/all', [PatientController::class, 'getAllPatients'])->name('dashboard.patient.get.all');
-
-            });
-
-            //TODO: edit permission and move /get/all/json to api.php file
-
-            Route::get('/delete/{id}',  [PatientController::class, 'deletePatient'])->name('dashboard.patient.delete');
-
-            Route::get('/edit/{id}', [PatientController::class, 'editPatientView'])->name('dashboard.patient.edit.view');
-
-            Route::post('/edit/{id}', [PatientController::class, 'editPatient'])->name('dashboard.patient.edit');
-
-            Route::get('/get/all/json', [PatientController::class, 'getAllPatientsJson'])->name('dashboard.patient.get.all.json');
-
-        });
-
-        Route::group(['prefix' => 'visits'], function (){
-
-            Route::group(['middleware' => ['can:dodawanie wizyt']], function (){
-
-                Route::get('/create', [VisitController::class, 'createVisitView'])->name('dashboard.visit.create.view');
-
-                Route::post('/create', [VisitController::class, 'createVisit'])->name('dashboard.visit.create');
-
-            });
-
-            Route::group(['middleware' => ['can:wyświetlanie wszystkich wizyt']], function (){
-
-                Route::get('/get/all/{date}/{user_id?}', [VisitController::class, 'getAllVisits'])->name('dashboard.visit.get.all');
-
-            });
-
-            //TODO: delete/edit/available-hours permission and move /get/all/{id}/patient to api.php file
-
-            Route::group(['middleware' => ['can:usuwanie wizyt']], function () {
-
-                Route::get('/delete/{id}', [VisitController::class, 'deleteVisit'])->name('dashboard.visit.delete');
-
-            });
-
-            Route::get('/', [VisitController::class, 'index'])->name('dashboard.visit');
-
-
-            Route::get('/edit/{id}', [VisitController::class, 'editVisitView'])->name('dashboard.visit.edit.view');
-
-            Route::post('/edit/{id}', [VisitController::class, 'editVisit'])->name('dashboard.visit.edit');
-
-            Route::get('/available-hours/{date}/{user_id}', [VisitController::class, 'getAvailableHours'])->name('dashboard.visit.get.available.hours');
-
-        });
-
-        Route::group(['prefix' => 'users'], function (){
-
-            Route::group(['middleware' => ['can:dodawnie użytkowników']], function (){
-
-                Route::get('/create', [UserManagement::class, 'createUserView'])->name('dashboard.user.create.view');
-
-                Route::post('/create', [UserManagement::class, 'createUser'])->name('dashboard.user.create');
-
-            });
-
-            Route::group(['middleware' => ['can:wyświetlanie wszystkich użytkowników']], function (){
-
-                Route::get('/get/all', [UserManagement::class, 'getAllUsers'])->name('dashboard.user.get.all');
-
-            });
-
-            Route::group(['middleware' => ['can:edytowanie użytkowników']], function (){
-
-                Route::get('/edit/{id}', [UserManagement::class, 'editUserView'])->name('dashboard.user.edit.view');
-
-                Route::post('/edit/{id}', [UserManagement::class, 'editUser'])->name('dashboard.user.edit');
-
-            });
-
-            Route::group(['middleware' => ['can:usuwanie użytkowników']], function (){
-
-                Route::delete('/delete/{id}', [UserManagement::class, 'deleteUser'])->name('dashboard.user.delete');
-
-            });
-
-        });
-
-        Route::group(['prefix' => 'role'], function (){
-
-            Route::group(['middleware' => ['can:dodawanie ról']], function (){
-
-                Route::get('/create', [RoleController::class, 'createRoleView'])->name('dashboard.role.create.view');
-
-                Route::post('/create', [RoleController::class, 'createRole'])->name('dashboard.role.create');
-
-            });
-
-            Route::group(['middleware' => ['can:wyświetlanie wszystkich ról']], function (){
-
-                Route::get('/get/all', [RoleController::class, 'getAllRoles'])->name('dashboard.role.get.all');
-
-            });
-
-            Route::group(['middleware' => ['can:edytowanie ról']], function (){
-
-                Route::get('/edit/{id}', [RoleController::class, 'editRoleView'])->name('dashboard.role.edit.view');
-
-                Route::post('/edit/{id}', [RoleController::class, 'editRole'])->name('dashboard.role.edit');
-
-            });
-
-            Route::group(['middleware' => ['can:usuwanie ról']], function (){
-
-                Route::get('/delete/{id}', [RoleController::class, 'deleteRole'])->name('dashboard.role.delete');
-
-            });
-
-
-        });
-
-        Route::group(['prefix' => 'invoices'], function (){
-
-            Route::get('/create', [InvoiceController::class, 'createInvoiceView'])->name('dashboard.invoice.create.view');
-
-            Route::post('/create', [InvoiceController::class, 'createInvoice'])->name('dashboard.invoice.create');
-
-            Route::get('/download/{id}', [InvoiceController::class, 'downloadInvoice'])->name('dashboard.invoice.download');
-
-        });
-
-        Route::group(['prefix' => 'vouchers'], function (){
-
-            Route::group(['middleware' => ['can:dodawanie voucherów']], function (){
-
-                Route::get('/create', [VoucherController::class, 'createVoucherView'])->name('dashboard.voucher.create.view');
-
-                Route::post('/create', [VoucherController::class, 'createVoucher'])->name('dashboard.voucher.create');
-
-            });
-
-            Route::group(['middleware' => ['can:wyświetlanie wszystkich voucherów']], function (){
-
-                Route::get('/get/all', [VoucherController::class, 'getAllVouchers'])->name('dashboard.voucher.get.all');
-
-            });
-
-
-            Route::group(['middleware' => 'can:edytowanie voucherów'], function (){
-
-                Route::get('/edit/{id}', [VoucherController::class, 'editVoucherView'])->name('dashboard.voucher.edit.view');
-
-                Route::post('/edit/{id}', [VoucherController::class, 'editVoucher'])->name('dashboard.voucher.edit');
-
-            });
-
-            Route::group(['middleware' => 'can:aktualizowanie statusu vouchera'], function (){
-
-                Route::post('/used/update/{id}', [VoucherController::class, 'updateUsedStatus'])->name('dashboard.voucher.used.update');
-
-            });
-
-            Route::group(['middleware' => ['can:generowanie pdf vouchera']], function (){
-
-                Route::get('/generate/{id}', [VoucherController::class, 'generateVoucher'])->name('dashboard.voucher.generate');
-
-            });
-
-            Route::group(['middleware' => ['can:usuwanie voucherów']], function (){
-
-                Route::delete('/delete/{id}', [VoucherController::class, 'deleteVoucher'])->name('dashboard.voucher.delete');
-
-            });
-
-        });
-
-        Route::group(['prefix' => 'store'], function (){
-
-            Route::group(['prefix' => 'products'], function (){
-
-                Route::get('create', [ProductController::class, 'createProductView'])->name('dashboard.product.create.view');
-
-                Route::post('create', [ProductController::class, 'createProduct'])->name('dashboard.product.create');
-
-                Route::get('get/all', [ProductController::class, 'getAllProducts'])->name('dashboard.product.get.all');
-
-                Route::get('delete/{id}', [ProductController::class, 'deleteProduct'])->name('dashboard.product.delete');
-
-                Route::get('active/{id}/{status}', [ProductController::class, 'activeToggle'])->name('dashboard.product.active.toggle');
-
-                Route::get('edit/{id}', [ProductController::class, 'editProductView'])->name('dashboard.product.edit.view');
-
-                Route::post('edit/{id}', [ProductController::class, 'editProduct'])->name('dashboard.product.edit');
-
-                Route::get('clone/{id}', [ProductController::class, 'cloneProductView'])->name('dashboard.product.clone.view');
-
-            });
-
-            Route::group(['prefix' => 'categories'], function (){
-
-                Route::get('/create', [CategoryController::class, 'createCategoryView'])->name('dashboard.category.create.view');
-
-                Route::post('/create', [CategoryController::class, 'createCategory'])->name('dashboard.category.create');
-
-                Route::get('/get/all', [CategoryController::class, 'getAllCategories'])->name('dashboard.category.get.all');
-
-            });
-
-            Route::group(['prefix' => 'variants'], function (){
-
-                Route::get('create', [VariantController::class, 'createVariantView'])->name('dashboard.variant.create.view');
-
-                Route::post('create', [VariantController::class, 'createVariant'])->name('dashboard.variant.create');
-
-                Route::get('get/all', [VariantController::class, 'getAllVariants'])->name('dashboard.variant.get.all');
-
-                Route::get('delete/{id}', [VariantController::class, 'deleteVariant'])->name('dashboard.variant.delete');
-
-                Route::get('edit/{id}', [VariantController::class, 'editVariantView'])->name('dashboard.variant.edit.view');
-
-                Route::post('edit/{id}', [VariantController::class, 'editVariant'])->name('dashboard.variant.edit');
-
-            });
-
-            Route::group(['prefix' => 'attributes'], function (){
-
-                Route::get('create', [AttributeController::class, 'createAttributeView'])->name('dashboard.attribute.create.view');
-
-                Route::post('create', [AttributeController::class, 'createAttribute'])->name('dashboard.attribute.create');
-
-                Route::get('get/all', [AttributeController::class, 'getAllAttributes'])->name('dashboard.attribute.get.all');
-
-                Route::get('delete/{id}', [AttributeController::class, 'deleteAttribute'])->name('dashboard.attribute.delete');
-
-                Route::get('edit/{id}', [AttributeController::class, 'editAttributeView'])->name('dashboard.attribute.edit.view');
-
-                Route::post('edit/{id}', [AttributeController::class, 'editAttribute'])->name('dashboard.attribute.edit');
-
-            });
-
-            Route::group(['prefix' => 'users'], function (){
-
-               Route::get('get/all', [UserController::class, 'getUsers'])->name('dashboard.user.get.all');
-
-               Route::get('delete/{id}', [UserController::class, 'deleteUser'])->name('dashboard.user.delete');
-
-               Route::get('details/{id}', [UserController::class, 'getUserDetails'])->name('dashboard.user.details');
-
-            });
-
-            Route::group(['prefix' => "promotions"], function (){
-
-                Route::get('create', [PromotionController::class, 'createPromotionView'])->name('dashboard.promotion.create.view');
-
-            });
-
-            Route::group(['prefix' => 'cart-items'], function (){
-
-                Route::get('delete-item/{id}', [CartItemController::class, 'deleteCartItem'])->name('dashboard.cart-item.delete');
-
-            });
-        });
-
-    });
-
 });
 
 Route::group(['prefix' => 'blog'], function (){
