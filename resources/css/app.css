@@ -517,11 +517,30 @@
     @apply max-w-full rounded-lg my-4;
 }
 
+.image-gallery-image {
+    object-fit: cover !important;
+    aspect-ratio: 1/1;
+}
+.image-gallery-thumbnail .image-gallery-thumbnail-image{
+    object-fit: cover !important;
+    aspect-ratio: 1/1;
+}
+
+.radio-dot:checked::after {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #4B0082; 
+    border-radius: 50%;
+    margin: auto;
+}
+=======
 .fixed-gallery .image-gallery-content .image-gallery-slide img {
-    height: 400px; /* dowolna wysokość */
+    height: 400px;
     width: 100%;
-    object-fit: cover; /* lub cover, jeśli chcesz przycięcie */
-    background-color: #f8f8f8; /* żeby tło było spójne */
+    object-fit: cover; 
+    background-color: #f8f8f8; 
 }
 
 .fixed-gallery .image-gallery-content.fullscreen .image-gallery-slide img {
