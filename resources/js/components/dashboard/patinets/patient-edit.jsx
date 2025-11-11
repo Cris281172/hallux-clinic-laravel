@@ -12,7 +12,7 @@ import { Textarea } from '../../ui/textarea.tsx';
 import DateBirthday from './date-birthday.jsx';
 
 const PatientEdit = ({ patient, onPatientUpdated }) => {
-    const [visitStatuses, setVisitStatuses] = useState([]);
+    const [patientStatuses, setPatientStatuses] = useState([]);
 
     const { data, setData, processing, post, errors } = useForm({
         fullName: patient.full_name,
@@ -40,17 +40,17 @@ const PatientEdit = ({ patient, onPatientUpdated }) => {
         });
     };
 
-    const fetchVisitStatuses = async () => {
-        const response = await fetch(route('api.dashboard.visit.status.get.all'));
+    const fetchPatientStatuses = async () => {
+        const response = await fetch(route('api.dashboard.patient.status.get.all'));
         const data = await response.json();
 
         if (data.success) {
-            setVisitStatuses(data.data.statuses);
+            setPatientStatuses(data.data);
         }
     };
 
     useEffect(() => {
-        fetchVisitStatuses();
+        fetchPatientStatuses();
     }, []);
 
     return (
@@ -128,7 +128,7 @@ const PatientEdit = ({ patient, onPatientUpdated }) => {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
-                                {visitStatuses.map((item, index) => (
+                                {patientStatuses.map((item, index) => (
                                     <SelectItem key={index} value={`${item.id}`}>
                                         {item.name}
                                     </SelectItem>
