@@ -30,9 +30,19 @@ const opinionsConfig = [
         createdAt: '04/2024',
     },
     {
-        name: 'Aleksandra Sipa',
+        name: 'BORN2BOUNCE',
         text: 'Zachęcony opiniami zgłosiłem się do P. Moniki i od pierwszego kontaktu, w tym przypadku telefonicznego, byłem pozytywnie zaskoczony. Rozmowa luźna ale rzeczowa, na temat, uwzględniająca rozwiązania lub skutki zostawienia problemu samego sobie. Szybki termin wizyty. W gabinecie czułem się zaopiekowany i zrozumiany - każdy ma inny próg bólu :) Polecam bardzo i napewno, jeżeli coś się będzie działo, to wrócę.',
-        createdAt: '04/2024',
+        createdAt: '06/2025',
+    },
+    {
+        name: 'Ewelina P',
+        text: 'Świetne podejście do pacjenta – z uśmiechem, cierpliwością i ogromną wiedzą. Pani Monika dokładnie wszystko wyjaśnia, a efekty widać już przy pierwszej wizycie. Gabinet bardzo czysty i przyjazny. Serdecznie polecam Hallux Clinic!',
+        createdAt: '09/2025',
+    },
+    {
+        name: 'Mariusz Kaczmarek',
+        text: 'Cudowna specjalistka z wielkim sercem. Z dużą dbałością podeszła do mocno zbitego paznokcia u reki u 6 letniego syna. Wytłumaczyła co i jak trzeba robić sprawnie i bezboleśnie odbarczyła krwiak. Polecam i pozdrawiam\n',
+        createdAt: '08/2025',
     },
 ];
 

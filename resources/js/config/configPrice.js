@@ -4,7 +4,7 @@ export const allPrices = [
         items: [
             {
                 value: 'Konsultacja podologiczna',
-                price: '100,00',
+                price: '120,00',
                 link: 'konsultacja-podologiczna',
                 shortDesc: 'Ocena stanu stóp i dobór odpowiedniego leczenia.',
             },
@@ -199,14 +199,14 @@ export const allPrices = [
                 price: '100,00',
                 link: 'pekajace-piety',
                 // TOOD
-                shortDesc: 'DODAĆ OPIS.',
+                shortDesc: '',
             },
             {
                 value: 'Zabieg relaksująco-odświeżający dla stóp (kąpiel - peeling - maska - masaż)',
                 price: '120,00',
                 link: 'pekajace-piety',
                 // TOOD
-                shortDesc: 'DODAĆ OPIS.',
+                shortDesc: '',
             },
         ],
         link: 'zabiegi-uzupelniajace',

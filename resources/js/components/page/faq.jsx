@@ -19,7 +19,7 @@ export const FAQ = ({ data, variant = 'default' }) => {
                     <div
                         key={index}
                         className={`${
-                            variant === 'default' ? 'text-dark-plum bg-gray-200' : 'bg-dark-plum'
+                            variant === 'default' ? 'text-dark-plum bg-gray-100' : 'bg-dark-plum'
                         } flex flex-col items-center overflow-hidden rounded-md pt-3 pb-3 sm:flex-row`}
                     >
                         <motion.div

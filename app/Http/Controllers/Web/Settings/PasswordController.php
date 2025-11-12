@@ -34,8 +34,6 @@ class PasswordController extends Controller
             'password_changed' => 1
         ]);
 
-        $auth = new AuthController();
-
-        return $auth->destroy($request);
+        return back();
     }
 }

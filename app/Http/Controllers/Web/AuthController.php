@@ -12,5 +12,9 @@ class AuthController extends Controller
     public function create(){
         return redirect()->to(route('store.view') . '?auth=rejestracja');
     }
+    public function logout(){
+        auth()->logout();
+        return redirect()->to(route('store.view') . '?auth=rejestracja');
+    }
 }
 

@@ -49,6 +49,15 @@ return [
             'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url(env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
         ],
 
+        'store' => [
+            'transport' => 'smtp',
+            'host' => env('MAILER_STORE_HOST'),
+            'port' => env('MAILER_STORE_PORT'),
+            'encryption' => env('MAILER_STORE_ENCRYPTION'),
+            'username' => env('MAILER_STORE_USERNAME'),
+            'password' => env('MAILER_STORE_PASSWORD'),
+        ],
+
         'ses' => [
             'transport' => 'ses',
         ],

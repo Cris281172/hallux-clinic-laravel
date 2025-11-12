@@ -3,6 +3,7 @@ import { Accessibility, Atom, HeartHandshake, Music, ShieldPlus, ShoppingCart, S
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import headerImagePoster from '../assets/images/hero-image-poster.webp';
+import officeImage from '../assets/images/office/office.webp';
 import selfPhoto from '../assets/images/self-photo.webp';
 import desktopHeroVideo from '../assets/videos/desktop-hero-video.mp4';
 import mobileHeroVideo from '../assets/videos/mobile-hero-video.mp4';
@@ -64,31 +65,31 @@ export default function Home() {
     const benefitsConfig = [
         {
             title: 'Relaksująca atmosfera',
-            Icon: <Music size={40} className={'text-electric-romance'} />,
+            Icon: <Music size={32} className={'text-electric-romance'} />,
         },
         {
-            title: 'Dostęp dla osób z niepełnosprawnościami',
-            Icon: <Accessibility size={40} className={'text-electric-romance'} />,
+            title: 'Udogodnienia',
+            Icon: <Accessibility size={32} className={'text-electric-romance'} />,
         },
         {
             title: 'Łatwy dojazd i parking',
-            Icon: <SquareParking size={40} className={'text-electric-romance'} />,
+            Icon: <SquareParking size={32} className={'text-electric-romance'} />,
         },
         {
             title: 'Sprzedaż specjalistycznych produktów',
-            Icon: <ShoppingCart size={40} className={'text-electric-romance'} />,
+            Icon: <ShoppingCart size={32} className={'text-electric-romance'} />,
         },
         {
             title: 'Bony podarunkowe',
-            Icon: <TicketCheck size={40} className={'text-electric-romance'} />,
+            Icon: <TicketCheck size={32} className={'text-electric-romance'} />,
         },
         {
             title: 'Bezpieczeństwo i higiena',
-            Icon: <HeartHandshake size={40} className={'text-electric-romance'} />,
+            Icon: <HeartHandshake size={32} className={'text-electric-romance'} />,
         },
         {
             title: 'Nowoczesny i ergonomiczny',
-            Icon: <HeartHandshake size={40} className={'text-electric-romance'} />,
+            Icon: <HeartHandshake size={32} className={'text-electric-romance'} />,
         },
     ];
 
@@ -146,14 +147,16 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className={'bg-dark-plum pt-20 pb-20'}>
+            <div className={'bg-gray-200 pt-20 pb-20'}>
                 <Container>
                     <div className={'flex w-full flex-col items-center'}>
-                        <HeadingHome>Zabiegi podologiczne</HeadingHome>
-                        <p className={'mt-2 max-w-200 text-center'}>
-                            Dbaj o swoje stopy! Zabiegi podologiczne to sposób na zdrowe i zadbane stopy. Usuń odciski. modzele i grzybicę. Zarezerwuj
-                            wizytę już dziś!
-                        </p>
+                        <HeadingHome
+                            title={'Zabiegi podologiczne'}
+                            text={
+                                'Oferujemy pełen zakres profesjonalnych zabiegów podologicznych – od usuwania odcisków i modzeli, po terapię wrastających paznokci i pielęgnację skóry stóp. Każdy zabieg dobieramy indywidualnie, by przywrócić Twoim stopom zdrowie i lekkość.'
+                            }
+                            titleClasName={'text-dark-plum'}
+                        />
                     </div>
                     <TreatmentsTiles />
                 </Container>
@@ -173,7 +176,7 @@ export default function Home() {
                             />
                         </div>
                         <div className={'w-full rounded-md bg-[rgba(83,2,54,0.5)] p-7 shadow-2xl'}>
-                            <HeadingHome>O mnie</HeadingHome>
+                            <HeadingHome title={'O mnie'} titleClasName={'text-white'} />
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
@@ -204,15 +207,15 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className={'bg-dark-plum pt-20 pb-20'}>
+            <div className={'bg-gray-100 pt-20 pb-20'}>
                 <Container>
-                    <div className={'mb-5 flex w-full flex-col items-center'}>
-                        <HeadingHome>Cennik</HeadingHome>
-                        <p className={'mt-2 max-w-200 text-center'}>
-                            Dbaj o swoje stopy! Zabiegi podologiczne to sposób na zdrowe i zadbane stopy. Usuń odciski. modzele i grzybicę. Zarezerwuj
-                            wizytę już dziś!
-                        </p>
-                    </div>
+                    <HeadingHome
+                        title={'Cennik'}
+                        titleClasName={'text-dark-plum'}
+                        text={
+                            'Transparentność i uczciwość to podstawa zaufania. Zapoznaj się z naszym aktualnym cennikiem zabiegów podologicznych – wybierz usługę dopasowaną do swoich potrzeb i zainwestuj w zdrowie swoich stóp.'
+                        }
+                    />
                     <PricesAccordion data={homePrices} />
                     <div className={'flex justify-center'}>
                         <Button
@@ -226,37 +229,37 @@ export default function Home() {
                     </div>
                 </Container>
             </div>
-            <div className={'bg-dark-plum-secondary pt-20 pb-20'}>
+            <div className="bg-gray-200 pt-20 pb-20">
                 <Container>
-                    <div className={'flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
-                        <div className={'mb-5 flex w-full flex-col items-center'}>
-                            <HeadingHome>Gabinet stacjonarny</HeadingHome>
-                            <p className={'mt-2 max-w-200 text-center'}>
-                                Mój gabinet w sercu Łodzi to przestrzeń stworzona z myślą o Twoim komforcie i bezpieczeństwie. Połączyłam nowoczesny
-                                design z najwyższymi standardami higieny, aby każda wizyta przebiegała w atmosferze relaksu i pełnego zaufania. Dbamy
-                                o każdy detal – od wygodnego fotela podologicznego, po zaawansowany sprzęt diagnostyczny i terapeutyczny.
-                            </p>
-                            <div
-                                className={'mt-10 grid w-3/4 grid-cols-1 gap-5 sm:w-full sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'}
-                            >
-                                {benefitsConfig.map((item, index) => (
-                                    <div
-                                        className={
-                                            'flex aspect-square flex-col items-center justify-center gap-4 rounded-2xl border-2 px-2 shadow-2xl'
-                                        }
-                                    >
-                                        {item.Icon}
-                                        <h4 className={'text-center text-xl font-bold'}>{item.title}</h4>
-                                    </div>
-                                ))}
+                    <div className="flex flex-col items-center gap-10 lg:flex-row lg:gap-25">
+                        <div className="w-full md:w-18/32">
+                            <HeadingHome
+                                title="Gabinet stacjonarny"
+                                titleClasName="text-dark-plum"
+                                text="Nowoczesny gabinet w centrum Łodzi został zaprojektowany z myślą o Twoim komforcie. To miejsce, w którym panuje przyjazna atmosfera, a najwyższe standardy higieny i nowoczesny sprzęt gwarantują bezpieczne i skuteczne zabiegi."
+                            />
+
+                            {/* CAROUSEL */}
+                            <div className="mt-10 w-full overflow-hidden">
+                                <div className="carousel animate-scroll flex gap-6 py-5">
+                                    {[...benefitsConfig, ...benefitsConfig].map((item, index) => (
+                                        <div className="flex min-h-[9rem] w-50 flex-col items-center justify-between rounded-2xl bg-white p-6 text-center shadow-md">
+                                            <div className="text-dark-plum flex h-16 items-center justify-center text-4xl">{item.Icon}</div>
+                                            <h4 className="text-dark-plum mt-4 h-12 overflow-hidden text-sm font-semibold sm:text-base">
+                                                {item.title}
+                                            </h4>
+                                            <div className="mt-2"></div> {/* opcjonalna dolna przestrzeń */}
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                            <div className={'mt-5 flex flex-col items-center justify-center gap-5 md:flex-row'}>
+
+                            {/* PRZYCISKI */}
+                            <div className="mt-5 flex flex-col items-center justify-center gap-5 md:flex-row">
                                 <a
-                                    href={'https://maps.app.goo.gl/AYsaeVkj7LU1nRSY6'}
-                                    className={
-                                        'bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition'
-                                    }
-                                    target={'_blank'}
+                                    href="https://maps.app.goo.gl/AYsaeVkj7LU1nRSY6"
+                                    className="bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition"
+                                    target="_blank"
                                 >
                                     Jak dojechać?
                                 </a>
@@ -268,96 +271,55 @@ export default function Home() {
                                 </a>
                             </div>
                         </div>
+
+                        {/* PRAWA KOLUMNA */}
+                        <div className="flex w-full justify-center md:w-14/32">
+                            <img
+                                src={officeImage}
+                                alt="Gabinet podologiczny"
+                                className="aspect-square w-full max-w-md rounded-2xl object-cover shadow-2xl"
+                            />
+                        </div>
                     </div>
                 </Container>
+
+                <style jsx>{`
+                    .carousel {
+                        display: flex;
+                        gap: 1.5rem;
+                        width: max-content;
+                    }
+
+                    @keyframes scroll {
+                        0% {
+                            transform: translateX(0);
+                        }
+                        100% {
+                            transform: translateX(-50%);
+                        }
+                    }
+
+                    .animate-scroll {
+                        animation: scroll 20s linear infinite;
+                    }
+                `}</style>
             </div>
 
-            {/*<div*/}
-            {/*    className={'relative min-h-200 bg-cover bg-fixed bg-center bg-no-repeat lg:min-h-175 lg:bg-[50%_-900px]'}*/}
-            {/*    style={{ backgroundImage: `url("${officeBackground}")` }}*/}
-            {/*>*/}
-            {/*    <div className={'absolute top-1/2 w-full -translate-y-1/2'}>*/}
-            {/*        <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>*/}
-            {/*            <div className={'w-full rounded-md bg-[rgba(83,2,54,0.7)] p-7 shadow-2xl'}>*/}
-            {/*                <HeadingHome>Gabinet stacjonarny</HeadingHome>*/}
-            {/*                <p className={'mt-5'}>*/}
-            {/*                    Mój gabinet w sercu Łodzi to przestrzeń stworzona z myślą o Twoim komforcie i bezpieczeństwie. Połączyłam nowoczesny*/}
-            {/*                    design z najwyższymi standardami higieny, aby każda wizyta przebiegała w atmosferze relaksu i pełnego zaufania. Dbamy*/}
-            {/*                    o każdy detal – od wygodnego fotela podologicznego, po zaawansowany sprzęt diagnostyczny i terapeutyczny.*/}
-            {/*                </p>*/}
-            {/*                <ul>*/}
-            {/*                    <li></li>*/}
-            {/*                </ul>*/}
-            {/*                <div className={'mt-5 flex items-center justify-center gap-5'}>*/}
-            {/*                    <a*/}
-            {/*                        href={'https://maps.app.goo.gl/AYsaeVkj7LU1nRSY6'}*/}
-            {/*                        className={*/}
-            {/*                            'bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition'*/}
-            {/*                        }*/}
-            {/*                        target={'_blank'}*/}
-            {/*                    >*/}
-            {/*                        Jak dojechać?*/}
-            {/*                    </a>*/}
-            {/*                    <a*/}
-            {/*                        href="tel:+48459410096"*/}
-            {/*                        className="bg-neon-blossom hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition"*/}
-            {/*                    >*/}
-            {/*                        Umów wizytę*/}
-            {/*                    </a>*/}
-            {/*                </div>*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*<div className={'bg-dark-plum-secondary pt-20 pb-20'}>*/}
-            {/*    <Container>*/}
-            {/*        <div className={'mb-5 flex w-full flex-col items-center'}>*/}
-            {/*            <HeadingHome>Gabinet mobilny</HeadingHome>*/}
-            {/*            <p className={'mt-2 max-w-200 text-center'}>*/}
-            {/*                Nasz gabinet w Łodzi to więcej niż tylko miejsce pracy – to przestrzeń, w której z troską i zaangażowaniem podchodzimy do*/}
-            {/*                zdrowia Twoich stóp. Rozumiemy, jak ważny jest komfort codziennego poruszania się, dlatego do każdego problemu podchodzimy*/}
-            {/*                z pełną empatią i skupieniem. U nas nie jesteś kolejnym pacjentem, ale gościem, któremu poświęcamy czas i uwagę. Pozwól*/}
-            {/*                nam zadbać o Twoje stopy, by każdy Twój krok był lekki i bezbolesny.*/}
-            {/*            </p>*/}
-            {/*        </div>*/}
-            {/*        <div className={'mt-10 grid grid-cols-1 gap-5 xl:grid-cols-3'}>*/}
-            {/*            {whyUsConfig.map((item, index) => (*/}
-            {/*                <div key={index} className={'flex flex-col items-center rounded-2xl border-2 p-10 shadow-2xl'}>*/}
-            {/*                    {item.Icon}*/}
-            {/*                    <h4 className={'mt-5 mb-2 text-center text-xl font-bold'}>{item.title}</h4>*/}
-            {/*                    <p className={'text-center'}>{item.text}</p>*/}
-            {/*                </div>*/}
-            {/*            ))}*/}
-            {/*        </div>*/}
-            {/*        <div className={'flex justify-center'}>*/}
-            {/*            <Button*/}
-            {/*                asChild*/}
-            {/*                className={*/}
-            {/*                    "bg-neon-blossom hover:bg-dark-plum-500 transition' mt-6 h-12 w-50 rounded-full px-4 py-2 font-bold text-white"*/}
-            {/*                }*/}
-            {/*            >*/}
-            {/*                <a href="tel:+48459410096">Skontakuj się</a>*/}
-            {/*            </Button>*/}
-            {/*        </div>*/}
-            {/*    </Container>*/}
-            {/*</div>*/}
-            <div className={'bg-dark-plum pt-20 pb-20'}>
+            <div className={'bg-gray-100 pt-20 pb-20'}>
                 <Container>
-                    <div className={'mb-5 flex w-full flex-col items-center'}>
-                        <HeadingHome>Dlaczego my?</HeadingHome>
-                        <p className={'mt-2 max-w-200 text-center'}>
-                            Nasz gabinet w Łodzi to więcej niż tylko miejsce pracy – to przestrzeń, w której z troską i zaangażowaniem podchodzimy do
-                            zdrowia Twoich stóp. Rozumiemy, jak ważny jest komfort codziennego poruszania się, dlatego do każdego problemu podchodzimy
-                            z pełną empatią i skupieniem. U nas nie jesteś kolejnym pacjentem, ale gościem, któremu poświęcamy czas i uwagę. Pozwól
-                            nam zadbać o Twoje stopy, by każdy Twój krok był lekki i bezbolesny.
-                        </p>
-                    </div>
+                    <HeadingHome
+                        title={'Dlaczego my?'}
+                        titleClasName={'text-dark-plum'}
+                        text={
+                            'W naszym gabinecie każdy pacjent jest traktowany indywidualnie. Łączymy wiedzę, doświadczenie i nowoczesne technologie, by zapewnić Ci skuteczną terapię w atmosferze zaufania, spokoju i troski o każdy szczegół.'
+                        }
+                    />
                     <div className={'mt-10 grid grid-cols-1 gap-5 xl:grid-cols-3'}>
                         {whyUsConfig.map((item, index) => (
                             <div key={index} className={'flex flex-col items-center rounded-2xl border-2 p-10 shadow-2xl'}>
                                 {item.Icon}
-                                <h4 className={'mt-5 mb-2 text-center text-xl font-bold'}>{item.title}</h4>
-                                <p className={'text-center'}>{item.text}</p>
+                                <h4 className={'text-dark-plum mt-5 mb-2 text-center text-xl font-bold'}>{item.title}</h4>
+                                <p className={'text-dark-plum text-center'}>{item.text}</p>
                             </div>
                         ))}
                     </div>
@@ -373,36 +335,45 @@ export default function Home() {
                     </div>
                 </Container>
             </div>
-            <div className={'bg-dark-plum-secondary pt-20'}>
+            <div className={'bg-gray-200 pt-20'}>
                 <Container>
-                    <HeadingHome>Kontakt</HeadingHome>
-                    <div className={'relative top-[30px] z-15 rounded-2xl bg-gray-200 p-10'}>
+                    <HeadingHome
+                        title={'Kontakt'}
+                        titleClasName={'text-dark-plum'}
+                        text={
+                            'Masz pytania lub chcesz umówić wizytę? Skontaktuj się z nami telefonicznie, przez formularz lub odwiedź nasz gabinet w Łodzi. Jesteśmy tu, by pomóc Ci zadbać o zdrowie Twoich stóp.'
+                        }
+                    />
+
+                    <div className={'relative top-[30px] z-15 rounded-2xl border-1 border-gray-300 bg-gray-100 p-10 shadow-2xl'}>
                         <ContactSection />
                     </div>
                 </Container>
                 <Map />
             </div>
-            <div className={'bg-dark-plum pt-40 pb-20'}>
+            <div className={'bg-gray-100 pt-20 pb-20'}>
                 <Container>
-                    <div className={'mb-5 flex w-full flex-col items-center'}>
-                        <HeadingHome>Opinie</HeadingHome>
-                        <p className={'mt-2 max-w-200 text-center'}>
-                            Dbaj o swoje stopy! Zabiegi podologiczne to sposób na zdrowe i zadbane stopy. Usuń odciski. modzele i grzybicę. Zarezerwuj
-                            wizytę już dziś!
-                        </p>
-                    </div>
+                    <HeadingHome
+                        title={'Opinie'}
+                        text={
+                            'Zaufanie naszych pacjentów to najlepsza rekomendacja. Sprawdź, co mówią osoby, które powierzyły nam swoje zdrowie i przekonaj się, że warto nam zaufać.'
+                        }
+                        titleClasName={'text-dark-plum'}
+                    />
+
                     <Opinions />
                 </Container>
             </div>
-            <div className={'bg-dark-plum-secondary'}>
+            <div className={'bg-gray-200'}>
                 <Container className={'pt-20 pb-20'}>
-                    <div className={'mb-5 flex w-full flex-col items-center'}>
-                        <HeadingHome>Najczęściej zadawane pytania</HeadingHome>
-                        <p className={'mt-2 max-w-200 text-center'}>
-                            Dbaj o swoje stopy! Zabiegi podologiczne to sposób na zdrowe i zadbane stopy. Usuń odciski. modzele i grzybicę. Zarezerwuj
-                            wizytę już dziś!
-                        </p>
-                    </div>
+                    <HeadingHome
+                        title={'Najczęściej zadawane pytania'}
+                        text={
+                            'Masz wątpliwości przed wizytą? Zebraliśmy odpowiedzi na najczęstsze pytania dotyczące zabiegów, przygotowania do terapii i pielęgnacji stóp po wizycie.'
+                        }
+                        titleClasName={'text-dark-plum'}
+                    />
+
                     <FAQ data={configFAQ.slice(0, 4)} />
                     <div className={'flex justify-center'}>
                         <Button

@@ -28,6 +28,12 @@ class OrderCreatedNotification extends Notification
     /**
      * Get the mail representation of the notification.
      */
+
+    public function mailer(): ?string
+    {
+        return 'store';
+    }
+
     public function toMail(object $notifiable): MailMessage
     {
         $paymentUrl = route('store.payment.get.view', $this->order->uuid);
@@ -37,7 +43,11 @@ class OrderCreatedNotification extends Notification
                 'order' => $this->order,
                 'paymentUrl' => $paymentUrl,
             ])
-            ->subject("Potwierdzenie zamówienia #{$this->order->id}");
+            ->subject("Potwierdzenie zamówienia #{$this->order->id}")
+            ->from(
+                config('mail.mailers.store.username'),
+                config('mail.mailers.shop.from_name', 'Hallux Clinic Sklep')
+            );
     }
 
     /**

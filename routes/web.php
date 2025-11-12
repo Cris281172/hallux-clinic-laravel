@@ -202,7 +202,7 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
 
     Route::prefix('auth')->group(function () {
 
-        Route::get('logout', [AuthController::class, 'destroy'])->name('logout');
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     });
 
