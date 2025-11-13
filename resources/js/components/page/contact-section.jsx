@@ -19,6 +19,7 @@ const ContactSection = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('send.contact.form'), {
+            preserveScroll: true,
             onSuccess: () => {
                 toast.success('Wiadomość została wysłana!');
                 setData({
