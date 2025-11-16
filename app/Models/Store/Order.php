@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class Order extends Model
 {
-    protected $fillable = ['status', 'email', 'user_id', 'uuid'];
+    protected $fillable = ['status', 'email', 'user_id', 'uuid', 'price'];
     protected static function booted()
     {
         static::creating(function ($order) {

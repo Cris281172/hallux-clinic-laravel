@@ -7,15 +7,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Store\Category;
 use App\Models\Store\Product;
 use App\Services\CategoryService;
+use App\Services\Store\PromotionService;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
     protected $categoryService;
+    protected $promotionService;
 
-    public function __construct(CategoryService $categoryService){
+    public function __construct(CategoryService $categoryService, PromotionService $promotionService){
         $this->categoryService = $categoryService;
+        $this->promotionService = $promotionService;
     }
+
     public function getAllProducts(){
         $categories = Category::where('parent_id', null)->get();
         $products = Product::with('images', 'categories')->paginate(20);

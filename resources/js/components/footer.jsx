@@ -29,6 +29,14 @@ const Footer = () => {
             name: 'Kontakt',
             link: 'contact',
         },
+        {
+            name: 'Regulamin sklepu',
+            link: 'store.regulations',
+        },
+        {
+            name: 'Ogólne warunki użytkowania strony internetowej',
+            link: 'website.terms',
+        },
     ];
 
     const servicesConfig = [

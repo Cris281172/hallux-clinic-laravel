@@ -8,6 +8,7 @@ import getMainProductImage from '../../../utils/store/getMainProductImage.js';
 import { Badge } from '../../ui/badge.js';
 import { Button } from '../../ui/button.js';
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '../../ui/sheet.js';
+import ProductPrice from '../product/product-price.jsx';
 
 const CartSheet = () => {
     const { props } = usePage();
@@ -84,7 +85,17 @@ const CartSheet = () => {
                                         <h4 className={'text-dark-plum text-lg font-bold'}>{product.item.name}</h4>
                                     </Link>
                                     <p className={'text-md text-black'}>{product.item.price * product.quantity} zł</p>
-                                    {product.quantity > 1 && <p className={'text-sm text-black'}>za sztukę {product.item.price} zł</p>}
+                                    {product.quantity > 1 && (
+                                        <div className={'flex items-center text-black'}>
+                                            <span>za sztukę</span>
+                                            <ProductPrice
+                                                finalPriceClassName={'ml-1 !font-light text-md'}
+                                                price={product.item.price}
+                                                promotions={product.item.promotions_active}
+                                                showPrevPrice={false}
+                                            />
+                                        </div>
+                                    )}
 
                                     {product.variant_value && <p className={'text-sm text-black'}>Rozmiar: {product.variant_value.value}</p>}
                                 </div>

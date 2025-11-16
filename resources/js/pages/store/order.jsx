@@ -82,57 +82,69 @@ const Order = ({ deliveryDetails, account, availableShippingMethod, shippingMeth
                 text={'Praktyczne porady, nowinki i ekspercka wiedza ze świata podologii. Sprawdź nasze artykuły o zdrowiu stóp!'}
             />
             <SubpageLayoutContainer>
-                <div className={'flex gap-15'}>
-                    <div className={'flex w-7/10 flex-col'}>
-                        <h4 className={'text-dark-plum mb-1 text-lg font-bold'}>
-                            Krok {currentStep} z {stepsConfig.length}
-                        </h4>
-                        <div className={'flex flex-col gap-5'}>
-                            {stepsConfig.map((step, index) => (
-                                <div className={''}>
-                                    <div className={'flex flex-col rounded-2xl border-1 border-[#530236] bg-gray-100 p-4'}>
-                                        <span className="text-dark-plum relative flex items-center gap-3 text-xl font-bold">
-                                            <span
-                                                className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all ${
-                                                    currentStep === step.step
-                                                        ? 'bg-dark-plum border-dark-plum animate-pulse'
-                                                        : currentStep > step.step
-                                                          ? 'scale-110 border-green-600 bg-green-600 text-white'
-                                                          : 'border-dark-plum/40'
-                                                }`}
-                                                style={currentStep === step.step ? { animationDuration: '2500ms' } : {}}
-                                            >
-                                                {currentStep > step.step && <Check />}
-                                            </span>
+                {cart && cart.products.length !== 0 ? (
+                    <>
+                        <div className={'flex gap-15'}>
+                            <div className={'flex w-7/10 flex-col'}>
+                                <h4 className={'text-dark-plum mb-1 text-lg font-bold'}>
+                                    Krok {currentStep} z {stepsConfig.length}
+                                </h4>
+                                <div className={'flex flex-col gap-5'}>
+                                    {stepsConfig.map((step, index) => (
+                                        <div className={''}>
+                                            <div className={'flex flex-col rounded-2xl border-1 border-[#530236] bg-gray-100 p-4'}>
+                                                <span className="text-dark-plum relative flex items-center gap-3 text-xl font-bold">
+                                                    <span
+                                                        className={`flex h-5 w-5 items-center justify-center rounded-full border-2 transition-all ${
+                                                            currentStep === step.step
+                                                                ? 'bg-dark-plum border-dark-plum animate-pulse'
+                                                                : currentStep > step.step
+                                                                  ? 'scale-110 border-green-600 bg-green-600 text-white'
+                                                                  : 'border-dark-plum/40'
+                                                        }`}
+                                                        style={currentStep === step.step ? { animationDuration: '2500ms' } : {}}
+                                                    >
+                                                        {currentStep > step.step && <Check />}
+                                                    </span>
 
-                                            {step.title}
-                                        </span>
+                                                    {step.title}
+                                                </span>
 
-                                        {currentStep > step.step && (
-                                            <div
-                                                className={`overflow-hidden transition-all duration-300 duration-500 ease-in-out ${currentStep > step.step ? 'opacity-100' : 'max-h-0 opacity-0'} `}
-                                            >
-                                                {step.summary}
+                                                {currentStep > step.step && (
+                                                    <div
+                                                        className={`overflow-hidden transition-all duration-300 duration-500 ease-in-out ${currentStep > step.step ? 'opacity-100' : 'max-h-0 opacity-0'} `}
+                                                    >
+                                                        {step.summary}
+                                                    </div>
+                                                )}
+                                                {currentStep === step.step && (
+                                                    <div
+                                                        className={`overflow-hidden transition-all duration-300 duration-500 ease-in-out ${currentStep === step.step ? 'opacity-100' : 'max-h-0 opacity-0'} `}
+                                                    >
+                                                        {step.component}
+                                                    </div>
+                                                )}
                                             </div>
-                                        )}
-                                        {currentStep === step.step && (
-                                            <div
-                                                className={`overflow-hidden transition-all duration-300 duration-500 ease-in-out ${currentStep === step.step ? 'opacity-100' : 'max-h-0 opacity-0'} `}
-                                            >
-                                                {step.component}
-                                            </div>
-                                        )}
-                                    </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            </div>
+                            <CartSummary cart={cart} currentShippingMethodID={currentShippingMethodID} />
                         </div>
+                        {currentStep === 4 && (
+                            <Button type={'button'} onClick={handleGoPayment} size={'lg'} className={'mt-10 w-full'} variant={'darkPlum'}>
+                                Zapłać
+                            </Button>
+                        )}
+                    </>
+                ) : (
+                    <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
+                        <h3 className="text-dark-plum text-2xl font-bold">Twój koszyk jest pusty</h3>
+                        <p className="text-gray-600">Dodaj przedmioty do koszyka, aby móc złożyć zamówienie.</p>
+                        <Button size="lg" variant="darkPlum" onClick={() => Inertia.get(route('store.products'))}>
+                            Dodaj przedmioty do koszyka
+                        </Button>
                     </div>
-                    <CartSummary cart={cart} currentShippingMethodID={currentShippingMethodID} />
-                </div>
-                {currentStep === 4 && (
-                    <Button type={'button'} onClick={handleGoPayment} size={'lg'} className={'mt-10 w-full'} variant={'darkPlum'}>
-                        Przejdź do płatności
-                    </Button>
                 )}
             </SubpageLayoutContainer>
         </StoreLayout>

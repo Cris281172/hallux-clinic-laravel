@@ -31,4 +31,8 @@ class Category extends Model
             $q->whereIn('categories.id', $this->allChildrenIds());
         })->count();
     }
+    public function promotions()
+    {
+        return $this->belongsToMany(Promotion::class, 'promotion_categories', 'category_id', 'promotion_id');
+    }
 }

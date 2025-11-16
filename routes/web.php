@@ -44,6 +44,8 @@ use App\Http\Controllers\Api\Store\ShippingMethodController as ShippingMethodCon
 use App\Http\Controllers\Web\Store\PaymentController;
 use App\Http\Controllers\Api\Dashboard\VisitStatusController as VisitStatusControllerAPI;
 use App\Http\Controllers\Api\Dashboard\PatientStatusController as PatientStatusControllerAPI;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\Api\Dashboard\Store\UserController as UserControllerAPI;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -54,11 +56,14 @@ Route::get('/kontakt', [PageController::class, 'contact'])->name('contact');
 Route::get('/o-mnie', [PageController::class, 'aboutMe'])->name('about-me');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/kontakt/{status}', [PageController::class, 'contactStatus'])->name('contact-status');
+Route::get('/regulamin-sklepu', [PageController::class, 'storeRegulations'])->name('store.regulations');
+Route::get('/ogolne-warunki-uzytkowania-strony-internetowej', [PageController::class, 'websiteTerms'])->name('website.terms');
 Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/', [PageController::class, 'services'])->name('services');
     Route::get('/{category}', [PageController::class, 'serviceCategory'])->name('serviceCategory');
     Route::get('/{category}/{service}', [PageController::class, 'service'])->name('service');
 });
+Route::get('/pdf/download/{filename}', [PdfController::class, 'download'])->name('pdf.download');
 Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewEmail'])->name('newsletter-add-email');
 
 Route::get('/profile', function () {
@@ -182,6 +187,12 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
             Route::prefix('variants')->name('variants.')->group(function () {
 
                 Route::get('/get/all', [VariantControllerAPI::class, 'getAllVariants'])->name('get.all');
+
+            });
+
+            Route::prefix('users')->name('users.')->group(function () {
+
+                Route::get('/get/search', [UserControllerAPI::class, 'searchUsers'])->name('get.search');
 
             });
 
@@ -553,6 +564,8 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
             Route::group(['prefix' => "promotions"], function (){
 
                 Route::get('create', [PromotionController::class, 'createPromotionView'])->name('dashboard.promotion.create.view');
+
+                Route::post('create', [PromotionController::class, 'createPromotion'])->name('dashboard.promotion.create');
 
             });
 

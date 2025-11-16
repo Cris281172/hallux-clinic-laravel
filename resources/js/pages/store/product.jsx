@@ -7,6 +7,8 @@ import { toast } from 'sonner';
 import subpageHeader4 from '../../assets/images/subpage-header/subpage-header-4.jpg';
 import EditorRenderer from '../../components/editor-renderer.jsx';
 import ProductCard from '../../components/store/product/product-card.jsx';
+import ProductPrice from '../../components/store/product/product-price.jsx';
+import PromotionCountdown from '../../components/store/product/promotion-countdown.jsx';
 import SizeChart from '../../components/store/product/size-chart.jsx';
 import SubpageHeader from '../../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../../components/subpage-layout-container.jsx';
@@ -65,7 +67,10 @@ const Product = ({ product, similarProducts }) => {
                     </div>
                     <div>
                         <h2 className={'text-dark-plum text-3xl font-bold'}>{product.name}</h2>
-                        <p className={'mt-2 text-xl font-bold text-black'}>{product.price} zł</p>
+                        <ProductPrice price={product.price} promotions={product.promotions_active} />
+                        {product.promotions_active.length > 0 && product.promotions_active[0].end_date && (
+                            <PromotionCountdown endsAt={product.promotions_active[0].end_date} />
+                        )}
                         {sizeVariants && (
                             <div className={'mt-2'}>
                                 <p className={'text-dark-plum'}>Wybierz rozmiar</p>

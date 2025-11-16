@@ -57,4 +57,10 @@ class PageController extends Controller
     public function contactStatus(string $status){
         return Inertia::render('contactStatus', compact('status'));
     }
+    public function storeRegulations(){
+        return Inertia::render('storeRegulations');
+    }
+    public function websiteTerms(){
+        return Inertia::render('websiteTerms');
+    }
 }
