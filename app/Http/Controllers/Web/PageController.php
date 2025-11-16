@@ -63,4 +63,7 @@ class PageController extends Controller
     public function websiteTerms(){
         return Inertia::render('websiteTerms');
     }
+    public function privacyPolicy(){
+        return Inertia::render('privacyPolicy');
+    }
 }

@@ -42,15 +42,17 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                                 <AnimatedAccordionContent isOpen={isOpen}>
                                     <div className="relative px-4 py-2">
                                         <p className="mb-1">{item.shortDesc}</p>
-                                        <Link
-                                            href={route('service', {
-                                                category: category ?? item.categoryLink,
-                                                service: item.link,
-                                            })}
-                                            className="font-bold"
-                                        >
-                                            Poznaj szczegóły
-                                        </Link>
+                                        {item.link && (
+                                            <Link
+                                                href={route('service', {
+                                                    category: category ?? item.categoryLink,
+                                                    service: item.link,
+                                                })}
+                                                className="font-bold"
+                                            >
+                                                Poznaj szczegóły
+                                            </Link>
+                                        )}
                                     </div>
                                 </AnimatedAccordionContent>
                             </AccordionItem>

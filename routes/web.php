@@ -58,6 +58,7 @@ Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/kontakt/{status}', [PageController::class, 'contactStatus'])->name('contact-status');
 Route::get('/regulamin-sklepu', [PageController::class, 'storeRegulations'])->name('store.regulations');
 Route::get('/ogolne-warunki-uzytkowania-strony-internetowej', [PageController::class, 'websiteTerms'])->name('website.terms');
+Route::get('/polityka-prywatnosci', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/', [PageController::class, 'services'])->name('services');
     Route::get('/{category}', [PageController::class, 'serviceCategory'])->name('serviceCategory');

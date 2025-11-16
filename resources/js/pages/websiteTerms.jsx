@@ -23,7 +23,6 @@ const WebsiteTerms = () => {
             />
             <SubpageLayoutContainer>
                 <section className="space-y-10">
-                    {/* Sekcja 1 */}
                     <article>
                         <h2 className="mb-4 text-center text-2xl font-bold text-black">I. Preambuła</h2>
                         <ol className="list-inside list-decimal space-y-2 leading-relaxed text-gray-700">
