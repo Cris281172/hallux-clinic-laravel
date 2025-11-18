@@ -12,6 +12,7 @@
         <meta name="keywords" content="Podologia Łódź, Gabinet Podologiczny, Monika Juczyńska" />
         <meta name="google-adsense-account" content="ca-pub-7882476332353334">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
         <script defer src="https://www.googletagmanager.com/gtag/js?id=AW-11343238376"></script>
         <script>
             window.dataLayer = window.dataLayer || [];

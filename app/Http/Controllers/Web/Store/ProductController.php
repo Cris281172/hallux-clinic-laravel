@@ -7,17 +7,14 @@ use App\Http\Controllers\Controller;
 use App\Models\Store\Category;
 use App\Models\Store\Product;
 use App\Services\CategoryService;
-use App\Services\Store\PromotionService;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
     protected $categoryService;
-    protected $promotionService;
 
-    public function __construct(CategoryService $categoryService, PromotionService $promotionService){
+    public function __construct(CategoryService $categoryService){
         $this->categoryService = $categoryService;
-        $this->promotionService = $promotionService;
     }
 
     public function getAllProducts(){

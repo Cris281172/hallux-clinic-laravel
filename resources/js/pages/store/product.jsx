@@ -67,9 +67,9 @@ const Product = ({ product, similarProducts }) => {
                     </div>
                     <div>
                         <h2 className={'text-dark-plum text-3xl font-bold'}>{product.name}</h2>
-                        <ProductPrice price={product.price} promotions={product.promotions_active} />
-                        {product.promotions_active.length > 0 && product.promotions_active[0].end_date && (
-                            <PromotionCountdown endsAt={product.promotions_active[0].end_date} />
+                        <ProductPrice price={product.price} promotion={product.promotion_active} />
+                        {product.promotions_active && product.promotions_active.end_date && (
+                            <PromotionCountdown endsAt={product.promotions_active.end_date} />
                         )}
                         {sizeVariants && (
                             <div className={'mt-2'}>

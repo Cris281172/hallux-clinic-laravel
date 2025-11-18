@@ -154,21 +154,36 @@ const MenuBar = () => {
         }
     }, [props.ziggy.location]);
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 10);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     return (
         <div>
-            <div className={'h-[84px] md:h-[94px]'}></div>
-            <div className={'fixed top-0 z-50 w-full border-b-1 border-gray-50 shadow-xl'}>
-                <div className="bg-dark-plum pt-3 pb-3">
+            <div className={'fixed top-0 z-50 w-full border-gray-50 shadow-sm'}>
+                <div
+                    className={`pt-3 pb-3 transition-all duration-300 ${
+                        isScrolled
+                            ? 'border-b border-white/10 bg-[#530236]/40 shadow-lg shadow-black/20 backdrop-blur-2xl'
+                            : 'bg-dark-plum border-b border-transparent'
+                    } `}
+                >
                     <div className="mx-4 flex items-center justify-between sm:container sm:mx-auto">
                         <Link href="/">
-                            <img src="/images/logo.webp" alt="Logo" className="w-50 md:w-60" />
+                            <img src="/images/logo.webp" alt="Logo" className="w-40 md:w-50" />
                         </Link>
 
                         <div className="inset-y-0 left-0 flex items-center lg:hidden">
                             <button
                                 type="button"
                                 onClick={toggleMenu}
-                                className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
+                                className="relative inline-flex items-center justify-center rounded-md p-2 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
                                 aria-controls="mobile-menu"
                                 aria-expanded={menuOpen}
                             >
@@ -212,7 +227,7 @@ const MenuBar = () => {
                                     >
                                         <Link
                                             ref={(el) => (linkRefs.current[index] = el)}
-                                            className={`text-2xl font-medium text-white`}
+                                            className={`font-sans text-lg font-bold text-white`}
                                             href={menuItem.url}
                                         >
                                             {menuItem.name}
@@ -243,9 +258,8 @@ const MenuBar = () => {
                         </nav>
                     </div>
                 </div>
-
                 <div
-                    className={`${menuOpen ? 'right-0' : '-right-full'} bg-dark-plum absolute top-[84] z-20 h-screen w-full transition-all md:top-[94] lg:hidden`}
+                    className={`${menuOpen ? 'right-0' : '-right-full'} absolute z-20 h-screen w-full border-l border-white/10 bg-[#530236]/40 shadow-lg shadow-black/20 backdrop-blur-2xl transition-all lg:hidden`}
                     id="mobile-menu"
                 >
                     <div className="flex flex-col items-center space-y-1 px-2 pt-2 pb-3">

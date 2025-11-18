@@ -91,7 +91,7 @@ const CartSheet = () => {
                                             <ProductPrice
                                                 finalPriceClassName={'ml-1 !font-light text-md'}
                                                 price={product.item.price}
-                                                promotions={product.item.promotions_active}
+                                                promotion={product.item.promotion_active}
                                                 showPrevPrice={false}
                                             />
                                         </div>

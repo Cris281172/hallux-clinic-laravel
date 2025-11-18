@@ -3,6 +3,7 @@ import { FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { toast } from 'sonner';
 import InputError from '../input-error.js';
+import { Button } from '../ui/button.tsx';
 import { Input } from '../ui/input.js';
 import { Label } from '../ui/label.js';
 import { Textarea } from '../ui/textarea.js';
@@ -103,14 +104,9 @@ const ContactSection = () => {
                     <Textarea value={data.message} onChange={(e) => setData('message', e.target.value)} className="bg-dark-plum block w-full" />
                     <InputError message={errors.message} />
                 </div>
-                <button
-                    className={
-                        'bg-dark-plum hover:bg-dark-plum-500 mt-5 h-12 w-full cursor-pointer rounded-full px-4 py-2 font-bold text-white transition'
-                    }
-                    type={'submit'}
-                >
+                <Button variant={'darkPlum'} size={'lg'} className={'mt-5 w-full'} type={'submit'}>
                     Wyślij
-                </button>
+                </Button>
             </form>
             <div className={'mt-5 border-l-1 lg:mt-0 lg:ml-12 lg:pl-12'}>
                 <ul className={'mb-2 border-b-1 pb-2'}>

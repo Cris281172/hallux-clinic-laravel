@@ -19,9 +19,9 @@ return new class extends Migration
             $table->enum('discount_type', ['percent', 'fixed']);
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
-            $table->boolean('active')->default(false);;
+            $table->boolean('active')->default(false);
             $table->string('min_order_value')->nullable();
-            $table->boolean('only_once_per_user')->default(false);;
+            $table->boolean('only_once_per_user')->default(false);
             $table->enum('visibility', ['all', 'logged_in', 'specific_users'])->default('all');
             $table->timestamps();
         });

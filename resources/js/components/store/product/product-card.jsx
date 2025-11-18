@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
                 <img className={'aspect-square rounded-t-2xl object-fill'} src={getR2Url(getMainProductImage(product.images))} />
                 <div className={'m-5'}>
                     <h2 className={'text-dark-plum'}>{product.name}</h2>
-                    <ProductPrice price={product.price} promotions={product.promotions_active} />
+                    <ProductPrice price={product.price} promotion={product.promotion_active} />
                     <div>
                         {product.categories.map((category, index) => (
                             <p className={'text-xs font-thin text-black'} key={index}>

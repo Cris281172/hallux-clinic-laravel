@@ -16,11 +16,11 @@ class Product extends Model
 
     protected $fillable = ['name', 'slug', 'description', 'price', 'type', 'is_active', 'variants'];
 
-    protected $appends = ['promotions_active'];
+    protected $appends = ['promotion_active'];
 
-    public function getPromotionsActiveAttribute()
+    public function getPromotionActiveAttribute()
     {
-        return $this->activePromotions(auth()->user());
+        return $this->activePromotion(auth()->user());
     }
     public function images(){
         return $this->hasMany(ProductImage::class, 'product_id', 'id');
@@ -61,7 +61,7 @@ class Product extends Model
         return $this->belongsToMany(Promotion::class, 'promotion_products', 'product_id', 'promotion_id');
     }
 
-    public function activePromotions($user = null)
+    public function activePromotion($user = null)
     {
         $now = now();
 
@@ -73,7 +73,14 @@ class Product extends Model
 
         $allPromos = $productPromos->merge($categoryPromos);
 
-        return $allPromos->filter(function($promo) use ($user, $now) {
+        $filterPromos = $allPromos->filter(function($promo) use ($user, $now) {
+            $test = OrderItem::select('order_items.*')
+                ->join('orders', 'orders.id', '=', 'order_items.order_id')
+                ->where('order_items.promotion_id', $promo->id)
+                ->where('orders.user_id', auth()->id())
+                ->count();
+
+            if($test >= $promo->count_per_user) return false;
 
             if(!$promo->active) return false;
             if($promo->start_date && $promo->start_date > $now) return false;
@@ -85,5 +92,12 @@ class Product extends Model
 
             return false;
         })->values();
+
+        return $filterPromos->map(function($promo) use ($user, $now) {
+           if($promo->discount_type === 'fixed') $promo->final_discount = $this->price - $promo->discount_value;
+           else if($promo->discount_type === 'percent') $promo->final_discount = $this->price - ($this->price * ( $promo->discount_value / 100));
+           return $promo;
+        })->sortBy('final_discount')->first();
+
     }
 }

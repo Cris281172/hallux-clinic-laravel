@@ -101,7 +101,10 @@ export default function Home() {
                     'Szukasz dobrego podologa w Łodzi? Hallux Clinic oferuje kompleksową diagnostykę i leczenie chorób stóp. Wrastające paznokcie, odciski, grzybica. Umów wizytę!'
                 }
             />
-            <div className={`relative flex min-h-screen items-center justify-center overflow-hidden`}>
+            <section
+                aria-label="Gabinet Podologiczny w Łodzi – podologia i zdrowie stóp"
+                className="relative flex min-h-screen items-center justify-center overflow-hidden before:absolute before:inset-0 before:z-10 before:bg-gradient-to-t before:from-black/90 before:via-black/40 before:to-transparent before:backdrop-blur-[1px]"
+            >
                 <video
                     ref={videoRef}
                     src={videoSrc}
@@ -110,43 +113,47 @@ export default function Home() {
                     muted
                     playsInline
                     poster={headerImagePoster}
+                    aria-label="Gabinet podologiczny - tło wideo"
+                    preload="auto"
                     fetchpriority="high"
-                    className="absolute h-full w-full object-cover object-[var(--mobile-position)] md:object-center"
+                    className="animate-fadeVideo absolute inset-0 z-0 h-full w-full object-cover object-[var(--mobile-position)] opacity-0 md:object-center"
                 />
 
-                <div className={'absolute top-0 left-0 h-full w-full bg-gradient-to-t from-black/80 to-black/40'}></div>
-
-                <div className="relative z-10 container mx-auto px-4 text-center">
+                <div className="relative z-20 container mx-auto px-6 pt-40 text-center lg:px-8">
                     <AnimatedText
                         text="Gabinet Podologiczny"
                         as="h1"
-                        className="mb-6 text-5xl font-bold text-white sm:text-7xl"
-                        spanClassName={'mr-0 md:mr-5'}
+                        className="font-heading mb-4 text-4xl font-bold text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-5xl"
+                        spanClassName="mr-0 md:mr-5"
                     />
+
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
                         viewport={{ once: true }}
-                        className="mx-auto mb-10 max-w-xl text-base text-white sm:text-lg"
+                        className="text-md mx-auto mb-10 max-w-xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:text-lg"
                     >
                         Zadbaj o zdrowie i estetykę swoich stóp. Zapraszamy do naszego profesjonalnego gabinetu w Łodzi, gdzie zapewniamy opiekę w
                         komfortowych warunkach.
                     </motion.p>
+
                     <div className="mt-2">
-                        <motion.a
-                            href="tel:+48459410096"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            viewport={{ once: true }}
-                            className="bg-dark-plum hover:bg-dark-plum-500 inline-flex h-12 w-50 items-center justify-center rounded-full px-6 py-2 font-bold text-white transition"
-                        >
-                            Umów wizytę
-                        </motion.a>
+                        <Button variant={'darkPlum'} asChild={true}>
+                            <motion.a
+                                aria-label="Zadzwoń i umów wizytę podologiczną"
+                                href="tel:+48459410096"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5 }}
+                                viewport={{ once: true }}
+                            >
+                                Umów wizytę
+                            </motion.a>
+                        </Button>
                     </div>
                 </div>
-            </div>
+            </section>
             <div className={'bg-gray-200 pt-20 pb-20'}>
                 <Container>
                     <div className={'flex w-full flex-col items-center'}>
@@ -162,7 +169,7 @@ export default function Home() {
                 </Container>
             </div>
             <div className={'relative min-h-350 md:min-h-300 lg:min-h-175'}>
-                <div className={'fixed top-0 left-0 -z-10 h-full w-full bg-[url(/images/test.jpeg)] bg-cover bg-center bg-no-repeat'}></div>
+                {/*<div className={'fixed top-0 left-0 -z-10 h-full w-full bg-[url(/images/test.jpeg)] bg-cover bg-center bg-no-repeat'}></div>*/}
                 <div className={'bg-dark-plum absolute top-0 left-0 h-full w-full opacity-25'}></div>
                 <div className={'absolute top-1/2 w-full -translate-y-1/2'}>
                     <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
@@ -175,7 +182,11 @@ export default function Home() {
                                 src={selfPhoto}
                             />
                         </div>
-                        <div className={'w-full rounded-md bg-[rgba(83,2,54,0.5)] p-7 shadow-2xl'}>
+                        <div
+                            className={
+                                'w-full rounded-md border-b border-white/10 bg-white/20 p-7 shadow-2xl shadow-lg shadow-black/20 backdrop-blur-2xl'
+                            }
+                        >
                             <HeadingHome title={'O mnie'} titleClasName={'text-white'} />
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}

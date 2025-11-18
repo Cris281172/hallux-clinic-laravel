@@ -10,9 +10,10 @@ import StoreLayout from '../../layouts/store-layout.jsx';
 
 const Products = ({ products, categories, parentCategory }) => {
     const { props } = usePage();
-    console.log(products);
 
     const currentCategory = props.ziggy.location.slice(props.ziggy.location.lastIndexOf('/') + 1);
+
+    console.log(products);
 
     return (
         <StoreLayout>
