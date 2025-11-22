@@ -11,7 +11,7 @@ import getR2Url from '../../../utils/getR2Url.js';
 const GetPost = ({ post, similar }) => {
     return (
         <AppLayout>
-            <SEO title={post.title} description={post.short_desc} url={`/${post.slug}`} />
+            <SEO title={post.title} description={post.short_desc} url={`/${post.slug}`} image={getR2Url(post.image)} />
             <SubpageHeader title={post.title} background={headerBackground} />
             <SubpageLayoutContainer>
                 <img src={getR2Url(post.image)} alt={post.title} className="mb-8 max-h-[400px] w-full rounded-2xl object-cover" />
