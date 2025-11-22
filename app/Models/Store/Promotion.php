@@ -12,4 +12,7 @@ class Promotion extends Model
     {
         return $this->belongsToMany(User::class, 'promotion_users', 'promotion_id', 'user_id');
     }
+    public function codes(){
+        return $this->hasMany(PromotionCode::class, 'promotion_id', 'id');
+    }
 }

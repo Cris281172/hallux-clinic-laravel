@@ -114,7 +114,6 @@ export default function Home() {
                     playsInline
                     poster={headerImagePoster}
                     aria-label="Gabinet podologiczny - tło wideo"
-                    preload="auto"
                     fetchpriority="high"
                     className="animate-fadeVideo absolute inset-0 z-0 h-full w-full object-cover object-[var(--mobile-position)] opacity-0 md:object-center"
                 />

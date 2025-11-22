@@ -2,8 +2,8 @@ import Container from './page/container.jsx';
 
 const SubpageHeader = ({ title, text, background }) => {
     return (
-        <div className={`relative h-100 w-full bg-cover bg-fixed bg-top`} style={{ backgroundImage: `url("${background}")` }}>
-            <div className={'absolute top-0 left-0 h-full w-full bg-black opacity-70'}></div>
+        <div className={`relative h-100 w-full`}>
+            <div className={'absolute top-0 left-0 h-full w-full bg-black opacity-60'}></div>
             <div
                 className={
                     'trans absolute top-1/2 left-1/2 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center lg:max-w-2/4'

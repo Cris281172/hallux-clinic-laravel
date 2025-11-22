@@ -1,6 +1,7 @@
 import { useForm } from '@inertiajs/react';
 import { pl } from 'date-fns/locale';
 import DatePicker from 'react-datepicker';
+import CategoriesSelect from '../../../../components/dashboard/store/categories/categories-select.jsx';
 import ProductsSelect from '../../../../components/dashboard/store/products/products-select.jsx';
 import UserSelect from '../../../../components/dashboard/store/users/user-select.jsx';
 import FormError from '../../../../components/form-error.jsx';
@@ -28,6 +29,7 @@ const CreatePromotion = () => {
         },
         userID: '',
         productID: '',
+        categoryID: '',
     });
 
     const promotionTypes = [
@@ -107,28 +109,6 @@ const CreatePromotion = () => {
                         />
                         <FormError id="fullName-error" message={errors.name} />
                     </div>
-
-                    <div className="flex w-full flex-col gap-1.5">
-                        <Label htmlFor="slug">Typ promocji</Label>
-                        <Select
-                            defaultValue={data.promotion.type}
-                            onValueChange={(value) => setData('promotion', { ...data.promotion, type: value })}
-                        >
-                            <SelectTrigger className="w-full">
-                                <SelectValue placeholder="Wybierz typ promocji" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    {promotionTypes.map((item, index) => (
-                                        <SelectItem key={index} value={`${item.value}`}>
-                                            {item.name}
-                                        </SelectItem>
-                                    ))}
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                        <FormError id="phone-error" message={errors.slug} />
-                    </div>
                     <div className="flex w-full flex-col gap-1.5">
                         <Label htmlFor="slug">Rodzaj zniżki</Label>
                         <Select
@@ -185,9 +165,38 @@ const CreatePromotion = () => {
                             placeholderText={'Podaj datę zakończenia promocji'}
                         />
                     </div>
-                    {data.promotion.type === 'product' && (
-                        <ProductsSelect productID={data.productID} onSelect={(value) => setData('productID', value)} />
-                    )}
+                </div>
+                <div className={'mt-5'}>
+                    <h3 className={'mb-2 text-lg font-bold underline'}>Typ promocji</h3>
+                    <div className={'grid grid-cols-2 gap-4'}>
+                        <div className="flex w-full flex-col gap-1.5">
+                            <Label htmlFor="slug">Typ promocji</Label>
+                            <Select
+                                defaultValue={data.promotion.type}
+                                onValueChange={(value) => setData('promotion', { ...data.promotion, type: value })}
+                            >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Wybierz typ promocji" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        {promotionTypes.map((item, index) => (
+                                            <SelectItem key={index} value={`${item.value}`}>
+                                                {item.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                            <FormError id="phone-error" message={errors.slug} />
+                        </div>
+                        {data.promotion.type === 'product' && (
+                            <ProductsSelect productID={data.productID} onSelect={(value) => setData('productID', value)} />
+                        )}
+                        {data.promotion.type === 'category' && (
+                            <CategoriesSelect categoryID={data.categoryID} onSelect={(value) => setData('categoryID', value)} />
+                        )}
+                    </div>
                 </div>
                 <div className={'mt-5'}>
                     <h3 className={'mb-2 text-lg font-bold underline'}>Widoczność</h3>

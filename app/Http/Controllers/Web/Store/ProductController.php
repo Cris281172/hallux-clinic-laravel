@@ -19,9 +19,29 @@ class ProductController extends Controller
 
     public function getAllProducts(){
         $categories = Category::where('parent_id', null)->get();
-        $products = Product::with('images', 'categories')->paginate(20);
+
+        $productsQuery = Product::with('images', 'categories');
+
+        $searchQuery = request()->get('q');
+
+        $minPriceQuery = request()->get('min_price');
+        $maxPriceQuery = request()->get('max_price');
+
+        if($searchQuery){
+            $productsQuery->where('name', 'LIKE', "%{$searchQuery}%");
+        }
+
+        if($minPriceQuery){
+            $productsQuery->whereRaw('CAST(price AS DECIMAL(10,2)) >= ?', [$minPriceQuery]);
+        }
+        if($maxPriceQuery){
+            $productsQuery->whereRaw('CAST(price AS DECIMAL(10,2)) <= ?', [$maxPriceQuery]);
+        }
+
+        $products = $productsQuery->paginate(20)->withQueryString();
         $categories = $this->categoryService->map($categories);
-        return Inertia::render('store/products', compact('products', 'categories'));
+
+        return Inertia::render('store/products', compact('products', 'categories', 'searchQuery'));
     }
     public function getProduct($slug){
         $product = Product::where('slug', $slug)->with('images', 'categories', 'variants', 'attributes')->first();

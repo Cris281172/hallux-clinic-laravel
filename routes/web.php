@@ -46,6 +46,8 @@ use App\Http\Controllers\Api\Dashboard\VisitStatusController as VisitStatusContr
 use App\Http\Controllers\Api\Dashboard\PatientStatusController as PatientStatusControllerAPI;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\Api\Dashboard\Store\UserController as UserControllerAPI;
+use App\Http\Controllers\Api\Dashboard\Store\CategoryController as CategoryControllerAPI;
+use App\Http\Controllers\Api\Store\SearchController as SearchControllerAPI;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -94,6 +96,12 @@ Route::group(['prefix' => 'sklep'], function () {
         Route::post('/delivery-details', [OrderController::class, 'deliveryDetails'])->name('store.order.delivery.details');
         Route::post('/shipping-method', [OrderController::class, 'shippingMethod'])->name('store.order.shipping.method');
         Route::post('/create-order', [OrderController::class, 'createOrder'])->name('store.order.create');
+    });
+
+    Route::group(['prefix' => 'search'], function () {
+
+        Route::get('/suggestions', [SearchControllerAPI::class, 'suggestions'])->name('store.search.suggestions');
+
     });
 
     Route::get('/platnosc/{uuid}', [PaymentController::class, 'getPaymentView'])->name('store.payment.get.view');
@@ -176,6 +184,12 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
             Route::prefix('products')->name('products.')->group(function () {
 
                 Route::get('/get/all', [ProductControllerAPI::class, 'getAllProducts'])->name('get.all');
+
+            });
+
+            Route::prefix('categories')->name('categories.')->group(function () {
+
+                Route::get('/get/all', [CategoryControllerAPI::class, 'getAllCategories'])->name('get.all');
 
             });
 

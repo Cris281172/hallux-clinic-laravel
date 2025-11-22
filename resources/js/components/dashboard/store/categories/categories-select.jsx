@@ -6,24 +6,24 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Label } from '../../../ui/label.tsx';
 import { Popover, PopoverContent, PopoverTrigger } from '../../../ui/popover.tsx';
 
-const ProductsSelect = ({ productID, onSelect }) => {
+const CategoriesSelect = ({ categoryID, onSelect }) => {
     const timer = useRef(null);
     const [searchInput, setSearchInput] = useState('');
-    const [products, setProducts] = useState([]);
-    const [selectedProducts, setSelectedProducts] = useState(productID ? productID : null);
+    const [categories, setCategories] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState(categoryID ? categoryID : null);
 
-    const fetchProducts = async () => {
-        const response = await callToApi({ url: route('api.dashboard.store.products.get.all', { searchInput }) });
-        setProducts(response.products || []);
+    const fetchCategories = async () => {
+        const response = await callToApi({ url: route('api.dashboard.store.categories.get.all', { searchInput }) });
+        setCategories(response.categories || []);
     };
 
     useEffect(() => {
         if (timer.current) clearTimeout(timer.current);
-        timer.current = setTimeout(fetchProducts, 500);
+        timer.current = setTimeout(fetchCategories, 500);
     }, [searchInput]);
 
     const handleSelect = (product) => {
-        setSelectedProducts(product);
+        setSelectedCategories(product);
         onSelect(product.id);
     };
 
@@ -33,7 +33,7 @@ const ProductsSelect = ({ productID, onSelect }) => {
                 <div className={'flex flex-col gap-1'}>
                     <Label requiredStar={true}>Produkt do promocji</Label>
                     <Button variant="outline" role="combobox" className="w-full justify-between bg-transparent" type="button">
-                        {selectedProducts ? `${selectedProducts.name} ` : 'Wybierz produkt do promocji...'}
+                        {selectedCategories ? `${selectedCategories.name} ` : 'Wybierz produkt do promocji...'}
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                 </div>
@@ -49,9 +49,9 @@ const ProductsSelect = ({ productID, onSelect }) => {
                     <CommandEmpty>Nie znaleziono.</CommandEmpty>
                     <CommandList filter={false}>
                         <CommandGroup>
-                            {products.map((item) => (
+                            {categories.map((item) => (
                                 <CommandItem className={'text-nowrap'} key={item.id} value={`${item.name}`} onSelect={() => handleSelect(item)}>
-                                    {productID === item.id ? <CircleCheck className={'mr-2 h-4 w-4'} /> : <Circle className={'mr-2 h-4 w-4'} />}
+                                    {categoryID === item.id ? <CircleCheck className={'mr-2 h-4 w-4'} /> : <Circle className={'mr-2 h-4 w-4'} />}
                                     {item.name}
                                 </CommandItem>
                             ))}
@@ -63,4 +63,4 @@ const ProductsSelect = ({ productID, onSelect }) => {
     );
 };
 
-export default ProductsSelect;
+export default CategoriesSelect;

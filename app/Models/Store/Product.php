@@ -74,13 +74,13 @@ class Product extends Model
         $allPromos = $productPromos->merge($categoryPromos);
 
         $filterPromos = $allPromos->filter(function($promo) use ($user, $now) {
-            $test = OrderItem::select('order_items.*')
+            $userCount = OrderItem::select('order_items.*')
                 ->join('orders', 'orders.id', '=', 'order_items.order_id')
                 ->where('order_items.promotion_id', $promo->id)
                 ->where('orders.user_id', auth()->id())
                 ->count();
 
-            if($test >= $promo->count_per_user) return false;
+            if($userCount >= $promo->count_per_user) return false;
 
             if(!$promo->active) return false;
             if($promo->start_date && $promo->start_date > $now) return false;
