@@ -58,9 +58,6 @@
             }
         </style>
 
-        <title inertia>Gabinet Podologiczny Łódź - Profesjonalna Pielęgnacja Stóp | Hallux Clinic</title>
-        <meta name="description" content="Szukasz dobrego podologa w Łodzi? Hallux Clinic oferuje kompleksową diagnostykę i leczenie chorób stóp. Wrastające paznokcie, odciski, grzybica. Umów wizytę!" />
-
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="preload" href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" as="style" onload="this.onload=null; this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600"></noscript>
