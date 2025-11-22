@@ -3,7 +3,6 @@ import annaImage from '../assets/images/cooperation/anna.jpg';
 import jakubImage from '../assets/images/cooperation/jakub.jpg';
 import katarzynaImage from '../assets/images/cooperation/katarzyna.webp';
 import selfPhoto from '../assets/images/self-photo.webp';
-import subpageHeader5 from '../assets/images/subpage-header/subpage-header-5.jpg';
 import AnimatedText from '../components/animation/animated-text.jsx';
 import SEO from '../components/page/SEO.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
@@ -49,7 +48,6 @@ const AboutMe = () => {
 
             <SubpageHeader
                 title={'O mnie'}
-                background={subpageHeader5}
                 text={
                     'Dowiedz się więcej o moim doświadczeniu, kwalifikacjach i pasji do podologii. Profesjonalizm i indywidualne podejście w trosce o zdrowie Twoich stóp.'
                 }

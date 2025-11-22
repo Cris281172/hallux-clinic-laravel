@@ -1,4 +1,3 @@
-import subpageHeader4 from '../../assets/images/subpage-header/subpage-header-4.jpg';
 import CartSummary from '../../components/store/order/CartSummary.jsx';
 import SubpageHeader from '../../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../../components/subpage-layout-container.jsx';
@@ -14,7 +13,7 @@ const Payment = ({ order }) => {
 
     return (
         <StoreLayout>
-            <SubpageHeader title={'Płatność'} background={subpageHeader4} text={'Potwierdź i opłać zamówienie'} />
+            <SubpageHeader title={'Płatność'} text={'Potwierdź i opłać zamówienie'} />
 
             <SubpageLayoutContainer>
                 <div className="flex gap-15">

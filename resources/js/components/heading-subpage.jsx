@@ -41,13 +41,13 @@ const HeadingSubpage = () => {
     return (
         <>
             <nav className="mb-4 flex" aria-label="Breadcrumb">
-                <ol className="flex flex-wrap items-center gap-x-1 md:gap-x-2 rtl:space-x-reverse">
+                <ol className="flex flex-wrap items-center gap-x-1 overflow-hidden md:gap-x-2 rtl:space-x-reverse">
                     {config.map((item, index) => (
                         <li className="inline-flex items-center" key={index}>
                             {item.icon}
                             <Link
                                 href={item.url}
-                                className="inline-flex items-center text-sm font-medium whitespace-nowrap text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+                                className="inline-flex items-center truncate text-sm font-medium whitespace-nowrap text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
                             >
                                 {item.text}
                             </Link>

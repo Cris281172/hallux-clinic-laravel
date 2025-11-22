@@ -12,7 +12,7 @@ const GetPost = ({ post, similar }) => {
     return (
         <AppLayout>
             <SEO title={post.title} description={post.short_desc} url={`/${post.slug}`} />
-            <SubpageHeader title={post.title} text={post.short_desc} background={headerBackground} />
+            <SubpageHeader title={post.title} background={headerBackground} />
             <SubpageLayoutContainer>
                 <img src={getR2Url(post.image)} alt={post.title} className="mb-8 max-h-[400px] w-full rounded-2xl object-cover" />
                 <EditorRenderer blocks={JSON.parse(post.desc)} />

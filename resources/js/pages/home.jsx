@@ -103,7 +103,7 @@ export default function Home() {
             />
             <section
                 aria-label="Gabinet Podologiczny w Łodzi – podologia i zdrowie stóp"
-                className="relative flex min-h-screen items-center justify-center overflow-hidden before:absolute before:inset-0 before:z-10 before:bg-gradient-to-t before:from-black/90 before:via-black/40 before:to-transparent before:backdrop-blur-[1px]"
+                className="relative flex min-h-screen items-center justify-center overflow-hidden before:absolute before:inset-0 before:z-10 before:bg-gradient-to-t before:from-black/90 before:via-black/40 before:to-transparent before:backdrop-blur-[10px]"
             >
                 <video
                     ref={videoRef}
@@ -123,7 +123,7 @@ export default function Home() {
                         text="Gabinet Podologiczny"
                         as="h1"
                         className="font-heading mb-4 text-4xl font-bold text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)] sm:text-5xl"
-                        spanClassName="mr-0 md:mr-5"
+                        spanClassName="mr-0 sm:mr-5"
                     />
 
                     <motion.p

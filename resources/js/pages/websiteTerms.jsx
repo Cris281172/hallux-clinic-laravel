@@ -1,4 +1,3 @@
-import subpageHeader3 from '../assets/images/subpage-header/subpage-header-3.jpg';
 import SEO from '../components/page/SEO.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
@@ -16,7 +15,6 @@ const WebsiteTerms = () => {
             />
             <SubpageHeader
                 title={'Ogólne warunki użytkowania strony internetowej'}
-                background={subpageHeader3}
                 text={
                     'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
                 }

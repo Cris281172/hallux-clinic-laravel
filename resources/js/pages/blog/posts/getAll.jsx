@@ -1,4 +1,3 @@
-import subpageHeader4 from '../../../assets/images/subpage-header/subpage-header-4.jpg';
 import AppPagination from '../../../components/app-pagination.jsx';
 import PostItem from '../../../components/blog/PostItem.jsx';
 import SEO from '../../../components/page/SEO.jsx';
@@ -18,7 +17,6 @@ const GetAll = ({ posts }) => {
             />
             <SubpageHeader
                 title={'Blog'}
-                background={subpageHeader4}
                 text={'Praktyczne porady, nowinki i ekspercka wiedza ze świata podologii. Sprawdź nasze artykuły o zdrowiu stóp!'}
             />
 

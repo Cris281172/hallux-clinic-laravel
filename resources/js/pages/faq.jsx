@@ -1,4 +1,3 @@
-import bannerFAQ from '../assets/images/banners/banner-faq.png';
 import { FAQ as FAQComponent } from '../components/page/faq.jsx';
 import SEO from '../components/page/SEO.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
@@ -16,7 +15,7 @@ const FAQ = () => {
                 }
                 url={'/faq'}
             />
-            <SubpageHeader title={'FAQ'} text={'Najczęstsze pytania'} background={bannerFAQ} />
+            <SubpageHeader title={'FAQ'} text={'Najczęstsze pytania'} />
             <SubpageLayoutContainer>
                 <FAQComponent data={configFAQ} variant={'primary'} />
             </SubpageLayoutContainer>

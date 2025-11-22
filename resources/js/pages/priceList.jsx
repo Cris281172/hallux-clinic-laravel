@@ -1,4 +1,3 @@
-import subpageHeader2 from '../assets/images/subpage-header/subpage-header-2.jpg';
 import SEO from '../components/page/SEO.jsx';
 import PricesAccordion from '../components/prices-accordion.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
@@ -17,7 +16,6 @@ const PriceList = () => {
             />
             <SubpageHeader
                 title={'Cennik'}
-                background={subpageHeader2}
                 text={
                     'Sprawdź aktualny cennik zabiegów podologicznych w moim gabinecie w Łodzi. Poznaj ceny konsultacji, pedicure leczniczego, usuwania odcisków i innych usług.'
                 }

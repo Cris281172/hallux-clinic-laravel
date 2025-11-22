@@ -3,7 +3,6 @@ import { usePage } from '@inertiajs/react';
 import Cookies from 'js-cookie';
 import { Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import subpageHeader4 from '../../assets/images/subpage-header/subpage-header-4.jpg';
 import Account, { AccountSummary } from '../../components/store/order/Account.jsx';
 import CartSummary from '../../components/store/order/CartSummary.jsx';
 import DeliveryData, { DeliveryDataSummary } from '../../components/store/order/DeliveryData.jsx';
@@ -78,7 +77,6 @@ const Order = ({ deliveryDetails, account, availableShippingMethod, shippingMeth
         <StoreLayout>
             <SubpageHeader
                 title={'Zamówienie'}
-                background={subpageHeader4}
                 text={'Praktyczne porady, nowinki i ekspercka wiedza ze świata podologii. Sprawdź nasze artykuły o zdrowiu stóp!'}
             />
             <SubpageLayoutContainer>

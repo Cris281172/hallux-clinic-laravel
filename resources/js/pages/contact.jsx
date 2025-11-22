@@ -1,4 +1,3 @@
-import subpageHeader1 from '../assets/images/subpage-header/subpage-header-1.jpg';
 import Map from '../components/map.jsx';
 import ContactSection from '../components/page/contact-section.jsx';
 import SEO from '../components/page/SEO.jsx';
@@ -18,7 +17,6 @@ const Contact = () => {
             />
             <SubpageHeader
                 title={'Kontakt'}
-                background={subpageHeader1}
                 text={
                     'Skontaktuj się, aby umówić wizytę w gabinecie podologicznym w Łodzi. Znajdziesz tu adres, numer telefonu, e-mail oraz wygodny formularz kontaktowy.'
                 }

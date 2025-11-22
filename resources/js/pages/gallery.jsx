@@ -2,7 +2,6 @@ import { Link } from '@inertiajs/react';
 import 'inner-image-zoom/lib/styles.min.css';
 import { useState } from 'react';
 import InnerImageZoom from 'react-inner-image-zoom';
-import subpageHeader3 from '../assets/images/subpage-header/subpage-header-3.jpg';
 import AppPagination from '../components/app-pagination.jsx';
 import SEO from '../components/page/SEO.jsx';
 import SubpageHeader from '../components/subpage-header.jsx';
@@ -30,7 +29,6 @@ const Gallery = ({ images, type }) => {
             />
             <SubpageHeader
                 title={'Galeria'}
-                background={subpageHeader3}
                 text={
                     'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
                 }

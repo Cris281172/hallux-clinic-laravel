@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import ImageGallery from 'react-image-gallery';
 import 'react-image-gallery/styles/css/image-gallery.css';
 import { toast } from 'sonner';
-import subpageHeader4 from '../../assets/images/subpage-header/subpage-header-4.jpg';
 import EditorRenderer from '../../components/editor-renderer.jsx';
 import ProductCard from '../../components/store/product/product-card.jsx';
 import ProductPrice from '../../components/store/product/product-price.jsx';
@@ -57,7 +56,6 @@ const Product = ({ product, similarProducts }) => {
         <StoreLayout>
             <SubpageHeader
                 title={product.name}
-                background={subpageHeader4}
                 text={'Praktyczne porady, nowinki i ekspercka wiedza ze świata podologii. Sprawdź nasze artykuły o zdrowiu stóp!'}
             />
             <SubpageLayoutContainer>

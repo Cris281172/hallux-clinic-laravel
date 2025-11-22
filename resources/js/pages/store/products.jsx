@@ -1,6 +1,5 @@
 import { usePage } from '@inertiajs/react';
 import React from 'react';
-import subpageHeader4 from '../../assets/images/subpage-header/subpage-header-4.jpg';
 import AppPagination from '../../components/app-pagination.jsx';
 import ProductFilters from '../../components/store/filters/product-filters.jsx';
 import ProductCard from '../../components/store/product/product-card.jsx';
@@ -19,7 +18,6 @@ const Products = ({ products, categories, parentCategory }) => {
         <StoreLayout>
             <SubpageHeader
                 title={currentCategory ? currentCategory : 'Sklep internetowy'}
-                background={subpageHeader4}
                 text={'Praktyczne porady, nowinki i ekspercka wiedza ze świata podologii. Sprawdź nasze artykuły o zdrowiu stóp!'}
             />
             <SubpageLayoutContainer>
