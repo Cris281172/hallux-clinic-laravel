@@ -21,8 +21,7 @@ const EditorPost = ({ item, type }) => {
     const ejInstance = useRef(null);
 
     const [fetchAiLoader, setFetchAiLoader] = useState(false);
-
-    const ai = new GoogleGenAI({ apiKey: 'AIzaSyBWQ2sARnskGdb-acHT7w812LL-LwgQHWs' });
+    const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
     const { data, setData, post, processing, errors, reset } = useForm({
         title: item ? item.title : '',
