@@ -47,9 +47,8 @@ const AboutUs = () => {
         },
         {
             name: 'Krzysztof Juczyński (Senior)',
-            role: 'Naturopata',
-            desc: 'Wykwalifikowana dermatolog i lekarz medycyny estetycznej. Członkini Polskiego Towarzystwa Dermatologicznego.',
-            link: 'https://salve.pl/wizyty-lekarskie/anna-kaczorowska,150',
+            role: 'Terapeuta holistyczny i instruktor jogi',
+            desc: 'Doświadczony terapeuta holistyczny i instruktor jogi, łączący podejście fizyczne, psychiczne i duchowe. Specjalizuje się w terapii naturalnej, refleksologii, bioenergoterapii oraz metodach wspierających dobrostan i równowagę.',
             key: 'krzysztof-juczynski-senior',
         },
         {
@@ -64,17 +63,17 @@ const AboutUs = () => {
     return (
         <AppLayout>
             <SEO
-                title={'O Mnie - Poznaj Specjalistę Podologa w Łodzi'}
+                title={'O Nas - Zespół Podologiczny w Łodzi'}
                 description={
-                    'Nazywam się Monika Juczyńska i jestem certyfikowanym podologiem. Poznaj moje doświadczenie, kwalifikacje i misję dbania o zdrowie Twoich stóp w Łodzi.'
+                    'Poznaj nasz zespół specjalistów podologii: Monikę Juczyńską, doświadczonych terapeutów i współpracujących ekspertów. Łączymy pasję, wiedzę i indywidualne podejście, aby zadbać o zdrowie Twoich stóp.'
                 }
-                url={'/o-mnie'}
+                url={'/o-nas'}
             />
 
             <SubpageHeader
                 title={'O nas'}
                 text={
-                    'Dowiedz się więcej o moim doświadczeniu, kwalifikacjach i pasji do podologii. Profesjonalizm i indywidualne podejście w trosce o zdrowie Twoich stóp.'
+                    'Nasz zespół podologiczny w Łodzi łączy doświadczenie, pasję i nowoczesne podejście do zdrowia stóp. Stawiamy na profesjonalizm, indywidualne podejście oraz najwyższe standardy usług.'
                 }
             />
             <SubpageLayoutContainer>
