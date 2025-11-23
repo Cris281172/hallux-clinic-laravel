@@ -2,6 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { Accessibility, Atom, HeartHandshake, Music, ShieldPlus, ShoppingCart, SquareParking, TicketCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
+import krzysztofJuczynskiJunior from '../assets/images/about-us/team/krzysztof-juczynski-junior.jpg';
 import headerImagePoster from '../assets/images/hero-image-poster.webp';
 import officeImage from '../assets/images/office/office.webp';
 import selfPhoto from '../assets/images/self-photo.webp';
@@ -26,6 +27,29 @@ export default function Home() {
     const { props } = usePage();
     const [videoSrc, setVideoSrc] = useState('');
     const videoRef = useRef(null);
+
+    const team = [
+        {
+            name: 'Monika Juczyńska',
+            role: 'Podolog',
+            image: selfPhoto,
+            desc: 'Dyplomowany specjalista ds. podologii. Pasjonatka zdrowia stóp, stale rozwijająca swoje umiejętności i współpracująca z cenionymi specjalistami.',
+            key: 'monika-juczynska',
+        },
+        {
+            name: 'Krzysztof Juczyński (Senior)',
+            role: 'Terapeuta holistyczny i instruktor jogi',
+            desc: 'Doświadczony terapeuta holistyczny i instruktor jogi, łączący podejście fizyczne, psychiczne i duchowe. Specjalizuje się w terapii naturalnej, refleksologii, bioenergoterapii oraz metodach wspierających dobrostan i równowagę.',
+            key: 'krzysztof-juczynski-senior',
+        },
+        {
+            name: 'Krzysztof Juczyński (Junior)',
+            role: 'Programista',
+            image: krzysztofJuczynskiJunior,
+            desc: 'Odpowiedzialny za rozwój strony i systemów gabinetu.',
+            key: 'krzysztof-juczynski-junior',
+        },
+    ];
 
     useEffect(() => {
         const updateVideoSrc = () => {
@@ -167,55 +191,48 @@ export default function Home() {
                     <TreatmentsTiles />
                 </Container>
             </div>
-            <div className={'relative min-h-350 md:min-h-300 lg:min-h-175'}>
-                {/*<div className={'fixed top-0 left-0 -z-10 h-full w-full bg-[url(/images/test.jpeg)] bg-cover bg-center bg-no-repeat'}></div>*/}
-                <div className={'bg-dark-plum absolute top-0 left-0 h-full w-full opacity-25'}></div>
-                <div className={'absolute top-1/2 w-full -translate-y-1/2'}>
-                    <div className={'container mx-auto flex flex-col items-center gap-10 lg:flex-row lg:gap-25'}>
-                        <div className={'w-3/4 sm:w-1/2 lg:w-full'}>
-                            <motion.img
-                                initial={{ opacity: 0, scale: 0.96 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.6, ease: 'easeOut' }}
-                                viewport={{ once: true, amount: 0.5 }}
-                                src={selfPhoto}
-                            />
-                        </div>
-                        <div
-                            className={
-                                'w-full rounded-md border-b border-white/10 bg-white/20 p-7 shadow-2xl shadow-lg shadow-black/20 backdrop-blur-2xl'
+            <div className={'bg-gray-200 pt-20 pb-20'}>
+                <Container>
+                    <div className={'flex w-full flex-col items-center'}>
+                        <HeadingHome
+                            title={'Poznaj nasz zespół'}
+                            text={
+                                'Profesjonaliści w podologii, którzy łączą wiedzę, doświadczenie i pasję. Dbamy o zdrowie Twoich stóp z indywidualnym podejściem i najwyższymi standardami higieny.'
                             }
-                        >
-                            <HeadingHome title={'O mnie'} titleClasName={'text-white'} />
-                            <motion.p
+                            titleClasName={'text-dark-plum'}
+                        />
+                    </div>
+
+                    <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                        {team.map((member) => (
+                            <motion.div
+                                key={member.key}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.8, ease: 'easeOut' }}
-                                viewport={{ once: true, amount: 0.2 }}
-                                className="text-md mt-3 text-center tracking-wider"
+                                transition={{ duration: 0.6, ease: 'easeOut' }}
+                                viewport={{ once: true }}
+                                className="flex flex-col items-center rounded-xl bg-white/20 p-6 text-center shadow-lg backdrop-blur-xl"
                             >
-                                Podologia to dla mnie nie tylko zawód, lecz przede wszystkim prawdziwa pasja. Dążąc do perfekcji, nieustannie rozwijam
-                                swoje umiejętności, uczestnicząc w licznych szkoleniach oraz prestiżowych kongresach podologicznych. Jako doświadczony
-                                specjalista prowadzący gabinet podologiczny w Łodzi, stawiam sobie za cel świadczenie usług na najwyższym poziomie –
-                                zarówno dla dorosłych, jak i dzieci. Szczególną troską otaczam seniorów, którzy z powodu chorób współistniejących lub
-                                ograniczeń zdrowotnych nie zawsze mogą dotrzeć do naszego gabinetu. Dla nich mam mobilną wersję gabinetu. Bliska
-                                współpraca z cenionymi specjalistami z różnych dziedzin medycyny pozwalają mi utrzymywać najwyższe standardy usług
-                                podologicznych, co potwierdzają liczne pozytywne opinie pacjentów. Gabinet podologiczny w Łodzi to miejsce, w którym
-                                pasja łączy się z profesjonalizmem, a troska o zdrowie Twoich stóp jest naszym najważniejszym zobowiązaniem.
-                            </motion.p>
-                            <div className={'flex justify-center'}>
-                                <Button
-                                    asChild
-                                    className={
-                                        'bg-dark-plum hover:bg-dark-plum-500 mt-3 h-12 w-50 rounded-full px-4 py-2 font-bold text-white transition'
-                                    }
-                                >
-                                    <Link href={route('about-me')}>Zobacz więcej</Link>
-                                </Button>
-                            </div>
-                        </div>
+                                {member.image ? (
+                                    <img src={member.image} className="mb-4 h-32 w-32 rounded-full object-cover" />
+                                ) : (
+                                    <div className="mb-4 flex h-32 w-32 items-center justify-center rounded-full bg-gray-300 text-2xl">
+                                        {member.name.split(' ')[0].slice(0, 1)}
+                                        {member.name.split(' ')[1]?.slice(0, 1)}
+                                    </div>
+                                )}
+                                <h3 className="text-dark-plum text-lg font-bold">{member.name}</h3>
+                                <p className="text-dark-plum text-sm font-medium">{member.role}</p>
+                            </motion.div>
+                        ))}
                     </div>
-                </div>
+
+                    <div className="mt-10 text-center">
+                        <Button variant={'darkPlum'} asChild>
+                            <Link href={route('about-us')}>Zobacz pełny zespół</Link>
+                        </Button>
+                    </div>
+                </Container>
             </div>
             <div className={'bg-gray-100 pt-20 pb-20'}>
                 <Container>
