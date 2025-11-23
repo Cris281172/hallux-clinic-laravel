@@ -14,28 +14,25 @@ const ServiceCategory = ({ category }) => {
             <SEO title={filteredConfig.head.title} description={filteredConfig.head.description} url={`/uslugi/${props.category}`} />
             <SubpageHeader title={filteredConfig.title} background={headerBackground} text={filteredConfig.shortDesc} />
             <SubpageLayoutContainer>
-                <div className={'grid gap-4 lg:grid-cols-2 xl:grid-cols-3'}>
+                <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
                     {Object.entries(filteredConfig.services).map(([key, service]) => (
                         <motion.div
-                            key={key} // teraz React ma stabilny identyfikator
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                            key={key}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}
                             viewport={{ once: true, amount: 0.3 }}
-                            className={
-                                'bg-dark-plum flex flex-col items-center justify-between rounded-2xl border-2 border-solid border-gray-50 pt-10 pr-5 pb-10 pl-5 shadow-md'
-                            }
+                            className="hover:border-neon-blossom/50 flex flex-col justify-between rounded-3xl border border-white/20 bg-pink-700/60 p-8 shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                         >
-                            <div className={'flex flex-col items-center'}>
-                                <img src={favico} className={'w-12'} />
-                                <h3 className={'mt-5 mb-2 text-center text-2xl'}>{service.title}</h3>
-                                <p>{service.shortDesc}</p>
+                            <div className="flex flex-col items-center text-center">
+                                <img src={favico} className="w-12 opacity-90" />
+                                <h3 className="mt-6 mb-3 text-2xl font-semibold tracking-wide text-white">{service.title}</h3>
+                                <p className="leading-relaxed text-gray-200/90">{service.shortDesc}</p>
                             </div>
+
                             <Link
                                 href={route(`service`, { category: category, service: key })}
-                                className={
-                                    'bg-neon-blossom hover:bg-dark-plum-500 mt-3 mt-5 flex w-50 justify-center rounded-full px-4 py-2 font-bold text-white transition'
-                                }
+                                className="bg-neon-blossom hover:bg-neon-blossom/80 mt-8 flex justify-center rounded-full px-5 py-3 font-semibold text-white transition-all duration-300 hover:scale-[1.03]"
                             >
                                 Zobacz więcej
                             </Link>

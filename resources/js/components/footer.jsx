@@ -1,6 +1,8 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import logo from '../assets/images/logo.webp';
 const Footer = () => {
+    const { props } = usePage();
+
     const navigationConfig = [
         {
             name: 'Strona główna',
@@ -15,8 +17,8 @@ const Footer = () => {
             link: 'price-list',
         },
         {
-            name: 'O mnie',
-            link: 'about-me',
+            name: 'O nas',
+            link: 'about-us',
         },
         {
             name: 'Galeria',
@@ -39,132 +41,14 @@ const Footer = () => {
         },
     ];
 
-    const servicesConfig = [
-        {
-            name: 'Diagnostyka podologiczna',
-            url: 'test',
-            children: [
-                {
-                    name: 'Konsutlacja podologiczna',
-                    url: '',
-                },
-                {
-                    name: 'Konsutlacja Online',
-                    url: '',
-                },
-            ],
-        },
-        {
-            name: 'Profilaktyka podologiczna',
-            url: 'test',
-            children: [
-                {
-                    name: 'Podstawowy zabieg podologiczny',
-                    url: '',
-                },
-                {
-                    name: 'Rozszerzony zabieg podologiczny',
-                    url: '',
-                },
-            ],
-        },
-        {
-            name: 'Terapie problemów skórnych',
-            url: 'test',
-            children: [
-                {
-                    name: 'Pękające pięty',
-                    url: '',
-                },
-                {
-                    name: 'Usuwanie brodawek wirusowych',
-                    url: '',
-                },
-                {
-                    name: 'Usuwanie Modzeli',
-                    url: '',
-                },
-                {
-                    name: 'Usuwanie Modzeli',
-                    url: '',
-                },
-            ],
-        },
-        {
-            name: 'Terapie problemów aparatu paznokciowego',
-            url: 'test',
-            children: [
-                {
-                    name: 'Grzybica Stóp i Paznokci',
-                    url: '',
-                },
-                {
-                    name: 'Leczenie Wrastających i Wkręcających Paznokci',
-                    url: '',
-                },
-                {
-                    name: 'Onycholiza',
-                    url: '',
-                },
-                {
-                    name: 'Usunięcie Krwiaka',
-                    url: '',
-                },
-            ],
-        },
-        {
-            name: 'Ortonyksja',
-            url: 'test',
-            children: [
-                {
-                    name: 'Założenie klamry korygującej',
-                    url: '',
-                },
-                {
-                    name: 'Przełożenie klamry korygującej',
-                    url: '',
-                },
-                {
-                    name: 'Podklejenie klamry korygującej',
-                    url: '',
-                },
-                {
-                    name: 'Zdjęcie klamry korygującej na zakończenie zabiegu',
-                    url: '',
-                },
-            ],
-        },
-        {
-            name: 'Zabiegi uzupełniające',
-            url: 'test',
-            children: [
-                {
-                    name: 'Tamponada wrastającego paznokcia',
-                    url: '',
-                },
-                {
-                    name: 'Opatrunek z odciążeniem',
-                    url: '',
-                },
-                {
-                    name: 'Opatrunek z preparatem specjalistycznym',
-                    url: '',
-                },
-                {
-                    name: 'Taping podologiczny (taping palucha)',
-                    url: '',
-                },
-                {
-                    name: 'Usunięcie lakieru hybrydowego – w przypadku pedicure podologicznego',
-                    url: '',
-                },
-                {
-                    name: 'Badanie stóp na podoskopie',
-                    url: '',
-                },
-            ],
-        },
-    ];
+    const servicesConfig = Object.entries(props.treatments).map(([slug, data]) => ({
+        name: data.title,
+        url: route('serviceCategory', { category: slug }),
+        children: Object.entries(data.services).map(([serviceSlug, serviceData]) => ({
+            name: serviceData.title,
+            url: route('service', { category: slug, service: serviceSlug }),
+        })),
+    }));
 
     return (
         <div className={'bg-dark-plum pt-10'}>
@@ -182,26 +66,32 @@ const Footer = () => {
                         'col-span-12 mt-5 mb-5 md:col-span-12 lg:col-span-7 lg:mt-0 lg:mr-10 lg:mb-0 lg:ml-10 lg:border-r-1 lg:border-l-1 lg:pr-10 lg:pl-10'
                     }
                 >
-                    <p className={'text-xl font-bold'}>Usługi</p>
+                    <p className={'mb-4 text-lg font-semibold tracking-wide'}>Usługi</p>
                     <ul className={'mt-2 grid grid-cols-1 gap-5 md:grid-cols-2'}>
                         {servicesConfig.map((item, index) => (
                             <li key={index}>
-                                <Link>{item.name}</Link>
-                                <div className={'flex flex-col'}>
-                                    {item.children.map((children) => (
-                                        <Link className={'ml-5 text-sm'}>- {children.name}</Link>
+                                <Link href={item.url} className="mb-2 flex font-medium text-gray-100 transition hover:text-white">
+                                    {item.name}
+                                </Link>
+                                <ul className="list-inside list-disc space-y-2 border-l pl-4">
+                                    {item.children.map((child, idx) => (
+                                        <li key={idx} className="text-sm text-gray-300 transition hover:text-white">
+                                            <Link href={child.url}>{child.name}</Link>
+                                        </li>
                                     ))}
-                                </div>
+                                </ul>
                             </li>
                         ))}
                     </ul>
                 </div>
                 <div className={'col-span-12 md:col-span-12 lg:col-span-2'}>
-                    <p className={'text-xl font-bold'}>Nawigacja</p>
-                    <ul className={'mt-2'}>
+                    <p className="mb-4 text-lg font-semibold tracking-wide">Nawigacja</p>
+                    <ul className="space-y-2">
                         {navigationConfig.map((item, index) => (
                             <li key={index}>
-                                <Link href={route(item.link, item.params)}>{item.name}</Link>
+                                <Link href={route(item.link, item.params)} className="text-gray-300 transition hover:text-white">
+                                    {item.name}
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -211,8 +101,8 @@ const Footer = () => {
                 <p>&copy; Wszelkie prawa zastrzeżone.</p>
                 <p>
                     Created & Design by{' '}
-                    <a href={'https://dark-site.pl/'} target={'_blank'} className={'font-bold underline'}>
-                        Dark Site
+                    <a href={'https://juczynski.work/'} target={'_blank'} className={'font-bold underline'}>
+                        Krzysztof Juczyński
                     </a>
                 </p>
             </div>

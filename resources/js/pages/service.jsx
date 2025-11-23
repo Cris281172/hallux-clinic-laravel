@@ -79,7 +79,9 @@ const Service = ({ category, service, images }) => {
                             <Link href={route('price-list')} className="text-md mb-2 block font-bold underline">
                                 Zobacz cennik
                             </Link>
-                            <div className="service-desc" dangerouslySetInnerHTML={{ __html: serviceData.desc }} />
+                            <div className="service-desc prose prose-lg max-w-none text-gray-800">
+                                <div dangerouslySetInnerHTML={{ __html: serviceData.desc }} />
+                            </div>
                         </div>
                     </div>
                 </div>

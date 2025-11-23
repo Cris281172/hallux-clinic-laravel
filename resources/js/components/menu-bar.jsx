@@ -1,5 +1,7 @@
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card.tsx';
 import { Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
+import { ChevronDown, SquareArrowOutUpRight } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 const MenuBar = () => {
@@ -7,133 +9,88 @@ const MenuBar = () => {
 
     const { props } = usePage();
 
-    const [activeChildrenIndex, setActiveChildrenIndex] = useState(null);
+    const [hoveredIndex, setHoveredIndex] = useState(null);
+
+    const [activeChildrenMobileMenu, setActiveChildrenMobileMenu] = useState(null);
 
     const menuConfig = [
         {
+            id: 'services',
             name: 'Usługi',
             url: route('services'),
             children: [
                 {
                     id: 'diagnostyka-podologiczna',
                     name: 'Diagnostyka podologiczna',
-                    children: [
-                        {
-                            id: 'konsultacja-podologiczna',
-                            name: 'Konsultacja podologiczna',
-                        },
-                    ],
+                    url: route('serviceCategory', { category: 'diagnostyka-podologiczna' }),
                 },
                 {
                     name: 'Profilaktyka podologiczna',
                     id: 'profilaktyka-podologiczna',
-                    children: [
-                        {
-                            id: 'podstawowy-zabieg-podologiczny',
-                            name: 'Podstawowy zabieg podologiczny',
-                            url: '',
-                        },
-                        {
-                            id: 'rozszerzony-zabieg-podologiczny',
-                            name: 'Rozszerzony zabieg podologiczny',
-                            url: '',
-                        },
-                    ],
+                    url: route('serviceCategory', { category: 'profilaktyka-podologiczna' }),
                 },
                 {
                     name: 'Terapie problemów skórnych',
                     id: 'terapie-problemow-skornych',
-                    children: [
-                        {
-                            id: 'pekajace-piety',
-                            name: 'Pękające pięty',
-                        },
-                        {
-                            id: 'usuwanie-brodawek-wirusowych',
-                            name: 'Usuwanie brodawek wirusowych',
-                        },
-                        {
-                            id: 'usuwanie-modzeli',
-                            name: 'Usuwanie Modzeli',
-                        },
-                    ],
+                    url: route('serviceCategory', { category: 'terapie-problemow-skornych' }),
                 },
                 {
                     id: 'terapie-problemow-aparatu-paznokciowego',
                     name: 'Terapie problemów aparatu paznokciowego',
-                    url: 'test',
-                    children: [
-                        {
-                            id: 'grzybica-stop-i-paznokci',
-                            name: 'Grzybica Stóp i Paznokci',
-                        },
-                        {
-                            id: 'leczenie-wrastajacych-i-wkrecajacych-paznokci',
-                            name: 'Leczenie Wrastających i Wkręcających Paznokci',
-                        },
-                        {
-                            id: 'onycholiza',
-                            name: 'Onycholiza',
-                        },
-                        {
-                            id: 'usuniecie-krwiaka',
-                            name: 'Usunięcie Krwiaka',
-                        },
-                    ],
+                    url: route('serviceCategory', { category: 'terapie-problemow-aparatu-paznokciowego' }),
                 },
                 {
                     id: 'ortonyksja',
                     name: 'Ortonyksja',
-                    children: [
-                        {
-                            id: 'zalozenie-klamry-korygujacej',
-                            name: 'Założenie klamry korygującej',
-                        },
-                        {
-                            id: 'przelozenie-klamry-korygujacej',
-                            name: 'Przełożenie klamry korygującej',
-                        },
-                        {
-                            id: 'podklejenie-klamry-korygujacej',
-                            name: 'Podklejenie klamry korygującej',
-                        },
-                        {
-                            id: 'zdjecie-klamry-korygujacej-na-zakonczenie-zabiegu',
-                            name: 'Zdjęcie klamry korygującej na zakończenie zabiegu',
-                        },
-                    ],
+                    url: route('serviceCategory', { category: 'ortonyksja' }),
                 },
                 {
                     id: 'zabiegi-uzupelniajace',
                     name: 'Zabiegi uzupełniające',
-                    children: [
-                        {
-                            id: 'tamponada-wrastajacego-paznokcia',
-                            name: 'Tamponada wrastającego paznokcia',
-                        },
-                        {
-                            id: 'opatrunek-z-odciazeniem',
-                            name: 'Opatrunek z odciążeniem',
-                        },
-                        {
-                            id: 'opatrunek-z-preparatem-specjalistycznym',
-                            name: 'Opatrunek z preparatem specjalistycznym',
-                        },
-                        {
-                            id: 'taping-podologiczny-taping-palucha',
-                            name: 'Taping podologiczny (taping palucha)',
-                        },
-                        {
-                            id: 'zabieg-relaksujaco-odswiezajacy-dla-stop',
-                            name: 'Zabieg relaksująco-odświeżający dla stóp',
-                        },
-                    ],
+                    url: route('serviceCategory', { category: 'zabiegi-uzupelniajace' }),
                 },
             ],
         },
         { name: 'Cennik', url: route('price-list') },
-        { name: 'O mnie', url: route('about-me') },
-        { name: 'Galeria', url: route('gallery', 'wszystkie') },
+        {
+            id: 'about-us',
+            name: 'O nas',
+            url: route('about-us'),
+            children: [
+                {
+                    id: 'monika-juczynska',
+                    name: 'Monika Juczyńska',
+                    url: route('about-us.person', { person: 'monika-juczynska' }),
+                },
+                {
+                    id: 'krzysztof-juczynski-senior',
+                    name: 'Krzysztof Juczyński (Senior)',
+                    url: route('about-us.person', { person: 'krzysztof-juczynski-senior' }),
+                },
+                {
+                    id: 'krzysztof-juczynski-junior',
+                    name: 'Krzysztof Juczyński (Junior)',
+                    url: route('about-us.person', { person: 'krzysztof-juczynski-junior' }),
+                },
+            ],
+        },
+        {
+            id: 'gallery',
+            name: 'Galeria',
+            url: route('gallery', 'wszystkie'),
+            children: [
+                {
+                    id: 'gabinet',
+                    name: 'Gabinet',
+                    url: route('gallery', { type: 'gabinet' }),
+                },
+                {
+                    id: 'uslugi',
+                    name: 'Usługi',
+                    url: route('gallery', { type: 'uslugi' }),
+                },
+            ],
+        },
         { name: 'Blog', url: route('blog.post.get.all') },
         { name: 'Kontakt', url: route('contact') },
     ];
@@ -219,59 +176,100 @@ const MenuBar = () => {
                                     animate={{ left: indicatorProps.left, width: indicatorProps.width }}
                                 />
                                 {menuConfig.map((menuItem, index) => (
-                                    <li
-                                        key={index}
-                                        className={'relative'}
-                                        onMouseEnter={() => setActiveChildrenIndex(index)}
-                                        onMouseLeave={() => setActiveChildrenIndex(null)}
-                                    >
-                                        <Link
-                                            ref={(el) => (linkRefs.current[index] = el)}
-                                            className={`font-sans text-lg font-bold text-white`}
-                                            href={menuItem.url}
+                                    <HoverCard key={index} openDelay={0} closeDelay={500}>
+                                        <li
+                                            className="relative"
+                                            onMouseEnter={() => setHoveredIndex(index)}
+                                            onMouseLeave={() => setHoveredIndex(null)}
                                         >
-                                            {menuItem.name}
-                                        </Link>
-                                        {menuItem.children && (
-                                            <div
-                                                className={`text-dark-plum fixed grid w-1/2 -translate-x-1/2 grid-cols-3 gap-5 rounded-sm bg-white p-7 shadow-xl transition ${activeChildrenIndex === index ? 'visible opacity-100' : 'invisible opacity-0'}`}
-                                            >
-                                                {menuItem.children.map((childrenItem, index) => (
-                                                    <div key={index} className={'w-full'}>
-                                                        <p className={'text-md text font-bold'}>{childrenItem.name}</p>
-                                                        <ul>
-                                                            {childrenItem.children.map((service, index) => (
-                                                                <li className={'ml-2 cursor-pointer text-sm'} key={index}>
-                                                                    <Link href={route('service', { category: childrenItem.id, service: service.id })}>
-                                                                        - {service.name}
-                                                                    </Link>
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </li>
+                                            <HoverCardTrigger>
+                                                <Link
+                                                    ref={(el) => (linkRefs.current[index] = el)}
+                                                    className="flex items-center gap-1 font-sans text-lg font-bold text-white"
+                                                    href={menuItem.url}
+                                                >
+                                                    {menuItem.name}
+                                                    {menuItem.children && (
+                                                        <motion.div
+                                                            animate={{ rotate: hoveredIndex === index ? 180 : 0 }}
+                                                            transition={{ duration: 0.3 }}
+                                                        >
+                                                            <ChevronDown size={15} />
+                                                        </motion.div>
+                                                    )}
+                                                </Link>
+                                            </HoverCardTrigger>
+
+                                            {menuItem.children && (
+                                                <HoverCardContent className="bg-gray-100 px-0 text-black">
+                                                    <ul className="flex flex-col gap-3">
+                                                        {menuItem.children.map((item, i) => (
+                                                            <li key={i}>
+                                                                <Link
+                                                                    href={item.url}
+                                                                    className="flex bg-gray-100 px-2 py-3 text-sm font-medium transition-all duration-300 hover:bg-white"
+                                                                >
+                                                                    {item.name}
+                                                                </Link>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </HoverCardContent>
+                                            )}
+                                        </li>
+                                    </HoverCard>
                                 ))}
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div
-                    className={`${menuOpen ? 'right-0' : '-right-full'} absolute z-20 h-screen w-full border-l border-white/10 bg-[#530236]/40 shadow-lg shadow-black/20 backdrop-blur-2xl transition-all lg:hidden`}
+                    className={`${menuOpen ? 'right-0' : '-right-full'} absolute z-20 h-screen w-full overflow-y-auto border-l border-white/10 bg-[#530236]/40 shadow-lg shadow-black/20 backdrop-blur-2xl transition-all lg:hidden`}
                     id="mobile-menu"
                 >
-                    <div className="flex flex-col items-center space-y-1 px-2 pt-2 pb-3">
+                    <div className="flex flex-col items-center space-y-1 px-7 pt-2 pb-3">
                         {menuConfig.map((menuItem, index) => (
-                            <Link
-                                key={index}
-                                className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                                href={menuItem.url}
-                                onClick={() => setMenuOpen(false)}
-                            >
-                                {menuItem.name}
-                            </Link>
+                            <div className={'flex w-full flex-col items-start justify-start py-4'}>
+                                <div key={index} className={'flex w-full items-center justify-between'}>
+                                    <Link
+                                        className="block rounded-md text-lg font-thin text-gray-100"
+                                        href={menuItem.url}
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        {menuItem.name}
+                                    </Link>
+                                    {menuItem.children && (
+                                        <>
+                                            <ChevronDown
+                                                className={`${menuItem.id === activeChildrenMobileMenu ? 'rotate-180' : 'rotate-0'} transition-all duration-400`}
+                                                size={20}
+                                                onClick={() =>
+                                                    setActiveChildrenMobileMenu((prevState) => (prevState === menuItem.id ? null : menuItem.id))
+                                                }
+                                            />
+                                        </>
+                                    )}
+                                </div>
+                                {menuItem.id === activeChildrenMobileMenu && (
+                                    <div className={'relative'}>
+                                        <motion.ul
+                                            className={'mt-1 flex flex-col gap-1.5'}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.6 }}
+                                        >
+                                            {menuItem.children.map((item, index) => (
+                                                <li key={index}>
+                                                    <Link className={'flex items-center gap-1 text-sm font-medium'} href={menuItem.url}>
+                                                        {item.name} <SquareArrowOutUpRight size={12} />
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </motion.ul>
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </div>
                 </div>

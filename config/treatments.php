@@ -20,12 +20,12 @@ return [
                            <strong>Warto wiedzieć!</strong>
                            <p><strong>D</strong>ecydując się na rozpoczęcie zalecanej terapii podczas pierwszej wizyty, nie ponosisz kosztów konsultacji! W skład konsultacji podologicznej wchodzą:</p>
                            <ul>
-                               <li>🔶 Analiza kondycji skóry stóp oraz stanu paznokci</li>
-                               <li>🔶 Zdiagnozowanie zmian na stopach</li>
-                               <li>🔶 Badanie na podoskopie</li>
-                               <li>🔶 Ocena postawy i statyki ciała</li>
-                               <li>🔶 Omówienie zaproponowanego planu leczenia</li>
-                               <li>🔶 Rekomendacja spersonalizowanej domowej pielęgnacji</li>
+                               <li>Analiza kondycji skóry stóp oraz stanu paznokci</li>
+                               <li>Zdiagnozowanie zmian na stopach</li>
+                               <li>Badanie na podoskopie</li>
+                               <li>Ocena postawy i statyki ciała</li>
+                               <li>Omówienie zaproponowanego planu leczenia</li>
+                               <li>Rekomendacja spersonalizowanej domowej pielęgnacji</li>
                            </ul>',
                 'images' => [],
             ],
@@ -58,10 +58,10 @@ return [
                         </p>
                         <h3>W skład zabiegu wchodzą:</h3>
                         <ul>
-                            <li>🔶 Dokładna dezynfekcja i ocena stanu stóp,</li>
-                            <li>🔶 Skracanie i opracowanie paznokci,</li>
-                            <li>🔶 Wygładzenie naskórka przy pomocy specjalistycznych frezów,</li>
-                            <li>🔶 Aplikacja kremu pielęgnacyjnego i krótki masaż stóp.</li>
+                            <li>Dokładna dezynfekcja i ocena stanu stóp,</li>
+                            <li>Skracanie i opracowanie paznokci,</li>
+                            <li>Wygładzenie naskórka przy pomocy specjalistycznych frezów,</li>
+                            <li>Aplikacja kremu pielęgnacyjnego i krótki masaż stóp.</li>
                         </ul>
                         <p>
                             <strong>Warto wiedzieć!</strong> Podstawowy zabieg podologiczny jest całkowicie bezpieczny i wykonywany przy użyciu
@@ -91,12 +91,12 @@ return [
                         </p>
                         <h3>W skład zabiegu wchodzą:</h3>
                         <ul>
-                            <li>🔶 Dokładna dezynfekcja i analiza stanu stóp,</li>
-                            <li>🔶 Skracanie i opracowanie paznokci,</li>
-                            <li>🔶 Usunięcie zrogowaceń, odcisków i modzeli,</li>
-                            <li>🔶 Opracowanie pękających pięt lub innych zmian skórnych,</li>
-                            <li>🔶 Zastosowanie odpowiednich preparatów regenerujących i leczniczych,</li>
-                            <li>🔶 Rekomendacja domowej pielęgnacji oraz planu dalszego leczenia.</li>
+                            <li>Dokładna dezynfekcja i analiza stanu stóp,</li>
+                            <li>Skracanie i opracowanie paznokci,</li>
+                            <li>Usunięcie zrogowaceń, odcisków i modzeli,</li>
+                            <li>Opracowanie pękających pięt lub innych zmian skórnych,</li>
+                            <li>Zastosowanie odpowiednich preparatów regenerujących i leczniczych,</li>
+                            <li>Rekomendacja domowej pielęgnacji oraz planu dalszego leczenia.</li>
                         </ul>
                         <p>
                             <strong>Warto wiedzieć!</strong> Zabieg jest szczególnie polecany osobom z przewlekłymi problemami skórnymi, diabetykom,
@@ -130,14 +130,14 @@ return [
                         </p>
                         <p>Pękające pięty często są wynikiem przesuszenia skóry i nadmiernego rogowacenia. Do ich pojawienia mogą przyczynić się:</p>
                         <ul>
-                            <li>🔶 Niewłaściwa pielęgnacja stóp,</li>
-                            <li>🔶 Złe obuwie,</li>
-                            <li>🔶 Niedobory witaminy A,</li>
-                            <li>🔶 Zła biomechanika chodu,</li>
-                            <li>🔶 AZS (atopowe zapalenie skóry),</li>
-                            <li>🔶 Choroby współistniejące,</li>
-                            <li>🔶 Zaburzony płaszcz hydrolipidowy,</li>
-                            <li>🔶 Zaburzenia krzepnięcia krwi.</li>
+                            <li>Niewłaściwa pielęgnacja stóp,</li>
+                            <li>Złe obuwie,</li>
+                            <li>Niedobory witaminy A,</li>
+                            <li>Zła biomechanika chodu,</li>
+                            <li>AZS (atopowe zapalenie skóry),</li>
+                            <li>Choroby współistniejące,</li>
+                            <li>Zaburzony płaszcz hydrolipidowy,</li>
+                            <li>Zaburzenia krzepnięcia krwi.</li>
                         </ul>
                         <h3>Jak skutecznie wyleczyć pękające pięty?</h3>
                         <p>
@@ -148,9 +148,9 @@ return [
                         <h3>Jak zapobiegać pękającym piętom?</h3>
                         <p>Aby zapobiec pękaniu pięt, zalecam:</p>
                         <ul>
-                            <li>🔶 Regularne stosowanie kąpieli leczniczych, zmiękczających i regenerujących naskórek,</li>
-                            <li>🔶 Stosowanie intensywnie nawilżających kremów z kompleksami witaminowymi,</li>
-                            <li>🔶 Systematyczne kontrole stanu stóp u podologa.</li>
+                            <li>Regularne stosowanie kąpieli leczniczych, zmiękczających i regenerujących naskórek,</li>
+                            <li>Stosowanie intensywnie nawilżających kremów z kompleksami witaminowymi,</li>
+                            <li>Systematyczne kontrole stanu stóp u podologa.</li>
                         </ul>
                         <p>
                             Pamiętaj, że estetyka to tylko jedna strona medalu. Nieleczona pękająca skóra na piętach może stać się bramą dla bakterii,
@@ -184,14 +184,14 @@ return [
                         </p>
                         <h3>Na czym polega zabieg?</h3>
                         <ul>
-                            <li>🔶 Dokładna dezynfekcja i ocena zmiany,</li>
-                            <li>🔶 Mechaniczne opracowanie zmiany skórnej,</li>
+                            <li>Dokładna dezynfekcja i ocena zmiany,</li>
+                            <li>Mechaniczne opracowanie zmiany skórnej,</li>
                             <li>
-                                🔶 Aplikacja preparatu leczniczego lub zastosowanie innych metod (np. elektrokoagulacja, kwasy, specjalistyczne
+                                 Aplikacja preparatu leczniczego lub zastosowanie innych metod (np. elektrokoagulacja, kwasy, specjalistyczne
                                 opatrunki),
                             </li>
-                            <li>🔶 Instruktaż pielęgnacyjny oraz plan terapii,</li>
-                            <li>🔶 Ustalanie harmonogramu wizyt kontrolnych i dalszego leczenia.</li>
+                            <li>Instruktaż pielęgnacyjny oraz plan terapii,</li>
+                            <li>Ustalanie harmonogramu wizyt kontrolnych i dalszego leczenia.</li>
                         </ul>
                         <p>
                             <strong>Warto wiedzieć!</strong> Leczenie brodawek wymaga systematyczności i cierpliwości – często potrzebna jest seria
@@ -223,11 +223,11 @@ return [
                         </p>
                         <h3>Jak wygląda zabieg?</h3>
                         <ul>
-                            <li>🔶 Dezynfekcja i ocena stanu skóry,</li>
-                            <li>🔶 Precyzyjne opracowanie modzeli za pomocą skalpela i/lub specjalistycznych frezów,</li>
-                            <li>🔶 Wygładzenie naskórka,</li>
-                            <li>🔶 Aplikacja kremu regenerującego lub specjalistycznego opatrunku,</li>
-                            <li>🔶 Zalecenia dotyczące dalszej pielęgnacji domowej oraz profilaktyki.</li>
+                            <li>Dezynfekcja i ocena stanu skóry,</li>
+                            <li>Precyzyjne opracowanie modzeli za pomocą skalpela i/lub specjalistycznych frezów,</li>
+                            <li>Wygładzenie naskórka,</li>
+                            <li>Aplikacja kremu regenerującego lub specjalistycznego opatrunku,</li>
+                            <li>Zalecenia dotyczące dalszej pielęgnacji domowej oraz profilaktyki.</li>
                         </ul>
                         <p>
                             <strong>Warto wiedzieć!</strong> Modzele bardzo często są skutkiem źle dobranego obuwia, deformacji stóp lub niewłaściwej
@@ -258,11 +258,11 @@ return [
                         </p>
                         <h3>Jak wygląda zabieg?</h3>
                         <ul>
-                            <li>🔶 Ocena rodzaju i głębokości odcisku,</li>
-                            <li>🔶 Dezynfekcja skóry i precyzyjne usunięcie odcisku za pomocą skalpela lub frezarki,</li>
-                            <li>🔶 Zastosowanie odpowiednich preparatów łagodzących i regenerujących,</li>
-                            <li>🔶 Założenie opatrunku ochronnego (w razie potrzeby),</li>
-                            <li>🔶 Indywidualne zalecenia pielęgnacyjne oraz wskazówki dotyczące profilaktyki.</li>
+                            <li>Ocena rodzaju i głębokości odcisku,</li>
+                            <li>Dezynfekcja skóry i precyzyjne usunięcie odcisku za pomocą skalpela lub frezarki,</li>
+                            <li>Zastosowanie odpowiednich preparatów łagodzących i regenerujących,</li>
+                            <li>Założenie opatrunku ochronnego (w razie potrzeby),</li>
+                            <li>Indywidualne zalecenia pielęgnacyjne oraz wskazówki dotyczące profilaktyki.</li>
                         </ul>
                         <p>
                             <strong>Warto wiedzieć!</strong> Samodzielne próby usuwania odcisków, np. przy pomocy plastrów chemicznych, mogą prowadzić
@@ -311,9 +311,9 @@ return [
                         </p>
                         <h3>Oto kilka wskazówek, jak unikać zakażenia grzybicą paznokci:</h3>
                         <ul>
-                            <li>🔶 Unikaj chodzenia boso w miejscach publicznych takich jak baseny, sauny, czy salony SPA.</li>
-                            <li>🔶 Zawsze noś obuwie ochronne, zwłaszcza pod prysznicem i w łazience podczas podróży.</li>
-                            <li>🔶 Sprawdzaj, czy salony kosmetyczne, których używasz, przestrzegają zasad sterylizacji narzędzi.</li>
+                            <li>Unikaj chodzenia boso w miejscach publicznych takich jak baseny, sauny, czy salony SPA.</li>
+                            <li>Zawsze noś obuwie ochronne, zwłaszcza pod prysznicem i w łazience podczas podróży.</li>
+                            <li>Sprawdzaj, czy salony kosmetyczne, których używasz, przestrzegają zasad sterylizacji narzędzi.</li>
                         </ul>
                         <p>
                             <strong>J</strong>eśli zauważysz u siebie objawy takie jak przebarwienia, kruchość paznokci, deformacje, odwarstwienie od
@@ -394,10 +394,10 @@ return [
                             <strong>D</strong>o najczęstszych powodów, dla których przeprowadzana jest rekonstrukcja paznokcia, należą:
                         </p>
                         <ul>
-                            <li>🔶 Zanik paznokcia i zmiana kształtu paliczka,</li>
-                            <li>🔶 Zaburzenia wzrostu paznokcia,</li>
-                            <li>🔶 Odłączanie się paznokcia od łożyska,</li>
-                            <li>🔶 Urazy mechaniczne paznokcia.</li>
+                            <li>Zanik paznokcia i zmiana kształtu paliczka,</li>
+                            <li>Zaburzenia wzrostu paznokcia,</li>
+                            <li>Odłączanie się paznokcia od łożyska,</li>
+                            <li>Urazy mechaniczne paznokcia.</li>
                         </ul>
                         <p>
                             <strong>O</strong>nycholiza może być również spowodowana przez infekcje, które wymagają leczenia pod kierunkiem podologa
@@ -436,12 +436,9 @@ return [
                         </p>
                         <h3>Oto kilka wskazówek, jak minimalizować ryzyko powstawania krwiaków:</h3>
                         <ul>
-                            <li>🔶 Zawsze stosuj ochronę podczas uprawiania sportów i aktywności fizycznych, które mogą prowadzić do urazów.</li>
-                            <li>🔶 Dbaj o ostrożność w codziennym życiu, aby unikać przypadkowego uderzenia czy upadku.</li>
-                            <li>
-                                🔶 W przypadku przyjmowania leków rozrzedzających krew, regularnie konsultuj się z lekarzem, aby monitorować stan
-                                zdrowia.
-                            </li>
+                            <li>Zawsze stosuj ochronę podczas uprawiania sportów i aktywności fizycznych, które mogą prowadzić do urazów.</li>
+                            <li>Dbaj o ostrożność w codziennym życiu, aby unikać przypadkowego uderzenia czy upadku.</li>
+                            <li>W przypadku przyjmowania leków rozrzedzających krew, regularnie konsultuj się z lekarzem, aby monitorować stan zdrowia.</li>
                         </ul>
                         <p>
                             <strong>J</strong>eśli zauważysz u siebie objawy, które mogą wskazywać na krwiaka, takie jak wyraźny obrzęk, zmiana koloru

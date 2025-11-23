@@ -48,9 +48,6 @@ class PageController extends Controller
     public function notFound(){
         return Inertia::render('notFound');
     }
-    public function aboutMe(){
-        return Inertia::render('aboutMe');
-    }
     public function faq(){
         return Inertia::render('faq');
     }
@@ -65,5 +62,11 @@ class PageController extends Controller
     }
     public function privacyPolicy(){
         return Inertia::render('privacyPolicy');
+    }
+    public function aboutUs(){
+        return Inertia::render('about/aboutUs');
+    }
+    public function aboutUsPerson(string $person){
+        return Inertia::render('about/aboutUsPerson', compact('person'));
     }
 }
