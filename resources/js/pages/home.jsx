@@ -1,8 +1,7 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { Accessibility, Atom, HeartHandshake, Music, ShieldPlus, ShoppingCart, SquareParking, TicketCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
-import krzysztofJuczynskiJunior from '../assets/images/about-us/team/krzysztof-juczynski-junior.jpg';
 import headerImagePoster from '../assets/images/hero-image-poster.webp';
 import officeImage from '../assets/images/office/office.webp';
 import selfPhoto from '../assets/images/self-photo.webp';
@@ -24,32 +23,8 @@ import { homePrices } from '../config/configPrice.js';
 import AppLayout from '../layouts/app-layout.jsx';
 
 export default function Home() {
-    const { props } = usePage();
     const [videoSrc, setVideoSrc] = useState('');
     const videoRef = useRef(null);
-
-    const team = [
-        {
-            name: 'Monika Juczyńska',
-            role: 'Podolog',
-            image: selfPhoto,
-            desc: 'Dyplomowany specjalista ds. podologii. Pasjonatka zdrowia stóp, stale rozwijająca swoje umiejętności i współpracująca z cenionymi specjalistami.',
-            key: 'monika-juczynska',
-        },
-        {
-            name: 'Krzysztof Juczyński (Senior)',
-            role: 'Terapeuta holistyczny i instruktor jogi',
-            desc: 'Doświadczony terapeuta holistyczny i instruktor jogi, łączący podejście fizyczne, psychiczne i duchowe. Specjalizuje się w terapii naturalnej, refleksologii, bioenergoterapii oraz metodach wspierających dobrostan i równowagę.',
-            key: 'krzysztof-juczynski-senior',
-        },
-        {
-            name: 'Krzysztof Juczyński (Junior)',
-            role: 'Programista',
-            image: krzysztofJuczynskiJunior,
-            desc: 'Odpowiedzialny za rozwój strony i systemów gabinetu.',
-            key: 'krzysztof-juczynski-junior',
-        },
-    ];
 
     useEffect(() => {
         const updateVideoSrc = () => {
@@ -191,49 +166,65 @@ export default function Home() {
                     <TreatmentsTiles />
                 </Container>
             </div>
-            <div className={'bg-gray-200 pt-20 pb-20'}>
+            <div className="bg-gray-200 py-20">
                 <Container>
-                    <div className={'flex w-full flex-col items-center'}>
+                    <section className="flex flex-col items-center text-center">
                         <HeadingHome
-                            title={'Poznaj nasz zespół'}
-                            text={
-                                'Profesjonaliści w podologii, którzy łączą wiedzę, doświadczenie i pasję. Dbamy o zdrowie Twoich stóp z indywidualnym podejściem i najwyższymi standardami higieny.'
-                            }
-                            titleClasName={'text-dark-plum'}
+                            title="Poznaj nasz zespół"
+                            text="Profesjonaliści w podologii, którzy łączą wiedzę, doświadczenie i pasję. Dbamy o zdrowie Twoich stóp z indywidualnym podejściem i najwyższymi standardami higieny."
+                            titleClasName="text-dark-plum"
                         />
-                    </div>
+                    </section>
 
-                    <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                        {team.map((member) => (
-                            <motion.div
-                                key={member.key}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, ease: 'easeOut' }}
-                                viewport={{ once: true }}
-                                className="flex flex-col items-center rounded-xl bg-white/20 p-6 text-center shadow-lg backdrop-blur-xl"
-                            >
-                                {member.image ? (
-                                    <img src={member.image} className="mb-4 h-32 w-32 rounded-full object-cover" />
-                                ) : (
-                                    <div className="mb-4 flex h-32 w-32 items-center justify-center rounded-full bg-gray-300 text-2xl">
-                                        {member.name.split(' ')[0].slice(0, 1)}
-                                        {member.name.split(' ')[1]?.slice(0, 1)}
-                                    </div>
-                                )}
-                                <h3 className="text-dark-plum text-lg font-bold">{member.name}</h3>
-                                <p className="text-dark-plum text-sm font-medium">{member.role}</p>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <section className="mt-10">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            viewport={{ once: true }}
+                            className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 rounded-xl p-0 text-center lg:flex-row lg:gap-20 lg:bg-white/20 lg:p-10 lg:shadow-lg lg:backdrop-blur-xl"
+                        >
+                            <img src={selfPhoto} alt="Monika Juczyńska" className="h-64 w-64 rounded-full object-cover" />
 
-                    <div className="mt-10 text-center">
-                        <Button variant={'darkPlum'} asChild>
+                            <div className="hidden h-64 w-0.5 bg-pink-600 lg:block"></div>
+
+                            <div className="text-md flex-1 text-left text-black md:text-left">
+                                <h3 className="text-dark-plum text-2xl font-bold">Monika Juczyńska</h3>
+                                <p className="text-dark-plum text-md mb-2 font-medium">Podolog</p>
+
+                                <p className="mb-4">
+                                    Podologia to dla mnie nie tylko zawód, lecz przede wszystkim prawdziwa pasja. Nieustannie rozwijam swoje
+                                    umiejętności, uczestnicząc w licznych szkoleniach oraz prestiżowych kongresach podologicznych.
+                                </p>
+
+                                <p className="mb-4">
+                                    Jako doświadczony specjalista prowadzący gabinet podologiczny w Łodzi, stawiam sobie za cel świadczenie usług na
+                                    najwyższym poziomie – zarówno dla dorosłych, jak i dzieci.
+                                </p>
+
+                                <p className="mb-4">
+                                    Szczególną troską otaczam seniorów, którzy z powodu chorób współistniejących lub ograniczeń zdrowotnych nie zawsze
+                                    mogą dotrzeć do gabinetu. Dla nich oferuję mobilną wersję gabinetu.
+                                </p>
+
+                                <p>
+                                    Bliska współpraca z cenionymi specjalistami z różnych dziedzin medycyny pozwala mi utrzymywać najwyższe standardy
+                                    usług podologicznych, co potwierdzają liczne pozytywne opinie pacjentów. Gabinet podologiczny w Łodzi to miejsce,
+                                    w którym pasja łączy się z profesjonalizmem, a troska o zdrowie Twoich stóp jest naszym najważniejszym
+                                    zobowiązaniem.
+                                </p>
+                            </div>
+                        </motion.div>
+                    </section>
+
+                    <section className="mt-10 text-center">
+                        <Button variant="darkPlum" asChild>
                             <Link href={route('about-us')}>Zobacz pełny zespół</Link>
                         </Button>
-                    </div>
+                    </section>
                 </Container>
             </div>
+
             <div className={'bg-gray-100 pt-20 pb-20'}>
                 <Container>
                     <HeadingHome
