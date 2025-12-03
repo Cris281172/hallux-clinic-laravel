@@ -22,7 +22,7 @@ const ServiceCategoryItem = ({ serviceType, categorySlug }) => {
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}
                             viewport={{ once: true, amount: 0.4 }}
-                            className="hover:border-neon-blossom/50 flex flex-col justify-between rounded-3xl border border-white/20 bg-pink-700/60 p-8 shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                            className="hover:border-neon-blossom/50 flex flex-col justify-between rounded-3xl border border-white/20 bg-pink-700/60 p-8 opacity-100 shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                         >
                             <div className="flex flex-col items-center text-center">
                                 <img src={favico} className="w-12 opacity-90" />
