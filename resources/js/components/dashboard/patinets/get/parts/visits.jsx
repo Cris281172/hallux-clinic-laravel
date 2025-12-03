@@ -26,7 +26,7 @@ const Visits = ({ patientID }) => {
 
     const fetchVisits = async (page = 1) => {
         if (loading || (lastPage && page > lastPage)) return;
-        console.log('fetch visit');
+
         setLoading(true);
         try {
             const url = route('api.dashboard.visits.get.all.patient.visits', { id: patientID }, false);

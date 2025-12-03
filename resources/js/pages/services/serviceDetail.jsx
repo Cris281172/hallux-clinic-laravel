@@ -12,16 +12,14 @@ import AppLayout from '../../layouts/app-layout.jsx';
 import getR2Url from '../../utils/getR2Url.js';
 
 const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
-    console.log(images);
     const accepted = localStorage.getItem('galleryWarningAccepted');
     const { props } = usePage();
     const [showGallery, setShowGallery] = useState(accepted ? accepted : false);
     let serviceData;
-    console.log(serviceType);
+
     if (serviceType === 'podolog') {
         serviceData = props.treatments[serviceType][categorySlug].services[itemSlug];
     } else if (serviceType === 'naturopata') {
-        console.log(props.treatments[serviceType][itemSlug]);
         serviceData = props.treatments[serviceType][itemSlug];
     }
 

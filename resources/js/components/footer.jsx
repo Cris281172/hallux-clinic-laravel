@@ -41,7 +41,6 @@ const Footer = () => {
         },
     ];
 
-    console.log(props.treatments.podolog);
     const servicesConfigPodiatry = Object.entries(props.treatments.podolog).map(([slug, data]) => ({
         name: data.title,
         url: route('service-item', { serviceType: 'podolog', categorySlug: slug }),

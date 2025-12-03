@@ -5,9 +5,7 @@ import { Button } from '../../components/ui/button.tsx';
 import StoreLayout from '../../layouts/store-layout.jsx';
 
 const Payment = ({ order }) => {
-    console.log(order);
     const handlePayment = () => {
-        // Tu wstawisz Stripe PaymentElement submit
         console.log('Stripe payment submit');
     };
 

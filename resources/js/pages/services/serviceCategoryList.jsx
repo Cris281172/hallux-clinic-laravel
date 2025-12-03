@@ -96,8 +96,6 @@ const ServiceCategoryList = ({ serviceType }) => {
 
     let currentConfig = serviceCategoryConfig.find((el) => el.id === serviceType);
 
-    console.log(currentConfig);
-
     return (
         <AppLayout>
             <SEO title={currentConfig.seo.title} description={currentConfig.seo.description} url={currentConfig.seo.url} />

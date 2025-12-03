@@ -90,7 +90,6 @@ const personFormConfig = [
 ];
 
 export const DeliveryDataSummary = ({ deliveryDetails, setCurrentStep }) => {
-    console.log(deliveryDetails);
     return (
         <>
             <div className={'mt-4'}>

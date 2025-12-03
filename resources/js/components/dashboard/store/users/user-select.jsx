@@ -14,7 +14,7 @@ const UserSelect = ({ onSelect, userID }) => {
     const fetchData = async () => {
         const response = await fetch(route('api.dashboard.store.users.get.search', { q: searchInput }));
         const data = await response.json();
-        console.log(data);
+
         if (data.success) {
             setUsers(data.data);
         }

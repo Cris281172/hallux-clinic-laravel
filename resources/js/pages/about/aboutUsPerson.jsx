@@ -12,7 +12,6 @@ const AboutUsPerson = ({ person }) => {
             component: <AboutKrzysztofSenior />,
         },
     ];
-    console.log();
     return <>{teamConfig.find((el) => el.key === person).component}</>;
 };
 

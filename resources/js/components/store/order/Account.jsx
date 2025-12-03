@@ -37,8 +37,6 @@ const Account = ({ setCurrentStep, account }) => {
         });
     };
 
-    console.log(props.auth.user);
-
     return (
         <>
             {props.auth.user ? (

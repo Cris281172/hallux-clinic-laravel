@@ -14,7 +14,7 @@ const PatientSelect = ({ onSelect, patientID, visit }) => {
     const fetchData = async () => {
         const response = await fetch(route('api.dashboard.patients.get.search', { q: searchInput }));
         const data = await response.json();
-        console.log(data);
+
         if (data.success) {
             setPatients(data.data);
         }

@@ -1,5 +1,4 @@
 const ProductPrice = ({ price, promotion = null, showPrevPrice = true, finalPriceClassName }) => {
-    console.log(promotion);
     return (
         <div className="product-price flex items-center gap-2">
             {promotion && promotion.final_discount !== price ? (

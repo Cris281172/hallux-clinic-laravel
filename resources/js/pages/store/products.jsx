@@ -12,8 +12,6 @@ const Products = ({ products, categories, parentCategory }) => {
 
     const currentCategory = props.ziggy.location.slice(props.ziggy.location.lastIndexOf('/') + 1);
 
-    console.log(products);
-
     return (
         <StoreLayout>
             <SubpageHeader

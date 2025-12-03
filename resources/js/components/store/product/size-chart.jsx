@@ -44,8 +44,6 @@ const SizeChart = ({ company = 'mypaps', type = 'shoe' }) => {
         },
     ];
 
-    console.log(sizesConfig.find((el) => el.company === company && el.type === type));
-
     const currentSizeConfig = sizesConfig.find((el) => el.company === company && el.type === type);
 
     return (

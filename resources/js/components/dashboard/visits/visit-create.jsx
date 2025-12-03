@@ -28,8 +28,6 @@ const VisitCreate = ({ children, patientID, onSuccess, allowWithoutPatient = tru
         phone: '',
     });
 
-    console.log(data);
-
     const [availableTimes, setAvailableTimes] = useState([]);
 
     useEffect(() => {
