@@ -52,7 +52,7 @@ class PageController extends Controller
         }
     }
     public function serviceDetails(string $serviceType, string $categorySlug, string $itemSlug){
-        $images = GalleryPhoto::where('service', $categorySlug)->get();
+        $images = GalleryPhoto::where('service', $itemSlug)->get();
         return Inertia::render('services/serviceDetail', compact('serviceType', 'categorySlug', 'itemSlug', 'images'));
     }
     public function notFound(){

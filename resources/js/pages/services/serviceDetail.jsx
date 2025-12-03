@@ -1,6 +1,8 @@
 import { Link, router, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import { IoFootstepsOutline } from 'react-icons/io5';
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/css/image-gallery.css';
 import headerBackground from '../../assets/images/header.webp';
 import ContactSection from '../../components/page/contact-section.jsx';
 import SEO from '../../components/page/SEO.jsx';
@@ -10,6 +12,7 @@ import AppLayout from '../../layouts/app-layout.jsx';
 import getR2Url from '../../utils/getR2Url.js';
 
 const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
+    console.log(images);
     const accepted = localStorage.getItem('galleryWarningAccepted');
     const { props } = usePage();
     const [showGallery, setShowGallery] = useState(accepted ? accepted : false);

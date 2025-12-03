@@ -18,10 +18,10 @@ const ServiceCategoryItem = ({ serviceType, categorySlug }) => {
                     {Object.entries(filteredConfig.services).map(([key, service]) => (
                         <motion.div
                             key={key}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}
-                            viewport={{ once: true, amount: 0.3 }}
+                            viewport={{ once: true, amount: 0.4 }}
                             className="hover:border-neon-blossom/50 flex flex-col justify-between rounded-3xl border border-white/20 bg-pink-700/60 p-8 shadow-lg backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                         >
                             <div className="flex flex-col items-center text-center">
