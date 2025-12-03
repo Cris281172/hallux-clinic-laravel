@@ -3,10 +3,14 @@ import { useEffect, useState } from 'react';
 import { callToApi } from '../../../utils/api/callToApi.js';
 import getR2Url from '../../../utils/getR2Url.js';
 import getMainProductImage from '../../../utils/store/getMainProductImage.js';
+import { Button } from '../../ui/button.tsx';
+import ProductPrice from '../product/product-price.jsx';
+import PromotionCode from './PromotionCode.jsx';
 
 const FREE_SHIPPING_THRESHOLD = 1000;
 
 const CartSummary = ({ cart, currentShippingMethodID }) => {
+    const [codePromotionPrice, setCodePromotionPrice] = useState(null);
     const [selectedShippingMethod, setSelectedShippingMethod] = useState(null);
 
     const fetchSelectedShippingMethod = async () => {
@@ -30,10 +34,27 @@ const CartSummary = ({ cart, currentShippingMethodID }) => {
             <h4 className="text-dark-plum mb-4 text-xl font-bold">Podsumowanie koszyka</h4>
 
             <div className="mb-6 rounded-lg bg-gray-100 p-4 shadow-sm">
+                <div className={'mb-2'}>
+                    {codePromotionPrice ? (
+                        <div className={'flex w-full justify-end'}>
+                            <Button onClick={() => setCodePromotionPrice(null)}>Usuń kod rabatowy</Button>
+                        </div>
+                    ) : (
+                        <PromotionCode setCodePromotionPrice={setCodePromotionPrice} />
+                    )}
+                </div>
+
                 <div className="text-md mb-2 flex justify-between text-black">
                     <span>Wartość produktów:</span>
                     <span className="font-semibold">{subTotal.toFixed(2)} zł</span>
                 </div>
+
+                {codePromotionPrice && (
+                    <div className="text-md mb-2 flex justify-between text-black">
+                        <span>Wartość produktów po obniżce:</span>
+                        <span className="font-semibold">{codePromotionPrice.toFixed(2)} zł</span>
+                    </div>
+                )}
 
                 <div className="text-md flex justify-between text-black">
                     <span>Wysyłka:</span>
@@ -63,7 +84,7 @@ const CartSummary = ({ cart, currentShippingMethodID }) => {
                                 <h4 className="text-dark-plum text-lg font-semibold hover:underline">{product.item.name}</h4>
                             </Link>
 
-                            <p className="text-md font-medium text-black">{(product.item.price * product.quantity).toFixed(2)} zł</p>
+                            <ProductPrice price={product.item.price} promotion={product.item.promotion_active} />
 
                             {product.quantity && <p className="text-sm text-black">Ilość: {product.quantity}</p>}
 

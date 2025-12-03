@@ -1,21 +1,26 @@
 import { Link, router, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import { IoFootstepsOutline } from 'react-icons/io5';
-import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
-import headerBackground from '../assets/images/header.webp';
-import ContactSection from '../components/page/contact-section.jsx';
-import SEO from '../components/page/SEO.jsx';
-import SubpageHeader from '../components/subpage-header.jsx';
-import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
-import AppLayout from '../layouts/app-layout.jsx';
-import getR2Url from '../utils/getR2Url.js';
+import headerBackground from '../../assets/images/header.webp';
+import ContactSection from '../../components/page/contact-section.jsx';
+import SEO from '../../components/page/SEO.jsx';
+import SubpageHeader from '../../components/subpage-header.jsx';
+import SubpageLayoutContainer from '../../components/subpage-layout-container.jsx';
+import AppLayout from '../../layouts/app-layout.jsx';
+import getR2Url from '../../utils/getR2Url.js';
 
-const Service = ({ category, service, images }) => {
+const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
     const accepted = localStorage.getItem('galleryWarningAccepted');
     const { props } = usePage();
     const [showGallery, setShowGallery] = useState(accepted ? accepted : false);
-    const serviceData = props.treatments[category].services[service];
+    let serviceData;
+    console.log(serviceType);
+    if (serviceType === 'podolog') {
+        serviceData = props.treatments[serviceType][categorySlug].services[itemSlug];
+    } else if (serviceType === 'naturopata') {
+        console.log(props.treatments[serviceType][itemSlug]);
+        serviceData = props.treatments[serviceType][itemSlug];
+    }
 
     if (!serviceData) {
         return router.visit('/404');
@@ -76,9 +81,12 @@ const Service = ({ category, service, images }) => {
                         )}
 
                         <div className={`${images.length !== 0 ? 'lg:w-7/12 xl:w-8/12' : 'w-full'} order-1 lg:order-2`}>
-                            <Link href={route('price-list')} className="text-md mb-2 block font-bold underline">
-                                Zobacz cennik
-                            </Link>
+                            {serviceType !== 'naturopata' && (
+                                <Link href={route('price-list')} className="text-md mb-2 block font-bold underline">
+                                    Zobacz cennik
+                                </Link>
+                            )}
+
                             <div className="service-desc prose prose-lg max-w-none text-gray-800">
                                 <div dangerouslySetInnerHTML={{ __html: serviceData.desc }} />
                             </div>
@@ -95,4 +103,4 @@ const Service = ({ category, service, images }) => {
     );
 };
 
-export default Service;
+export default ServiceDetail;

@@ -1,18 +1,18 @@
 import { Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
-import favico from '../assets/images/favicon.ico';
-import headerBackground from '../assets/images/header.webp';
-import SEO from '../components/page/SEO.jsx';
-import SubpageHeader from '../components/subpage-header.jsx';
-import SubpageLayoutContainer from '../components/subpage-layout-container.jsx';
-import AppLayout from '../layouts/app-layout.jsx';
-const ServiceCategory = ({ category }) => {
+import favico from '../../assets/images/favicon.ico';
+import SEO from '../../components/page/SEO.jsx';
+import SubpageHeader from '../../components/subpage-header.jsx';
+import SubpageLayoutContainer from '../../components/subpage-layout-container.jsx';
+import AppLayout from '../../layouts/app-layout.jsx';
+
+const ServiceCategoryItem = ({ serviceType, categorySlug }) => {
     const { props } = usePage();
-    const filteredConfig = props.treatments[category];
+    const filteredConfig = props.treatments[serviceType][categorySlug];
     return (
         <AppLayout>
             <SEO title={filteredConfig.head.title} description={filteredConfig.head.description} url={`/uslugi/${props.category}`} />
-            <SubpageHeader title={filteredConfig.title} background={headerBackground} text={filteredConfig.shortDesc} />
+            <SubpageHeader title={filteredConfig.title} text={filteredConfig.shortDesc} />
             <SubpageLayoutContainer>
                 <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
                     {Object.entries(filteredConfig.services).map(([key, service]) => (
@@ -31,7 +31,7 @@ const ServiceCategory = ({ category }) => {
                             </div>
 
                             <Link
-                                href={route(`service`, { category: category, service: key })}
+                                href={route('service-details', { serviceType: serviceType, categorySlug: categorySlug, itemSlug: key })}
                                 className="bg-neon-blossom hover:bg-neon-blossom/80 mt-8 flex justify-center rounded-full px-5 py-3 font-semibold text-white transition-all duration-300 hover:scale-[1.03]"
                             >
                                 Zobacz więcej
@@ -44,4 +44,4 @@ const ServiceCategory = ({ category }) => {
     );
 };
 
-export default ServiceCategory;
+export default ServiceCategoryItem;

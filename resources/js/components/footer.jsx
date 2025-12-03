@@ -10,7 +10,7 @@ const Footer = () => {
         },
         {
             name: 'Usługi',
-            link: 'services',
+            link: 'service-type-selector',
         },
         {
             name: 'Cennik',
@@ -41,12 +41,13 @@ const Footer = () => {
         },
     ];
 
-    const servicesConfig = Object.entries(props.treatments).map(([slug, data]) => ({
+    console.log(props.treatments.podolog);
+    const servicesConfigPodiatry = Object.entries(props.treatments.podolog).map(([slug, data]) => ({
         name: data.title,
-        url: route('serviceCategory', { category: slug }),
+        url: route('service-item', { serviceType: 'podolog', categorySlug: slug }),
         children: Object.entries(data.services).map(([serviceSlug, serviceData]) => ({
             name: serviceData.title,
-            url: route('service', { category: slug, service: serviceSlug }),
+            url: route('service-details', { serviceType: 'podolog', categorySlug: slug, itemSlug: serviceSlug }),
         })),
     }));
 
@@ -66,9 +67,9 @@ const Footer = () => {
                         'col-span-12 mt-5 mb-5 md:col-span-12 lg:col-span-7 lg:mt-0 lg:mr-10 lg:mb-0 lg:ml-10 lg:border-r-1 lg:border-l-1 lg:pr-10 lg:pl-10'
                     }
                 >
-                    <p className={'mb-4 text-lg font-semibold tracking-wide'}>Usługi</p>
+                    <p className={'mb-4 text-lg font-semibold tracking-wide'}>Usługi Podologiczne</p>
                     <ul className={'mt-2 grid grid-cols-1 gap-5 md:grid-cols-2'}>
-                        {servicesConfig.map((item, index) => (
+                        {servicesConfigPodiatry.map((item, index) => (
                             <li key={index}>
                                 <Link href={item.url} className="mb-2 flex font-medium text-gray-100 transition hover:text-white">
                                     {item.name}

@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button.tsx';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card.tsx';
 import { Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
@@ -17,79 +18,108 @@ const MenuBar = () => {
         {
             id: 'services',
             name: 'Usługi',
-            url: route('services'),
+            url: route('service-type-selector'),
             children: [
                 {
-                    id: 'diagnostyka-podologiczna',
-                    name: 'Diagnostyka podologiczna',
-                    url: route('serviceCategory', { category: 'diagnostyka-podologiczna' }),
+                    title: 'Usługi podologiczne',
+                    titleLink: route('service-category', 'podolog'),
+                    items: [
+                        {
+                            id: 'diagnostyka-podologiczna',
+                            name: 'Diagnostyka podologiczna',
+                            url: route('service-item', { serviceType: 'podolog', categorySlug: 'diagnostyka-podologiczna' }),
+                        },
+                        {
+                            name: 'Profilaktyka podologiczna',
+                            id: 'profilaktyka-podologiczna',
+                            url: route('service-item', { serviceType: 'podolog', categorySlug: 'profilaktyka-podologiczna' }),
+                        },
+                        {
+                            name: 'Terapie problemów skórnych',
+                            id: 'terapie-problemow-skornych',
+                            url: route('service-item', { serviceType: 'podolog', categorySlug: 'terapie-problemow-skornych' }),
+                        },
+                        {
+                            id: 'terapie-problemow-aparatu-paznokciowego',
+                            name: 'Terapie problemów aparatu paznokciowego',
+                            url: route('service-item', { serviceType: 'podolog', categorySlug: 'terapie-problemow-aparatu-paznokciowego' }),
+                        },
+                        {
+                            id: 'ortonyksja',
+                            name: 'Ortonyksja',
+                            url: route('service-item', { serviceType: 'podolog', categorySlug: 'ortonyksja' }),
+                        },
+                        {
+                            id: 'zabiegi-uzupelniajace',
+                            name: 'Zabiegi uzupełniające',
+                            url: route('service-item', { serviceType: 'podolog', categorySlug: 'zabiegi-uzupelniajace' }),
+                        },
+                    ],
                 },
                 {
-                    name: 'Profilaktyka podologiczna',
-                    id: 'profilaktyka-podologiczna',
-                    url: route('serviceCategory', { category: 'profilaktyka-podologiczna' }),
-                },
-                {
-                    name: 'Terapie problemów skórnych',
-                    id: 'terapie-problemow-skornych',
-                    url: route('serviceCategory', { category: 'terapie-problemow-skornych' }),
-                },
-                {
-                    id: 'terapie-problemow-aparatu-paznokciowego',
-                    name: 'Terapie problemów aparatu paznokciowego',
-                    url: route('serviceCategory', { category: 'terapie-problemow-aparatu-paznokciowego' }),
-                },
-                {
-                    id: 'ortonyksja',
-                    name: 'Ortonyksja',
-                    url: route('serviceCategory', { category: 'ortonyksja' }),
-                },
-                {
-                    id: 'zabiegi-uzupelniajace',
-                    name: 'Zabiegi uzupełniające',
-                    url: route('serviceCategory', { category: 'zabiegi-uzupelniajace' }),
+                    title: 'Usługi natorupatyczne',
+                    titleLink: route('service-category', 'naturopata'),
+                    items: [
+                        {
+                            name: 'Dźwiękoterapia',
+                            url: route('service-item', { serviceType: 'naturopata', categorySlug: 'dzwiekoterapia' }),
+                        },
+                        {
+                            name: 'Refleksologia stóp',
+                            url: route('service-item', { serviceType: 'naturopata', categorySlug: 'refleksologia-stop' }),
+                        },
+                        {
+                            name: 'Bańki ogniowe',
+                            url: route('service-item', { serviceType: 'naturopata', categorySlug: 'banki-ogniowe' }),
+                        },
+                        {
+                            name: 'Konchowanie (lejowanie)',
+                            url: route('service-item', { serviceType: 'naturopata', categorySlug: 'konchowanie' }),
+                        },
+                    ],
                 },
             ],
+            // serviceType}/{categorySlug}/{itemSlug
         },
         { name: 'Cennik', url: route('price-list') },
         {
             id: 'about-us',
             name: 'O nas',
             url: route('about-us'),
-            children: [
-                {
-                    id: 'monika-juczynska',
-                    name: 'Monika Juczyńska',
-                    url: route('about-us.person', { person: 'monika-juczynska' }),
-                },
-                {
-                    id: 'krzysztof-juczynski-senior',
-                    name: 'Krzysztof Juczyński (Senior)',
-                    url: route('about-us.person', { person: 'krzysztof-juczynski-senior' }),
-                },
-                {
-                    id: 'krzysztof-juczynski-junior',
-                    name: 'Krzysztof Juczyński (Junior)',
-                    url: route('about-us.person', { person: 'krzysztof-juczynski-junior' }),
-                },
-            ],
+            // children: [
+            //     {
+            //         id: 'monika-juczynska',
+            //         name: 'Monika Juczyńska',
+            //         url: route('about-us.person', { person: 'monika-juczynska' }),
+            //     },
+            //     // {
+            //     //     id: 'krzysztof-juczynski-senior',
+            //     //     name: 'Krzysztof Juczyński (Senior)',
+            //     //     url: route('about-us.person', { person: 'krzysztof-juczynski-senior' }),
+            //     // },
+            //     // {
+            //     //     id: 'krzysztof-juczynski-junior',
+            //     //     name: 'Krzysztof Juczyński (Junior)',
+            //     //     url: route('about-us.person', { person: 'krzysztof-juczynski-junior' }),
+            //     // },
+            // ],
         },
         {
             id: 'gallery',
             name: 'Galeria',
             url: route('gallery', 'wszystkie'),
-            children: [
-                {
-                    id: 'gabinet',
-                    name: 'Gabinet',
-                    url: route('gallery', { type: 'gabinet' }),
-                },
-                {
-                    id: 'uslugi',
-                    name: 'Usługi',
-                    url: route('gallery', { type: 'uslugi' }),
-                },
-            ],
+            // children: [
+            //     {
+            //         id: 'gabinet',
+            //         name: 'Gabinet',
+            //         url: route('gallery', { type: 'gabinet' }),
+            //     },
+            //     {
+            //         id: 'uslugi',
+            //         name: 'Usługi',
+            //         url: route('gallery', { type: 'uslugi' }),
+            //     },
+            // ],
         },
         { name: 'Blog', url: route('blog.post.get.all') },
         { name: 'Kontakt', url: route('contact') },
@@ -144,7 +174,6 @@ const MenuBar = () => {
                                 aria-controls="mobile-menu"
                                 aria-expanded={menuOpen}
                             >
-                                <span className="sr-only">Open main menu</span>
                                 <svg
                                     className={`${menuOpen ? 'hidden' : 'block'} size-6`}
                                     fill="none"
@@ -168,7 +197,7 @@ const MenuBar = () => {
                             </button>
                         </div>
 
-                        <nav className="hidden lg:block">
+                        <nav className="hidden items-center lg:flex">
                             <ul className="relative flex gap-5">
                                 <motion.div
                                     layout
@@ -201,25 +230,43 @@ const MenuBar = () => {
                                             </HoverCardTrigger>
 
                                             {menuItem.children && (
-                                                <HoverCardContent className="bg-gray-100 px-0 text-black">
-                                                    <ul className="flex flex-col gap-3">
-                                                        {menuItem.children.map((item, i) => (
-                                                            <li key={i}>
+                                                <HoverCardContent className="w-full bg-gray-100 px-6 text-black">
+                                                    <div className={'grid grid-cols-2 gap-5'}>
+                                                        {menuItem.children.map((childrenItem, index) => (
+                                                            <div className={'flex flex-col'}>
                                                                 <Link
-                                                                    href={item.url}
-                                                                    className="flex bg-gray-100 px-2 py-3 text-sm font-medium transition-all duration-300 hover:bg-white"
+                                                                    href={childrenItem.titleLink}
+                                                                    className={'mb-1 text-sm font-bold text-gray-600'}
                                                                 >
-                                                                    {item.name}
+                                                                    {childrenItem.title}
                                                                 </Link>
-                                                            </li>
+                                                                <ul className="flex flex-col gap-3" key={index}>
+                                                                    {childrenItem.items.map((item, i) => (
+                                                                        <li key={i}>
+                                                                            <Link
+                                                                                href={item.url}
+                                                                                className="flex bg-gray-100 px-3 py-3 text-sm font-medium transition-all duration-300 hover:bg-white"
+                                                                            >
+                                                                                {item.name}
+                                                                            </Link>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
                                                         ))}
-                                                    </ul>
+                                                    </div>
                                                 </HoverCardContent>
                                             )}
                                         </li>
                                     </HoverCard>
                                 ))}
                             </ul>
+                            <Button className={'ml-7'} size={'sm'} asChild>
+                                <a href="tel:+48459410096">Umów wizytę</a>
+                            </Button>
+                            <Button className={'ml-3'} size={'sm'} asChild>
+                                <Link href={route('store.view')}>Sklep</Link>
+                            </Button>
                         </nav>
                     </div>
                 </div>
@@ -251,19 +298,34 @@ const MenuBar = () => {
                                     )}
                                 </div>
                                 {menuItem.id === activeChildrenMobileMenu && (
-                                    <div className={'relative'}>
+                                    <div className="backdrop-blur-1xl relative mt-2 w-full rounded-lg p-4 shadow-lg">
                                         <motion.ul
-                                            className={'mt-1 flex flex-col gap-1.5'}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.6 }}
+                                            className="flex flex-col gap-4"
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            transition={{ duration: 0.3 }}
                                         >
-                                            {menuItem.children.map((item, index) => (
+                                            {menuItem.children.map((childrenItem, index) => (
                                                 <li key={index}>
-                                                    <Link className={'flex items-center gap-1 text-sm font-medium'} href={menuItem.url}>
-                                                        {item.name} <SquareArrowOutUpRight size={12} />
+                                                    <Link
+                                                        className="flex items-center justify-between text-sm font-semibold text-gray-100 transition-colors"
+                                                        href={childrenItem.titleLink}
+                                                    >
+                                                        {childrenItem.title} <SquareArrowOutUpRight size={14} />
                                                     </Link>
+                                                    <ul className="mt-2 ml-4 flex flex-col gap-2 border-l border-gray-200 pl-3">
+                                                        {childrenItem.items.map((item, i) => (
+                                                            <li key={i}>
+                                                                <Link
+                                                                    className="flex items-center gap-1 text-sm text-white transition-colors"
+                                                                    href={item.url}
+                                                                >
+                                                                    {item.name} <SquareArrowOutUpRight size={12} />
+                                                                </Link>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </li>
                                             ))}
                                         </motion.ul>
@@ -271,6 +333,14 @@ const MenuBar = () => {
                                 )}
                             </div>
                         ))}
+                        <div className={'mt-2 flex w-full gap-5'}>
+                            <Button className={'flex-1'} asChild>
+                                <a href="tel:+48459410096">Umów wizytę</a>
+                            </Button>
+                            <Button className={'flex-1'} asChild>
+                                <Link href={route('store.view')}>Sklep</Link>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

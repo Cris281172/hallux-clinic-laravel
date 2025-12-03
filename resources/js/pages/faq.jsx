@@ -17,7 +17,7 @@ const FAQ = () => {
             />
             <SubpageHeader title={'FAQ'} text={'Najczęstsze pytania'} />
             <SubpageLayoutContainer>
-                <FAQComponent data={configFAQ} variant={'primary'} />
+                <FAQComponent data={configFAQ} />
             </SubpageLayoutContainer>
         </AppLayout>
     );

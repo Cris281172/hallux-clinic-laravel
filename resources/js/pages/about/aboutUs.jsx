@@ -1,9 +1,10 @@
 import { Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
-import krzysztofJuczynskiJunior from '../../assets/images/about-us/team/krzysztof-juczynski-junior.jpg';
+import krzysztofJuczynskiSenior from '../../assets/images/about-us/team/krzysztof-juczynski-senior.webp';
 import annaImage from '../../assets/images/cooperation/anna.jpg';
 import jakubImage from '../../assets/images/cooperation/jakub.jpg';
 import katarzynaImage from '../../assets/images/cooperation/katarzyna.webp';
+import krzysztofJuczynskiJunior from '../../assets/images/cooperation/krzysztof-juczynski-junior.jpg';
 import selfPhoto from '../../assets/images/self-photo.webp';
 import AnimatedText from '../../components/animation/animated-text.jsx';
 import SEO from '../../components/page/SEO.jsx';
@@ -14,13 +15,6 @@ import AppLayout from '../../layouts/app-layout.jsx';
 
 const AboutUs = () => {
     const cooperationConfig = [
-        {
-            title: 'Dr. n.med. Katarzyna Juczyńska',
-            subtitle: 'Dermatolog, Wenerolog',
-            desc: 'Dr Katarzyna Juczyńska jest wykwalifikowaną dermatolog i wenerolog. Ukończyła studia medyczne na Wydziale Lekarskim Akademii Medycznej we Wrocławiu. W 2018 roku obroniła swoją pracę doktorską z wyróżnieniem, uzyskując tytuł doktora nauk medycznych. Od 2012 roku jest związana z Kliniką Dermatologii i Wenerologii Uniwersytetu Medycznego w Łodzi, gdzie obecnie pełni funkcję adiunkta',
-            image: katarzynaImage,
-            link: 'https://salvemedica.pl/lekarze/katarzyna-juczynska',
-        },
         {
             title: 'Dr n. med. Anna Kaczorowska',
             subtitle: 'Specjalista dermatolog, wenerolog, lekarz medycyny estetycznej',
@@ -35,6 +29,20 @@ const AboutUs = () => {
             image: jakubImage,
             link: 'https://www.facebook.com/profile.php?id=100009207424067',
         },
+        {
+            title: 'Dr. n.med. Katarzyna Juczyńska',
+            subtitle: 'Dermatolog, Wenerolog',
+            desc: 'Dr Katarzyna Juczyńska jest wykwalifikowaną dermatolog i wenerolog. Ukończyła studia medyczne na Wydziale Lekarskim Akademii Medycznej we Wrocławiu. W 2018 roku obroniła swoją pracę doktorską z wyróżnieniem, uzyskując tytuł doktora nauk medycznych. Od 2012 roku jest związana z Kliniką Dermatologii i Wenerologii Uniwersytetu Medycznego w Łodzi, gdzie obecnie pełni funkcję adiunkta',
+            image: katarzynaImage,
+            link: 'https://salvemedica.pl/lekarze/katarzyna-juczynska',
+        },
+        {
+            title: 'Krzysztof Juczyński (Junior)',
+            subtitle: 'Programista FullStack',
+            image: krzysztofJuczynskiJunior,
+            desc: 'Specjalizuje się w tworzeniu nowoczesnych aplikacji internetowych oraz usprawnianiu procesów cyfrowych. Odpowiedzialny za rozwój strony internetowej, systemów rejestracji oraz narzędzi wspierających funkcjonowanie gabinetu. Łączy wiedzę techniczną z praktycznym podejściem, dbając o niezawodność i wygodę użytkowników.',
+            link: 'https://juczynski.work/',
+        },
     ];
 
     const team = [
@@ -47,16 +55,10 @@ const AboutUs = () => {
         },
         {
             name: 'Krzysztof Juczyński (Senior)',
-            role: 'Terapeuta holistyczny i instruktor jogi',
-            desc: 'Doświadczony terapeuta holistyczny i instruktor jogi, łączący podejście fizyczne, psychiczne i duchowe. Specjalizuje się w terapii naturalnej, refleksologii, bioenergoterapii oraz metodach wspierających dobrostan i równowagę.',
+            role: 'Naturopata',
+            image: krzysztofJuczynskiSenior,
+            desc: 'Doświadczony naturopata i instruktor jogi, łączący podejście fizyczne, psychiczne i duchowe. Specjalizuje się w terapii naturalnej, refleksologii, bioenergoterapii oraz metodach wspierających dobrostan i równowagę.',
             key: 'krzysztof-juczynski-senior',
-        },
-        {
-            name: 'Krzysztof Juczyński (Junior)',
-            role: 'Programista',
-            image: krzysztofJuczynskiJunior,
-            desc: 'Odpowiedzialny za rozwój strony i systemów gabinetu.',
-            key: 'krzysztof-juczynski-junior',
         },
     ];
 

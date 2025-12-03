@@ -48,6 +48,8 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\Api\Dashboard\Store\UserController as UserControllerAPI;
 use App\Http\Controllers\Api\Dashboard\Store\CategoryController as CategoryControllerAPI;
 use App\Http\Controllers\Api\Store\SearchController as SearchControllerAPI;
+use App\Http\Middleware\StoreUnderConstruction;
+use App\Http\Controllers\Web\Store\CartController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -62,10 +64,13 @@ Route::get('/kontakt/{status}', [PageController::class, 'contactStatus'])->name(
 Route::get('/regulamin-sklepu', [PageController::class, 'storeRegulations'])->name('store.regulations');
 Route::get('/ogolne-warunki-uzytkowania-strony-internetowej', [PageController::class, 'websiteTerms'])->name('website.terms');
 Route::get('/polityka-prywatnosci', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('/sklep-informacja', [PageController::class, 'storeComingSoon'])->name('store.coming.soon');
 Route::group(['prefix' => 'uslugi'], function () {
-    Route::get('/', [PageController::class, 'services'])->name('services');
-    Route::get('/{category}', [PageController::class, 'serviceCategory'])->name('serviceCategory');
-    Route::get('/{category}/{service}', [PageController::class, 'service'])->name('service');
+    Route::get('/', [PageController::class, 'serviceTypeSelector'])->name('service-type-selector');
+    Route::get('/{serviceType}', [PageController::class, 'serviceCategory'])->name('service-category');
+    Route::get('/{serviceType}/{categorySlug}', [PageController::class, 'serviceItem'])->name('service-item');
+    Route::get('/{serviceType}/{categorySlug}/{itemSlug}', [PageController::class, 'serviceDetails'])->name('service-details');
+
 });
 Route::get('/pdf/download/{filename}', [PdfController::class, 'download'])->name('pdf.download');
 Route::post('/newsletter-add-email', [NewsletterEmailController::class, 'addNewEmail'])->name('newsletter-add-email');
@@ -74,7 +79,7 @@ Route::get('/profile', function () {
     return Inertia::render('test');
 })->middleware(['auth', 'verified']);
 
-Route::group(['prefix' => 'sklep'], function () {
+Route::group(['prefix' => 'sklep', 'middleware' => [StoreUnderConstruction::class]], function () {
     Route::get('/', [StoreController::class, 'storeView'])->name('store.view');
     Route::get('/produkty', [StoreProductController::class, 'getAllProducts'])->name('store.products');
     Route::get('/produkty/{slug}', [StoreProductController::class, 'getProduct'])->name('store.product');
@@ -98,6 +103,8 @@ Route::group(['prefix' => 'sklep'], function () {
         Route::post('/shipping-method', [OrderController::class, 'shippingMethod'])->name('store.order.shipping.method');
         Route::post('/create-order', [OrderController::class, 'createOrder'])->name('store.order.create');
     });
+
+    Route::post('/send-code', [CartControllerAPI::class, 'applyPromotionCode'])->name('store.order.send.code');
 
     Route::group(['prefix' => 'search'], function () {
 

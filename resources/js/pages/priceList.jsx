@@ -28,7 +28,7 @@ const PriceList = () => {
                     {allPrices.map((price, index) => (
                         <div key={index}>
                             <h2 className={'text-neon-blossom mb-3 text-2xl font-bold'}>{price.title}</h2>
-                            <PricesAccordion data={price.items} category={price.link} variant={'plump'} />
+                            <PricesAccordion data={price.items} category={price.link} variant={'gray'} />
                         </div>
                     ))}
                 </div>

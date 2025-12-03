@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Api\Store;
 use App\Http\Controllers\Controller;
 use App\Models\Store\Cart;
 use App\Models\Store\CartItem;
+use App\Models\Store\CodeUser;
 use App\Models\Store\Product;
+use App\Models\Store\PromotionCode;
+use App\Models\Store\PromotionUser;
 use App\Models\Store\Variant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -89,6 +92,8 @@ class CartController extends Controller
 
         $total = $this->calculateTotal($products);
 
+        $userCart->total = $total;
+
         return response()->json([
             "total" => $total,
             'products' => $products,
@@ -123,5 +128,40 @@ class CartController extends Controller
         $cart->save();
 
         return response()->json(['success' => true, 'cart' => $cart->load('cartItems.product', 'cartItems.variant')]);
+    }
+    public function applyPromotionCode(Request $request){
+        $code = PromotionCode::where('code', $request->code)->with('promotion')->first();
+        if(!$code || !$code->promotion->active){
+            return response()->json(['success' => false, 'message' => 'Kod promocyjny nie został znaleziony.']);
+        }
+        if($code->usage_limit && $code->usage_count >= $code->usage_limit){
+            return response()->json(['success' => false, 'message' => 'Kod promocyjny został wykorzystany.']);
+        }
+
+        if(auth()->check()){
+            if($code->promotion->visibility === 'specific_users'){
+                $userPromotion = PromotionUser::where('user_id', auth()->id())->first();
+                if(!$userPromotion){
+                    return response()->json(['success' => false, 'message' => 'Nie masz dostep do tego kodu promocyjnego.']);
+                }
+            }
+            $userUsage = CodeUser::where('user_id', auth()->id())->count();
+            if($userUsage >= $code->count_per_user){
+                return response()->json(['success' => false, 'message' => 'Wykorzystałeś makymalna ilość użyć kodu promocyjnego.']);
+            }
+            $userCart = Cart::where('user_id', auth()->id())->first();
+
+            if($code->promotion->min_order_value && $userCart->total <= $code->promotion->min_order_value){
+                return response()->json(['success' => false, 'message' => 'Masz za małą wartość koszyka biedaku.']);
+            }
+            if($code->promotion->discount_type === 'fixed') $promotionPrice = $userCart->total - $code->promotion->discount_value;
+            else if($code->promotion->discount_type === 'percent') $promotionPrice = $userCart->total - ($userCart->total * ( $code->promotion->discount_value / 100));
+            return response()->json(['success' => true, 'promotionPrice' => $promotionPrice]);
+        }
+        else{
+            if($code->promotion->visibility === 'logged_in' || $code->promotion->visibility === 'specific_users'){
+                return response()->json(['success' => false, 'message' => 'Musisz być zalogowany aby skorzystać z kodu promocyjnego.']);
+            }
+        }
     }
 }

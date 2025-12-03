@@ -35,15 +35,25 @@ class PageController extends Controller
     public function contact(){
         return Inertia::render('contact');
     }
-    public function services(){
-        return Inertia::render('services');
+    public function serviceTypeSelector(){
+        return Inertia::render('services/serviceTypeSelector');
     }
-    public function serviceCategory(string $category){
-        return Inertia::render('serviceCategory', compact('category'));
+    public function serviceCategory(string $serviceType){
+        return Inertia::render('services/serviceCategoryList', compact('serviceType'));
     }
-    public function service(string $category, string $service){
-        $images = GalleryPhoto::where('service', $service)->get();
-        return Inertia::render('service', compact('category', 'service', 'images'));
+    public function serviceItem(string $serviceType, string $categorySlug){
+        if($serviceType === 'podolog'){
+            return Inertia::render('services/serviceCategoryItem', compact('serviceType', 'categorySlug'));
+        }
+        else if($serviceType === 'naturopata'){
+            $images = GalleryPhoto::where('service', '')->get();
+            $itemSlug = $categorySlug;
+            return Inertia::render('services/serviceDetail', compact('serviceType', 'itemSlug', 'images'));
+        }
+    }
+    public function serviceDetails(string $serviceType, string $categorySlug, string $itemSlug){
+        $images = GalleryPhoto::where('service', $categorySlug)->get();
+        return Inertia::render('services/serviceDetail', compact('serviceType', 'categorySlug', 'itemSlug', 'images'));
     }
     public function notFound(){
         return Inertia::render('notFound');
@@ -68,5 +78,8 @@ class PageController extends Controller
     }
     public function aboutUsPerson(string $person){
         return Inertia::render('about/aboutUsPerson', compact('person'));
+    }
+    public function storeComingSoon(){
+        return Inertia::render('storeComingSoon');
     }
 }

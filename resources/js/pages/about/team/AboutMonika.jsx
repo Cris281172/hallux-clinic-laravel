@@ -11,17 +11,17 @@ const AboutMonika = () => {
     return (
         <AppLayout>
             <SEO
-                title={'O Mnie - Poznaj Specjalistę Podologa w Łodzi'}
+                title={'Monika Juczyńska – Dyplomowany Podolog w Łodzi | Mobilny Gabinet Podologiczny'}
                 description={
-                    'Nazywam się Monika Juczyńska i jestem certyfikowanym podologiem. Poznaj moje doświadczenie, kwalifikacje i misję dbania o zdrowie Twoich stóp w Łodzi.'
+                    'Poznaj Monikę Juczyńską – certyfikowanego podologa z Łodzi. Profesjonalna opieka podologiczna, mobilne wizyty domowe, najwyższe standardy sterylizacji, nowoczesne technologie i indywidualne podejście do każdego pacjenta.'
                 }
                 url={'/o-mnie'}
             />
 
             <SubpageHeader
-                title={'O mnie'}
+                title={'Monika Juczyńska'}
                 text={
-                    'Dowiedz się więcej o moim doświadczeniu, kwalifikacjach i pasji do podologii. Profesjonalizm i indywidualne podejście w trosce o zdrowie Twoich stóp.'
+                    'Poznaj moje doświadczenie i misję niesienia profesjonalnej opieki podologicznej. Łączę wiedzę, praktykę i nowoczesne technologie, oferując bezpieczne, higieniczne i skuteczne zabiegi zarówno w gabinecie, jak i z dojazdem do pacjenta.'
                 }
             />
             <SubpageLayoutContainer>

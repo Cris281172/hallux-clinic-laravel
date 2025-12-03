@@ -19,11 +19,11 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                     <div
                         key={index}
                         className={`${
-                            variant === 'default' ? 'text-dark-plum bg-gray-200' : 'bg-dark-plum'
+                            variant === 'default' ? 'text-dark-plum bg-gray-200' : 'bg-gray-50'
                         } flex flex-col items-center overflow-hidden rounded-md pt-3 pb-3 sm:flex-row`}
                     >
                         <motion.div
-                            className={`${variant === 'default' ? 'bg-dark-plum' : 'bg-gray-200'} absolute top-0 left-full z-10 h-full w-full`}
+                            className={`${variant === 'default' ? 'bg-gray-200' : 'bg-gray-50'} absolute top-0 left-full z-10 h-full w-full`}
                             initial={{ left: '0' }}
                             whileInView={{ left: '100%' }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -38,17 +38,18 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                             onValueChange={() => toggleIndex(index)}
                         >
                             <AccordionItem value={`item-${index}`} className={'relative'}>
-                                <AccordionTrigger className={'cursor-pointer'}>{item.value}</AccordionTrigger>
+                                <AccordionTrigger className={'text-dark-plum cursor-pointer'}>{item.value}</AccordionTrigger>
                                 <AnimatedAccordionContent isOpen={isOpen}>
                                     <div className="relative px-4 py-2">
-                                        <p className="mb-1">{item.shortDesc}</p>
+                                        <p className="text-dark-plum mb-1">{item.shortDesc}</p>
                                         {item.link && (
                                             <Link
-                                                href={route('service', {
-                                                    category: category ?? item.categoryLink,
-                                                    service: item.link,
+                                                href={route('service-details', {
+                                                    serviceType: 'podologia',
+                                                    categorySlug: category ?? item.categoryLink,
+                                                    itemSlug: item.link,
                                                 })}
-                                                className="font-bold"
+                                                className="text-dark-plum font-bold"
                                             >
                                                 Poznaj szczegóły
                                             </Link>
@@ -57,7 +58,7 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                                 </AnimatedAccordionContent>
                             </AccordionItem>
                         </Accordion>
-                        <div className="flex w-full justify-start pl-3 sm:w-1/8 sm:justify-center sm:p-0">{item.price} zł</div>
+                        <div className="text-dark-plum flex w-full justify-start pl-3 sm:w-1/8 sm:justify-center sm:p-0">{item.price} zł</div>
                     </div>
                 );
             })}

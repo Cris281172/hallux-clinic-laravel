@@ -80,7 +80,9 @@ class Product extends Model
                 ->where('orders.user_id', auth()->id())
                 ->count();
 
-            if($userCount >= $promo->count_per_user) return false;
+//            if($promo->type === 'product' || $promo->type === 'cart') return false;
+
+            if($promo->count_per_user && $userCount >= $promo->count_per_user) return false;
 
             if(!$promo->active) return false;
             if($promo->start_date && $promo->start_date > $now) return false;

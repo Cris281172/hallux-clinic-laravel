@@ -1,5 +1,5 @@
 import { Accordion, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import AnimatedAccordionContent from '../animation/animated-accordion-content.jsx';
 
@@ -23,7 +23,7 @@ export const FAQ = ({ data, variant = 'default' }) => {
                         } flex flex-col items-center overflow-hidden rounded-md pt-3 pb-3 sm:flex-row`}
                     >
                         <motion.div
-                            className={`${variant === 'default' ? 'bg-dark-plum' : 'bg-gray-200'} absolute top-0 left-full z-10 h-full w-full`}
+                            className={`${variant === 'default' ? 'bg-gray-100' : 'bg-gray-200'} absolute top-0 left-full z-10 h-full w-full`}
                             initial={{ left: '0' }}
                             whileInView={{ left: '100%' }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}

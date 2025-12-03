@@ -38,7 +38,7 @@ const ContactSection = () => {
     };
 
     return (
-        <div className={'flex flex-col lg:flex-row'}>
+        <section className={'flex flex-col lg:flex-row'}>
             <form className={'w-full lg:w-1/2'} onSubmit={handleSubmit}>
                 <div className={'grid grid-cols-1 gap-6 sm:grid-cols-2'}>
                     <div className="flex w-full flex-col gap-1.5">
@@ -132,8 +132,10 @@ const ContactSection = () => {
                     <li>Konto bankowe: 03 1240 5556 1111 0011 2320 7916 (Pekao S.A.)</li>
                 </ul>
             </div>
-        </div>
+        </section>
     );
 };
+
+export { ContactSection };
 
 export default ContactSection;
