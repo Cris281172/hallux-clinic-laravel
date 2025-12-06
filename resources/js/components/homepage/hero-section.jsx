@@ -7,7 +7,7 @@ import AnimatedText from '../animation/animated-text.jsx';
 import { Button } from '../ui/button.tsx';
 
 const Hero = () => {
-    const [videoSrc, setVideoSrc] = useState('');
+    const [videoSrc, setVideoSrc] = useState(null);
     const videoRef = useRef(null);
 
     useEffect(() => {
@@ -38,10 +38,9 @@ const Hero = () => {
                 playsInline
                 poster={headerImagePoster}
                 aria-label="Gabinet podologiczny - tło wideo"
-                fetchpriority="high"
+                fetchPriority="high"
                 className="animate-fadeVideo absolute inset-0 z-0 h-full w-full object-cover object-[var(--mobile-position)] opacity-0 md:object-center"
             />
-
             <div className="relative z-20 container mx-auto px-6 pt-40 text-center lg:px-8">
                 <AnimatedText
                     text="Gabinet Podologiczny"

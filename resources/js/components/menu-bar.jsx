@@ -211,7 +211,7 @@ const MenuBar = () => {
                                             onMouseEnter={() => setHoveredIndex(index)}
                                             onMouseLeave={() => setHoveredIndex(null)}
                                         >
-                                            <HoverCardTrigger>
+                                            <HoverCardTrigger asChild>
                                                 <Link
                                                     ref={(el) => (linkRefs.current[index] = el)}
                                                     className="flex items-center gap-1 font-sans text-lg font-bold text-white"
@@ -233,14 +233,14 @@ const MenuBar = () => {
                                                 <HoverCardContent className="w-full bg-gray-100 px-6 text-black">
                                                     <div className={'grid grid-cols-2 gap-5'}>
                                                         {menuItem.children.map((childrenItem, index) => (
-                                                            <div className={'flex flex-col'}>
+                                                            <div className={'flex flex-col'} key={index}>
                                                                 <Link
                                                                     href={childrenItem.titleLink}
                                                                     className={'mb-1 text-sm font-bold text-gray-600'}
                                                                 >
                                                                     {childrenItem.title}
                                                                 </Link>
-                                                                <ul className="flex flex-col gap-3" key={index}>
+                                                                <ul className="flex flex-col gap-3">
                                                                     {childrenItem.items.map((item, i) => (
                                                                         <li key={i}>
                                                                             <Link
@@ -276,8 +276,8 @@ const MenuBar = () => {
                 >
                     <div className="flex flex-col items-center space-y-1 px-7 pt-2 pb-3">
                         {menuConfig.map((menuItem, index) => (
-                            <div className={'flex w-full flex-col items-start justify-start py-4'}>
-                                <div key={index} className={'flex w-full items-center justify-between'}>
+                            <div key={index} className={'flex w-full flex-col items-start justify-start py-4'}>
+                                <div className={'flex w-full items-center justify-between'}>
                                     <Link
                                         className="block rounded-md text-lg font-thin text-gray-100"
                                         href={menuItem.url}

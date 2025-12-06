@@ -50,7 +50,10 @@ const OfficeSection = () => {
                         <div className="mt-10 w-full overflow-hidden">
                             <div className="carousel animate-scroll flex gap-6 py-5">
                                 {[...benefitsConfig, ...benefitsConfig].map((item, index) => (
-                                    <div className="flex min-h-[9rem] w-50 flex-col items-center justify-between rounded-2xl bg-white p-6 text-center shadow-md">
+                                    <div
+                                        key={index}
+                                        className="flex min-h-[9rem] w-50 flex-col items-center justify-between rounded-2xl bg-white p-6 text-center shadow-md"
+                                    >
                                         <div className="text-dark-plum flex h-16 items-center justify-center text-4xl">{item.Icon}</div>
                                         <h4 className="text-dark-plum mt-4 h-12 overflow-hidden text-sm font-semibold sm:text-base">{item.title}</h4>
                                         <div className="mt-2"></div>
@@ -84,27 +87,6 @@ const OfficeSection = () => {
                     </div>
                 </div>
             </Container>
-
-            <style jsx>{`
-                .carousel {
-                    display: flex;
-                    gap: 1.5rem;
-                    width: max-content;
-                }
-
-                @keyframes scroll {
-                    0% {
-                        transform: translateX(0);
-                    }
-                    100% {
-                        transform: translateX(-50%);
-                    }
-                }
-
-                .animate-scroll {
-                    animation: scroll 20s linear infinite;
-                }
-            `}</style>
         </section>
     );
 };

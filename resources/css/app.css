@@ -613,3 +613,23 @@
 .animate-fadeVideo {
     animation: fadeVideo 1.5s ease-out forwards;
 }
+
+
+.carousel {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll {
+    animation: scroll 20s linear infinite;
+}

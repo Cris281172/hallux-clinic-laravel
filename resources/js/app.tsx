@@ -21,6 +21,12 @@ createInertiaApp({
             }, 300);
         }
 
+        console.log('%cStop!', 'color: red; font-size: 50px; font-weight: bold;');
+        console.log(
+            '%cDo not paste any code here unless you know what you are doing. You might break the site or expose sensitive data.',
+            'color: black; font-size: 16px;',
+        );
+
         const root = createRoot(el);
         root.render(<App {...props} />);
     },
