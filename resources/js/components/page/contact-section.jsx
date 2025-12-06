@@ -50,7 +50,7 @@ const ContactSection = () => {
                             value={data.name}
                             onChange={(e) => setData('name', e.target.value)}
                             type="text"
-                            className="bg-dark-plum mt-1 block w-full"
+                            className="block w-full border-1 border-gray-300 bg-gray-200 text-black"
                             placeholder="Podaj swoje imie"
                         />
                         <InputError message={errors.name} />
@@ -64,7 +64,7 @@ const ContactSection = () => {
                             value={data.surname}
                             onChange={(e) => setData('surname', e.target.value)}
                             type="text"
-                            className="bg-dark-plum mt-1 block w-full"
+                            className="block w-full border-1 border-gray-300 bg-gray-200 text-black"
                             placeholder="Podaj swoje nazwisko"
                         />
                     </div>
@@ -77,7 +77,7 @@ const ContactSection = () => {
                             value={data.phone}
                             onChange={(e) => setData('phone', e.target.value)}
                             type="text"
-                            className="bg-dark-plum mt-1 block w-full"
+                            className="block w-full border-1 border-gray-300 bg-gray-200 text-black"
                             placeholder="Podaj numer telefonu"
                         />
                         <InputError message={errors.phone} />
@@ -91,7 +91,7 @@ const ContactSection = () => {
                             value={data.email}
                             onChange={(e) => setData('email', e.target.value)}
                             type="text"
-                            className="bg-dark-plum mt-1 block w-full"
+                            className="block w-full border-1 border-gray-300 bg-gray-200 text-black"
                             placeholder="Podaj e-mail"
                         />
                         <InputError message={errors.email} />
@@ -101,7 +101,11 @@ const ContactSection = () => {
                     <Label htmlFor="name" className={'text-dark-plum'}>
                         Treść (obowiązkowa)
                     </Label>
-                    <Textarea value={data.message} onChange={(e) => setData('message', e.target.value)} className="bg-dark-plum block w-full" />
+                    <Textarea
+                        value={data.message}
+                        onChange={(e) => setData('message', e.target.value)}
+                        className="block w-full border-1 border-gray-300 bg-gray-200 text-black"
+                    />
                     <InputError message={errors.message} />
                 </div>
                 <Button variant={'darkPlum'} size={'lg'} className={'mt-5 w-full'} type={'submit'}>

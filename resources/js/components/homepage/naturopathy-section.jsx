@@ -36,7 +36,7 @@ const NaturopathySection = () => {
         {
             image: naturopathyImage1,
             title: 'Konchowanie (lejowanie)',
-            text: 'Terapia relaksacyjna z wykorzystaniem świec woskowych, wspierająca odprężenie i łagodzenie napięć w obrębie głowy. Pomaga w poprawie komfortu oddychania i ogólnego samopoczucia.',
+            text: 'Terapia relaksacyjna z wykorzystaniem konch, wspierająca odprężenie i łagodzenie napięć w obrębie głowy. Pomaga w poprawie komfortu oddychania i ogólnego samopoczucia.',
             pricing: '45-60 min / 120,00 zł',
             route: route('service-item', { serviceType: 'naturopata', categorySlug: 'konchowanie' }),
         },

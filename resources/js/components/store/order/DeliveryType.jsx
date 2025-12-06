@@ -42,7 +42,7 @@ const DeliveryType = ({ setCurrentStep, availableShippingMethod, shippingMethod,
             <RadioGroup onValueChange={(value) => handleChange(value)} defaultValue={data.shippingMethodID}>
                 {availableShippingMethod.map((item, index) => (
                     <div key={index} className={'flex items-center gap-1.5'}>
-                        <RadioGroupItem className={'bg-dark-plum'} value={item.id} id={'office'} />
+                        <RadioGroupItem className={'bg-dark-plum'} value={item.id} id={item.id} />
                         <Label htmlFor={item.id} className={'text-dark-plum'}>
                             {item.name} - {cart?.freeShippingApplied ? 'ZA DARMO' : `${item?.price} zł`}
                         </Label>

@@ -19,7 +19,7 @@ const OfficeSection = () => {
             Icon: <SquareParking size={32} className={'text-electric-romance'} />,
         },
         {
-            title: 'Sprzedaż specjalistycznych produktów',
+            title: 'Sprzedaż specjalistyczna',
             Icon: <ShoppingCart size={32} className={'text-electric-romance'} />,
         },
         {

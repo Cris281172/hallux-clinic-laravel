@@ -10,11 +10,23 @@ use App\Models\Store\Product;
 use App\Models\Store\PromotionCode;
 use App\Models\Store\PromotionUser;
 use App\Models\Store\Variant;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 
 class CartController extends Controller
 {
+
+    private function cookieProductsMap($items){
+        return $items->map(function ($item) {
+            $product = Product::where('id', $item['id'])->with('images')->first();
+            if (!$product) return null;
+            $variantValue = Variant::where('id', $item['variant'])->first();
+            $item['variant_value'] = $variantValue ? $variantValue : null;
+            $item['item'] = $product;
+            return $item;
+        });
+    }
     private function products($userCart){
         return $userCart
             ? $userCart->cartItems
@@ -33,12 +45,17 @@ class CartController extends Controller
 
     private function calculateTotal($products)
     {
-        return $products->reduce(fn($sum, $p) =>
-            $sum + ($p['item']->price * $p['quantity']), 0
-        );
+        return $products->sum(function($p) {
+            if($p['item']['promotion_active']){
+                return ($p['item']['promotion_active']['final_discount'] * $p['quantity']);
+            }
+            else{
+                return ($p['item']->price * $p['quantity']);
+            }
+        });
     }
 
-    public function getCartProducts(Request $request)
+    public function getCartProducts()
     {
         if (auth()->check()) {
             $userCart = Cart::where('user_id', auth()->id())
@@ -48,22 +65,15 @@ class CartController extends Controller
             $products = $this->products($userCart);
         }
         else{
-            $items = collect($request->all());
+            $items = collect(json_decode(Cookie::get('cart'), true));
 
-            $products = $items->map(function ($item) {
-                $product = Product::where('id', $item['id'])->with('images')->first();
-                if (!$product) return null;
-                $variantValue = Variant::where('id', $item['variant'])->first();
-                $item['variant_value'] = $variantValue ? $variantValue : null;
-                $item['item'] = $product;
-                return $item;
-            });
+            $products = $this->cookieProductsMap($items);
         }
 
         $deliveryPrice = $userCart->shippingMethod->price ?? 0;
         $productsTotal = $this->calculateTotal($products);
 
-        $freeShippingLimit = 300;
+        $freeShippingLimit = 5000;
 
         $grandTotal = $productsTotal + $deliveryPrice;
 
@@ -87,12 +97,11 @@ class CartController extends Controller
                 else $cartItem->delete();
                 break;
         }
-
         $products = $this->products($userCart);
-
         $total = $this->calculateTotal($products);
 
         $userCart->total = $total;
+        $userCart->save();
 
         return response()->json([
             "total" => $total,
@@ -120,14 +129,14 @@ class CartController extends Controller
             ]);
         }
 
+        $products = $this->products($cart);
+        $total = $this->calculateTotal($products);
 
-        $product = Product::where('id', $cartItem->product_id)->first();
-
-        $cart->total += $product->price;
+        $cart->total = $total;
 
         $cart->save();
 
-        return response()->json(['success' => true, 'cart' => $cart->load('cartItems.product', 'cartItems.variant')]);
+        return response()->json(['total' => $total, 'success' => true, 'cart' => $cart->load('cartItems.product', 'cartItems.variant')]);
     }
     public function applyPromotionCode(Request $request){
         $code = PromotionCode::where('code', $request->code)->with('promotion')->first();
@@ -136,6 +145,9 @@ class CartController extends Controller
         }
         if($code->usage_limit && $code->usage_count >= $code->usage_limit){
             return response()->json(['success' => false, 'message' => 'Kod promocyjny został wykorzystany.']);
+        }
+        if($code->promotion->start_date && $code->promotion->start_date > Carbon::now() || $code->promotion->end_date && $code->promotion->end_date < Carbon::now()){
+            return response()->json(['success' => false, 'message' => 'Kod promocyjny jest nieaktywny.']);
         }
 
         if(auth()->check()){
@@ -146,21 +158,29 @@ class CartController extends Controller
                 }
             }
             $userUsage = CodeUser::where('user_id', auth()->id())->count();
-            if($userUsage >= $code->count_per_user){
+            if($code->count_per_user && $userUsage >= $code->count_per_user){
                 return response()->json(['success' => false, 'message' => 'Wykorzystałeś makymalna ilość użyć kodu promocyjnego.']);
             }
             $userCart = Cart::where('user_id', auth()->id())->first();
 
             if($code->promotion->min_order_value && $userCart->total <= $code->promotion->min_order_value){
-                return response()->json(['success' => false, 'message' => 'Masz za małą wartość koszyka biedaku.']);
+                return response()->json(['success' => false, 'message' => 'Twoja wartość koszyka jest zbyt niska. Minimalna wartość koszyka to: ' . $code->promotion->min_order_value . " zł"]);
             }
             if($code->promotion->discount_type === 'fixed') $promotionPrice = $userCart->total - $code->promotion->discount_value;
             else if($code->promotion->discount_type === 'percent') $promotionPrice = $userCart->total - ($userCart->total * ( $code->promotion->discount_value / 100));
-            return response()->json(['success' => true, 'promotionPrice' => $promotionPrice]);
+            return response()->json(['success' => true, 'promotionPrice' => $promotionPrice, 'codeID' => $code->id]);
         }
         else{
             if($code->promotion->visibility === 'logged_in' || $code->promotion->visibility === 'specific_users'){
                 return response()->json(['success' => false, 'message' => 'Musisz być zalogowany aby skorzystać z kodu promocyjnego.']);
+            }
+            else{
+                $items = collect(json_decode(Cookie::get('cart'), true));
+                $products = $this->cookieProductsMap($items);
+                $total = $this->calculateTotal($products);
+                if($code->promotion->discount_type === 'fixed') $promotionPrice = $total - $code->promotion->discount_value;
+                else if($code->promotion->discount_type === 'percent') $promotionPrice = $total - ($total * ( $code->promotion->discount_value / 100));
+                return response()->json(['success' => true, 'promotionPrice' => $promotionPrice, 'codeID' => $code->id]);
             }
         }
     }

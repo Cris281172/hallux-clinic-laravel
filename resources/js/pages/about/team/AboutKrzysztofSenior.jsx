@@ -109,6 +109,7 @@ const AboutKrzysztofSenior = () => {
                     <h3 className={'text-dark-plum mt-5 font-bold'}>Podczas Zabiegów Używam Terapii Holistycznych:</h3>
                     <ul className={'text-dark-plum list-inside list-disc'}>
                         {[
+                            'Dźwiękoterapię misami tybetańskimi i kamertonami czakralnymi - wibracja i delikatna stymulacja dźwiękiem wspierające głęboki relaks, redukcję napięcia oraz harmonizację energii i wewnętrznego dobrostanu',
                             'Bioenergoterapia - technika przywracania równowagi energetycznej organizmu',
                             'Refleksologia - holistyczna terapia stóp i dłoni',
                             'Terapia bańkami ogniowymi – tradycyjna metoda wspierania odporności i regeneracji',

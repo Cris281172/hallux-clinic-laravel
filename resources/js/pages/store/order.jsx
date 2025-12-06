@@ -1,6 +1,5 @@
 import { Inertia } from '@inertiajs/inertia';
 import { usePage } from '@inertiajs/react';
-import Cookies from 'js-cookie';
 import { Check } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Account, { AccountSummary } from '../../components/store/order/Account.jsx';
@@ -18,14 +17,12 @@ const Order = ({ deliveryDetails, account, availableShippingMethod, shippingMeth
     const [cart, setCart] = useState(null);
     const [currentStep, setCurrentStep] = useState(1);
     const [currentShippingMethodID, setCurrentShippingMethodID] = useState(shippingMethod?.shippingMethodID ?? null);
-    let storageCart = Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [];
-
+    const [codePromotionID, setCodePromotionID] = useState(null);
+    console.log(codePromotionID);
     const fetchCartProducts = async () => {
-        const dataToSend = props.auth.user ? {} : storageCart;
         const response = await callToApi({
             url: route('api.store.cart.get.products'),
             method: 'post',
-            data: dataToSend,
         });
         setCart(response);
     };
@@ -127,7 +124,7 @@ const Order = ({ deliveryDetails, account, availableShippingMethod, shippingMeth
                                     ))}
                                 </div>
                             </div>
-                            <CartSummary cart={cart} currentShippingMethodID={currentShippingMethodID} />
+                            <CartSummary cart={cart} currentShippingMethodID={currentShippingMethodID} setCodePromotionID={setCodePromotionID} />
                         </div>
                         {currentStep === 4 && (
                             <Button type={'button'} onClick={handleGoPayment} size={'lg'} className={'mt-10 w-full'} variant={'darkPlum'}>

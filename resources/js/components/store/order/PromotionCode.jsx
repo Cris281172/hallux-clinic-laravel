@@ -5,7 +5,7 @@ import { Button } from '../../ui/button.tsx';
 import { Input } from '../../ui/input.tsx';
 import { Label } from '../../ui/label.tsx';
 
-const PromotionCode = ({ setCodePromotionPrice }) => {
+const PromotionCode = ({ setCodePromotionPrice, setCodePromotionID }) => {
     const [code, setCode] = useState('');
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +19,7 @@ const PromotionCode = ({ setCodePromotionPrice }) => {
             });
             if (response.success) {
                 setCodePromotionPrice(response.promotionPrice);
+                setCodePromotionID(response.codeID);
                 toast.success('Kod rabatowy został dodany.');
             } else {
                 toast.error(response.message);

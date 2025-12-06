@@ -9,7 +9,7 @@ import PromotionCode from './PromotionCode.jsx';
 
 const FREE_SHIPPING_THRESHOLD = 1000;
 
-const CartSummary = ({ cart, currentShippingMethodID }) => {
+const CartSummary = ({ cart, currentShippingMethodID, setCodePromotionID }) => {
     const [codePromotionPrice, setCodePromotionPrice] = useState(null);
     const [selectedShippingMethod, setSelectedShippingMethod] = useState(null);
 
@@ -40,7 +40,7 @@ const CartSummary = ({ cart, currentShippingMethodID }) => {
                             <Button onClick={() => setCodePromotionPrice(null)}>Usuń kod rabatowy</Button>
                         </div>
                     ) : (
-                        <PromotionCode setCodePromotionPrice={setCodePromotionPrice} />
+                        <PromotionCode setCodePromotionPrice={setCodePromotionPrice} setCodePromotionID={setCodePromotionID} />
                     )}
                 </div>
 

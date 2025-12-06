@@ -19,11 +19,9 @@ const CartSheet = () => {
     const [cartProducts, setCartProducts] = useState([]);
 
     const fetchCartProducts = async () => {
-        const dataToSend = props.auth.user ? {} : storageCart;
         const response = await callToApi({
             url: route('api.store.cart.get.products'),
             method: 'post',
-            data: dataToSend,
         });
         setCartProducts(response.products);
     };
@@ -92,7 +90,6 @@ const CartSheet = () => {
                                                 finalPriceClassName={'ml-1 !font-light text-md'}
                                                 price={product.item.price}
                                                 promotion={product.item.promotion_active}
-                                                showPrevPrice={false}
                                             />
                                         </div>
                                     )}
