@@ -81,6 +81,8 @@ Route::get('/profile', function () {
     return Inertia::render('test');
 })->middleware(['auth', 'verified']);
 
+Route::post('/auth/sign-in', [StoreAuthController::class, 'signIn'])->name('store.auth.sign-in');
+
 Route::group(['prefix' => 'sklep', 'middleware' => [StoreUnderConstruction::class]], function () {
     Route::get('/', [StoreController::class, 'storeView'])->name('store.view');
     Route::get('/produkty', [StoreProductController::class, 'getAllProducts'])->name('store.products');
@@ -89,7 +91,7 @@ Route::group(['prefix' => 'sklep', 'middleware' => [StoreUnderConstruction::clas
 
     Route::group(['prefix' => 'auth'], function () {
         Route::post('/sign-up', [StoreAuthController::class, 'signUp'])->name('store.auth.sign-up');
-        Route::post('/sign-in', [StoreAuthController::class, 'signIn'])->name('store.auth.sign-in');
+//        Route::post('/sign-in', [StoreAuthController::class, 'signIn'])->name('store.auth.sign-in');
         Route::get('/verify-email/{id}/{hash}', [StoreAuthController::class, 'verificationEmail'])->name('verification.verify');
         Route::get('/verify-email/notice', [StoreAuthController::class, 'verifyEmailNotice'])->name('verification.notice');
         Route::get('/verify-email-resend', [StoreAuthController::class, 'verificationEmailResend'])->name('verification.resend');
