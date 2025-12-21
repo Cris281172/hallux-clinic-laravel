@@ -1,4 +1,4 @@
-import { Book, Calendar, Home, Image, Shield, User, ShoppingCart } from 'lucide-react';
+import { Book, Calendar, Home, Image, Shield, ShoppingCart, User } from 'lucide-react';
 
 const sidebarItemsConfig = [
     {
@@ -238,6 +238,18 @@ const sidebarItemsConfig = [
                     {
                         title: 'Dodawanie',
                         url: 'dashboard.promotion.create.view',
+                        permission: 'dodawanie voucherów', //TODO zmiana permisji
+                    },
+                ],
+            },
+            {
+                title: 'Chat na żywo',
+                url: 'dashboard',
+                permission: 'dodawanie voucherów', //TODO zmiana permisji
+                children: [
+                    {
+                        title: 'Wszystkie',
+                        url: 'dashboard.chat.get.all',
                         permission: 'dodawanie voucherów', //TODO zmiana permisji
                     },
                 ],

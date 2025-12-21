@@ -13,6 +13,7 @@ import SubpageHeader from '../../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../../components/subpage-layout-container.jsx';
 import Tiles from '../../components/tiles.jsx';
 import AppLayout from '../../layouts/app-layout.jsx';
+import NotFound from '../notFound.jsx';
 
 const ServiceCategoryList = ({ serviceType }) => {
     const serviceCategoryConfig = [
@@ -95,7 +96,9 @@ const ServiceCategoryList = ({ serviceType }) => {
     ];
 
     let currentConfig = serviceCategoryConfig.find((el) => el.id === serviceType);
-
+    if (!currentConfig) {
+        return <NotFound />;
+    }
     return (
         <AppLayout>
             <SEO title={currentConfig.seo.title} description={currentConfig.seo.description} url={currentConfig.seo.url} />

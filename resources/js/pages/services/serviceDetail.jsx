@@ -1,4 +1,4 @@
-import { Link, router, usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 import { IoFootstepsOutline } from 'react-icons/io5';
 import ImageGallery from 'react-image-gallery';
@@ -10,6 +10,7 @@ import SubpageHeader from '../../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../../components/subpage-layout-container.jsx';
 import AppLayout from '../../layouts/app-layout.jsx';
 import getR2Url from '../../utils/getR2Url.js';
+import NotFound from '../notFound.jsx';
 
 const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
     const accepted = localStorage.getItem('galleryWarningAccepted');
@@ -24,7 +25,7 @@ const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
     }
 
     if (!serviceData) {
-        return router.visit('/404');
+        return <NotFound />;
     }
 
     const handleAccept = () => {

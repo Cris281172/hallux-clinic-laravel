@@ -624,71 +624,57 @@ return [
             "title" => "Dźwiękoterapia",
             "shortDesc" => "Wibracje, które leczą duszę i ciało",
             "desc" => "
-                        <p class='price'>45 min / 120,00 zł</p>
+                        <p class='price'>60-90 min / 150,00 zł</p>
                         <p>
+                            Dźwięk misy wprowadza duszę w wibracje, likwiduje napięcia, mobilizuje siły
+                            samouzdrawiające i wyzwala twórczą energię.
                             W świecie pełnym pośpiechu, stresu i natłoku bodźców coraz więcej osób poszukuje
                             naturalnych sposobów na odzyskanie spokoju, równowagi i wewnętrznej harmonii.
                             Dźwiękoterapia jest jedną z najbardziej subtelnych, a zarazem niezwykle skutecznych
                             metod pracy z ciałem, emocjami i energią. Łączy w sobie starożytną wiedzę o
                             uzdrawiającej mocy wibracji z nowoczesnymi technikami relaksacyjnymi, tworząc
-                            przestrzeń głębokiej regeneracji i ukojenia.
-                            W mojej praktyce korzystam z dwóch komplementarnych metod:
-                            <strong>
-                             Terapii dźwiękiem mis Petera Hessa oraz Terapii kamertonami czakralnymi.
-                            </strong>
-                            Obie techniki opierają się na wibracjach, które harmonizują ciało, uspokajają umysł
+                            przestrzeń głębokiej regeneracji i ukojenia. W mojej praktyce korzystam
+                            <strong>z Terapii dźwiękiem mis Petera Hessa.</strong>
+                            Są to techniki opierające się na wibracjach, które
+                            harmonizują ciało i uspokajają umysł.
                         </p>
                         <h2>Jak działa dźwiękoterapia?</h2>
                         <p>
-                        Dźwiękoterapia opiera się na naturalnej zdolności organizmu do reagowania na
-                        wibracje. Dźwięk i drgania oddziałują na ciało wielowymiarowo – na poziomie
-                        fizycznym, emocjonalnym, psychicznym i energetycznym. Precyzyjnie dobrane
-                        częstotliwości mis i kamertonów przenikają ciało niczym delikatny <i>mikromasaż komórkowy</i>,
-                        rozluźniając napięcia, uspokajając układ nerwowy i przywracając
-                        swobodny przepływ energii życiowej.
+                        Dźwiękoterapia opiera się na naturalnej zdolności organizmu do reagowania na wibracje.
+                        Dźwięk i drgania oddziałują na ciało wielowymiarowo – na poziomie fizycznym,
+                        emocjonalnym, psychicznym i energetycznym. Precyzyjnie dobrane częstotliwości mis
+                        przenikają ciało niczym delikatny mikromasaż komórkowy, rozluźniając napięcia,
+                        uspokajając układ nerwowy i przywracając swobodny przepływ energii życiowej.
                         </p>
                         <h2>Wibracje, które docierają głębiej niż dotyk</h2>
                         <p>
                         Ciało w 70% składa się z wody, a fale dźwiękowe niezwykle skutecznie rozchodzą się
                         właśnie w środowisku wodnym – nawet kilkadziesiąt razy szybciej niż w powietrzu.
-                        Dlatego wibracje mis i kamertonów łatwo przenikają do tkanek, pobudzając komórki,
-                        mięśnie i układ nerwowy do głębokiej regeneracji. To jeden z powodów, dla których
-                        dźwiękoterapia nazywana bywa „masażem od wewnątrz”.
+                        Dlatego wibracje mis łatwo przenikają do tkanek, pobudzając komórki, mięśnie i układ
+                        nerwowy do głębokiej regeneracji. To jeden z powodów, dla których dźwiękoterapia
+                        nazywana bywa „masażem od wewnątrz”.
                         </p>
                         <h3>Dźwięk a mózg – naturalna droga do relaksu</h3>
                         <p>
-                        Dźwięki o niskich i harmonijnych częstotliwościach pomagają przełączyć mózg z fal
-                        beta (aktywność, stres) na fale alfa i theta – stany związane z odprężeniem, medytacją i
+                          Dźwięki o niskich i harmonijnych częstotliwościach pomagają przełączyć mózg z fal beta
+                        (aktywność, stres) na fale alfa i theta – stany związane z odprężeniem, medytacją i
                         regeneracją. To dlatego już po kilku minutach sesji ciało zaczyna się wyciszać, a umysł
                         wchodzi w stan podobny do głębokiego snu lub relaksu.
                         </p>
                         <h3>Misy dźwiękowe Petera Hessa</h3>
                         <p>
                         Terapia dźwiękiem mis Petera Hessa opiera się na połączeniu precyzji akustycznej,
-                        wiedzy o rezonansie oraz wielowiekowych tradycji Wschodu. Każda misa jest ręcznie
-                        wykonana i składa się z mieszanki kilku metali, dzięki czemu generuje wyjątkowo
-                        czyste, harmonijne i długo wybrzmiewające tony. To właśnie ta unikalna jakość
-                        sprawia, że metoda Petera Hessa jest uznawana za jedną z najskuteczniejszych form
-                        dźwiękoterapii.
-                        </p>
-                        <p>
-                        Emitują bogate, wielowarstwowe tony, które wprowadzają organizm w stan głębokiego
-                        relaksu. Wibracje mis rozmieszczonych na ciele lub wokół niego harmonizują
-                        poszczególne obszary ciała, wspomagając odprężenie i regenerację.
-                        </p>
-                        <h3>Kamertony czakralne</h3>
-                        <p>
-                        Za pomocą kamertonów czakralnych pracujemy z energiami siedmiu głównych czakr.
-                        rezonuje z częstotliwością jednej z siedmiu głównych czakr. Wyrównujemy blokady i
-                        dysharmonie w polu energetycznym, co przekłada się na lepsze samopoczucie, lekkość
-                        emocjonalną i poczucie jasności wewnętrznej. Wibracje te wspierają równowagę
-                        energetyczną organizmu, regulują przepływ prany i pomagają odzyskać wewnętrzną
-                        harmonię.
-                        </p>
-                        <h3>Praktyczne efekty, które widać i czuć</h3>
-                        <p>
-                        Wielu uczestników opisuje działanie dźwiękoterapii jako połączenie masażu, medytacji
-                        i energetycznego „resetu”, a po sesji można odczuć:
+                        wiedzy o rezonansie oraz wielowiekowych tradycji Wschodu. Każda misa jest
+                        wytwarzana ręcznie w procesie trwającym ok 8 godzin przez czterech do sześciu
+                        rzemieślników. Misy wykonane są ze stopu 12 metali. Końcowe brzmienie uzyskuje się
+                        przez skomplikowane procesy uszlachetniania służące znalezieniu poruszonych
+                        podczas produkcji cząstek metalu miejsca w nowym porządku. To właśnie ta unikalna
+                        jakość sprawia, że misy generują wyjątkowo czyste, harmonijne i długo wybrzmiewające
+                        tony a metoda Petera Hessa jest uznawana za jedną z najskuteczniejszych form
+                        dźwiękoterapii. <br />
+                        Praktyczne efekty, które widać i czuć <br/>
+                        Wielu uczestników opisuje działanie dźwiękoterapii jako połączenie masażu, medytacji i
+                        energetycznego „resetu”, a po sesji można odczuć:
                         </p>
                         <ul>
                             <li>głębokie odprężenie w ciele i lekkość w oddechu,</li>
@@ -702,33 +688,24 @@ return [
                             <li>wyrównanie energii w obrębie czakr</li>
                             <li>poczucie lekkości, spokoju i pełnej harmonii</li>
                         </ul>
-                        <p>
-                        Dźwiękoterapia jest metodą łagodną, bezpieczną i nieinwazyjną – odpowiednią dla
-                        osób w każdym wieku. Nie jest formą leczenia medycznego, lecz naturalnym
-                        wsparciem dla organizmu w powrocie do równowagi i dobrostanu.
-                        </p>
-                        <h3>Dlaczego to działa? Bo nic nie musisz robić.</h3>
+                        <p><strong>Dźwiękoterapia</strong> jest metodą łagodną, bezpieczną i nieinwazyjną – odpowiednią dla
+                        osób w każdym wieku. Nie jest formą leczenia medycznego, lecz naturalnym wsparciem
+                        dla organizmu w powrocie do równowagi i dobrostanu.</p>
+                        <h3><strong>Dlaczego to działa? - Bo nic nie musisz robić :)</strong></h3>
                         <p>
                         Dźwiękoterapia nie wymaga od Ciebie wysiłku, doświadczenia ani umiejętności
-                        medytacyjnych. Ciało samo „odbiera” to, czego potrzebuje. Wibracje z łatwością
-                        omijają mentalną analizę i trafiają tam, gdzie są najbardziej potrzebne – dzięki temu
-                        efekty często pojawiają się szybciej niż w wielu technikach relaksacyjnych.
+                        medytacyjnych. Ciało samo „odbiera” to, czego potrzebuje. Wibracje z łatwością omijają
+                        mentalną analizę i trafiają tam, gdzie są najbardziej potrzebne – dzięki temu efekty
+                        często pojawiają się szybciej niż w wielu technikach relaksacyjnych.
                         </p>
                         <h2>Przebieg sesji</h2>
-                        <p>Podczas sesji leżysz wygodnie w ubraniu, w spokojnej, przyjaznej przestrzeni.</p>
-                        <p>Terapeuta delikatnie wprowadza misy i kamertony w drgania, a ich dźwięk i wibracje rozchodzą się po całym ciele.</p>
                         <p>
+                        Podczas sesji leżysz wygodnie w ubraniu, w spokojnej, przyjaznej przestrzeni. <br />
+                        Terapeuta delikatnie wprowadza misy w drgania, a ich dźwięk i wibracje rozchodzą się po
+                        całym ciele. Na różnych etapach masażu misy znajdują się zarówno na ciele, jak i obok
+                        niego. <br/>
                         Już po kilku minutach pojawia się uczucie głębokiego relaksu, lekkości i wyciszenia.
                         Sesja może być wzbogacona o elementy oddechu, aromaterapii lub medytacji.
-                        </p>
-                        <h2>Zapraszam</h2>
-                        <p>
-                        Jeśli pragniesz zatrzymać się na chwilę, odetchnąć głęboko i wrócić do swojego
-                        wewnętrznego rytmu – zapraszam na sesję dźwięk terapii.
-                        </p>
-                        <p>
-                        Pozwól, by dźwięk mis i kamertonów otulił Cię spokojem, przywracając harmonię ciała,
-                        umysłu i ducha.
                         </p>
                         ",
         ],

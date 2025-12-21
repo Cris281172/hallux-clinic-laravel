@@ -50,6 +50,8 @@ use App\Http\Controllers\Api\Dashboard\Store\CategoryController as CategoryContr
 use App\Http\Controllers\Api\Store\SearchController as SearchControllerAPI;
 use App\Http\Middleware\StoreUnderConstruction;
 use App\Http\Controllers\Web\Store\CartController;
+use App\Http\Controllers\Api\Store\ChatController as ChatControllerAPI;
+use App\Http\Controllers\Web\Dashboard\ChatController;
 
 Route::post('/deploy', [GithubDeployController::class, 'deploy'])->name('github.deploy');
 
@@ -135,6 +137,14 @@ Route::prefix('api')->name('api.')->group(function (){
 
     Route::prefix('store')->name('store.')->group(function () {
 
+        Route::prefix('chat')->name('chat.')->group(function () {
+
+            Route::get('/init', [ChatControllerAPI::class, 'chatInit'])->name('init');
+
+            Route::post('/send-to-admin', [ChatControllerAPI::class, 'sendMessageToAdmin'])->name('send.message.to.admin');
+
+        });
+
         Route::prefix('categories')->name('categories.')->group(function () {
 
         });
@@ -216,6 +226,12 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
             Route::prefix('users')->name('users.')->group(function () {
 
                 Route::get('/get/search', [UserControllerAPI::class, 'searchUsers'])->name('get.search');
+
+            });
+
+            Route::prefix('chat')->name('chat.')->group(function () {
+
+                Route::post('/send-to-user', [ChatControllerAPI::class, 'sendMessageToUser'])->name('send.to.user');
 
             });
 
@@ -597,6 +613,14 @@ Route::group(['middleware' => ['auth', AdminAccessMiddleware::class]], function 
                 Route::get('delete-item/{id}', [CartItemController::class, 'deleteCartItem'])->name('dashboard.cart-item.delete');
 
             });
+
+            Route::group(['prefix' => "chat"], function (){
+
+                Route::get('get/all', [ChatController::class, 'getAllChats'])->name('dashboard.chat.get.all');
+
+                Route::get('/get/{id}', [ChatController::class, 'getChat'])->name('dashboard.chat.get');
+
+            });
         });
 
     });
@@ -627,3 +651,4 @@ Route::get('/{slug}', [BlogController::class, 'getPost'])->name('blog.post.get')
 Route::fallback(function () {
     return Inertia::render('notFound');
 });
+

@@ -1,7 +1,23 @@
+import { useForm } from '@inertiajs/react';
+import { useEffect } from 'react';
 import Container from '../../page/container.jsx';
 import SectionHeader from './parts/section-header.jsx';
 
 const ContactSection = () => {
+    const { post } = useForm({
+        message: 'dwadwa',
+    });
+
+    useEffect(() => {
+        const channel = window.Echo.private('chat.13').listen('MessageSent', (e) => {
+            console.log('Received message:', e);
+        });
+
+        return () => {
+            channel.stopListening('MessageSent');
+        };
+    }, []);
+
     return (
         <div className="relative bg-pink-100 py-20">
             <Container>
@@ -62,14 +78,6 @@ const ContactSection = () => {
                     </div>
                 </div>
             </Container>
-
-            {/* Przyciski kontaktowe pływające */}
-            <button
-                onClick={() => alert('Tutaj uruchomisz czat live, np. integracja z Tawk.to lub Messengerem')}
-                className="bg-dark-plum fixed right-6 bottom-6 z-50 flex items-center gap-2 rounded-full px-5 py-3 text-white shadow-lg transition hover:bg-purple-800"
-            >
-                💬 Czat na żywo
-            </button>
         </div>
     );
 };

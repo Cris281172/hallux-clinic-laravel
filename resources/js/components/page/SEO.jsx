@@ -1,6 +1,12 @@
 import { Head } from '@inertiajs/react';
 
-const SEO = ({ title = 'Tworzenie Stron Internetowych', description = 'Domyślny opis aplikacji', image = '/default-og.png', url = '/' }) => {
+const SEO = ({
+    title = 'Tworzenie Stron Internetowych',
+    description = 'Domyślny opis aplikacji',
+    image = '/default-og.png',
+    url = '/',
+    robots = 'index, follow',
+}) => {
     const titleValue = `${title}`;
     const pageURL = 'https://hallux.clinic';
 
@@ -19,6 +25,7 @@ const SEO = ({ title = 'Tworzenie Stron Internetowych', description = 'Domyślny
             <meta name="twitter:description" content={description} />
             <meta name="twitter:image" content={image} />
             <link rel="preconnect" href="https://fonts.bunny.net" />
+            <meta name="robots" content={robots} />
             <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
         </Head>
     );

@@ -46,8 +46,8 @@ class PageController extends Controller
             return Inertia::render('services/serviceCategoryItem', compact('serviceType', 'categorySlug'));
         }
         else if($serviceType === 'naturopata'){
-            $images = GalleryPhoto::where('service', '')->get();
             $itemSlug = $categorySlug;
+            $images = GalleryPhoto::where('service', $itemSlug)->get();
             return Inertia::render('services/serviceDetail', compact('serviceType', 'itemSlug', 'images'));
         }
     }
