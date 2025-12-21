@@ -35,7 +35,14 @@ const OfficeRegulations = () => {
                                 <strong>Siedziba gabinetu stacjonarnego:</strong> ul. Armii Krajowej 44, lokal U3
                             </li>
                             <li>
-                                <strong>Kontakt:</strong> tel. +48 459 410 096, e-mail: hallux.clinic@gmail.com
+                                <strong>Kontakt:</strong> tel.{' '}
+                                <a className={'underline'} href="tel:+48459410096">
+                                    +48 459 410 096
+                                </a>
+                                , e-mail:{' '}
+                                <a href={'mailto:hallux.clinic@gmail.com'} className={'underline'}>
+                                    hallux.clinic@gmail.com
+                                </a>
                             </li>
                         </ul>
                     </article>

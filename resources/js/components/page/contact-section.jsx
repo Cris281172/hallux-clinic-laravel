@@ -122,7 +122,7 @@ const ContactSection = () => {
                     </li>
                     <li className={'text-dark-plum flex items-center'}>
                         <MdEmail className={'mr-2'} /> Email:{' '}
-                        <a className={'ml-1 font-bold'} href={''}>
+                        <a className={'ml-1 font-bold'} href={'mailto:hallux.clinic@gmail.com'}>
                             {' '}
                             hallux.clinic@gmail.com
                         </a>
