@@ -705,7 +705,7 @@ return [
                         całym ciele. Na różnych etapach masażu misy znajdują się zarówno na ciele, jak i obok
                         niego. <br/>
                         Już po kilku minutach pojawia się uczucie głębokiego relaksu, lekkości i wyciszenia.
-                        Sesja może być wzbogacona o elementy oddechu, aromaterapii lub medytacji.
+                         Sesja może być wzbogacona o elementy oddechu, aromaterapii lub medytacji.
                         </p>
                         ",
         ],
