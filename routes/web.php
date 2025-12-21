@@ -64,6 +64,7 @@ Route::get('/o-nas/{person}', [PageController::class, 'aboutUsPerson'])->name('a
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/kontakt/{status}', [PageController::class, 'contactStatus'])->name('contact-status');
 Route::get('/regulamin-sklepu', [PageController::class, 'storeRegulations'])->name('store.regulations');
+Route::get('/regulamin-gabinetu', [PageController::class, 'officeRegulations'])->name('office.regulations');
 Route::get('/ogolne-warunki-uzytkowania-strony-internetowej', [PageController::class, 'websiteTerms'])->name('website.terms');
 Route::get('/polityka-prywatnosci', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/sklep-informacja', [PageController::class, 'storeComingSoon'])->name('store.coming.soon');

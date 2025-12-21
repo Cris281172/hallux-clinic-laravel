@@ -129,7 +129,7 @@ const ContactSection = () => {
                     </li>
                 </ul>
                 <ul className={'text-dark-plum'}>
-                    <li>Armii Krajowej 44; 94-046 Łódź</li>
+                    <li>Armii Krajowej 44/lok. U3; 94-046 Łódź</li>
                     <li>Nip: 7261496883</li>
                     <li>Regon: 471387913</li>
                     <li>Konto bankowe: 03 1240 5556 1111 0011 2320 7916 (Pekao S.A.)</li>

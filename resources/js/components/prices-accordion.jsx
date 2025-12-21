@@ -45,7 +45,7 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                                         {item.link && (
                                             <Link
                                                 href={route('service-details', {
-                                                    serviceType: 'podologia',
+                                                    serviceType: 'podolog',
                                                     categorySlug: category ?? item.categoryLink,
                                                     itemSlug: item.link,
                                                 })}

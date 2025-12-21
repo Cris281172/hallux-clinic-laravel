@@ -67,6 +67,9 @@ class PageController extends Controller
     public function storeRegulations(){
         return Inertia::render('storeRegulations');
     }
+    public function officeRegulations(){
+        return Inertia::render('officeRegulations');
+    }
     public function websiteTerms(){
         return Inertia::render('websiteTerms');
     }

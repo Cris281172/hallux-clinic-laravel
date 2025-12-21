@@ -38,6 +38,10 @@ const Footer = () => {
             link: 'store.regulations',
         },
         {
+            name: 'Regulamin gabinetu',
+            link: 'office.regulations',
+        },
+        {
             name: 'Ogólne warunki użytkowania strony internetowej',
             link: 'website.terms',
         },
@@ -79,7 +83,7 @@ const Footer = () => {
                             </li>
                         </ul>
                         <ul className={'list-inside list-disc space-y-2 border-l-1 pl-4'}>
-                            <li className="text-gray-300">Armii Krajowej 44; 94-046 Łódź</li>
+                            <li className="text-gray-300">Armii Krajowej 44/lok. U3; 94-046 Łódź</li>
                             <li className="text-gray-300">Nip: 7261496883</li>
                             <li className="text-gray-300">Regon: 471387913</li>
                             <li className="text-gray-300">Konto bankowe: 03 1240 5556 1111 0011 2320 7916 (Pekao S.A.)</li>

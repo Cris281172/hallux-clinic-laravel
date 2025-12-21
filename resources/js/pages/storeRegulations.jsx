@@ -10,19 +10,18 @@ const StoreRegulations = () => {
             <SEO
                 title={'Regulamin sklepu'}
                 description={
-                    'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
+                    'Przeczytaj regulamin naszego sklepu: dowiedz się o zasadach składania zamówień, płatności, wysyłki, reklamacji i zwrotów. Bezpieczne zakupy online w Hallux Clinic.'
                 }
                 url={'/galeria/wszystkie'}
             />
             <SubpageHeader
                 title={'Regulamin sklepu'}
                 text={
-                    'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
+                    'Przeczytaj regulamin naszego sklepu: dowiedz się o zasadach składania zamówień, płatności, wysyłki, reklamacji i zwrotów. Bezpieczne zakupy online w Hallux Clinic.'
                 }
             />
             <SubpageLayoutContainer>
-                <section className="space-y-10">
-                    {/* Sekcja 1 */}
+                <section className="space-y-10 select-none">
                     <article>
                         <h2 className="mb-4 text-center text-2xl font-bold text-black">1. Postanowienia ogólne</h2>
                         <ol className="list-inside list-decimal space-y-2 leading-relaxed text-gray-700">

@@ -138,7 +138,7 @@
             {{ $voucher->full_name }}
         </div>
         <div class="contact-info">
-            ul. Armii krajowej 44 <br />
+            ul. Armii Krajowej 44/lok. U3 <br />
             Hallux Clinic <br />
             +48 459 410 096
         </div>

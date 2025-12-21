@@ -9,18 +9,18 @@ const WebsiteTerms = () => {
             <SEO
                 title={'Ogólne warunki użytkowania strony internetowej'}
                 description={
-                    'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
+                    'Zapoznaj się z ogólnymi warunkami korzystania ze strony Hallux Clinic. Dowiedz się o prawach i obowiązkach użytkowników, ochronie danych osobowych i zasadach korzystania z serwisu.'
                 }
                 url={'/galeria/wszystkie'}
             />
             <SubpageHeader
                 title={'Ogólne warunki użytkowania strony internetowej'}
                 text={
-                    'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
+                    'Zapoznaj się z ogólnymi warunkami korzystania ze strony Hallux Clinic. Dowiedz się o prawach i obowiązkach użytkowników, ochronie danych osobowych i zasadach korzystania z serwisu.'
                 }
             />
             <SubpageLayoutContainer>
-                <section className="space-y-10">
+                <section className="space-y-10 select-none">
                     <article>
                         <h2 className="mb-4 text-center text-2xl font-bold text-black">I. Preambuła</h2>
                         <ol className="list-inside list-decimal space-y-2 leading-relaxed text-gray-700">
