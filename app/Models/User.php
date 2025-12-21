@@ -53,4 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cart(){
         return $this->hasOne(Cart::class, 'user_id', 'id')->with(['cartItems.product', 'cartItems.variant']);
     }
+    public function isAdmin(){
+        return $this->hasOne(AdminsUser::class, 'user_id', 'id')->exists();
+    }
 }

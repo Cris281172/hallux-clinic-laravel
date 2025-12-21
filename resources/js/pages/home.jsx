@@ -9,6 +9,7 @@ import TeamSection from '../components/homepage/team-section.jsx';
 import TreatmentSection from '../components/homepage/treatment-section.jsx';
 import WhyUsSection from '../components/homepage/why-us-section.jsx';
 import SEO from '../components/page/SEO.jsx';
+import AuthDialog from '../components/store/auth/auth-dialog.jsx';
 import AppLayout from '../layouts/app-layout.jsx';
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
                 <ReviewsSection />
                 <FaqSection />
             </main>
+            <AuthDialog />
         </AppLayout>
     );
 }

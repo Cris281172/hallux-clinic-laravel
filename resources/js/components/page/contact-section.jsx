@@ -116,8 +116,7 @@ const ContactSection = () => {
                 <ul className={'mb-2 border-b-1 pb-2'}>
                     <li className={'text-dark-plum flex items-center'}>
                         <FaPhoneAlt className={'mr-2'} /> Numer telefonu:{' '}
-                        <a className={'ml-1 font-bold'} href={''}>
-                            {' '}
+                        <a className={'ml-1 font-bold'} href={'tel:+48459410096'}>
                             +48 459 410 096
                         </a>
                     </li>

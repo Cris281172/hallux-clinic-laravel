@@ -1,4 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 import logo from '../assets/images/logo.webp';
 const Footer = () => {
     const { props } = usePage();
@@ -60,6 +62,29 @@ const Footer = () => {
                     <p className={'mt-2 text-sm text-gray-300'}>
                         Profesjonalna opieka podologiczna w Łodzi. Zdrowe stopy to podstawa aktywnego życia.
                     </p>
+                    <div className={'mt-5 text-white'}>
+                        <ul className={'mb-2 pb-2'}>
+                            <li className={'flex items-center'}>
+                                <FaPhoneAlt className={'mr-2'} /> Numer telefonu:{' '}
+                                <a className={'ml-1 font-bold'} href={'tel:+48459410096'}>
+                                    +48 459 410 096
+                                </a>
+                            </li>
+                            <li className={'flex items-center'}>
+                                <MdEmail className={'mr-2'} /> Email:{' '}
+                                <a className={'ml-1 font-bold'} href={''}>
+                                    {' '}
+                                    hallux.clinic@gmail.com
+                                </a>
+                            </li>
+                        </ul>
+                        <ul className={'list-inside list-disc space-y-2 border-l-1 pl-4'}>
+                            <li className="text-gray-300">Armii Krajowej 44; 94-046 Łódź</li>
+                            <li className="text-gray-300">Nip: 7261496883</li>
+                            <li className="text-gray-300">Regon: 471387913</li>
+                            <li className="text-gray-300">Konto bankowe: 03 1240 5556 1111 0011 2320 7916 (Pekao S.A.)</li>
+                        </ul>
+                    </div>
                 </div>
                 <div
                     className={

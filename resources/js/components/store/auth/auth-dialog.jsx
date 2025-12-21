@@ -60,24 +60,26 @@ const AuthDialog = () => {
     }
 
     return (
-        <Dialog
-            open={open}
-            onOpenChange={() => {
-                const urlWithoutParams = window.location.pathname;
-                window.history.replaceState({}, '', urlWithoutParams);
-                setOpen(false);
-            }}
-        >
-            <DialogContent className={'rounded-2xl bg-gray-100'}>
-                <DialogHeader>
-                    <div className={'flex justify-center'}>
-                        <img src={logo} alt={'Logo hallux clinic'} className={'w-1/2'} />
-                    </div>
-                    <DialogTitle className={'text-dark-plum text-center text-xl'}>{activeTab?.title}</DialogTitle>
-                    {activeTab?.component}
-                </DialogHeader>
-            </DialogContent>
-        </Dialog>
+        <>
+            <Dialog
+                open={open}
+                onOpenChange={() => {
+                    const urlWithoutParams = window.location.pathname;
+                    window.history.replaceState({}, '', urlWithoutParams);
+                    setOpen(false);
+                }}
+            >
+                <DialogContent className={'rounded-2xl bg-gray-100'}>
+                    <DialogHeader>
+                        <div className={'flex justify-center'}>
+                            <img src={logo} alt={'Logo hallux clinic'} className={'w-1/2'} />
+                        </div>
+                        <DialogTitle className={'text-dark-plum text-center text-xl'}>{activeTab?.title}</DialogTitle>
+                        {activeTab?.component}
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
+        </>
     );
 };
 

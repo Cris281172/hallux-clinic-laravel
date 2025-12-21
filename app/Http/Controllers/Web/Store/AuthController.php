@@ -89,7 +89,9 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->to('/sklep');
+        $redirect = $request->user()->isAdmin() ? '/dashboard' : '/sklep';
+
+        return redirect()->to($redirect);
     }
     public function verifyEmailNotice(){
 

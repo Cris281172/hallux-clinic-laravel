@@ -15,7 +15,7 @@ const ContactSection = () => {
                     }
                 />
 
-                <div className={'relative top-[30px] z-15 rounded-2xl border-1 border-gray-300 bg-gray-100 p-10 shadow-2xl'}>
+                <div className={'relative top-[30px] z-15 rounded-2xl border-1 border-gray-300 bg-gray-100 p-5 shadow-2xl sm:p-10'}>
                     <ContactForm />
                 </div>
             </Container>
