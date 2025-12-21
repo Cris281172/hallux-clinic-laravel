@@ -18,6 +18,7 @@ const NaturopathySection = () => {
             text: 'Terapia wykorzystująca fale dźwiękowe do głębokiej relaksacji, redukcji napięć oraz harmonizacji pracy organizmu. Wspiera regenerację, poprawia jakość snu i ułatwia wyciszenie układu nerwowego.',
             pricing: '60-90 min / 150,00 zł',
             route: route('service-item', { serviceType: 'naturopata', categorySlug: 'dzwiekoterapia' }),
+            imageClass: 'object-[0_-96px]',
         },
         {
             image: naturopathyImage2,
@@ -69,7 +70,7 @@ const NaturopathySection = () => {
                             className="overflow-hidden rounded-2xl border bg-white shadow-md"
                             key={index}
                         >
-                            <img src={item.image} className="h-40 w-full object-cover" />
+                            <img src={item.image} className={`h-40 w-full object-cover ${item.imageClass}`} />
                             <div className="p-6">
                                 <h4 className="text-dark-plum mb-2 text-xl font-bold">{item.title}</h4>
                                 <p className={'text-gray-700'}>{item.text}</p>
