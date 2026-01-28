@@ -74,7 +74,7 @@ const ServiceCategoryList = ({ serviceType }) => {
                 {
                     text: 'Dźwiękoterapia',
                     url: route('service-item', { serviceType: 'naturopata', categorySlug: 'dzwiekoterapia' }),
-                    image: naturopathyTreatment1Image,
+                    image: naturopathyTreatment3Image,
                 },
                 {
                     text: 'Refleksologia stóp',
@@ -89,7 +89,7 @@ const ServiceCategoryList = ({ serviceType }) => {
                 {
                     text: 'Konchowanie (lejowanie)',
                     url: route('service-item', { serviceType: 'naturopata', categorySlug: 'konchowanie' }),
-                    image: naturopathyTreatment3Image,
+                    image: naturopathyTreatment1Image,
                 },
             ],
         },
