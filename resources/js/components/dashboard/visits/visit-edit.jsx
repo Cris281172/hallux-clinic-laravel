@@ -13,6 +13,7 @@ import PatientSelect from '../patinets/patient-select.jsx';
 import DatetimeVisit from './datetime-visit.jsx';
 
 const VisitEdit = ({ visit, children, allowWithoutPatient = true, selectPatientVisible, onSuccess }) => {
+    console.log('1', visit);
     const [availableTimes, setAvailableTimes] = useState([]);
     const [visitStatuses, setVisitStatuses] = useState([]);
     const [reminderVisible, setReminderVisible] = useState(false);

@@ -3,8 +3,8 @@ import { pl } from 'date-fns/locale';
 import { Ban, Settings, Trash } from 'lucide-react';
 import React, { useState } from 'react';
 import { route } from 'ziggy-js';
-import DetailsWindow from '../../../components/dashboard/details-window.jsx';
 import DialogConfirmation from '../../../components/dashboard/dialog-confirmation.jsx';
+import FullPatientsInfoSheet from '../../../components/dashboard/patinets/get/full-patients-info-sheet.jsx';
 import VisitSingleCard from '../../../components/dashboard/visits/visit-single-card.jsx';
 import Heading from '../../../components/heading.js';
 import {
@@ -20,7 +20,6 @@ import {
 } from '../../../components/ui/alert-dialog.js';
 import { Alert, AlertTitle } from '../../../components/ui/alert.js';
 import { Calendar } from '../../../components/ui/calendar.js';
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../../components/ui/dialog.js';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../components/ui/dropdown-menu.js';
 import { Label } from '../../../components/ui/label.js';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '../../../components/ui/select.js';
@@ -30,8 +29,9 @@ import DashboardLayout from '../../../layouts/dashboard-layout.jsx';
 const GetAllVisits = ({ visits, date, users, user_id }) => {
     const { props } = usePage();
     const permissions = props.userPermissions;
-    const [infoOpen, setInfoOpen] = useState(null);
+    const [infoOpen, setInfoOpen] = useState(undefined);
     const [userFilter, setUserFilter] = useState(user_id?.toString() ?? 'all');
+    console.log(visits);
     const parseDate = (str) => {
         const [day, month, year] = str.split('-').map(Number);
         return new Date(year, month - 1, day);
@@ -85,11 +85,14 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                             .sort((a, b) => new Date(b.date) - new Date(a.date))
                             .map((visit, index) => (
                                 <React.Fragment key={index}>
+                                    {infoOpen === visit.patient_id && (
+                                        <FullPatientsInfoSheet open={infoOpen === visit.patient_id} setOpen={setInfoOpen} patientID={infoOpen} />
+                                    )}
                                     <VisitSingleCard visit={visit}>
                                         <div className={'absolute top-0 right-0 m-2 flex gap-2'}>
                                             <DialogConfirmation
                                                 title={'Potwierdź usunięcie wizyty'}
-                                                text={`Czy na pewno chcesz usunąć wizytę pacjenta ${visit.patient.full_name}?`}
+                                                text={`Czy na pewno chcesz usunąć wizytę pacjenta ${visit.patient?.full_name}?`}
                                                 confirmationAlert={'Usnięto wizytę'}
                                                 handleConfirmation={() => router.get(route('dashboard.visit.delete', visit.id))}
                                             >
@@ -100,24 +103,8 @@ const GetAllVisits = ({ visits, date, users, user_id }) => {
                                                     <Settings />
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent>
-                                                    <DropdownMenuItem>
-                                                        <Link href={''}>Dodaj pacjenta do wizyty</Link>
-                                                    </DropdownMenuItem>
                                                     {visit.patient_id && (
-                                                        <Dialog
-                                                            open={infoOpen === visit.id}
-                                                            onOpenChange={(value) => setInfoOpen(value ? visit.id : null)}
-                                                        >
-                                                            <DialogTrigger asChild>
-                                                                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>Szczegóły</DropdownMenuItem>
-                                                            </DialogTrigger>
-                                                            <DialogContent className="sm:max-w-[900px]">
-                                                                <DialogTitle>
-                                                                    <div>test</div>
-                                                                </DialogTitle>
-                                                                <DetailsWindow patient={visit.patient} />
-                                                            </DialogContent>
-                                                        </Dialog>
+                                                        <DropdownMenuItem onClick={(e) => setInfoOpen(visit.patient_id)}>Szczegóły</DropdownMenuItem>
                                                     )}
                                                     {checkUserHasPermission('usuwanie wizyt') && (
                                                         <AlertDialog>

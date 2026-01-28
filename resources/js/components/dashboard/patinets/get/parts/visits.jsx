@@ -20,7 +20,7 @@ const Visits = ({ patientID }) => {
     const [lastPage, setLastPage] = useState(null);
     const [loading, setLoading] = useState(false);
     const [addVisitDialog, setAddVisitDialog] = useState(false);
-    const [visitEditDialog, setVisitEditDialog] = useState(false);
+    const [visitEditDialog, setVisitEditDialog] = useState(undefined);
 
     const { checkUserHasPermission } = usePermissions();
 
@@ -45,12 +45,11 @@ const Visits = ({ patientID }) => {
     useEffect(() => {
         setVisits([]);
         fetchVisits();
-    }, [addVisitDialog, visitEditDialog]);
+    }, [addVisitDialog]);
 
     const nextPageVisits = () => {
         fetchVisits(currentPage + 1);
     };
-
     return (
         <>
             <div className={'mb-8 flex gap-3'}>
@@ -98,16 +97,23 @@ const Visits = ({ patientID }) => {
                                         </p>
                                     </div>
                                     <div className={'mt-3 flex gap-3'}>
-                                        <Dialog open={visitEditDialog} onOpenChange={() => setVisitEditDialog((prev) => !prev)}>
+                                        <Dialog
+                                            open={visitEditDialog === visit.id}
+                                            onOpenChange={() => setVisitEditDialog(() => setVisitEditDialog(visit.id))}
+                                        >
                                             <DialogTrigger asChild>
-                                                <Button className={'cursor-pointer'} variant={'outline'}>
+                                                <Button
+                                                    onClick={() => setVisitEditDialog(() => setVisitEditDialog(visit.id))}
+                                                    className={'cursor-pointer'}
+                                                    variant={'outline'}
+                                                >
                                                     <EditIcon />
                                                     Edytuj wizytę
                                                 </Button>
                                             </DialogTrigger>
                                             <DialogContent className="sm:max-w-[650px]">
                                                 <DialogTitle>
-                                                    <div>Dodawanie wizyty do pacjenta</div>
+                                                    <div>Edytowanie wizyty</div>
                                                 </DialogTitle>
                                                 <VisitEdit
                                                     allowWithoutPatient={false}
