@@ -19,7 +19,7 @@ const ServiceCategoryList = ({ serviceType }) => {
     const serviceCategoryConfig = [
         {
             id: 'podolog',
-            title: 'Zakres Usług Podologicznych w Łodzi Usługi',
+            title: 'Usługi Podologicze',
             text: 'Odkryj pełen zakres profesjonalnych zabiegów podologicznych. Specjalizuję się w terapii paznokci, usuwaniu brodawek wirusowych, pedicure medycznym i profilaktyce stopy cukrzycowej.',
             seo: {
                 title: 'Usługi',
@@ -62,13 +62,12 @@ const ServiceCategoryList = ({ serviceType }) => {
         },
         {
             id: 'naturopata',
-            title: 'Zakres Usług Podologicznych w Łodzi Usługi',
-            text: 'Odkryj pełen zakres profesjonalnych zabiegów podologicznych. Specjalizuję się w terapii paznokci, usuwaniu brodawek wirusowych, pedicure medycznym i profilaktyce stopy cukrzycowej.',
+            title: 'Medycyna Naturalna',
+            text: 'Odkryj holistyczne podejście do zdrowia i równowagi organizmu. Zarezerwuj wizytę już dziś!',
             seo: {
-                title: 'Usługi',
-                description:
-                    'Dbaj o swoje stopy! Zabiegi podologiczne to sposób na zdrowe i zadbane stopy. Usuń odciski. modzele i grzybicę. Zarezerwuj wizytę już dziś!',
-                url: '/uslugi/podolog',
+                title: 'Medycyna Naturalna',
+                description: 'Odkryj holistyczne podejście do zdrowia i równowagi organizmu. Zarezerwuj wizytę już dziś!',
+                url: '/uslugi/naturopata',
             },
             tileItems: [
                 {
