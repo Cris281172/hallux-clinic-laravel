@@ -5,11 +5,14 @@ import desktopHeroVideo from '../../assets/videos/desktop-hero-video.mp4';
 import mobileHeroVideo from '../../assets/videos/mobile-hero-video.mp4';
 import AnimatedText from '../animation/animated-text.jsx';
 import { Button } from '../ui/button.tsx';
+import { useIsMobile } from '../../hooks/use-mobile.ts';
 
 const Hero = () => {
+    const isMobile = useIsMobile()
     const [videoSrc, setVideoSrc] = useState(null);
     const videoRef = useRef(null);
-
+    const MotionP = isMobile ? 'p' : motion.p;
+    const MotionA = isMobile ? 'a' : motion.a;
     useEffect(() => {
         const updateVideoSrc = () => {
             if (window.innerWidth < 768) {
@@ -49,29 +52,32 @@ const Hero = () => {
                     spanClassName="mr-0 sm:mr-5"
                 />
 
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    viewport={{ once: true }}
+                <MotionP
+                    {...(!isMobile && {
+                        initial: { opacity: 0, y: 20 },
+                        whileInView: { opacity: 1, y: 0 },
+                        transition: { duration: 0.6, ease: 'easeOut' },
+                        viewport: { once: true },
+                    })}
                     className="text-md mx-auto mb-10 max-w-xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:text-lg"
                 >
-                    Zadbaj o zdrowie i estetykę swoich stóp. Zapraszamy do naszego profesjonalnego gabinetu w Łodzi, gdzie zapewniamy opiekę w
-                    komfortowych warunkach.
-                </motion.p>
+                    Zadbaj o zdrowie i estetykę swoich stóp. Zapraszamy do naszego profesjonalnego gabinetu w Łodzi, gdzie zapewniamy opiekę w komfortowych warunkach.
+                </MotionP>
 
                 <div className="mt-2">
-                    <Button variant={'darkPlum'} asChild size={'lg'}>
-                        <motion.a
+                    <Button variant="darkPlum" asChild size="lg">
+                        <MotionA
                             aria-label="Zadzwoń i umów wizytę podologiczną"
                             href="tel:+48459410096"
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            viewport={{ once: true }}
+                            {...(!isMobile && {
+                                initial: { opacity: 0, y: 20 },
+                                whileInView: { opacity: 1, y: 0 },
+                                transition: { duration: 0.5 },
+                                viewport: { once: true },
+                            })}
                         >
                             Umów wizytę
-                        </motion.a>
+                        </MotionA>
                     </Button>
                 </div>
             </div>

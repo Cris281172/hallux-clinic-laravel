@@ -90,12 +90,12 @@ export const allPrices = [
             },
             {
                 value: 'Obcięcie i oczyszczenie paznokci stóp zmienionych chorobowo (grzybica, łuszczyca, wrastający paznokieć, onycholiza) - 1 palec',
-                price: '150,00',
+                price: 'od 150,00',
                 shortDesc: 'Zabieg obejmujący jeden paznokieć zmieniony chorobowo.',
             },
             {
                 value: 'Obcięcie i oczyszczenie paznokci stóp zmienionych chorobowo (grzybica, łuszczyca, wrastający paznokieć, onycholiza) - 2 palce',
-                price: '200,00',
+                price: 'od 200,00',
                 shortDesc: 'Zabieg obejmujący dwa paznokcie zmienione chorobowo.',
             },
             {

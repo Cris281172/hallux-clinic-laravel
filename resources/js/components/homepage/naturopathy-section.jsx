@@ -9,6 +9,7 @@ import HeadingHome from '../heading-home.jsx';
 import Container from '../page/container.jsx';
 import { Badge } from '../ui/badge.tsx';
 import { Button } from '../ui/button.tsx';
+import { useIsMobile } from '../../hooks/use-mobile.ts';
 
 const NaturopathySection = () => {
     const naturopathyConfig = [
@@ -43,6 +44,9 @@ const NaturopathySection = () => {
         },
     ];
 
+    const isMobile = useIsMobile();
+    const MotionDiv = isMobile ? 'div' : motion.div
+
     return (
         <section className="bg-gray-100 pt-20 pb-20">
             <Container>
@@ -62,11 +66,13 @@ const NaturopathySection = () => {
 
                 <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-4">
                     {naturopathyConfig.map((item, index) => (
-                        <motion.div
-                            initial={{ opacity: 0, x: 25 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, ease: 'easeOut' }}
-                            viewport={{ once: true, amount: 0.5 }}
+                        <MotionDiv
+                            {...(!isMobile && {
+                                initial: { opacity: 0, x: 25 },
+                                whileInView: { opacity: 1, x: 0 },
+                                transition: { duration: 0.3, ease: 'easeOut' },
+                                viewport: { once: true, amount: 0.5 }
+                            })}
                             className="overflow-hidden rounded-2xl border bg-white shadow-md"
                             key={index}
                         >
@@ -79,7 +85,7 @@ const NaturopathySection = () => {
                                     <Link href={item.route}>Więcej informacji</Link>
                                 </Button>
                             </div>
-                        </motion.div>
+                        </MotionDiv>
                     ))}
                 </div>
             </Container>

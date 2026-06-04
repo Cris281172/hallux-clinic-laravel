@@ -3,7 +3,10 @@ import { Link } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import AnimatedAccordionContent from './animation/animated-accordion-content.jsx';
+import { useIsMobile } from '../hooks/use-mobile.ts';
 const PricesAccordion = ({ data, category, variant = 'default' }) => {
+    const isMobile = useIsMobile();
+    const MotionDiv = isMobile ? "div" : motion.div
     const [openIndexes, setOpenIndexes] = useState([]);
 
     const toggleIndex = (index) => {
@@ -22,12 +25,17 @@ const PricesAccordion = ({ data, category, variant = 'default' }) => {
                             variant === 'default' ? 'text-dark-plum bg-gray-200' : 'bg-gray-50'
                         } flex flex-col items-center overflow-hidden rounded-md pt-3 pb-3 sm:flex-row`}
                     >
-                        <motion.div
+                        <MotionDiv
+                            {...(!isMobile &&
+                                {
+                                    initial: { left: '0' },
+                                    whileInView: { left: '100%' },
+                                    transition: { duration: 0.6, ease: 'easeOut' },
+                                    viewport: { once: true, amount: 0.1 }
+                                }
+                            )}
                             className={`${variant === 'default' ? 'bg-gray-200' : 'bg-gray-50'} absolute top-0 left-full z-10 h-full w-full`}
-                            initial={{ left: '0' }}
-                            whileInView={{ left: '100%' }}
-                            transition={{ duration: 0.6, ease: 'easeOut' }}
-                            viewport={{ once: true, amount: 0.1 }}
+
                         />
                         <Accordion
                             type="multiple"

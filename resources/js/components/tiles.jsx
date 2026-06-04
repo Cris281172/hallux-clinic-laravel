@@ -1,16 +1,22 @@
 import { Link } from '@inertiajs/react';
 import { motion } from 'motion/react';
+import { useIsMobile } from '../hooks/use-mobile.ts';
 
 const Tiles = ({ config }) => {
+    const isMobile = useIsMobile();
+    const MotionD = isMobile ? 'div' : motion.div
     return (
         <div className={'relative mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-10'}>
             {config.map((treatment, index) => (
-                <motion.div
+                <MotionD
                     key={index}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, ease: 'easeOut' }}
-                    viewport={{ once: true, amount: 0.2 }}
+
+                    {...(!isMobile && {
+                        initial: { opacity: 0, scale: 0.95 },
+                        whileInView: { opacity: 1, scale: 1 },
+                        transition: { duration: 0.5, ease: 'easeOut' },
+                        viewport: { once: true, amount: 0.2 }
+                    })}
                 >
                     <Link
                         href={treatment.url}
@@ -27,7 +33,7 @@ const Tiles = ({ config }) => {
                             <h3 className="text-center text-2xl font-bold uppercase">{treatment.text}</h3>
                         </div>
                     </Link>
-                </motion.div>
+                </MotionD>
             ))}
         </div>
     );

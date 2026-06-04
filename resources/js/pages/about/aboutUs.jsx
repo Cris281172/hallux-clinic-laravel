@@ -12,6 +12,7 @@ import SubpageHeader from '../../components/subpage-header.jsx';
 import SubpageLayoutContainer from '../../components/subpage-layout-container.jsx';
 import { Button } from '../../components/ui/button.tsx';
 import AppLayout from '../../layouts/app-layout.jsx';
+import { useIsMobile } from '../../hooks/use-mobile.ts';
 
 const AboutUs = () => {
     const cooperationConfig = [
@@ -61,6 +62,9 @@ const AboutUs = () => {
             key: 'krzysztof-juczynski-senior',
         },
     ];
+
+    const isMobile = useIsMobile();
+    const MotionDiv = isMobile ? 'div' : motion.div;
 
     return (
         <AppLayout>
@@ -130,12 +134,17 @@ const AboutUs = () => {
                     </div>
                     <div className="grid gap-8 lg:grid-cols-2">
                         {cooperationConfig.map((item) => (
-                            <motion.div
+                            <MotionDiv
+                                {...(!isMobile &&
+                                    {
+                                        initial: { opacity: 0 },
+                                        whileInView: { opacity: 1 },
+                                        transition: { duration: 0.8, ease: 'easeOut' },
+                                        viewport: { once: true, amount: 0.3 }
+                                    }
+                                )}
                                 key={item.title}
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                transition={{ duration: 0.8, ease: 'easeOut' }}
-                                viewport={{ once: true, amount: 0.3 }}
+
                                 className={'mt-5 border-1 lg:p-6'}
                             >
                                 <div className={'mb-3 flex flex-col items-start gap-4 sm:flex-row sm:items-center'}>
@@ -154,7 +163,7 @@ const AboutUs = () => {
                                         Zobacz więcej
                                     </a>
                                 </Button>
-                            </motion.div>
+                            </MotionDiv>
                         ))}
                     </div>
                 </div>

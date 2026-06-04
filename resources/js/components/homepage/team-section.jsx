@@ -4,8 +4,14 @@ import selfPhoto from '../../assets/images/self-photo.webp';
 import HeadingHome from '../heading-home.jsx';
 import Container from '../page/container.jsx';
 import { Button } from '../ui/button.tsx';
+import { useIsMobile } from '../../hooks/use-mobile.ts';
 
 const TeamSection = () => {
+    const isMobile = useIsMobile();
+
+    const MotionDiv = isMobile ? 'div' : motion.div;
+    const MotionImg = isMobile ? 'img' : motion.img;
+
     return (
         <section className="bg-gray-200 py-16 sm:py-20">
             <Container>
@@ -18,19 +24,26 @@ const TeamSection = () => {
                 </section>
 
                 <section className="mt-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                        viewport={{ once: true }}
+                    <MotionDiv
+                        {...(!isMobile &&
+                            {
+                                initial: { opacity: 0, y: 20 },
+                                whileInView: { opacity: 1, y: 0 },
+                                transition: { duration: 0.6, ease: 'easeOut' },
+                                viewport: { once: true }
+                            }
+                        )}
+
                         className="mx-auto flex w-full flex-col items-center gap-6 rounded-xl bg-white/20 p-6 text-center shadow-lg backdrop-blur-xl lg:flex-row lg:gap-16 lg:p-10"
                     >
-                        <motion.img
+                        <MotionImg
                             src={selfPhoto}
                             alt="Monika Juczyńska"
                             className="h-48 w-48 rounded-full object-cover lg:h-64 lg:w-64"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.5 }}
+                            {...(!isMobile && {
+                                whileHover: { scale: 1.05 },
+                                transition: { duration: 0.5 }
+                            })}
                         />
 
                         <div className="hidden lg:block lg:h-64 lg:w-0.5 lg:bg-pink-600"></div>
@@ -39,11 +52,16 @@ const TeamSection = () => {
                             <h3 className="text-dark-plum text-xl font-bold lg:text-2xl">Monika Juczyńska</h3>
                             <p className="text-dark-plum lg:text-md mb-2 text-sm font-medium">Podolog</p>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                viewport={{ once: true }}
+                            <MotionDiv
+                                {...(!isMobile &&
+                                    {
+                                        initial: { opacity: 0, y: 10 },
+                                        whileInView: { opacity: 1, y: 0 },
+                                        transition: { duration: 0.6, delay: 0.2 },
+                                        viewport: { once: true }
+                                    }
+                                )}
+
                                 className="lg:text-md space-y-2 text-sm"
                             >
                                 <p>
@@ -64,9 +82,9 @@ const TeamSection = () => {
                                     w którym pasja łączy się z profesjonalizmem, a troska o zdrowie Twoich stóp jest naszym najważniejszym
                                     zobowiązaniem.
                                 </p>
-                            </motion.div>
+                            </MotionDiv>
                         </div>
-                    </motion.div>
+                    </MotionDiv>
                 </section>
 
                 <section className="mt-6 flex justify-center">
