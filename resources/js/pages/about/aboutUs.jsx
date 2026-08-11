@@ -6,6 +6,7 @@ import jakubImage from '../../assets/images/cooperation/jakub.jpg';
 import katarzynaImage from '../../assets/images/cooperation/katarzyna.webp';
 import krzysztofJuczynskiJunior from '../../assets/images/cooperation/krzysztof-juczynski-junior.jpg';
 import selfPhoto from '../../assets/images/self-photo.webp';
+import magdaPhoto from '../../assets/images/magda-photo.webp';
 import AnimatedText from '../../components/animation/animated-text.jsx';
 import SEO from '../../components/page/SEO.jsx';
 import SubpageHeader from '../../components/subpage-header.jsx';
@@ -53,6 +54,13 @@ const AboutUs = () => {
             image: selfPhoto,
             desc: 'Dyplomowany specjalista ds. podologii. Pasjonatka zdrowia stóp, stale rozwijająca swoje umiejętności i współpracująca z cenionymi specjalistami.',
             key: 'monika-juczynska',
+        },
+        {
+            name: 'Magdalena Dziewanowska',
+            role: 'Podolog',
+            image: magdaPhoto,
+            desc: 'Dyplomowany kosmetolog-podolog. Łączy precyzję z holistycznym podejściem do każdego problemu.',
+            key: 'magdalena-dziewanowska',
         },
         {
             name: 'Krzysztof Juczyński (Senior)',

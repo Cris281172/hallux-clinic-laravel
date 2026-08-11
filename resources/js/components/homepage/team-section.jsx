@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { motion } from 'motion/react';
 import selfPhoto from '../../assets/images/self-photo.webp';
+import magdaPhoto from '../../assets/images/magda-photo.webp';
 import HeadingHome from '../heading-home.jsx';
 import Container from '../page/container.jsx';
 import { Button } from '../ui/button.tsx';
@@ -23,73 +24,66 @@ const TeamSection = () => {
                     />
                 </section>
 
-                <section className="mt-10">
+                <section className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
                     <MotionDiv
-                        {...(!isMobile &&
-                            {
-                                initial: { opacity: 0, y: 20 },
-                                whileInView: { opacity: 1, y: 0 },
-                                transition: { duration: 0.6, ease: 'easeOut' },
-                                viewport: { once: true }
-                            }
-                        )}
 
-                        className="mx-auto flex w-full flex-col items-center gap-6 rounded-xl bg-white/20 p-6 text-center shadow-lg backdrop-blur-xl lg:flex-row lg:gap-16 lg:p-10"
+                        className="group flex w-full flex-col items-center rounded-2xl bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row sm:text-left lg:p-8"
                     >
                         <MotionImg
                             src={selfPhoto}
                             alt="Monika Juczyńska"
-                            className="h-48 w-48 rounded-full object-cover lg:h-64 lg:w-64"
+                            className="h-40 w-40 shrink-0 rounded-full object-cover sm:h-44 sm:w-44"
                             {...(!isMobile && {
-                                whileHover: { scale: 1.05 },
-                                transition: { duration: 0.5 }
+                                whileHover: { scale: 1.04 },
+                                transition: { duration: 0.4 },
                             })}
                         />
 
-                        <div className="hidden lg:block lg:h-64 lg:w-0.5 lg:bg-pink-600"></div>
+                        <div className="mt-5 flex-1 sm:ml-7 sm:mt-0">
+                            <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-pink-600">
+                                Podolog
+                            </p>
 
-                        <div className="flex-1 space-y-3 text-left text-black">
-                            <h3 className="text-dark-plum text-xl font-bold lg:text-2xl">Monika Juczyńska</h3>
-                            <p className="text-dark-plum lg:text-md mb-2 text-sm font-medium">Podolog</p>
+                            <h3 className="text-xl font-bold text-dark-plum lg:text-2xl">
+                                Monika Juczyńska
+                            </h3>
 
-                            <MotionDiv
-                                {...(!isMobile &&
-                                    {
-                                        initial: { opacity: 0, y: 10 },
-                                        whileInView: { opacity: 1, y: 0 },
-                                        transition: { duration: 0.6, delay: 0.2 },
-                                        viewport: { once: true }
-                                    }
-                                )}
 
-                                className="lg:text-md space-y-2 text-sm"
-                            >
-                                <p>
-                                    Podologia to dla mnie nie tylko zawód, lecz przede wszystkim prawdziwa pasja. Nieustannie rozwijam swoje
-                                    umiejętności, uczestnicząc w licznych szkoleniach oraz prestiżowych kongresach podologicznych.
-                                </p>
-                                <p>
-                                    Jako doświadczony specjalista prowadzący gabinet podologiczny w Łodzi, stawiam sobie za cel świadczenie usług na
-                                    najwyższym poziomie – zarówno dla dorosłych, jak i dzieci.
-                                </p>
-                                <p>
-                                    Szczególną troską otaczam seniorów, którzy z powodu chorób współistniejących lub ograniczeń zdrowotnych nie zawsze
-                                    mogą dotrzeć do gabinetu. Dla nich oferuję mobilną wersję gabinetu.
-                                </p>
-                                <p>
-                                    Bliska współpraca z cenionymi specjalistami z różnych dziedzin medycyny pozwala mi utrzymywać najwyższe standardy
-                                    usług podologicznych, co potwierdzają liczne pozytywne opinie pacjentów. Gabinet podologiczny w Łodzi to miejsce,
-                                    w którym pasja łączy się z profesjonalizmem, a troska o zdrowie Twoich stóp jest naszym najważniejszym
-                                    zobowiązaniem.
-                                </p>
-                            </MotionDiv>
+                        </div>
+                    </MotionDiv>
+
+                    <MotionDiv
+
+                        className="group flex w-full flex-col items-center rounded-2xl bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row sm:text-left lg:p-8"
+                    >
+                        <MotionImg
+                            src={magdaPhoto}
+                            alt="Magdalena Dziewanowska"
+                            className="h-40 w-40 shrink-0 rounded-full object-cover sm:h-44 sm:w-44"
+                            {...(!isMobile && {
+                                whileHover: { scale: 1.04 },
+                                transition: { duration: 0.4 },
+                            })}
+                        />
+
+                        <div className="mt-5 flex-1 sm:ml-7 sm:mt-0">
+                            <p className="mb-1 text-sm font-semibold uppercase tracking-wider text-pink-600">
+                                Podolog
+                            </p>
+
+                            <h3 className="text-xl font-bold text-dark-plum lg:text-2xl">
+                                Magdalena Dziewanowska
+                            </h3>
+
+
                         </div>
                     </MotionDiv>
                 </section>
 
+
                 <section className="mt-6 flex justify-center">
                     <Button size="lg" variant="darkPlum" className="w-full max-w-xs" asChild>
-                        <Link href={route('about-us')}>Zobacz pełny zespół</Link>
+                        <Link href={route('about-us')}>Poznać zespół</Link>
                     </Button>
                 </section>
             </Container>
