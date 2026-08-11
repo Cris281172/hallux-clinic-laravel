@@ -50,12 +50,6 @@ const NaturopathySection = () => {
     return (
         <section className="bg-gray-100 pt-20 pb-20">
             <Container>
-                <div className={'flex justify-center'}>
-                    <Badge variant="destructive" className={'mb-5 px-3 py-1'}>
-                        <BadgeInfo />
-                        Nowość!
-                    </Badge>
-                </div>
                 <div className="flex w-full flex-col items-center">
                     <HeadingHome
                         title="Naturopatia"

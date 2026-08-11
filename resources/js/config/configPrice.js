@@ -205,21 +205,20 @@ export const homePrices = [
         value: 'Brodawka - terapia kilkuetapowa + konsultacja (1-2 zmiany)',
         price: '150,00',
         categoryLink: 'terapie-problemow-skornych',
-        link: 'konsultacja-podologiczna',
+        link: 'usuwanie-brodawek-wirusowych',
         shortDesc: 'Usuwanie kurzajek metodą podologiczną.',
     },
     {
         value: 'Obcięcie i oczyszczenie zdrowych paznokci stóp',
         price: 'od 130,00',
-        categoryLink: 'terapie-problemow-aparatu-paznokciowego',
-        link: 'konsultacja-podologiczna',
+
         shortDesc: 'Profesjonalne skracanie i czyszczenie paznokci.',
     },
     {
         value: 'Usunięcie odcisku na palcu, podeszwie lub przestrzeni międzypalcowej (1 zmiana)',
         price: '130,00',
-        categoryLink: '',
-        link: 'konsultacja-podologiczna',
+        categoryLink: 'terapie-problemow-skornych',
+        link: 'usuwanie-odciskow',
         shortDesc: 'Bezbolesne usunięcie pojedynczego odcisku.',
     },
 ];

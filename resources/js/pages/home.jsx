@@ -24,10 +24,9 @@ export default function Home() {
             <main>
                 <HeroSection />
                 <TreatmentSection />
-                {/*<ManicureSection />*/}
-                <NaturopathySection />
-                <TeamSection />
                 <PricingSection />
+                <TeamSection />
+                <NaturopathySection />
                 <OfficeSection />
                 <WhyUsSection />
                 <ContactSection />
