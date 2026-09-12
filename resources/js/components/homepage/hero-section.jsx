@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 import headerImagePoster from '../../assets/images/hero-image-poster.webp';
 import desktopHeroVideo from '../../assets/videos/desktop-hero-video.mp4';
 import mobileHeroVideo from '../../assets/videos/mobile-hero-video.mp4';
+import { useIsMobile } from '../../hooks/use-mobile.ts';
 import AnimatedText from '../animation/animated-text.jsx';
 import { Button } from '../ui/button.tsx';
-import { useIsMobile } from '../../hooks/use-mobile.ts';
 
 const Hero = () => {
-    const isMobile = useIsMobile()
+    const isMobile = useIsMobile();
     const [videoSrc, setVideoSrc] = useState(null);
     const videoRef = useRef(null);
     const MotionP = isMobile ? 'p' : motion.p;
@@ -40,7 +40,8 @@ const Hero = () => {
                 muted
                 playsInline
                 poster={headerImagePoster}
-                aria-label="Gabinet podologiczny - tło wideo"
+                aria-hidden="true"
+                role="presentation"
                 fetchPriority="high"
                 className="animate-fadeVideo absolute inset-0 z-0 h-full w-full object-cover object-[var(--mobile-position)] opacity-0 md:object-center"
             />
@@ -61,7 +62,8 @@ const Hero = () => {
                     })}
                     className="text-md mx-auto mb-10 max-w-xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)] sm:text-lg"
                 >
-                    Zadbaj o zdrowie i estetykę swoich stóp. Zapraszamy do naszego profesjonalnego gabinetu w Łodzi, gdzie zapewniamy opiekę w komfortowych warunkach.
+                    Zadbaj o zdrowie i estetykę swoich stóp. Zapraszamy do naszego profesjonalnego gabinetu w Łodzi na Retkini, gdzie zapewniamy
+                    opiekę w komfortowych warunkach.
                 </MotionP>
 
                 <div className="mt-2">

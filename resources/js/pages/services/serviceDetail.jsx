@@ -13,7 +13,7 @@ import getR2Url from '../../utils/getR2Url.js';
 import NotFound from '../notFound.jsx';
 
 const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
-    const accepted = localStorage.getItem('galleryWarningAccepted');
+    const accepted = typeof window !== 'undefined' ? localStorage.getItem('galleryWarningAccepted') : false;
     const { props } = usePage();
     const [showGallery, setShowGallery] = useState(accepted ? accepted : false);
     let serviceData;
@@ -28,6 +28,43 @@ const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
         return <NotFound />;
     }
 
+    const relativeUrl = serviceType === 'podolog' ? `/uslugi/${serviceType}/${categorySlug}/${itemSlug}` : `/uslugi/${serviceType}/${itemSlug}`;
+    const breadcrumbs = [
+        { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://hallux.clinic/' },
+        { '@type': 'ListItem', position: 2, name: 'Usługi', item: 'https://hallux.clinic/uslugi' },
+        {
+            '@type': 'ListItem',
+            position: 3,
+            name: serviceType === 'podolog' ? 'Podologia' : 'Naturopatia',
+            item: `https://hallux.clinic/uslugi/${serviceType}`,
+        },
+    ];
+    if (serviceType === 'podolog') {
+        breadcrumbs.push({
+            '@type': 'ListItem',
+            position: 4,
+            name: props.treatments[serviceType][categorySlug].title,
+            item: `https://hallux.clinic/uslugi/${serviceType}/${categorySlug}`,
+        });
+    }
+    breadcrumbs.push({
+        '@type': 'ListItem',
+        position: breadcrumbs.length + 1,
+        name: serviceData.title,
+        item: `https://hallux.clinic${relativeUrl}`,
+    });
+    const structuredData = [
+        {
+            '@type': 'Service',
+            name: serviceData.title,
+            description: serviceData.head.description,
+            url: `https://hallux.clinic${relativeUrl}`,
+            provider: { '@type': 'MedicalBusiness', name: 'Hallux Clinic', url: 'https://hallux.clinic/' },
+            areaServed: { '@type': 'City', name: 'Łódź' },
+        },
+        { '@type': 'BreadcrumbList', itemListElement: breadcrumbs },
+    ];
+
     const handleAccept = () => {
         localStorage.setItem('galleryWarningAccepted', 'true');
         setShowGallery(true);
@@ -35,7 +72,7 @@ const ServiceDetail = ({ serviceType, categorySlug, itemSlug, images }) => {
 
     return (
         <AppLayout>
-            <SEO title={serviceData.head.title} description={serviceData.head.description} url={`/uslugi/${props.category}/${props.service}`} />
+            <SEO title={serviceData.head.title} description={serviceData.head.description} url={relativeUrl} structuredData={structuredData} />
 
             <SubpageHeader title={serviceData.title} background={headerBackground} text={serviceData.shortDesc} />
             <SubpageLayoutContainer>

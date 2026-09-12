@@ -60,6 +60,7 @@ Route::get('/cennik', [PageController::class, 'priceList'])->name('price-list');
 Route::get('/galeria/{type}', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/kontakt', [PageController::class, 'contact'])->name('contact');
 Route::get('/o-nas', [PageController::class, 'aboutUs'])->name('about-us');
+Route::permanentRedirect('/o-mnie', '/o-nas');
 Route::get('/o-nas/{person}', [PageController::class, 'aboutUsPerson'])->name('about-us.person');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/kontakt/{status}', [PageController::class, 'contactStatus'])->name('contact-status');
@@ -68,6 +69,29 @@ Route::get('/regulamin-gabinetu', [PageController::class, 'officeRegulations'])-
 Route::get('/ogolne-warunki-uzytkowania-strony-internetowej', [PageController::class, 'websiteTerms'])->name('website.terms');
 Route::get('/polityka-prywatnosci', [PageController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/sklep-informacja', [PageController::class, 'storeComingSoon'])->name('store.coming.soon');
+Route::permanentRedirect('/uslugi/podolog/ortonyskja', '/uslugi/podolog/ortonyksja');
+Route::permanentRedirect(
+    '/usluga/profilaktyka-podologiczna/podstawowy-zabieg-podologiczny',
+    '/uslugi/podolog/profilaktyka-podologiczna/podstawowy-zabieg-podologiczny'
+);
+Route::permanentRedirect('/usluga/diagnostyka-podologiczna', '/uslugi/podolog/diagnostyka-podologiczna');
+Route::permanentRedirect('/usluga/zabiegi-uzupelniajace', '/uslugi/podolog/zabiegi-uzupelniajace');
+Route::permanentRedirect('/usluga/ortonyksja', '/uslugi/podolog/ortonyksja');
+Route::get('/uslugi/undefined/undefined', fn () => response('', 410));
+$legacyPodiatryCategories = [
+    'diagnostyka-podologiczna',
+    'ortonyksja',
+    'profilaktyka-podologiczna',
+    'terapie-problemow-aparatu-paznokciowego',
+    'terapie-problemow-skornych',
+    'zabiegi-uzupelniajace',
+];
+Route::get('/uslugi/{legacyCategory}', function (string $legacyCategory) {
+    return redirect("/uslugi/podolog/{$legacyCategory}", 301);
+})->whereIn('legacyCategory', $legacyPodiatryCategories);
+Route::get('/uslugi/{legacyCategory}/{legacyService}', function (string $legacyCategory, string $legacyService) {
+    return redirect("/uslugi/podolog/{$legacyCategory}/{$legacyService}", 301);
+})->whereIn('legacyCategory', $legacyPodiatryCategories);
 Route::group(['prefix' => 'uslugi'], function () {
     Route::get('/', [PageController::class, 'serviceTypeSelector'])->name('service-type-selector');
     Route::get('/{serviceType}', [PageController::class, 'serviceCategory'])->name('service-category');
@@ -654,4 +678,3 @@ Route::get('/{slug}', [BlogController::class, 'getPost'])->name('blog.post.get')
 Route::fallback(function () {
     return Inertia::render('notFound');
 });
-

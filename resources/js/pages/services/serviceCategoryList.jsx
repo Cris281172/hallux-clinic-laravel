@@ -19,12 +19,12 @@ const ServiceCategoryList = ({ serviceType }) => {
     const serviceCategoryConfig = [
         {
             id: 'podolog',
-            title: 'Usługi Podologicze',
+            title: 'Usługi Podologiczne',
             text: 'Odkryj pełen zakres profesjonalnych zabiegów podologicznych. Specjalizuję się w terapii paznokci, usuwaniu brodawek wirusowych, pedicure medycznym i profilaktyce stopy cukrzycowej.',
             seo: {
-                title: 'Usługi',
+                title: 'Podolog Łódź Retkinia - Zabiegi Podologiczne',
                 description:
-                    'Dbaj o swoje stopy! Zabiegi podologiczne to sposób na zdrowe i zadbane stopy. Usuń odciski. modzele i grzybicę. Zarezerwuj wizytę już dziś!',
+                    'Podolog na łódzkiej Retkini. Diagnostyka stóp, usuwanie odcisków i modzeli oraz terapia wrastających paznokci, onycholizy i grzybicy. Umów wizytę w Hallux Clinic.',
                 url: '/uslugi/podolog',
             },
             tileItems: [
@@ -39,7 +39,7 @@ const ServiceCategoryList = ({ serviceType }) => {
                     image: podiatryTreatment2Image,
                 },
                 {
-                    text: 'Terpaie problemów skórnych',
+                    text: 'Terapie problemów skórnych',
                     url: route('service-item', { serviceType: 'podolog', categorySlug: 'terapie-problemow-skornych' }),
                     image: podiatryTreatment3Image,
                 },
@@ -49,8 +49,8 @@ const ServiceCategoryList = ({ serviceType }) => {
                     image: podiatryTreatment4Image,
                 },
                 {
-                    text: 'ortonyskja',
-                    url: route('service-item', { serviceType: 'podolog', categorySlug: 'ortonyskja' }),
+                    text: 'Ortonyksja',
+                    url: route('service-item', { serviceType: 'podolog', categorySlug: 'ortonyksja' }),
                     image: podiatryTreatment5Image,
                 },
                 {
@@ -98,9 +98,24 @@ const ServiceCategoryList = ({ serviceType }) => {
     if (!currentConfig) {
         return <NotFound />;
     }
+    const pageUrl = `https://hallux.clinic${currentConfig.seo.url}`;
+    const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://hallux.clinic/' },
+            { '@type': 'ListItem', position: 2, name: 'Usługi', item: 'https://hallux.clinic/uslugi' },
+            { '@type': 'ListItem', position: 3, name: currentConfig.title, item: pageUrl },
+        ],
+    };
     return (
         <AppLayout>
-            <SEO title={currentConfig.seo.title} description={currentConfig.seo.description} url={currentConfig.seo.url} />
+            <SEO
+                title={currentConfig.seo.title}
+                description={currentConfig.seo.description}
+                url={currentConfig.seo.url}
+                structuredData={structuredData}
+            />
             <SubpageHeader title={currentConfig.title} text={currentConfig.text} />
             <SubpageLayoutContainer>
                 <Tiles config={currentConfig.tileItems} />

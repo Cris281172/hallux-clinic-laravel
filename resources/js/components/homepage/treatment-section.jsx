@@ -21,7 +21,7 @@ const TreatmentSection = () => {
             image: treatment2Image,
         },
         {
-            text: 'Terpaie problemów skórnych',
+            text: 'Terapie problemów skórnych',
             url: route('service-item', { serviceType: 'podolog', categorySlug: 'terapie-problemow-skornych' }),
             image: treatment3Image,
         },
@@ -31,7 +31,7 @@ const TreatmentSection = () => {
             image: treatment4Image,
         },
         {
-            text: 'ortonyskja',
+            text: 'Ortonyksja',
             url: route('service-item', { serviceType: 'podolog', categorySlug: 'ortonyksja' }),
             image: treatment5Image,
         },

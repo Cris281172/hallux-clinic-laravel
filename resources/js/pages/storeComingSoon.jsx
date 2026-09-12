@@ -7,7 +7,12 @@ import AppLayout from '../layouts/app-layout.jsx';
 const StoreComingSoon = () => {
     return (
         <AppLayout>
-            <SEO title="Sklep w trakcie budowy" description="Nasz sklep jest obecnie w trakcie budowy. Wróć wkrótce, aby zobaczyć pełną ofertę!" />
+            <SEO
+                title="Sklep w trakcie budowy"
+                description="Nasz sklep jest obecnie w trakcie budowy. Wróć wkrótce, aby zobaczyć pełną ofertę!"
+                url="/sklep-informacja"
+                robots="noindex, follow"
+            />
 
             <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 px-6 text-center">
                 <motion.img

@@ -6,6 +6,19 @@ import { configFAQ } from '../config/configFAQ.js';
 import AppLayout from '../layouts/app-layout.jsx';
 
 const FAQ = () => {
+    const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: configFAQ.map((item) => ({
+            '@type': 'Question',
+            name: item.value,
+            acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.desc,
+            },
+        })),
+    };
+
     return (
         <AppLayout>
             <SEO
@@ -14,6 +27,7 @@ const FAQ = () => {
                     'Masz pytania dotyczące leczenia stóp? Sprawdź odpowiedzi na najczęstsze pytania pacjentów o zabiegi podologiczne, przygotowanie do wizyty i pielęgnację.'
                 }
                 url={'/faq'}
+                structuredData={structuredData}
             />
             <SubpageHeader title={'FAQ'} text={'Najczęstsze pytania'} />
             <SubpageLayoutContainer>

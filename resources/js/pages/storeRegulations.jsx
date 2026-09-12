@@ -12,7 +12,7 @@ const StoreRegulations = () => {
                 description={
                     'Przeczytaj regulamin naszego sklepu: dowiedz się o zasadach składania zamówień, płatności, wysyłki, reklamacji i zwrotów. Bezpieczne zakupy online w Hallux Clinic.'
                 }
-                url={'/galeria/wszystkie'}
+                url={'/regulamin-sklepu'}
             />
             <SubpageHeader
                 title={'Regulamin sklepu'}

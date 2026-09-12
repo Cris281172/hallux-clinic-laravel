@@ -12,7 +12,7 @@ const OfficeRegulations = () => {
                 description={
                     'Zapoznaj się z regulaminem naszego gabinetu podologicznego. Dowiedz się o zasadach umawiania wizyt, bezpieczeństwie zabiegów, higienie i odpowiedzialności gabinetu. Profesjonalna opieka w Hallux Clinic.'
                 }
-                url={'/galeria/wszystkie'}
+                url={'/regulamin-gabinetu'}
             />
             <SubpageHeader
                 title={'Regulamin gabinetu'}

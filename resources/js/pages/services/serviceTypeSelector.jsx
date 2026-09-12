@@ -8,6 +8,14 @@ import Tiles from '../../components/tiles.jsx';
 import AppLayout from '../../layouts/app-layout.jsx';
 
 const ServiceTypeSelector = () => {
+    const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://hallux.clinic/' },
+            { '@type': 'ListItem', position: 2, name: 'Usługi', item: 'https://hallux.clinic/uslugi' },
+        ],
+    };
     const servicesConfig = [
         {
             text: 'Podolog',
@@ -29,6 +37,7 @@ const ServiceTypeSelector = () => {
                     'Odkryj pełen zakres profesjonalnych zabiegów podologicznych. Specjalizuję się w terapii paznokci, usuwaniu brodawek wirusowych, pedicure medycznym i profilaktyce stopy cukrzycowej.'
                 }
                 url={'/uslugi'}
+                structuredData={structuredData}
             />
 
             <SubpageHeader

@@ -11,7 +11,7 @@ const WebsiteTerms = () => {
                 description={
                     'Zapoznaj się z ogólnymi warunkami korzystania ze strony Hallux Clinic. Dowiedz się o prawach i obowiązkach użytkowników, ochronie danych osobowych i zasadach korzystania z serwisu.'
                 }
-                url={'/galeria/wszystkie'}
+                url={'/ogolne-warunki-uzytkowania-strony-internetowej'}
             />
             <SubpageHeader
                 title={'Ogólne warunki użytkowania strony internetowej'}

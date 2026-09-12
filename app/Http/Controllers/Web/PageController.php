@@ -39,19 +39,26 @@ class PageController extends Controller
         return Inertia::render('services/serviceTypeSelector');
     }
     public function serviceCategory(string $serviceType){
+        abort_unless(array_key_exists($serviceType, config('treatments')), 404);
+
         return Inertia::render('services/serviceCategoryList', compact('serviceType'));
     }
     public function serviceItem(string $serviceType, string $categorySlug){
         if($serviceType === 'podolog'){
+            abort_unless(config("treatments.{$serviceType}.{$categorySlug}"), 404);
             return Inertia::render('services/serviceCategoryItem', compact('serviceType', 'categorySlug'));
         }
         else if($serviceType === 'naturopata'){
+            abort_unless(config("treatments.{$serviceType}.{$categorySlug}"), 404);
             $itemSlug = $categorySlug;
             $images = GalleryPhoto::where('service', $itemSlug)->get();
             return Inertia::render('services/serviceDetail', compact('serviceType', 'itemSlug', 'images'));
         }
+
+        abort(404);
     }
     public function serviceDetails(string $serviceType, string $categorySlug, string $itemSlug){
+        abort_unless(config("treatments.{$serviceType}.{$categorySlug}.services.{$itemSlug}"), 404);
         $images = GalleryPhoto::where('service', $itemSlug)->get();
         return Inertia::render('services/serviceDetail', compact('serviceType', 'categorySlug', 'itemSlug', 'images'));
     }

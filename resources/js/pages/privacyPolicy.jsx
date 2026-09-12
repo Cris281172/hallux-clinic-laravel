@@ -7,18 +7,11 @@ const PrivacyPolicy = () => {
     return (
         <AppLayout>
             <SEO
-                title={'Ogólne warunki użytkowania strony internetowej'}
-                description={
-                    'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
-                }
-                url={'/galeria/wszystkie'}
+                title={'Polityka prywatności'}
+                description={'Dowiedz się, jak Hallux Clinic przetwarza i chroni dane osobowe użytkowników strony oraz pacjentów gabinetu.'}
+                url={'/polityka-prywatnosci'}
             />
-            <SubpageHeader
-                title={'Ogólne warunki użytkowania strony internetowej'}
-                text={
-                    'Zobacz zdjęcia mojego nowoczesnego gabinetu podologicznego oraz efekty przed i po przeprowadzonych zabiegach. Przekonaj się o jakości moich usług.'
-                }
-            />
+            <SubpageHeader title={'Polityka prywatności'} text={'Informacje o zasadach przetwarzania i ochrony danych osobowych w Hallux Clinic.'} />
             <SubpageLayoutContainer>
                 <section className="space-y-10">
                     <article>

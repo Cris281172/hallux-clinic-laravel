@@ -6,6 +6,14 @@ import SubpageLayoutContainer from '../../../components/subpage-layout-container
 import AppLayout from '../../../layouts/app-layout.jsx';
 
 const GetAll = ({ posts }) => {
+    const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://hallux.clinic/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://hallux.clinic/blog' },
+        ],
+    };
     return (
         <AppLayout>
             <SEO
@@ -13,6 +21,7 @@ const GetAll = ({ posts }) => {
                 description={
                     'Czytaj profesjonalne porady podologiczne na blogu Hallux Clinic. Dowiedz się, jak dbać o stopy, leczyć schorzenia i zapobiegać problemom.'
                 }
+                structuredData={structuredData}
                 url={'/blog'}
             />
             <SubpageHeader

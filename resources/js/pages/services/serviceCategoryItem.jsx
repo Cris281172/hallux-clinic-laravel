@@ -8,9 +8,20 @@ import AppLayout from '../../layouts/app-layout.jsx';
 const ServiceCategoryItem = ({ serviceType, categorySlug }) => {
     const { props } = usePage();
     const filteredConfig = props.treatments[serviceType][categorySlug];
+    const relativeUrl = `/uslugi/${serviceType}/${categorySlug}`;
+    const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Strona główna', item: 'https://hallux.clinic/' },
+            { '@type': 'ListItem', position: 2, name: 'Usługi', item: 'https://hallux.clinic/uslugi' },
+            { '@type': 'ListItem', position: 3, name: 'Podologia', item: 'https://hallux.clinic/uslugi/podolog' },
+            { '@type': 'ListItem', position: 4, name: filteredConfig.title, item: `https://hallux.clinic${relativeUrl}` },
+        ],
+    };
     return (
         <AppLayout>
-            <SEO title={filteredConfig.head.title} description={filteredConfig.head.description} url={`/uslugi/${props.category}`} />
+            <SEO title={filteredConfig.head.title} description={filteredConfig.head.description} url={relativeUrl} structuredData={structuredData} />
             <SubpageHeader title={filteredConfig.title} text={filteredConfig.shortDesc} />
             <SubpageLayoutContainer>
                 <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">

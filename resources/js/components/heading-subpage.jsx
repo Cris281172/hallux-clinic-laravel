@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { ChevronRight, Home } from 'lucide-react';
 import capitalizeFirstLetter from '../utils/capitalizeFirstLetter.js';
 
@@ -17,6 +17,7 @@ const ArrowRight = () => {
 };
 
 const HeadingSubpage = () => {
+    const { url } = usePage();
     const config = [
         {
             text: 'Strona główna',
@@ -25,7 +26,8 @@ const HeadingSubpage = () => {
         },
     ];
 
-    const pathSegments = window.location.pathname.slice(1).split('/');
+    const pathname = url.split('?')[0];
+    const pathSegments = pathname.slice(1).split('/').filter(Boolean);
 
     let currentPath = '';
 
